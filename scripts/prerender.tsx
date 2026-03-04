@@ -159,6 +159,8 @@ function buildArticlePage(
     .replace(/<title>[^<]*<\/title>/, `<title>${esc(articleSeo.title)}</title>`)
     .replace(/<meta name="title" content="[^"]*" \/>/, `<meta name="title" content="${esc(articleSeo.title)}" />`)
     .replace(/<meta name="description" content="[^"]*" \/>/, `<meta name="description" content="${esc(articleSeo.description)}" />`)
+    // Remove home hreflang tags before injecting article-specific ones
+    .replace(/<link rel="alternate" hreflang="[^"]*" href="[^"]*" \/>\s*/g, '')
     .replace(/<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${url}" />${hreflangLinks}`)
     .replace(/<meta property="og:type" content="[^"]*" \/>/, '<meta property="og:type" content="article" />')
     .replace(/<meta property="og:url" content="[^"]*" \/>/, `<meta property="og:url" content="${url}" />`)
