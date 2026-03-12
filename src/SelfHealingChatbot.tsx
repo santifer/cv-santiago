@@ -178,6 +178,14 @@ export default function SelfHealingChatbot({ lang = 'en' }: { lang?: Lang }) {
         {/* ================================================================ */}
         <H2 id="architecture">{s.architecture.heading}</H2>
         <Prose>{s.architecture.body}</Prose>
+        <img
+          src="/chatbot/diagram-architecture.webp"
+          alt={lang === 'es' ? 'Diagrama de arquitectura: User → Edge Function → Langfuse → Trace-to-Eval, Red Team, CI Gate' : 'Architecture diagram: User → Edge Function → Langfuse → Trace-to-Eval, Red Team, CI Gate'}
+          className="w-full max-w-lg mx-auto rounded-xl my-8"
+          width={1400}
+          height={1875}
+          loading="lazy"
+        />
         <CardStack items={s.architecture.layers.map(l => ({
           title: l.title,
           detail: l.detail,
@@ -195,6 +203,14 @@ export default function SelfHealingChatbot({ lang = 'en' }: { lang?: Lang }) {
         <H2 id="how-it-was-built">{s.howItWasBuilt.heading}</H2>
         <Prose variant="hook">{s.howItWasBuilt.intro}</Prose>
         <Prose>{s.howItWasBuilt.narrative}</Prose>
+        <img
+          src="/chatbot/diagram-mma-phases.webp"
+          alt={lang === 'es' ? 'The MMA Loop: Measure (Cost, Score, CI Gate) → Manage (Prompt Registry, Regression Test) → Automate (Red Team, Trace-to-Eval)' : 'The MMA Loop: Measure (Cost, Score, CI Gate) → Manage (Prompt Registry, Regression Test) → Automate (Red Team, Trace-to-Eval)'}
+          className="w-full rounded-xl my-8"
+          width={1400}
+          height={782}
+          loading="lazy"
+        />
         {s.howItWasBuilt.phases.map((phase, i) => (
           <div key={i}>
             <H3>{`${phase.title} — ${phase.subtitle}`}</H3>
@@ -272,7 +288,14 @@ export default function SelfHealingChatbot({ lang = 'en' }: { lang?: Lang }) {
         }))} />
         <Callout>{s.closedLoop.keyCallout}</Callout>
 
-        <CodeBlock>{s.closedLoop.diagram}</CodeBlock>
+        <img
+          src="/chatbot/diagram-closed-loop.webp"
+          alt={lang === 'es' ? 'Closed-loop: Deploy → Score → Detect → Generate Test → CI Gate → Push → Deploy' : 'Closed-loop: Deploy → Score → Detect → Generate Test → CI Gate → Push → Deploy'}
+          className="w-full rounded-xl my-8"
+          width={1400}
+          height={782}
+          loading="lazy"
+        />
         <Prose className="text-sm text-muted-foreground mt-2">{s.closedLoop.diagramCaption}</Prose>
 
         <H3>{s.closedLoop.promptVersioning.heading}</H3>
