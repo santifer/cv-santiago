@@ -460,8 +460,15 @@ button, a, [role="button"], summary { cursor: pointer; }
   content: '▊';
   display: inline;
   color: hsl(var(--primary) / 0.7);
-  animation: blink 0.7s step-end infinite;
+  animation: blink 1s step-end infinite;
   margin-left: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .streaming-cursor > :last-child::after {
+    animation: none;
+    opacity: 0.7;
+  }
 }
 
 /* Scroll offset for hash anchors */

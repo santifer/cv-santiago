@@ -136,6 +136,9 @@ export default function FloatingChat({ lang }: FloatingChatProps) {
   const pendingRagSourcesRef = useRef<RagSource[]>([]);
   const pendingRagDegradedRef = useRef(false);
 
+  // Scroll-up detection: don't yank user back down during streaming
+  const isAtBottomRef = useRef(true);
+
   const isMobile = useIsMobile();
 
   // Emit chatToggle event for ambient music ducking
@@ -152,9 +155,21 @@ export default function FloatingChat({ lang }: FloatingChatProps) {
     };
   }, []);
 
-  // Scroll automático: instantáneo durante streaming, suave después
+  // Track whether user has scrolled up (to suppress auto-scroll during streaming)
   useEffect(() => {
-    if (!isOpen) return;
+    const container = chatContainerRef.current?.querySelector('.custom-scrollbar');
+    if (!container) return;
+    const onScroll = () => {
+      const { scrollTop, scrollHeight, clientHeight } = container;
+      isAtBottomRef.current = scrollHeight - scrollTop - clientHeight < 40;
+    };
+    container.addEventListener('scroll', onScroll, { passive: true });
+    return () => container.removeEventListener('scroll', onScroll);
+  }, [isOpen]);
+
+  // Scroll automático: only if user hasn't scrolled up
+  useEffect(() => {
+    if (!isOpen || !isAtBottomRef.current) return;
     messagesEndRef.current?.scrollIntoView({
       behavior: isLoading || isStreaming ? 'instant' : 'smooth',
       block: 'end'
@@ -258,7 +273,7 @@ export default function FloatingChat({ lang }: FloatingChatProps) {
         setIsStreaming(false);
       }
       // pos === full.length but stream active — wait for more text
-    }, 30);
+    }, 20);
   };
 
   const sendMessage = async (messageText?: string) => {
@@ -606,6 +621,7 @@ export default function FloatingChat({ lang }: FloatingChatProps) {
                             ? 'streaming-cursor'
                             : ''
                         }`}
+                        aria-busy={isStreaming && i === messages.length - 1 && message.role === 'assistant' ? true : undefined}
                       >
                         {message.role === 'assistant' ? (
                           isStreaming && i === messages.length - 1 ? (
