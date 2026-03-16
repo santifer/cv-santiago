@@ -152,15 +152,17 @@ function validatePrerenderHtml(id: string, slug: string, lang: 'es' | 'en'): Iss
   }
 
   // 12. GEO: citability — first 300 chars should have definition or number
+  // Check header (H1 + subtitle) AND article body — AI crawlers see all of it
+  const headerText = (html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)?.[1] || '') + ' ' + (html.match(/<header[^>]*>([\s\S]{0,2000})/)?.[1] || '')
   const bodyStart = html.match(/<article[^>]*>([\s\S]{0,1000})/)?.[1] || ''
-  const stripped = bodyStart.replace(/<[^>]+>/g, '').trim().slice(0, 300)
-  if (stripped.length > 50) {
-    const hasDef = /\b(is|means|refers to|es|significa|se refiere)\b/i.test(stripped)
-    const hasNum = /\d/.test(stripped)
+  const combinedText = (headerText + ' ' + bodyStart).replace(/<[^>]+>/g, '').trim().slice(0, 500)
+  if (combinedText.length > 50) {
+    const hasDef = /\b(is|means|refers to|es|significa|se refiere)\b/i.test(combinedText)
+    const hasNum = /\d/.test(combinedText)
     if (!hasDef && !hasNum) {
       issues.push({
         severity: 'warn',
-        msg: 'GEO: first 300 chars lack definition ("X is/means...") and numbers. Low AI citability.',
+        msg: 'GEO: first 500 chars (header + body) lack definition and numbers. Low AI citability.',
         skill: '/seo geo',
       })
     }
