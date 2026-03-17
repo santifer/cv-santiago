@@ -486,6 +486,14 @@ export const translations = {
         },
       ],
     },
+    redditPost: {
+      hook: 'Automaticé mi búsqueda de empleo con agentes IA — 516 evaluaciones, 66 aplicaciones, zero screening manual.',
+      upvotes: '191',
+      comments: '124',
+      subreddit: 'r/SideProject',
+      cta: 'Leer en Reddit',
+      url: 'https://www.reddit.com/r/SideProject/comments/1rw1lg4/i_automated_my_job_search_with_ai_agents_516/',
+    },
     speaking: {
       title: 'Compartiendo',
       slides: 'Slides',
@@ -1218,6 +1226,14 @@ export const translations = {
           url: 'https://www.linkedin.com/posts/santifer_opentowork-solutionarchitecture-hyperautomation-activity-7376346077542768640-8brZ',
         },
       ],
+    },
+    redditPost: {
+      hook: 'I automated my job search with AI agents — 516 evaluations, 66 applications, zero manual screening.',
+      upvotes: '191',
+      comments: '124',
+      subreddit: 'r/SideProject',
+      cta: 'Read on Reddit',
+      url: 'https://www.reddit.com/r/SideProject/comments/1rw1lg4/i_automated_my_job_search_with_ai_agents_516/',
     },
     speaking: {
       title: 'Sharing',
