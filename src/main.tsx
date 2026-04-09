@@ -118,7 +118,7 @@ Object.defineProperty(window, '__santifer', {
     stack: 'React 19 + TypeScript + Vite + Tailwind v4 + Motion',
     llm: 'claude-sonnet-4-5 (streaming SSE)',
     security: '6-layer defense (keywords, canary, fingerprint, anti-extraction, online scoring, adversarial)',
-    evals: '55+ automated (factual, persona, safety, RAG, multilingual)',
+    evals: '71 automated (factual, persona, safety, RAG, multilingual, multi-turn, source badges, voice)',
     observability: 'Langfuse (traces, LLM-as-Judge, intent tags)',
     render: 'Pre-rendered HTML + critical CSS inlined + client hydration',
     perf: () => { const n = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming; console.table({ TTFB: `${Math.round(n.responseStart - n.requestStart)}ms`, DOMContentLoaded: `${Math.round(n.domContentLoadedEventEnd - n.startTime)}ms`, Load: `${Math.round(n.loadEventEnd - n.startTime)}ms` }); },

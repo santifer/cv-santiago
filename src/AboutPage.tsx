@@ -51,7 +51,7 @@ export default function AboutPage({ lang = 'es' }: { lang?: AboutLang }) {
     script.textContent = JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'ProfilePage',
-      dateModified: '2026-04-08',
+      dateModified: '2026-04-08T00:00:00+02:00',
       mainEntity: {
         '@type': 'Person',
         '@id': 'https://santifer.io/#person',
@@ -108,6 +108,7 @@ export default function AboutPage({ lang = 'es' }: { lang?: AboutLang }) {
           'https://www.crunchbase.com/person/santiago-fernandez-de-valderrama',
           'https://huggingface.co/santifer',
           'https://www.wikidata.org/wiki/Q138710224',
+          'https://santiferirepair.es',
           'https://www.facebook.com/santifer.io/',
           'https://www.producthunt.com/@santifer',
           'https://app.daily.dev/santifer',

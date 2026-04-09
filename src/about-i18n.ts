@@ -9,9 +9,9 @@ export const aboutContent = {
       description: 'Emprendedor tecnológico español, AI Product Manager y Solutions Architect. Fundador de Santifer iRepair (30.000+ reparaciones). Construye sistemas IA en producción.',
     },
     heading: 'Santiago Fernández de Valderrama',
-    subtitle: 'AI Product Manager · Solutions Architect · AI Forward Deployed Engineer',
+    subtitle: 'Head of Applied AI · AI Product Manager · Solutions Architect',
     location: 'Sevilla, España',
-    lastUpdated: 'Marzo 2026',
+    lastUpdated: 'Abril 2026',
     bio: [
       'Emprendedor tecnológico español con 16+ años construyendo productos. Fundó Santifer iRepair en 2009 y lo escaló a más de 30.000 reparaciones con automatización IA logrando un 90% de autoservicio antes de vender el negocio en 2025.',
       'Ahora construye sistemas IA en producción: el agente IA omnicanal Jacobo (n8n + ElevenLabs + tool calling), un chatbot self-healing con 71 evals automatizados y defensa de jailbreak en 6 capas, Career-Ops (sistema multi-agente de búsqueda de empleo con 631 evaluaciones), y un Business OS custom con 12 bases de Airtable y 2.100 campos.',
@@ -73,9 +73,9 @@ export const aboutContent = {
       description: 'Spanish tech entrepreneur, AI Product Manager and Solutions Architect. Founded Santifer iRepair (30,000+ repairs). Builds production AI systems.',
     },
     heading: 'Santiago Fernández de Valderrama',
-    subtitle: 'AI Product Manager · Solutions Architect · AI Forward Deployed Engineer',
+    subtitle: 'Head of Applied AI · AI Product Manager · Solutions Architect',
     location: 'Seville, Spain',
-    lastUpdated: 'March 2026',
+    lastUpdated: 'April 2026',
     bio: [
       'Spanish tech entrepreneur with 16+ years building products. Founded Santifer iRepair in 2009, scaling it to 30,000+ repairs with AI-powered automation achieving 90% self-service before selling the business in 2025.',
       'Now builds production AI systems: the omnichannel AI agent Jacobo (n8n + ElevenLabs + tool calling), a Self-Healing Chatbot with 71 automated evals and 6-layer jailbreak defense, Career-Ops (a multi-agent job search system with 631 evaluations), and a custom Business OS with 12 Airtable bases and 2,100 fields.',

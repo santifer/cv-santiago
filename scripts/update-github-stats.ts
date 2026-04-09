@@ -194,6 +194,39 @@ async function main() {
     anyChanged = true
   }
 
+  // 4. Update career-ops star count in SEO meta descriptions (i18n.ts + index.html)
+  const careerOpsStats = await fetchGitHubStats('santifer', 'career-ops')
+  if (careerOpsStats) {
+    const starLabel = formatCount(careerOpsStats.stars) + '+'
+
+    // i18n.ts — ES and EN description patterns: "(XXK+ estrellas en GitHub)" / "(XXK+ GitHub stars)"
+    const esMetaRegex = /(\()\d+[\d.]*K\+\s*estrellas en GitHub(\))/g
+    const enMetaRegex = /(\()\d+[\d.]*K\+\s*GitHub stars(\))/g
+
+    const newI18nMeta = readFileSync(I18N_PATH, 'utf-8')
+      .replace(esMetaRegex, `$1${starLabel} estrellas en GitHub$2`)
+      .replace(enMetaRegex, `$1${starLabel} GitHub stars$2`)
+
+    if (newI18nMeta !== readFileSync(I18N_PATH, 'utf-8')) {
+      writeFileSync(I18N_PATH, newI18nMeta, 'utf-8')
+      anyChanged = true
+      console.log(`  ✓ meta descriptions: ${starLabel} stars`)
+    }
+
+    // index.html — same patterns in meta tags
+    const INDEX_PATH = resolve(__dirname, '../index.html')
+    const indexContent = readFileSync(INDEX_PATH, 'utf-8')
+    const newIndex = indexContent
+      .replace(esMetaRegex, `$1${starLabel} estrellas en GitHub$2`)
+      .replace(enMetaRegex, `$1${starLabel} GitHub stars$2`)
+
+    if (newIndex !== indexContent) {
+      writeFileSync(INDEX_PATH, newIndex, 'utf-8')
+      anyChanged = true
+      console.log(`  ✓ index.html meta descriptions: ${starLabel} stars`)
+    }
+  }
+
   if (anyChanged) {
     console.log('\n✅ GitHub stats updated')
   } else {
