@@ -103,7 +103,8 @@ export const articleRegistry: ArticleConfig[] = [
       isBasedOn: {
         '@type': 'Course',
         name: 'Masterclass: n8n for PMs',
-        provider: { '@type': 'Organization', name: 'Maven', url: 'https://maven.com' },
+        provider: { '@type': 'Organization', name: 'AI Product Academy', url: 'https://maven.com/marily-nika' },
+        instructor: { '@type': 'Person', name: 'Dr. Marily Nika', sameAs: 'https://www.wikidata.org/wiki/Q107463356', jobTitle: 'Gen AI Product Lead', worksFor: { '@type': 'Organization', name: 'Google' } },
         url: 'https://maven.com/p/52fc7d/masterclass-n8n-for-p-ms',
       },
       citation: [

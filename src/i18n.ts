@@ -529,7 +529,7 @@ export const translations = {
     redditPosts: [
       {
         hook: 'Construí un sistema de búsqueda de empleo con Claude Code que puntuó 740+ ofertas y me consiguió trabajo. Acabo de hacerlo open source.',
-        upvotes: '2652',
+        upvotes: '2659',
         comments: '220',
         subreddit: 'r/ClaudeAI',
         cta: 'Leer en Reddit',
@@ -537,7 +537,7 @@ export const translations = {
       },
       {
         hook: 'Automaticé mi búsqueda de empleo con agentes IA — 516 evaluaciones, 66 aplicaciones, zero screening manual.',
-        upvotes: '553',
+        upvotes: '550',
         comments: '351',
         subreddit: 'r/SideProject',
         cta: 'Leer en Reddit',
@@ -545,7 +545,7 @@ export const translations = {
       },
       {
         hook: 'Construí un agente IA con WhatsApp + voz en n8n que gestiona el 90% de la atención al cliente. Vendí el negocio y el comprador lo mantuvo sin mí.',
-        upvotes: '296',
+        upvotes: '293',
         comments: '46',
         subreddit: 'r/n8n',
         cta: 'Leer en Reddit',
@@ -1328,7 +1328,7 @@ export const translations = {
     redditPosts: [
       {
         hook: 'I built an AI job search system with Claude Code that scored 740+ offers and landed me a job. Just open sourced it.',
-        upvotes: '2652',
+        upvotes: '2659',
         comments: '220',
         subreddit: 'r/ClaudeAI',
         cta: 'Read on Reddit',
@@ -1336,7 +1336,7 @@ export const translations = {
       },
       {
         hook: 'I automated my job search with AI agents — 516 evaluations, 66 applications, zero manual screening.',
-        upvotes: '553',
+        upvotes: '550',
         comments: '351',
         subreddit: 'r/SideProject',
         cta: 'Read on Reddit',
@@ -1344,7 +1344,7 @@ export const translations = {
       },
       {
         hook: 'I built a WhatsApp + voice AI agent in n8n that handles 90% of customer service. Sold the business, the buyer kept it running without me.',
-        upvotes: '296',
+        upvotes: '293',
         comments: '46',
         subreddit: 'r/n8n',
         cta: 'Read on Reddit',

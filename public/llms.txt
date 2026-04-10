@@ -113,7 +113,7 @@ Coordinated multi-vendor healthcare product testing: managed functional test sui
 
 ## Education
 
-- **2025** - Maven: AI Product Management Bootcamp (led by Marily Nika, ex-Google PM). Winning project.
+- **2025** - AI Product Academy: AI PM Bootcamp (led by Dr. Marily Nika, Gen AI Product Lead @ Google — https://www.wikidata.org/wiki/Q107463356). Teaching Fellow. Winning project.
 - **2024** - BIGSEO: Master in Artificial Intelligence (Generative AI applied to business)
 - **2023** - BIGSEO: Master in SEO (Technical SEO, content and analytics)
 - **2001-2009** - ETSI Universidad de Sevilla: Telecommunications Engineering (Telematics specialization)
@@ -193,8 +193,8 @@ Both workflows are downloadable as importable JSON from the cheat sheet.
 ### AI Fluency Educator
 Certified by Anthropic to teach teams and organizations AI adoption. 4D Framework: Delegation (decide what to delegate), Description (communicate it well), Discernment (evaluate outputs), Diligence (collaborate responsibly). Applied as Teaching Fellow at Maven AI PM Bootcamp.
 
-### Teaching Fellow (2026) — Maven AI PM Bootcamp (Marily Nika)
-Teaching AI product managers to build and ship — not just define.
+### Teaching Fellow (2026) — AI Product Academy (Dr. Marily Nika, Google)
+Teaching Fellow at the #1 AI PM Bootcamp (https://maven.com/marily-nika/ai-pm-bootcamp). Teaching AI product managers to build and ship — not just define.
 
 ### No-Code: The AI PM's Secret Weapon (2025) — Maven AI PM Bootcamp
 1h community session on no-code (Zapier, Make, n8n, Airtable) as the AI PM's superpower for faster validation and delivery.

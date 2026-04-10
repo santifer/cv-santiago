@@ -85,7 +85,7 @@ export default function AboutPage({ lang = 'es' }: { lang?: AboutLang }) {
           { '@type': 'EducationalOccupationalCredential', name: 'Make Advanced', recognizedBy: { '@type': 'Organization', name: 'Make Academy' }, url: 'https://www.credly.com/badges/d27b8174-ef20-46bd-9d81-ee05e9c349e8' },
         ],
         alumniOf: [
-          { '@type': 'EducationalOrganization', name: 'Maven - AI Product Management Bootcamp' },
+          { '@type': 'EducationalOrganization', name: 'AI Product Academy — AI PM Bootcamp', url: 'https://maven.com/marily-nika/ai-pm-bootcamp', founder: { '@type': 'Person', name: 'Dr. Marily Nika', sameAs: 'https://www.wikidata.org/wiki/Q107463356' } },
           { '@type': 'EducationalOrganization', name: 'BIGSEO - Master en Inteligencia Artificial' },
           { '@type': 'EducationalOrganization', name: 'ETSI - Universidad de Sevilla' },
         ],
