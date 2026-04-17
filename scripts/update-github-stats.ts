@@ -230,6 +230,51 @@ async function main() {
     }
   }
 
+  // 5. Universal sweep: update ANY career-ops star reference in all content files
+  // Patterns: "35K+ stars", "35K+ estrellas", "35K+ ⭐", "35K+ GitHub stars", "35K stars", "35K estrellas"
+  if (careerOpsStats) {
+    const starLabel = formatCount(careerOpsStats.stars)
+    const starLabelPlus = starLabel + '+'
+
+    // Files to sweep — all i18n content + about + career-ops-i18n
+    const sweepFiles = [
+      resolve(__dirname, '../src/about-i18n.ts'),
+      resolve(__dirname, '../src/career-ops-i18n.ts'),
+      resolve(__dirname, '../public/llms.txt'),
+      resolve(__dirname, '../public/humans.txt'),
+    ]
+
+    // Patterns: careful NOT to match hero metrics entries (those already handled by section 2)
+    // Match patterns like "35K+ stars", "35K+ estrellas", "35K+ ⭐", "35K+ GitHub stars"
+    const patterns = [
+      { re: /\b\d+[\d.]*K\+\s*stars/gi, replace: `${starLabelPlus} stars` },
+      { re: /\b\d+[\d.]*K\+\s*estrellas/gi, replace: `${starLabelPlus} estrellas` },
+      { re: /\b\d+[\d.]*K\+\s*⭐/g, replace: `${starLabelPlus} ⭐` },
+      { re: /\b\d+[\d.]*K\+\s*GitHub stars/g, replace: `${starLabelPlus} GitHub stars` },
+      { re: /\b\d+[\d.]*K\s+stars\b/gi, replace: `${starLabel} stars` },
+      { re: /\b\d+[\d.]*K\s+estrellas\b/gi, replace: `${starLabel} estrellas` },
+    ]
+
+    for (const filePath of sweepFiles) {
+      let content: string
+      try {
+        content = readFileSync(filePath, 'utf-8')
+      } catch {
+        continue // file doesn't exist, skip
+      }
+      let newContent = content
+      for (const { re, replace } of patterns) {
+        newContent = newContent.replace(re, replace)
+      }
+      if (newContent !== content) {
+        writeFileSync(filePath, newContent, 'utf-8')
+        anyChanged = true
+        const relPath = filePath.replace(resolve(__dirname, '..') + '/', '')
+        console.log(`  ✓ sweep ${relPath}: ${starLabelPlus} stars`)
+      }
+    }
+  }
+
   if (anyChanged) {
     console.log('\n✅ GitHub stats updated')
   } else {
