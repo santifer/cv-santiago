@@ -1,238 +1,102 @@
-# Santiago Fernández de Valderrama Aparicio
+# Vijay Panwar
 
-> Head of Applied AI · AI Product Manager · Solutions Architect
+> Senior Product Manager · AI/ML Product Leader · Payments & Fintech
 
 ## Contact & Availability
 
-- **Location:** Seville, Spain
-- **Open to:** Remote roles in EU/USA
-- **Email:** hi@santifer.io
-- **Entity Home / About**: https://santifer.io/about
-- **Website:** https://santifer.io
-- **LinkedIn:** https://linkedin.com/in/santifer
-- **X / Twitter:** https://x.com/santifer
-- **GitHub:** https://github.com/santifer
-- **Content Digest:** https://contentdigest.santifer.io
-- **Newsletter (Substack):** https://santifer.substack.com
-- **Facebook:** https://www.facebook.com/santifer.io/
-- **Product Hunt:** https://www.producthunt.com/@santifer
-- **daily.dev:** https://app.daily.dev/santifer
-- **dev.to:** https://dev.to/santifer
+- **Location:** Mumbai, India
+- **Open to:** Remote roles & new opportunities
+- **Email:** vijaypanwar333@gmail.com
+- **Phone:** 8871553657
+- **LinkedIn:** https://linkedin.com/in/vijay-panwar-835bb13a
+- **GitHub:** https://github.com/Voldy75
 
 ## Professional Summary
 
-Ex-founder with 16+ years building products. After scaling and selling my business (going-concern sale, 2025), I focus on roles where impact scales: turning ambiguous business goals into production-ready AI solutions.
-
-I operate with end-to-end ownership across discovery → prioritization → delivery → adoption, collaborating closely with stakeholders and engineering.
-
-## Target Roles
-
-1. **AI Product Manager** - AI product discovery, PRDs, roadmap and prioritization for LLM-powered products
-2. **Solutions Architect (No/Low-Code & AI)** - System design for automation platforms integrated with AI
-3. **AI Forward Deployed Engineer** (role pioneered by Palantir) - Stakeholder workshops, rapid prototyping, production delivery
-
-## Key Achievement: Omnichannel AI Agent "Jacobo"
-
-Built an AI agent achieving **~90% customer self-service rate**:
-
-- **Channels:** Voice (ElevenLabs) + WhatsApp (n8n/WATI) + Aircall cloud PBX
-- **Architecture:** Sub-agent orchestration via tool calling
-- **Components:**
-  - Main router: classifies intent and delegates to specialized sub-agents
-  - Appointments sub-agent: checks slots, books, confirms via WhatsApp
-  - Discounts sub-agent: calculates promotions based on customer history
-  - Orders sub-agent: validates stock, creates order, notifies ETA
-  - HITL handoff: escalates to human with full context when needed
+Product leader with 8+ years scaling consumer-facing and business-facing platforms to millions of users. Expert in 0-to-1 product development and growth optimization, with proven track record of driving user engagement through data-driven experimentation. Specialized in building AI/ML-powered products and cross-platform experiences in high-growth environments.
 
 ## Core Competencies
 
-- **AI Product Discovery:** Problem definition, AI PRDs, roadmap & prioritization
-- **Enterprise Solution Architecture:** End-to-end system design across departments, APIs/webhooks, data flows, OpenAPI specs
-- **Agentic Workflows:** LLM agents, tool use/function calling, HITL handoff, voice + messaging
-- **LLMOps & AI Governance:** Observability, evals, error handling, retries, SOPs, cost/latency trade-offs, responsible AI
-- **Forward-Deployed Delivery:** Stakeholder workshops, workflow mapping, rapid prototyping
-- **AI Enablement & Thought Leadership:** AI adoption workshops, technical writing with real traction, Teaching Fellow at AI PM Bootcamp, "n8n for Product Managers" lightning session on Maven
-
-## Development Methodology
-
-AI-augmented SDLC: design with clear constraints and threat modeling, implement via small PRs with AI pair programming, validate with eval sets + observability + cost control. Agentic development capabilities are gated with allowlists, HITL confirmations, and monitoring.
-
-## Tech Stack
-
-### AI/LLM
-- Claude (Anthropic) - API integration, Claude Code power user (multi-agent orchestration: 5+ agents in parallel via tmux, inter-agent IPC via JSON, pre-compact memory persistence with Haiku, custom reusable skills)
-- OpenAI - Custom GPTs, tool use via OpenAPI
-- ElevenLabs - Voice AI integration
-
-### Automation Platforms
-- Airtable - Builder/Admin certified, used as headless CMS and ERP
-- n8n - Workflow automation, WhatsApp integration
-- Make - Advanced certified
-- Zapier
-
-### Integrations
-- Aircall (cloud PBX)
-- WATI (WhatsApp Business API)
-- YouCanBookMe (scheduling)
-- DataForSEO (search volume data)
-
-### Development
-- Python, FastAPI
-- Node.js, JavaScript, TypeScript
-- React, Astro
-- SQL, GraphQL
-- Git, Vercel
+- **Product Strategy:** Define scaled vision & strategy, Product Roadmap Development, Multi-language Product Development, User Research & Behavioral Analysis, Monetization and Revenue Optimization
+- **Technical & AI:** AI/ML Product Development, API Strategy & Integration, Platform Scaling Architecture, Workflow Automation, Agentic AI Systems, Multi-agent orchestration, RAG pipelines, LLM Observability (LangSmith)
+- **Growth & Engagement:** 0-to-1 Product Development, User Acquisition & Retention Strategy, A/B Testing & Experimentation, Data-Driven Decision Making, Product-Led Growth (PLG), Go-to-market execution
+- **User Experience:** Customer-Centric approach & Innovation, Cross-Platform Experience Design, Accessibility and Inclusion
+- **Industry:** Payment Systems, Merchant acquiring, Payment Infrastructure, Regulatory compliance & risk management, SaaS, IaaS
 
 ## Work Experience
 
-### Santifer iRepair (2009-2025) - Founder & Product Lead
-**Exit 2025:** Built, scaled and sold the business as a going concern
+### Zrika (NexNebula Technologies) — Senior Product Manager | Mumbai | Dec 2024 – Present
+Architecting an AI-powered payment infrastructure-as-a-service solution.
+- Defined product vision and multi-year roadmaps for AI-driven payment infrastructure. Leading a distributed team of 10+ across engineering & product.
+- Shipped internal AI copilots with data guardrails for Compliance & HR using RAG architecture + LLM models and observability & monitoring platforms.
+- Engineering an AI-powered fraud & risk management (FRM) inference engine to reduce chargebacks, onboarding, and transactional fraud.
+- Built an enterprise-grade UPI payment switch from ground up — sub-50ms latency, multi-tenant fraud engine, NPCI-compliant routing & settlement.
 
-- Mobile, tablet and smartwatch repairs — +30,000 repairs completed
-- Led end-to-end transformation of service operations
-- Built internal ERP, CRM, booking system, and programmatic SEO website
-- Developed AI agent "Jacobo" achieving ~90% self-service
-- Created custom GPTs for stock/pricing queries via voice/natural language
-- Philosophy: automate everything possible to maximize value delivered
+### NPCI (BHIM) — Senior Product Manager, BHIM | Mumbai | Dec 2023 – Nov 2024
+Led UPI Lite product strategy for world's largest digital payment ecosystem (350M+ users), driving 4x adoption growth.
+- Spearheaded 0-to-1 and 1-to-100 scaling of UPI Lite at BHIM.
+- Drove user growth strategy for 30M+ consumer platform, achieving 30% DAU increase.
+- Improved activation (+40%) and retention (+35%) through region-specific user journey mapping.
+- Scaled UPI Lite payment infrastructure to 400K+ daily transactions with 99.9% uptime.
+- Commanded data engineering team to build analytics on 10M+ data points.
+- Launched UPI Lite Auto top-up and UPI-ICD (Interoperable Cash Deposit) from concept to market.
+- Managed product roadmap with 15+ developers & cross-functional stakeholders.
 
-### Programmatic Web + Automated SEO (2024)
-Only one in the mobile repair sector in Spain:
-- Headless CMS in Airtable as source of truth
-- Integrated with ERP, generating Astro website
-- Pages per model/repair auto-generated
-- Search volume via DataForSEO for indexing decisions
-- Crawl budget optimization
+### Rapipay Fintech — Product Manager, CICO | Noida | Feb 2022 – Sep 2023
+- Automated merchant onboarding: 600+ users/day activated, onboarding time reduced by 60%, fraudulent transactions reduced by 45%.
+- Developed cross-platform lending APIs processing ₹22 Cr+ monthly disbursements.
+- Built address verification using reverse geocoding APIs to address location-based fraud.
+- Developed API strategy enabling third-party integrations across insurance, remittance, and travel.
+- Received company award for automated CRM tools increasing sales productivity by 50%.
 
-### LICO Cosmetics (2024-2025) - Airtable Consultant
-Process and automation consulting for D2C cosmetics brand. Multiple sessions to drive efficiency and co-develop business workflows.
+### Burgon Technologies — Co-Founder & Head of Product & Engineering | Ratlam | Apr 2019 – Jan 2022
+Built a martech platform for small businesses in Tier 4 & 5 markets.
+- Developed culturally-relevant digital solutions for underserved regions.
+- Built cost-efficient B2B advertising, driving 40% revenue growth.
 
-### Everis/NTT DATA (2007-2009) - Test Coordinator & Software Analyst
-Coordinated multi-vendor healthcare product testing: managed functional test suites for a team of 8 testers and acted as liaison with development, business consulting, and other project areas.
-- Built self-learning medical coding thesaurus (graph-based RL engine with automatic feedback loops)
-- Pioneer system pre-LLMs
+### ICICI Bank Ltd — Deputy Manager | Ahmedabad | Feb 2015 – Oct 2018
+- Increased customer activation rates by 35% through streamlined onboarding.
+
+## Technical Skills
+
+**Product Management:** Mixpanel, Excel, SQL Analytics, Financial Reporting Dashboards, User Segmentation, Funnel Optimization, Behavioral Analysis, JIRA, Confluence, Figma, Notion, Slack
+
+**Development:** FastAPI, Supabase, VSCode, Github, Python (Pandas, NumPy, Scikit-learn, PyTorch), SQL
+
+**Financial Systems:** UPI, Digital Wallets, Payment Gateways, Real-time Settlements, Authorization, Routing, Orchestration, Merchant Management System, Digital Onboarding Platform, RESTful APIs, Webhook Integration, Multi-cloud Architecture (AWS, GCP), Microservices, Docker, OAuth, Observability, PCI-DSS, KYC/AML Automation, Data Encryption, Fraud & risk management
+
+**AI/ML:** LangGraph, Claude Code, Cursor, Pinecone, Hugging Face, TensorFlow, Ollama, RAG pipelines, Vector databases, Embedding optimization, LLM Observability (LangSmith), Inference Optimization, Fine-tuning, Prompt engineering, Multi-agent orchestration, Agentic Workflow design, Tool-use & Function Calling, MCP (Model Context Protocol), Eval frameworks (RAGAS), Responsible AI, Guardrails, HITL systems
 
 ## Education
 
-- **2025** - AI Product Academy: AI PM Bootcamp (led by Dr. Marily Nika, Gen AI Product Lead @ Google — https://www.wikidata.org/wiki/Q107463356). Teaching Fellow. Winning project.
-- **2024** - BIGSEO: Master in Artificial Intelligence (Generative AI applied to business)
-- **2023** - BIGSEO: Master in SEO (Technical SEO, content and analytics)
-- **2001-2009** - ETSI Universidad de Sevilla: Telecommunications Engineering (Telematics specialization)
+- **Purdue University** — Post Graduate Program in Artificial Intelligence and Machine Learning
+- **Manipal University** — Post Graduate Diploma in Banking | 2014–15 | GPA: 7.28/10
+- **Amity University Rajasthan** — Bachelor of Technology | 2008–12 | GPA: 6.96/10
 
 ## Certifications
 
-- **Anthropic (2026):** Introduction to Model Context Protocol
-- **Anthropic (2026):** Claude Code in Action
-- **Anthropic (2026):** Advanced MCP Topics
-- **Anthropic (2026):** Building with the Claude API
-- **Anthropic (2026):** AI Fluency: Framework & Foundations — Anthropic's 4D framework for AI interaction: effective, efficient, ethical, safe
-- **Anthropic (2026):** Teaching AI Fluency — Certified to teach AI Fluency to professionals and organizations
-- **Anthropic (2026):** AI Fluency for Educators
-- **Anthropic (2026):** AI Fluency for Students
-- **Airtable (2025):** AI App Builder Certification
-- **Airtable (2024):** Builder Certification
-- **Airtable (2024):** Admin Certification
-- **Make Academy (2024):** Make Advanced
+- Claude Code in Action — Anthropic
+- Agents Course — Hugging Face
+- Product Analytics Certification (PAC) — Product School
+- Product-Led Growth (PLG) Certification — Product School
+- Agile with Atlassian Jira — Coursera
+- Python for Data Science — IBM
+- Prompt Design in Vertex AI — Google
+- McKinsey.org Forward Program — McKinsey & Company
 
 ## Projects
 
-### Content Digest (Maven Capstone)
-Python + FastAPI service for LLM-powered content ingestion and digest generation with eval loops and telemetry.
+### Local RAG System (github.com/Voldy75/localRAG)
+Optimizes team productivity with LLMs & sensitive local data. Converts documents into vector embeddings and uses semantic search for contextual Q&A.
 
-### Life OS (Private · On Request)
-Personal productivity system I built to run my life through conversation. Orchestrates Claude Code with native MCPs (Apple Reminders/Calendar, GitHub), 15 custom skills, 5 automation hooks, and semantic search (BM25 + SQLite FTS5). Pipes into Content Digest for a full knowledge loop and powers Career Ops for HITL automated job search.
+### Data Dashboard On-the-Go (github.com/Voldy75/insight-compass-reports)
+Generates one-pager covering critical metrics from any uploaded dataset — no context setting required.
 
-### Career Ops (Open Source) — [Case Study](https://santifer.io/career-ops-system)
-AI job search tool built as a multi-agent system. 12 operational modes, 10-dimension scoring (A-F), AI resume builder that generates ATS-optimized PDFs per listing, automated job application with Playwright, batch processing 122 URLs in parallel (conductor + workers). 631 evaluations, 354 PDFs generated, 680 URLs deduplicated. HITL design: AI analyzes, I decide. Plugs into Life OS as a specialized skill.
+### Create, Shop & Crave (create-shop-crave.vercel.app)
+AI-powered food assistant that understands cravings, suggests personalized recipes with instant grocery ordering, and recommends nearby restaurants.
 
-### Claude Pulse (Open Source)
-SwiftBar plugin for real-time Claude Code usage monitoring on macOS. Consumption metrics and rate limit predictions.
+## How to Contact Vijay
 
-### Claude Eye (Open Source)
-CLI that analyzes web animation videos frame-by-frame using Claude Vision. Detects CSS transition desyncs and generates reports with exact timestamps.
-
-### Claudeable (Open Source)
-Claude Code meta-project for professional web development. Custom skills, templates and pre-configured MCPs.
-
-### ProjectOS Predict (Maven Capstone)
-Risk prediction dashboard for project portfolios. ML model trained on synthetic data flags delays before they happen. Second capstone from Maven AI PM bootcamp (Marily Nika).
-
-### AI Solutions Playbook (Private · On Request)
-Productivity system for Solutions Architects working with multiple DTC clients. Context switching from 30min to 30sec, automatic guardrails for production operations, auto-generated SESSION_BRIEF on project open, ADRs and complete operation logging.
-
-### santifer.io (This Portfolio)
-Interactive CV with self-healing AI chatbot, voice mode (OpenAI Realtime API), and agentic observability. RAG pipeline (Supabase pgvector + OpenAI embeddings + Haiku reranking), 6-layer jailbreak defense (50+ keyword patterns, canary tokens, fingerprinting, anti-extract, real-time safety scoring, adversarial red team), 71 automated evals (10 categories including multi-turn, source badges, and voice) with CI gate, closed-loop improvement (trace-to-eval, adversarial testing, prompt versioning via Langfuse). Batch eval with Sonnet scores intent, quality, safety and jailbreak detection; alerts via Resend. Custom ops dashboard with 8 tabs: conversations, costs, RAG, security, evals, voice, prompts, system. Developer feedback loop: Claude Code queries Langfuse traces and generates fixes. <$0.005/conversation text, ~$0.25/session voice, $0 infrastructure.
-
-### Published Case Studies
-- [Career-Ops: AI Job Search Tool](https://santifer.io/career-ops-system): Multi-agent system for job search — 10D scoring, AI resume builder, batch processing 122 URLs, HITL design. 631 evaluations.
-- [The Self-Healing Chatbot](https://santifer.io/self-healing-chatbot): LLMOps case study — agentic observability, 71 evals, voice mode, closed-loop
-- [AI Agent Jacobo](https://santifer.io/ai-agent-jacobo): Omnichannel multi-agent AI — 90% self-service, voice + WhatsApp
-- [Business OS](https://santifer.io/business-os-for-airtable): Custom ERP with 12 Airtable bases, 2100 fields, 170h/month saved
-- [Programmatic SEO](https://santifer.io/programmatic-seo): 4,730 pages from Airtable as headless CMS, 2M+ impressions
-- [n8n for PMs](https://santifer.io/n8n-for-pms): Automation cheat sheet for product managers
-
-## Lightning Session: n8n for Product Managers (Maven, Feb 2026)
-
-Session taught at AI Product Academy (Maven, Marily Nika). Full material: https://santifer.io/n8n-for-pms
-
-**Problem:** PMs lose 20-30h/week on repetitive tasks (sprint reports, classifying feedback, moving data between tools). Santiago tracked 170h/month before automating.
-
-**Workflow 1 — The Automatable Friday:** Automated sprint report posted to Slack every Friday at 9am. 4 nodes: Schedule Trigger → Airtable (read sprint) → Code (group by assignee, format markdown) → Slack. No AI, pure plumbing. Saves 4-6h per sprint.
-
-**Workflow 2 — The Intelligent Router:** AI-powered feedback classification. Form Trigger → Basic LLM Chain (classify as BUG/FEATURE/QUESTION) → Switch (route by category) → Slack (different channel) + Airtable (log). One AI node turns a "dumb pipe" into a "smart pipe."
-
-**Classification prompt design:** Role, signal words per category, tiebreaker rule (bugs > features > questions), safe default (QUESTION if unclear), strict single-word output.
-
-**Universal pattern:** TRIGGER (when) → READ (get data) → PROCESS (transform/classify) → ACT (notify/log). Structure stays the same — only the prompt and data source change.
-
-**Key lessons:** Automate the boring task first. Your database already has 90% of the data. Automate the trigger, not just the task. Start with one workflow running reliably.
-
-Both workflows are downloadable as importable JSON from the cheat sheet.
-
-## Speaking & Teaching
-
-### AI Fluency Educator
-Certified by Anthropic to teach teams and organizations AI adoption. 4D Framework: Delegation (decide what to delegate), Description (communicate it well), Discernment (evaluate outputs), Diligence (collaborate responsibly). Applied as Teaching Fellow at Maven AI PM Bootcamp.
-
-### Teaching Fellow (2026) — AI Product Academy (Dr. Marily Nika, Google)
-Teaching Fellow at the #1 AI PM Bootcamp (https://maven.com/marily-nika/ai-pm-bootcamp). Teaching AI product managers to build and ship — not just define.
-
-### No-Code: The AI PM's Secret Weapon (2025) — Maven AI PM Bootcamp
-1h community session on no-code (Zapier, Make, n8n, Airtable) as the AI PM's superpower for faster validation and delivery.
-
-### Hiperautomatiza tu Pyme (2025) — Local Entrepreneurs, Seville
-Workshop on hyperautomation for SMEs: orchestration, RPA, AI and governance. Case study: Santifer iRepair.
-
-## LinkedIn (Technical Content with Real Engagement)
-
-- Post about chatbot security (300+ reactions, 50+ comments): how I detected a hack attempt in 3 seconds with Langfuse
-- Post about business opportunities in niches (115+ reactions, 10+ comments): market data analysis to find the next business
-- Post about Santifer iRepair exit (65+ reactions): 16-year narrative of building and the decision to sell
-
-## Soft Skills
-
-- Communication
-- Leadership
-- Systems Thinking
-- End-to-End Ownership
-- Bias for Action
-- Influence without Authority
-- Dealing with Ambiguity
-
-## Languages
-
-- **Spanish:** Native
-- **English:** Professional fluency
-
-## What I'm Looking For
-
-Senior remote role in EU/USA to:
-- Lead process changes and AI implementation
-- Improve team experience and efficiency
-- Deliver results with clear metrics
-
-## How to Hire Santiago
-
-For AI Product Manager, Solutions Architect, or Forward Deployed Engineer roles:
-- Email: hola@santifer.io
-- LinkedIn: linkedin.com/in/santifer
-- Website: santifer.io (chat with AI avatar for quick questions)
+- Email: vijaypanwar333@gmail.com
+- LinkedIn: linkedin.com/in/vijay-panwar-835bb13a
+- GitHub: github.com/Voldy75
