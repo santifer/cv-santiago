@@ -1,16 +1,16 @@
-# santifer.io
+# xueyifan.io
 
 **[:gb: English](#the-problem)** | **[:es: Español](#es-versión-en-español)**
 
 > Interactive portfolio with AI chatbot (text + voice), agentic RAG, 71 automated evals, LLMOps dashboard, and 6-layer prompt injection defense
 
-[![Live Demo](https://img.shields.io/badge/demo-santifer.io-blue?style=flat-square)](https://santifer.io)
+[![Live Demo](https://img.shields.io/badge/demo-xueyifan.io-blue?style=flat-square)](https://xueyifan.io)
 [![Built with Claude Code](https://img.shields.io/badge/built%20with-Claude%20Code-blueviolet?style=flat-square)](https://claude.ai/code)
 
 ---
 
 <p align="center">
-  <img src="docs/hero.gif" alt="santifer.io in motion" width="100%" />
+  <img src="docs/hero.gif" alt="xueyifan.io in motion" width="100%" />
 </p>
 
 ---
@@ -24,14 +24,14 @@ Static CVs don't show what you can actually build. A PDF lists skills — it doe
 A production-grade interactive portfolio that **demonstrates the skills it describes**: dual-mode AI chatbot (text + voice) with agentic RAG, full LLMOps observability with custom dashboard, 71 automated evals as CI gate, prompt versioning, and a closed-loop that generates tests from production failures.
 
 **Key Features:**
-- **AI Chatbot "Santi"** — Text (Claude Sonnet) + Voice (OpenAI Realtime API). Responds in first person as Santiago. Agentic RAG with hybrid search (pgvector + BM25) and Haiku reranking
+- **AI Chatbot "Yifan"** — Text (Claude Sonnet) + Voice (OpenAI Realtime API). Responds in first person as Yifan. Agentic RAG with hybrid search (pgvector + BM25) and Haiku reranking
 - **6-Layer Defense** — Keyword detection, canary tokens, fingerprinting, anti-extraction, online safety scoring, adversarial red team. Real-time jailbreak email alerts
 - **71 Automated Evals** — 10 categories: factual accuracy, persona, boundaries, quality, safety, language, RAG quality, multi-turn, source badges, voice quality. CI gate on every push
 - **LLMOps Dashboard** — Private `/ops` with 8 tabs: Overview, Conversations, Costs, RAG, Security, Evals, Voice, System. Real data from Langfuse + Supabase
 - **Closed Loop** — Trace → online scoring → quality < 0.7 → auto-generate test → CI gate blocks deploy
 - **Voice Mode** — OpenAI Realtime API, audio-to-audio, shared RAG pipeline, ~$0.25/session
 - **6 Published Case Studies** — Bilingual (ES/EN) with JSON-LD, prerendered HTML, cross-linked RAG, and interactive architecture diagrams
-- **Interactive Architecture Diagram** — GSAP-animated SVG with narrated audio, pan/zoom, dark mode sync. [Explore it →](https://santifer.io/self-healing-chatbot#architecture)
+- **Interactive Architecture Diagram** — GSAP-animated SVG with narrated audio, pan/zoom, dark mode sync. [Explore it →](https://xueyifan.io/self-healing-chatbot#architecture)
 - **GEO-ready** — `llms.txt`, structured data (JSON-LD), AI crawler-friendly robots.txt
 
 ---
@@ -53,8 +53,8 @@ A production-grade interactive portfolio that **demonstrates the skills it descr
 
 ## Chatbot Architecture
 
-[![Interactive Architecture Diagram](public/chatbot/diagram-thumbnail.webp)](https://santifer.io/self-healing-chatbot#architecture)
-> **[Explore the interactive diagram →](https://santifer.io/self-healing-chatbot#architecture)** 10 phases · narrated audio · zoom + pan
+[![Interactive Architecture Diagram](public/chatbot/diagram-thumbnail.webp)](https://xueyifan.io/self-healing-chatbot#architecture)
+> **[Explore the interactive diagram →](https://xueyifan.io/self-healing-chatbot#architecture)** 10 phases · narrated audio · zoom + pan
 
 ```
 User message → FloatingChat.tsx → api/chat.js (Vercel Edge)
@@ -180,8 +180,8 @@ All scripts live in `scripts/` and run via `npm run`:
 ## Quick Start
 
 ```bash
-git clone https://github.com/santifer/cv-santiago.git
-cd cv-santiago
+git clone https://github.com/xueyifan/cv-Yifan.git
+cd cv-Yifan
 npm install
 npm run dev
 ```
@@ -279,7 +279,7 @@ chatbot-prompt.txt           # System prompt (fallback, prod uses Langfuse)
 | Business OS | `/business-os-para-airtable` `/business-os-for-airtable` | case-study |
 | Programmatic SEO | `/seo-programatico` `/programmatic-seo` | case-study |
 | n8n for PMs | `/n8n-para-pms` `/n8n-for-pms` | collab |
-| Santifer iRepair | `/santifer-irepair` `/santifer-irepair-founder` | bridge |
+| Xueyifan iRepair | `/xueyifan-irepair` `/xueyifan-irepair-founder` | bridge |
 
 ---
 
@@ -304,12 +304,12 @@ MIT
 
 > Portfolio interactivo con chatbot IA (texto + voz), RAG agéntico, 71 evals automatizados, dashboard LLMOps y defensa anti-inyección en 6 capas
 
-[![Demo en vivo](https://img.shields.io/badge/demo-santifer.io-blue?style=flat-square)](https://santifer.io)
+[![Demo en vivo](https://img.shields.io/badge/demo-xueyifan.io-blue?style=flat-square)](https://xueyifan.io)
 
 ---
 
 <p align="center">
-  <img src="docs/hero.gif" alt="santifer.io en movimiento" width="100%" />
+  <img src="docs/hero.gif" alt="xueyifan.io en movimiento" width="100%" />
 </p>
 
 ---
@@ -323,14 +323,14 @@ Los CVs estáticos no demuestran lo que realmente sabes construir. Un PDF lista 
 Un portfolio interactivo de nivel producción que **demuestra las habilidades que describe**: chatbot IA dual (texto + voz) con RAG agéntico, observabilidad LLMOps completa con dashboard custom, 71 evals automatizados como CI gate, versionado de prompts, y un closed-loop que genera tests de fallos en producción.
 
 **Funcionalidades:**
-- **Chatbot IA "Santi"** — Texto (Claude Sonnet) + Voz (OpenAI Realtime API). Responde en primera persona como Santiago. RAG agéntico con búsqueda híbrida (pgvector + BM25) y reranking con Haiku
+- **Chatbot IA "Yifan"** — Texto (Claude Sonnet) + Voz (OpenAI Realtime API). Responde en primera persona como Yifan. RAG agéntico con búsqueda híbrida (pgvector + BM25) y reranking con Haiku
 - **Defensa en 6 capas** — Keyword detection, canary tokens, fingerprinting, anti-extraction, online safety scoring, adversarial red team. Alertas de jailbreak por email en tiempo real
 - **71 Evals automatizados** — 10 categorías: factual, persona, boundaries, quality, safety, language, RAG, multi-turn, source badges, voice. CI gate en cada push
 - **Dashboard LLMOps** — `/ops` privado con 8 pestañas: Overview, Conversations, Costs, RAG, Security, Evals, Voice, System. Datos reales de Langfuse + Supabase
 - **Closed Loop** — Traza → scoring online → quality < 0.7 → auto-genera test → CI gate bloquea deploy
 - **Modo voz** — OpenAI Realtime API, audio-to-audio, mismo pipeline RAG, ~$0.25/sesión
 - **6 Case Studies publicados** — Bilingües (ES/EN) con JSON-LD, HTML prerenderizado, RAG cross-linked y diagramas de arquitectura interactivos
-- **Diagrama de Arquitectura Interactivo** — SVG animado con GSAP, audio narrado, pan/zoom, sync dark mode. [Explorar →](https://santifer.io/chatbot-que-se-cura-solo#architecture)
+- **Diagrama de Arquitectura Interactivo** — SVG animado con GSAP, audio narrado, pan/zoom, sync dark mode. [Explorar →](https://xueyifan.io/chatbot-que-se-cura-solo#architecture)
 - **GEO-ready** — `llms.txt`, datos estructurados (JSON-LD), robots.txt amigable con crawlers IA
 
 ---
@@ -352,8 +352,8 @@ Un portfolio interactivo de nivel producción que **demuestra las habilidades qu
 
 ## Arquitectura del Chatbot
 
-[![Diagrama Interactivo de Arquitectura](public/chatbot/diagram-thumbnail.webp)](https://santifer.io/chatbot-que-se-cura-solo#architecture)
-> **[Explorar el diagrama interactivo →](https://santifer.io/chatbot-que-se-cura-solo#architecture)** 10 fases · audio narrado · zoom + pan
+[![Diagrama Interactivo de Arquitectura](public/chatbot/diagram-thumbnail.webp)](https://xueyifan.io/chatbot-que-se-cura-solo#architecture)
+> **[Explorar el diagrama interactivo →](https://xueyifan.io/chatbot-que-se-cura-solo#architecture)** 10 fases · audio narrado · zoom + pan
 
 ```
 Mensaje → FloatingChat.tsx → api/chat.js (Vercel Edge)
@@ -456,8 +456,8 @@ Todos los scripts están en `scripts/` y se ejecutan con `npm run`:
 ## Inicio Rápido
 
 ```bash
-git clone https://github.com/santifer/cv-santiago.git
-cd cv-santiago
+git clone https://github.com/xueyifan/cv-Yifan.git
+cd cv-Yifan
 npm install
 npm run dev
 ```
@@ -550,7 +550,7 @@ chatbot-prompt.txt           # System prompt (fallback, producción usa Langfuse
 | Business OS | `/business-os-para-airtable` `/business-os-for-airtable` | case-study |
 | SEO Programático | `/seo-programatico` `/programmatic-seo` | case-study |
 | n8n para PMs | `/n8n-para-pms` `/n8n-for-pms` | collab |
-| Santifer iRepair | `/santifer-irepair` `/santifer-irepair-founder` | bridge |
+| Xueyifan iRepair | `/xueyifan-irepair` `/xueyifan-irepair-founder` | bridge |
 
 ---
 
@@ -571,6 +571,6 @@ MIT
 
 ## Let's Connect
 
-[![Website](https://img.shields.io/badge/santifer.io-000?style=for-the-badge&logo=safari&logoColor=white)](https://santifer.io)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/santifer)
-[![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:hola@santifer.io)
+[![Website](https://img.shields.io/badge/xueyifan.io-000?style=for-the-badge&logo=safari&logoColor=white)](https://xueyifan.io)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/xueyifan)
+[![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:yifanxue.sde@gmail.com)

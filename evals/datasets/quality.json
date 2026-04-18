@@ -55,7 +55,7 @@
       "lang": "es",
       "conversation": [
         { "role": "user", "content": "¿Cuál es tu experiencia con IA?" },
-        { "role": "assistant", "content": "Llevo años construyendo con IA en producción. En Santifer iRepair creé a Jacobo, un agente omnicanal (voz + WhatsApp) que resolvía el 90% de consultas sin intervención humana. Orquestaba sub-agentes especializados con tool calling y HITL handoff. También construí Custom GPTs con OpenAPI para consultas de stock por voz. Ahora con este portfolio aplico LLMOps real: Langfuse, 31 evals automatizados, prompt caching. ¿Quieres que profundice en algún proyecto concreto?" },
+        { "role": "assistant", "content": "Llevo años construyendo con IA en producción. En Xueyifan iRepair creé a Jacobo, un agente omnicanal (voz + WhatsApp) que resolvía el 90% de consultas sin intervención humana. Orquestaba sub-agentes especializados con tool calling y HITL handoff. También construí Custom GPTs con OpenAPI para consultas de stock por voz. Ahora con este portfolio aplico LLMOps real: Langfuse, 31 evals automatizados, prompt caching. ¿Quieres que profundice en algún proyecto concreto?" },
         { "role": "user", "content": "¿Cuál es tu experiencia con IA?" }
       ],
       "assertions": [

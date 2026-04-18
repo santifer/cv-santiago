@@ -27,9 +27,9 @@ export interface RagSource {
   section_id: string;
   section_anchor: string;
   page_path_en: string;
-  page_path_es: string;
+  page_path_zh: string;
   article_slug_en: string;
-  article_slug_es: string;
+  article_slug_zh: string;
 }
 
 export const SESSION_TIMEOUT_S = 120;
@@ -62,7 +62,7 @@ export function useVoiceMode() {
   const pendingListenTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const thinkingSoundStopRef = useRef<(() => void) | null>(null);
   const sessionStartRef = useRef(0);
-  const langRef = useRef('es');
+  const langRef = useRef('zh');
   const sessionIdRef = useRef('');
   const transcriptRef = useRef<TranscriptEntry[]>([]);
 
@@ -392,7 +392,7 @@ export function useVoiceMode() {
         if (history.length > 0) {
           const historyText = history
             .filter(m => m.content && m.content.trim())
-            .map(m => `${m.role === 'user' ? 'User' : 'Santiago'}: ${m.content}`)
+            .map(m => `${m.role === 'user' ? 'User' : 'Yifan'}: ${m.content}`)
             .join('\n');
 
           if (historyText) {

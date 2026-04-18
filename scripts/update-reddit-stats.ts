@@ -40,7 +40,7 @@ const POSTS: RedditPost[] = [
 async function fetchRedditStats(jsonUrl: string): Promise<{ ups: number; comments: number } | null> {
   try {
     const res = await fetch(jsonUrl, {
-      headers: { 'User-Agent': 'santifer-build/1.0' },
+      headers: { 'User-Agent': 'xueyifan-build/1.0' },
     })
     if (!res.ok) {
       console.warn(`  ⚠ Reddit API returned ${res.status}`)

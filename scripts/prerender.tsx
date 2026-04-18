@@ -142,13 +142,13 @@ let enPage = indexHtml
   .replace(/<title>[^<]*<\/title>/, `<title>${esc(enSeo.title)}</title>`)
   .replace(/<meta name="title" content="[^"]*" \/>/, `<meta name="title" content="${esc(enSeo.title)}" />`)
   .replace(/<meta name="description" content="[^"]*" \/>/, `<meta name="description" content="${esc(enSeo.description)}" />`)
-  .replace(/<link rel="canonical" href="[^"]*" \/>/, '<link rel="canonical" href="https://santifer.io/en" />')
-  .replace(/<meta property="og:url" content="[^"]*" \/>/, '<meta property="og:url" content="https://santifer.io/en" />')
+  .replace(/<link rel="canonical" href="[^"]*" \/>/, '<link rel="canonical" href="https://xueyifan.io/en" />')
+  .replace(/<meta property="og:url" content="[^"]*" \/>/, '<meta property="og:url" content="https://xueyifan.io/en" />')
   .replace(/<meta property="og:title" content="[^"]*" \/>/, `<meta property="og:title" content="${esc(enSeo.title)}" />`)
   .replace(/<meta property="og:description" content="[^"]*" \/>/, `<meta property="og:description" content="${esc(enSeo.description)}" />`)
   .replace(/<meta property="og:locale" content="es_ES" \/>/, '<meta property="og:locale" content="en_US" />')
   .replace(/<meta property="og:locale:alternate" content="en_US" \/>/, '<meta property="og:locale:alternate" content="es_ES" />')
-  .replace(/<meta name="twitter:url" content="[^"]*" \/>/, '<meta name="twitter:url" content="https://santifer.io/en" />')
+  .replace(/<meta name="twitter:url" content="[^"]*" \/>/, '<meta name="twitter:url" content="https://xueyifan.io/en" />')
   .replace(/<meta name="twitter:title" content="[^"]*" \/>/, `<meta name="twitter:title" content="${esc(enSeo.title)}" />`)
   .replace(/<meta name="twitter:description" content="[^"]*" \/>/, `<meta name="twitter:description" content="${esc(enSeo.description)}" />`);
 
@@ -162,12 +162,12 @@ const aboutJsonLd = {
   dateModified: '2026-04-08',
   mainEntity: {
     '@type': 'Person',
-    '@id': 'https://santifer.io/#person',
-    name: 'Santiago Fernández de Valderrama Aparicio',
-    alternateName: ['Santiago Fernández de Valderrama', 'santifer', 'Santi'],
-    url: 'https://santifer.io',
-    image: 'https://santifer.io/foto-avatar.png',
-    email: 'hola@santifer.io',
+    '@id': 'https://xueyifan.io/#person',
+    name: 'Yifan Fernández de Valderrama Aparicio',
+    alternateName: ['Yifan Fernández de Valderrama', 'xueyifan', 'Yifan'],
+    url: 'https://xueyifan.io',
+    image: 'https://xueyifan.io/foto-avatar.png',
+    email: 'yifanxue.sde@gmail.com',
     jobTitle: ['Head of Applied AI', 'AI Product Manager', 'Solutions Architect (No/Low-Code & AI)', 'AI Forward Deployed Engineer'],
     knowsAbout: [
       { '@type': 'Thing', name: 'Artificial Intelligence', url: 'https://en.wikipedia.org/wiki/Artificial_intelligence' },
@@ -199,27 +199,27 @@ const aboutJsonLd = {
     ],
     founder: {
       '@type': 'Organization',
-      name: 'Santifer iRepair',
-      url: 'https://santiferirepair.es',
+      name: 'Xueyifan iRepair',
+      url: 'https://xueyifanirepair.es',
       foundingDate: '2009',
     },
     sameAs: [
-      'https://www.linkedin.com/in/santifer',
-      'https://github.com/santifer',
-      'https://x.com/santifer',
-      'https://dev.to/santifer',
-      'https://santifer.substack.com',
-      'https://contentdigest.santifer.io',
-      'https://www.youtube.com/@santifer_io',
+      'https://www.linkedin.com/in/xueyifan',
+      'https://github.com/xueyifan',
+      'https://x.com/xueyifan',
+      'https://dev.to/xueyifan',
+      'https://xueyifan.substack.com',
+      'https://contentdigest.xueyifan.io',
+      'https://www.youtube.com/@xueyifan_io',
       'https://stackoverflow.com/users/32541743',
       'https://orcid.org/0009-0006-2192-7210',
-      'https://www.crunchbase.com/person/santiago-fernandez-de-valderrama',
-      'https://huggingface.co/santifer',
+      'https://www.crunchbase.com/person/Yifan-fernandez-de-valderrama',
+      'https://huggingface.co/xueyifan',
       'https://www.wikidata.org/wiki/Q138710224',
-      'https://santiferirepair.es',
-      'https://www.facebook.com/santifer.io/',
-      'https://www.producthunt.com/@santifer',
-      'https://app.daily.dev/santifer',
+      'https://xueyifanirepair.es',
+      'https://www.facebook.com/xueyifan.io/',
+      'https://www.producthunt.com/@xueyifan',
+      'https://app.daily.dev/xueyifan',
     ],
     subjectOf: {
       '@type': 'NewsArticle',
@@ -245,8 +245,8 @@ for (const lang of ['es', 'en'] as const) {
   const t = aboutContent[lang];
   const slug = t.slug;
   const altSlug = t.altSlug;
-  const url = `https://santifer.io/${slug}`;
-  const altUrl = `https://santifer.io/${altSlug}`;
+  const url = `https://xueyifan.io/${slug}`;
+  const altUrl = `https://xueyifan.io/${altSlug}`;
   const altLang = lang === 'es' ? 'en' : 'es';
   const ogLocale = lang === 'es' ? 'es_ES' : 'en_US';
   const ogLocaleAlt = lang === 'es' ? 'en_US' : 'es_ES';
@@ -270,7 +270,7 @@ for (const lang of ['es', 'en'] as const) {
     renderedHtml = '';
   }
 
-  const hreflangLinks = `<link rel="alternate" hreflang="${lang}" href="${url}" /><link rel="alternate" hreflang="${altLang}" href="${altUrl}" /><link rel="alternate" hreflang="x-default" href="https://santifer.io/sobre-mi" />`;
+  const hreflangLinks = `<link rel="alternate" hreflang="${lang}" href="${url}" /><link rel="alternate" hreflang="${altLang}" href="${altUrl}" /><link rel="alternate" hreflang="x-default" href="https://xueyifan.io/sobre-mi" />`;
 
   let result = indexHtml
     .replace('<div id="root"></div>', `<div id="root">${renderedHtml}</div>`)
@@ -314,14 +314,14 @@ function buildArticlePage(
 ): string {
   const slug = config.slugs[lang];
   const altSlug = config.slugs[lang === 'es' ? 'en' : 'es'];
-  const url = `https://santifer.io/${slug}`;
-  const altUrl = `https://santifer.io/${altSlug}`;
+  const url = `https://xueyifan.io/${slug}`;
+  const altUrl = `https://xueyifan.io/${altSlug}`;
   const altLang = lang === 'es' ? 'en' : 'es';
   const htmlLang = lang;
   const ogLocale = lang === 'es' ? 'es_ES' : 'en_US';
   const ogLocaleAlt = lang === 'es' ? 'en_US' : 'es_ES';
   const articleSeo = config.seo[lang];
-  const xDefaultHref = `https://santifer.io/${config.xDefaultSlug || config.slugs.es}`;
+  const xDefaultHref = `https://xueyifan.io/${config.xDefaultSlug || config.slugs.es}`;
 
   let renderedHtml: string;
   try {
@@ -352,7 +352,7 @@ function buildArticlePage(
     .replace(/<meta name="twitter:title" content="[^"]*" \/>/, `<meta name="twitter:title" content="${esc(articleSeo.title)}" />`)
     .replace(/<meta name="twitter:description" content="[^"]*" \/>/, `<meta name="twitter:description" content="${esc(articleSeo.description)}" />`)
     // OG image — replace with article-specific image if configured
-    .replace(/<meta property="og:image" content="[^"]*" \/>/, `<meta property="og:image" content="${esc(config.ogImage || 'https://santifer.io/og-image.webp')}" />`)
+    .replace(/<meta property="og:image" content="[^"]*" \/>/, `<meta property="og:image" content="${esc(config.ogImage || 'https://xueyifan.io/og-image.webp')}" />`)
     .replace(/<meta property="og:image:alt" content="[^"]*" \/>/, `<meta property="og:image:alt" content="${esc(articleSeo.title)}" />`)
     .replace(/<meta name="twitter:image" content="[^"]*" \/>/, config.ogImage ? `<meta name="twitter:image" content="${esc(config.ogImage)}" />` : '');
 
@@ -362,7 +362,7 @@ function buildArticlePage(
     const articleMetaTags = [
       `<meta property="article:published_time" content="${seoMeta.datePublished}" />`,
       `<meta property="article:modified_time" content="${seoMeta.dateModified}" />`,
-      `<meta property="article:author" content="https://www.linkedin.com/in/santifer" />`,
+      `<meta property="article:author" content="https://www.linkedin.com/in/xueyifan" />`,
       `<meta property="article:tag" content="${esc(seoMeta.articleTags)}" />`,
     ].join('\n    ');
     result = result.replace('</head>', `    ${articleMetaTags}\n  </head>`);
@@ -375,8 +375,8 @@ function buildArticlePage(
     if (t) {
       const jsonLd = buildArticleJsonLd({
         lang,
-        url: `https://santifer.io/${slug}`,
-        altUrl: `https://santifer.io/${altSlug}`,
+        url: `https://xueyifan.io/${slug}`,
+        altUrl: `https://xueyifan.io/${altSlug}`,
         headline: t.header.h1,
         alternativeHeadline: articleSeo.title,
         description: articleSeo.description,
@@ -468,13 +468,13 @@ async function writePage(html: string, outputPath: string, label: string) {
 const privacyPages: { slug: string; html: string }[] = [];
 
 for (const [lang, slug, altSlug] of [['es', 'privacidad', 'privacy'], ['en', 'privacy', 'privacidad']] as const) {
-  const url = `https://santifer.io/${slug}`;
-  const altUrl = `https://santifer.io/${altSlug}`;
+  const url = `https://xueyifan.io/${slug}`;
+  const altUrl = `https://xueyifan.io/${altSlug}`;
   const altLang = lang === 'es' ? 'en' : 'es';
-  const title = lang === 'es' ? 'Política de Privacidad | santifer.io' : 'Privacy Policy | santifer.io';
+  const title = lang === 'es' ? 'Política de Privacidad | xueyifan.io' : 'Privacy Policy | xueyifan.io';
   const description = lang === 'es'
-    ? 'Política de privacidad de santifer.io. Cómo se recopilan y utilizan los datos del chatbot y la web.'
-    : 'Privacy policy for santifer.io. How chatbot and website data is collected and used.';
+    ? 'Política de privacidad de xueyifan.io. Cómo se recopilan y utilizan los datos del chatbot y la web.'
+    : 'Privacy policy for xueyifan.io. How chatbot and website data is collected and used.';
 
   let renderedHtml: string;
   try {
@@ -495,7 +495,7 @@ for (const [lang, slug, altSlug] of [['es', 'privacidad', 'privacy'], ['en', 'pr
     renderedHtml = '';
   }
 
-  const hreflangLinks = `<link rel="alternate" hreflang="${lang}" href="${url}" /><link rel="alternate" hreflang="${altLang}" href="${altUrl}" /><link rel="alternate" hreflang="x-default" href="https://santifer.io/privacidad" />`;
+  const hreflangLinks = `<link rel="alternate" hreflang="${lang}" href="${url}" /><link rel="alternate" hreflang="${altLang}" href="${altUrl}" /><link rel="alternate" hreflang="x-default" href="https://xueyifan.io/privacidad" />`;
 
   let result = indexHtml
     .replace('<div id="root"></div>', `<div id="root">${renderedHtml}</div>`)
@@ -550,7 +550,7 @@ await inlineCriticalCSS();
 const notFoundHtml = indexHtml
   .replace('<div id="root"></div>', `<div id="root"><div style="min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 1.5rem"><p style="font-size:6rem;font-weight:bold;color:var(--primary);margin-bottom:1rem;font-family:var(--font-display)">404</p><h1 style="font-size:1.5rem;font-weight:600;color:var(--foreground);margin-bottom:0.5rem">Page not found</h1><p style="color:var(--muted-foreground);margin-bottom:2rem;max-width:28rem">The page you're looking for doesn't exist or has been moved.</p><a href="/" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.75rem 1.5rem;border-radius:0.75rem;background:var(--primary);color:var(--primary-foreground);font-weight:500;text-decoration:none">← Back to home</a></div></div>`)
   .replace(/<meta name="robots" content="[^"]*" \/>/, '<meta name="robots" content="noindex, nofollow" />')
-  .replace(/<title>[^<]*<\/title>/, '<title>404 — Page not found | santifer.io</title>');
+  .replace(/<title>[^<]*<\/title>/, '<title>404 — Page not found | xueyifan.io</title>');
 
 // Add noindex if no robots meta exists
 if (!notFoundHtml.includes('name="robots"')) {

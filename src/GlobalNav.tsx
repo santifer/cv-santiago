@@ -2,14 +2,14 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Sun, Moon, House, X, ChevronRight } from 'lucide-react'
 import { translations, type Lang } from './i18n'
-import { getAltPaths, getPageTitles, getSectionLabels, getEsSlugs } from './articles/registry'
+import { getAltPaths, getPageTitles, getSectionLabels, getZhSlugs } from './articles/registry'
 
 /**
  * GlobalNav — unified navigation across all pages.
  *
  * The translucent bar is a "contextual message container" that appears
  * when there's something to communicate:
- * - Inner pages: permanent "← santifer.io" back link
+ * - Inner pages: permanent "← xueyifan.io" back link
  * - Any page: temporary language suggestion when browser lang ≠ page lang
  *
  * Language suggestion is right-aligned, next to the lang pill, reinforcing
@@ -21,7 +21,7 @@ const ALT_PATH = getAltPaths()
 const BANNER_DISMISSED_KEY = 'lang-banner-dismissed'
 const PAGE_TITLE = getPageTitles()
 const SECTION_LABELS = getSectionLabels()
-const ES_SLUGS = getEsSlugs()
+const ZH_SLUGS = getZhSlugs()
 
 /** Observes h2[id] elements and returns the currently visible section ID */
 function useActiveSection(pathname: string, enabled: boolean) {
@@ -80,8 +80,8 @@ function useActiveSection(pathname: string, enabled: boolean) {
 
 function useLang() {
   const { pathname } = useLocation()
-  const isHome = pathname === '/' || pathname === '/en'
-  const lang: 'es' | 'en' = ES_SLUGS.has(pathname) ? 'es' : 'en'
+  const isHome = pathname === '/' || pathname === '/zh'
+  const lang: Lang = ZH_SLUGS.has(pathname) ? 'zh' : 'en'
   const pageTitle = PAGE_TITLE[pathname] ?? null
   return { pathname, isHome, lang, pageTitle }
 }
@@ -149,8 +149,8 @@ function useLanguageBanner(lang: Lang) {
     if (typeof navigator === 'undefined') return
     if (stored) return // already 'shown' or 'dismissed'
 
-    const browserPrefersEn = !navigator.language.toLowerCase().startsWith('es')
-    const mismatch = (lang === 'es' && browserPrefersEn) || (lang === 'en' && !browserPrefersEn)
+    const browserPrefersEn = !navigator.language.toLowerCase().startsWith('zh')
+    const mismatch = (lang === 'zh' && browserPrefersEn) || (lang === 'en' && !browserPrefersEn)
     if (!mismatch) return
 
     const timer = setTimeout(() => {
@@ -163,8 +163,8 @@ function useLanguageBanner(lang: Lang) {
   // Auto-dismiss if user switches language via toggle
   useEffect(() => {
     if (!visible) return
-    const browserPrefersEn = !navigator.language.toLowerCase().startsWith('es')
-    const mismatch = (lang === 'es' && browserPrefersEn) || (lang === 'en' && !browserPrefersEn)
+    const browserPrefersEn = !navigator.language.toLowerCase().startsWith('zh')
+    const mismatch = (lang === 'zh' && browserPrefersEn) || (lang === 'en' && !browserPrefersEn)
     if (!mismatch) {
       sessionStorage.setItem(BANNER_DISMISSED_KEY, 'dismissed')
       setVisible(false)
@@ -179,15 +179,14 @@ function useLanguageBanner(lang: Lang) {
   return { showBanner: visible, dismiss, animateBanner: visible && isFirstAppearance.current }
 }
 
-/** Circular flag icons — Spain (red-yellow-red) and UK (Union Jack simplified) */
-function FlagES({ className = "w-4 h-4" }: { className?: string }) {
+/** Circular flag icons — China (red with yellow star) and UK (Union Jack simplified) */
+function FlagZH({ className = "w-4 h-4" }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 16 16" aria-hidden="true">
-      <clipPath id="flagCircleES"><circle cx="8" cy="8" r="8" /></clipPath>
-      <g clipPath="url(#flagCircleES)">
-        <rect y="0" width="16" height="4" fill="#c60b1e" />
-        <rect y="4" width="16" height="8" fill="#ffc400" />
-        <rect y="12" width="16" height="4" fill="#c60b1e" />
+      <clipPath id="flagCircleZH"><circle cx="8" cy="8" r="8" /></clipPath>
+      <g clipPath="url(#flagCircleZH)">
+        <rect width="16" height="16" fill="#ee1c25" />
+        <path d="M4 3.5L4.5 5.5L6.5 6L4.5 6.5L4 8.5L3.5 6.5L1.5 6L3.5 5.5L4 3.5Z" fill="#ffff00" />
       </g>
     </svg>
   )
@@ -218,7 +217,7 @@ function NavControls({ altPath, altLabel, lang, isDark, toggleTheme }: {
         to={altPath}
         className="inline-flex items-center justify-center gap-1.5 w-[4.5rem] h-10 rounded-full bg-card border border-border text-sm font-medium text-muted-foreground hover:text-foreground hover:border-primary/50 transition-colors"
       >
-        {lang === 'es' ? <FlagES className="w-3.5 h-3.5" /> : <FlagEN className="w-3.5 h-3.5" />}
+        {lang === 'zh' ? <FlagEN className="w-3.5 h-3.5" /> : <FlagZH className="w-3.5 h-3.5" />}
         {altLabel}
       </Link>
       <button
@@ -239,8 +238,8 @@ export default function GlobalNav() {
   const navigate = useNavigate()
   const activeSection = useActiveSection(pathname, !isHome)
 
-  const altPath = ALT_PATH[pathname] || (lang === 'es' ? '/en' : '/')
-  const altLabel = lang === 'es' ? 'ES' : 'EN'
+  const altPath = ALT_PATH[pathname] || (lang === 'zh' ? '/' : '/zh')
+  const altLabel = lang === 'zh' ? 'EN' : '中文'
 
   const t = translations[lang]
   const hasBar = !isHome
@@ -282,7 +281,7 @@ export default function GlobalNav() {
         onClick={switchLang}
         className="inline-flex items-center gap-1 font-medium text-primary hover:text-primary/80 transition-colors"
       >
-        {t.ui.languageBannerSwitchPrefix}{lang === 'es' ? <FlagEN className="w-3.5 h-3.5 mx-0.5" /> : <FlagES className="w-3.5 h-3.5 mx-0.5" />}{t.ui.languageBannerSwitchLang}
+        {t.ui.languageBannerSwitchPrefix}{lang === 'zh' ? <FlagEN className="w-3.5 h-3.5 mx-0.5" /> : <FlagZH className="w-3.5 h-3.5 mx-0.5" />}{t.ui.languageBannerSwitchLang}
       </button>
       <button
         onClick={dismiss}
@@ -312,11 +311,11 @@ export default function GlobalNav() {
                 style={animateBackLink ? fade('0.4s') : undefined}
               >
                 <Link
-                  to={lang === 'en' ? '/en' : '/'}
+                  to={lang === 'en' ? '/' : '/zh'}
                   className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors shrink-0"
                 >
                   <House className="w-4 h-4" />
-                  <span className="hidden sm:inline">santifer.io</span>
+                  <span className="hidden sm:inline">xueyifan.io</span>
                 </Link>
                 {pageTitle && (
                   <>

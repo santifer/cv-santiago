@@ -29,7 +29,7 @@ export default function FilterBar({ filters, onChange }: FilterBarProps) {
         className={selectClass}
       >
         <option value="">All langs</option>
-        <option value="es">ES</option>
+        <option value="zh">中文</option>
         <option value="en">EN</option>
       </select>
 

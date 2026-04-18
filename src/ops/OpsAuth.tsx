@@ -71,7 +71,7 @@ export default function OpsAuth({ onAuth }: OpsAuthProps) {
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="bg-card border border-white/5 rounded-xl p-8 w-full max-w-sm">
         <h1 className="text-xl font-display font-bold text-foreground mb-1">LLMOps Dashboard</h1>
-        <p className="text-sm text-muted-foreground mb-6">santifer.io</p>
+        <p className="text-sm text-muted-foreground mb-6">xueyifan.io</p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>

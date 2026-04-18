@@ -30,7 +30,7 @@ const SOURCE_MAP: Record<string, string> = {
   'jacobo': 'src/JacoboAgent.tsx',
   'business-os': 'src/BusinessOS.tsx',
   'programmatic-seo': 'src/ProgrammaticSeo.tsx',
-  'santifer-irepair': 'src/SantiferIRepair.tsx',
+  'xueyifan-irepair': 'src/XueyifanIRepair.tsx',
   'self-healing-chatbot': 'src/SelfHealingChatbot.tsx',
   'career-ops': 'src/CareerOps.tsx',
 }

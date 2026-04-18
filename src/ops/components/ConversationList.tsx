@@ -19,7 +19,7 @@ function formatTime(ts: string): string {
 }
 
 function langEmoji(lang?: string): string {
-  if (lang === 'es') return '\uD83C\uDDEA\uD83C\uDDF8'
+  if (lang === 'zh') return '\uD83C\uDDEA\uD83C\uDDF8'
   if (lang === 'en') return '\uD83C\uDDEC\uD83C\uDDE7'
   return '\uD83C\uDF10'
 }

@@ -1,6 +1,6 @@
 {
   "name": "factual_accuracy",
-  "description": "Verifica que Santi responde con datos correctos del CV",
+  "description": "Verifica que Yifan responde con datos correctos del CV",
   "tests": [
     {
       "id": "exp-years",
@@ -69,12 +69,12 @@
     },
     {
       "id": "repo-public",
-      "description": "Debe confirmar que el repo de santifer.io es público en GitHub",
-      "input": "¿El código de santifer.io está en GitHub?",
+      "description": "Debe confirmar que el repo de xueyifan.io es público en GitHub",
+      "input": "¿El código de xueyifan.io está en GitHub?",
       "lang": "es",
       "assertions": [
         { "type": "contains_any", "values": ["público", "publica", "open", "GitHub"] },
-        { "type": "contains_any", "values": ["santifer", "cv-santiago"] },
+        { "type": "contains_any", "values": ["xueyifan", "cv-yifan-xue"] },
         { "type": "not_contains", "value": "privado" }
       ]
     },

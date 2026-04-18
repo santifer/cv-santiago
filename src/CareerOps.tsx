@@ -68,7 +68,7 @@ export default function CareerOps({ lang = 'en' }: { lang?: Lang }) {
     altSlug: t.altSlug,
     title: t.seo.title,
     description: t.seo.description,
-    image: 'https://santifer.io/career-ops/og-career-ops.webp',
+    image: 'https://xueyifan.io/career-ops/og-career-ops.webp',
     publishedTime: '2026-03-17',
     modifiedTime: '2026-03-17',
     articleTags: 'multi-agent,job search,Claude Code,ATS,batch processing,HITL,automation',
@@ -98,7 +98,7 @@ export default function CareerOps({ lang = 'en' }: { lang?: Lang }) {
         src="/career-ops/hero-career-ops-1400w.webp"
         srcSet="/career-ops/hero-career-ops-1400w.webp 1400w, /career-ops/hero-career-ops.webp 3024w"
         sizes="(max-width: 768px) 100vw, 768px"
-        alt={lang === 'es'
+        alt={lang === 'zh'
           ? 'Career Pipeline: dashboard del tracker con 516 ofertas evaluadas, scores 4.0-4.5, empresas como Datadog, Langfuse, OpenAI, LangChain'
           : 'Career Pipeline: tracker dashboard with 516 evaluated offers, scores 4.0-4.5, companies like Datadog, Langfuse, OpenAI, LangChain'}
         className="w-full rounded-2xl mb-8"
@@ -110,7 +110,7 @@ export default function CareerOps({ lang = 'en' }: { lang?: Lang }) {
       <Manifesto>{t.manifesto}</Manifesto>
       <MetricsGrid items={t.heroMetrics} columns={5} compact />
 
-      <GitHubRepoBadge repo="santifer/career-ops" stars="35.6K" forks="7.1K" lang={lang} />
+      <GitHubRepoBadge repo="xueyifan/career-ops" stars="35.6K" forks="7.1K" lang={lang} />
 
       <Callout className="bg-accent/10 border-accent/40">{t.tldr}</Callout>
 
@@ -153,10 +153,10 @@ export default function CareerOps({ lang = 'en' }: { lang?: Lang }) {
         <DiagramZoom
           src="/career-ops/scan.webp"
           hdSrc="/career-ops/scan.webp"
-          alt={lang === 'es'
+          alt={lang === 'zh'
             ? 'Modo scan en acción: agente Claude Code lanzando búsqueda en DailyRemote con 8 queries, leyendo pipeline.md y scan-history.tsv para dedup'
             : 'Scan mode in action: Claude Code agent launching DailyRemote search with 8 queries, reading pipeline.md and scan-history.tsv for dedup'}
-          caption={lang === 'es'
+          caption={lang === 'zh'
             ? 'Modo scan: agente background buscando ofertas AI/LLM en DailyRemote con dedup automático'
             : 'Scan mode: background agent searching AI/LLM offers on DailyRemote with automatic dedup'}
         />
@@ -175,40 +175,40 @@ export default function CareerOps({ lang = 'en' }: { lang?: Lang }) {
         <DiagramZoom
           src="/career-ops/datadog.webp"
           hdSrc="/career-ops/datadog.webp"
-          alt={lang === 'es'
+          alt={lang === 'zh'
             ? 'Evaluación real: Datadog Staff AI Engineer, MCP Services — Score 4.55/5, arquetipo AI Platform + Agentic Workflows, resumen del rol con 7 dimensiones'
             : 'Real evaluation: Datadog Staff AI Engineer, MCP Services — Score 4.55/5, archetype AI Platform + Agentic Workflows, role summary with 7 dimensions'}
-          caption={lang === 'es'
+          caption={lang === 'zh'
             ? 'Evaluación real: Datadog Staff AI Engineer — score 4.55/5, arquetipo detectado, resumen estructurado del rol'
             : 'Real evaluation: Datadog Staff AI Engineer — score 4.55/5, detected archetype, structured role summary'}
         />
         <DiagramZoom
           src="/career-ops/report1.webp"
           hdSrc="/career-ops/report1.webp"
-          alt={lang === 'es'
+          alt={lang === 'zh'
             ? 'CV Match: tabla de 6 requisitos de la JD mapeados contra proof points del CV con strength rating (Strong/Very Strong/Moderate)'
             : 'CV Match: table of 6 JD requirements mapped against CV proof points with strength rating (Strong/Very Strong/Moderate)'}
-          caption={lang === 'es'
+          caption={lang === 'zh'
             ? 'Bloque B) CV Match: cada requisito de la JD mapeado contra proof points reales del CV'
             : 'Block B) CV Match: each JD requirement mapped against real CV proof points'}
         />
         <DiagramZoom
           src="/career-ops/report2.webp"
           hdSrc="/career-ops/report2.webp"
-          alt={lang === 'es'
+          alt={lang === 'zh'
             ? 'CV Match (cont.) + Gaps and Mitigation: requisitos 7-10 y análisis de gaps con severidad y plan de mitigación'
             : 'CV Match (cont.) + Gaps and Mitigation: requirements 7-10 and gap analysis with severity and mitigation plan'}
-          caption={lang === 'es'
+          caption={lang === 'zh'
             ? 'CV Match (cont.) + Gaps: el sistema identifica gaps y propone mitigación con severidad'
             : 'CV Match (cont.) + Gaps: the system identifies gaps and proposes mitigation with severity'}
         />
         <DiagramZoom
           src="/career-ops/report3.webp"
           hdSrc="/career-ops/report3.webp"
-          alt={lang === 'es'
+          alt={lang === 'zh'
             ? 'Gaps (cont.) + Nivel y Estrategia: detección de nivel IC5, plan "Sell Staff without lying" con framing de experiencia'
             : 'Gaps (cont.) + Level and Strategy: IC5 level detection, "Sell Staff without lying" plan with experience framing'}
-          caption={lang === 'es'
+          caption={lang === 'zh'
             ? 'Bloque C) Nivel y Estrategia: detección de seniority + plan de posicionamiento honesto'
             : 'Block C) Level and Strategy: seniority detection + honest positioning plan'}
         />
@@ -243,7 +243,7 @@ export default function CareerOps({ lang = 'en' }: { lang?: Lang }) {
                 )}
               </div>
               <figcaption className="px-4 py-2 text-sm text-muted-foreground text-center bg-card">
-                {lang === 'es'
+                {lang === 'zh'
                   ? 'Demo: auto-pipeline evaluando la oferta de Datadog Staff AI Engineer en tiempo real'
                   : 'Demo: auto-pipeline evaluating the Datadog Staff AI Engineer offer in real time'}
               </figcaption>
@@ -270,18 +270,18 @@ export default function CareerOps({ lang = 'en' }: { lang?: Lang }) {
           <DiagramZoom
             src="/career-ops/pdf-wave-cv.webp"
             hdSrc="/career-ops/pdf-wave-cv.webp"
-            alt={lang === 'es'
+            alt={lang === 'zh'
               ? 'CV personalizado para Wave: summary reescrito, competencias adaptadas a Voice AI + Multi-Agent, bullets reordenados por relevancia'
               : 'Personalized CV for Wave: rewritten summary, competencies adapted to Voice AI + Multi-Agent, bullets reordered by relevance'}
-            caption={lang === 'es' ? 'CV ATS-optimized' : 'ATS-optimized CV'}
+            caption={lang === 'zh' ? 'CV ATS-optimized' : 'ATS-optimized CV'}
           />
           <DiagramZoom
             src="/career-ops/pdf-wave-cover.webp"
             hdSrc="/career-ops/pdf-wave-cover.webp"
-            alt={lang === 'es'
+            alt={lang === 'zh'
               ? 'Cover letter para Wave: header gradient, Jacobo como proof point de voz + WhatsApp, links a case studies y dashboard'
               : 'Cover letter for Wave: gradient header, Jacobo as voice + WhatsApp proof point, links to case studies and dashboard'}
-            caption={lang === 'es' ? 'Cover letter personalizada' : 'Personalized cover letter'}
+            caption={lang === 'zh' ? 'Cover letter personalizada' : 'Personalized cover letter'}
           />
         </div>
 
@@ -363,8 +363,8 @@ export default function CareerOps({ lang = 'en' }: { lang?: Lang }) {
         {/* ================================================================ */}
         {/*  RELATED SYSTEMS                                                 */}
         {/* ================================================================ */}
-        <H2 id="related">{lang === 'es' ? 'Sistemas Relacionados' : 'Related Systems'}</H2>
-        <Prose>{lang === 'es'
+        <H2 id="related">{lang === 'zh' ? '相关系统' : 'Related Systems'}</H2>
+        <Prose>{lang === 'zh'
           ? 'Career-Ops demuestra las mismas competencias que estos sistemas. Cada uno es un case study completo con arquitectura, métricas y lecciones.'
           : 'Career-Ops demonstrates the same competencies as these systems. Each one is a full case study with architecture, metrics, and lessons.'
         }</Prose>

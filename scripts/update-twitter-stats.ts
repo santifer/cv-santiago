@@ -35,7 +35,7 @@ interface TweetStats {
 
 // Tweets to track: [id, label, i18n field prefix]
 const TWEETS = [
-  { id: '2041403685696053741', label: 'santifer (main tweet)', prefix: '' },
+  { id: '2041403685696053741', label: 'xueyifan (main tweet)', prefix: '' },
   { id: '2040891664617848993', label: 'Garry Tan (quote)', prefix: 'quote' },
 ]
 

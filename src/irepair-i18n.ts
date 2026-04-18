@@ -1,4 +1,4 @@
-export type IRepairLang = 'es' | 'en'
+export type IRepairLang = 'zh' | 'en'
 
 interface IRepairMetric {
   value: string
@@ -52,66 +52,66 @@ interface IRepairContent {
 }
 
 export const irepairContent: Record<IRepairLang, IRepairContent> = {
-  es: {
-    slug: 'santifer-irepair',
-    altSlug: 'santifer-irepair-founder',
+  zh: {
+    slug: 'xueyifan-irepair',
+    altSlug: 'xueyifan-irepair-founder',
     seo: {
-      title: 'Santifer iRepair Sevilla | Reparación de Móviles desde 2009',
-      description: 'La tienda de reparación de móviles fundada por Santiago en 2009 sigue abierta en Sevilla. 30.000+ reparaciones. Encuentra la tienda o conoce al fundador.',
+      title: 'Xueyifan iRepair 塞维利亚 | 始于2009年的手机维修',
+      description: '一帆于2009年创立的手机维修店仍在塞维利亚营业。30,000+ 次维修。查找店铺或了解创始人。',
     },
     nav: {
-      breadcrumbHome: 'Inicio',
-      breadcrumbCurrent: 'Santifer iRepair',
+      breadcrumbHome: '首页',
+      breadcrumbCurrent: 'Xueyifan iRepair',
     },
     hero: {
-      headline: 'Abrí esta tienda con 25 años.\n16 años después, la vendí. Sigue funcionando.',
-      sub: 'El comprador mantuvo la marca, los sistemas y el equipo. No cambió nada.',
+      headline: '我在25岁时开了这家店。\n16年后卖掉了它。它仍在运行。',
+      sub: '买家保留了品牌、系统和团队。没有做任何改变。',
     },
     metrics: [
-      { value: '16', label: 'Años' },
-      { value: '30K+', label: 'Reparaciones' },
-      { value: '2009', label: 'Fundada' },
-      { value: '2025', label: 'Vendida' },
+      { value: '16', label: '年' },
+      { value: '30K+', label: '次维修' },
+      { value: '2009', label: '成立于' },
+      { value: '2025', label: '售出于' },
     ],
     cards: {
       shop: {
-        title: '¿Buscas Santifer iRepair?',
-        body: 'Sigue abierta, sigue reparando. Con el mismo equipo y mi nombre en el cristal.',
-        cta: 'Ir a santiferirepair.es',
-        mapLabel: 'Ver ubicación y horarios',
+        title: '在找 Xueyifan iRepair 吗？',
+        body: '仍在营业，仍在维修。同样的团队，玻璃上还贴着我的名字。',
+        cta: '前往 xueyifanirepair.es',
+        mapLabel: '查看位置和营业时间',
       },
       founder: {
-        title: '¿Buscas a Santiago?',
-        body: 'Un agente IA que atendía el teléfono. Un ERP de 2.100 campos. Miles de landing pages generadas con SEO programático. El comprador no cambió nada. Ahora diseño sistemas de IA y automatización para empresas.',
-        cta: 'Ver portfolio',
+        title: '在找一帆吗？',
+        body: '一个负责接听电话的AI代理。一个拥有2100个字段的ERP。通过程序化SEO生成的数千个落地页。买家没有改变任何东西。现在我为公司设计AI和自动化系统。',
+        cta: '查看作品集',
       },
     },
     businessOsCta: {
-      heading: 'El sistema detrás de 30.000 reparaciones',
-      body: 'Un ERP completo en Airtable que gestionó el negocio durante años. Automatizaciones, IA y 170 horas al mes ahorradas.',
-      ctaLabel: 'Ver el Business OS',
+      heading: '30,000次维修背后的系统',
+      body: '一个基于Airtable的完整ERP，管理了业务多年。自动化、AI，每月节省170小时。',
+      ctaLabel: '查看 Business OS',
     },
     jacoboCta: {
-      heading: 'El agente que atendía el teléfono',
-      body: 'Un agente IA con voz que gestionaba citas, presupuestos y consultas. 90% autoservicio.',
-      ctaLabel: 'Ver el caso Jacobo',
+      heading: '负责接听电话的代理',
+      body: '一个具备语音功能的AI代理，负责管理预约、报价和咨询。90%自助服务。',
+      ctaLabel: '查看 Jacobo 案例',
     },
     pseoCta: {
-      heading: 'La web que se construye sola',
-      body: '4.700+ landing pages generadas desde el ERP. 2M+ impresiones orgánicas. Cero contenido IA.',
-      ctaLabel: 'Ver el SEO Programático',
+      heading: '自动构建的网站',
+      body: '基于ERP生成的4,700多个落地页。200万+有机曝光。零AI生成内容。',
+      ctaLabel: '查看程序化SEO',
     },
   },
   en: {
-    slug: 'santifer-irepair-founder',
-    altSlug: 'santifer-irepair',
+    slug: 'xueyifan-irepair-founder',
+    altSlug: 'xueyifan-irepair',
     seo: {
-      title: 'Santifer iRepair Seville | Phone Repair since 2009',
-      description: 'The phone repair shop founded by Santiago in 2009 is still open in Seville, Spain. 30,000+ repairs. Find the shop or meet the founder.',
+      title: 'Xueyifan iRepair Seville | Phone Repair since 2009',
+      description: 'The phone repair shop founded by Yifan in 2009 is still open in Seville, Spain. 30,000+ repairs. Find the shop or meet the founder.',
     },
     nav: {
       breadcrumbHome: 'Home',
-      breadcrumbCurrent: 'Santifer iRepair',
+      breadcrumbCurrent: 'Xueyifan iRepair',
     },
     hero: {
       headline: 'I opened this shop at 25.\nSold it 16 years later. It\'s still running.',
@@ -125,13 +125,13 @@ export const irepairContent: Record<IRepairLang, IRepairContent> = {
     ],
     cards: {
       shop: {
-        title: 'Looking for Santifer iRepair?',
+        title: 'Looking for Xueyifan iRepair?',
         body: 'Still open, still fixing phones. Same team and my name still on the glass.',
-        cta: 'Go to santiferirepair.es',
+        cta: 'Go to xueyifanirepair.es',
         mapLabel: 'View location & hours',
       },
       founder: {
-        title: 'Looking for Santiago?',
+        title: 'Looking for Yifan?',
         body: 'An AI agent that answered the phone. A 2,100-field ERP. Thousands of landing pages generated with programmatic SEO. The buyer changed nothing. Now I design AI and automation systems for companies.',
         cta: 'View portfolio',
       },

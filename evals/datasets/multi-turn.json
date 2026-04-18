@@ -23,7 +23,7 @@
       "lang": "es",
       "conversation": [
         { "role": "user", "content": "¿Qué es Jacobo?" },
-        { "role": "assistant", "content": "Jacobo es mi agente de IA omnicanal para atención al cliente. Lo construí para Santifer iRepair." },
+        { "role": "assistant", "content": "Jacobo es mi agente de IA omnicanal para atención al cliente. Lo construí para Xueyifan iRepair." },
         { "role": "user", "content": "Y el Business OS, ¿qué es?" }
       ],
       "assertions": [

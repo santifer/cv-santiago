@@ -1,1032 +1,371 @@
 export const pseoContent = {
-  es: {
-    slug: 'seo-programatico',
+  zh: {
+    slug: 'cheng-xu-hua-seo',
     altSlug: 'programmatic-seo',
-    readingTime: '37 min de lectura',
+    readingTime: '37 分钟阅读',
     seo: {
-      title: 'SEO Programático: 4.000+ Páginas desde un ERP | santifer.io',
-      description: 'Case study: cómo generé 4.730 landing pages estáticas con Airtable, DataForSEO y crawl budget optimization. 2M+ impresiones, 19K+ clicks.',
+      title: '程序化 SEO：从 ERP 自动生成的 4000+ 页面 | xueyifan.io',
+      description: '案例研究：我如何利用 Airtable、DataForSEO 和抓取预算优化，自动生成了 4,730 个静态落地页。获得 200 万+ 展示次数和 1.9 万+ 点击。',
     },
     nav: {
-      breadcrumbHome: 'Inicio',
-      breadcrumbCurrent: 'SEO Programático',
+      breadcrumbHome: '首页',
+      breadcrumbCurrent: '程序化 SEO',
     },
     header: {
-      kicker: 'Case Study — <a>Santifer iRepair</a>',
-      kickerLink: 'https://santiferirepair.es',
-      h1: 'SEO Programático: 4.700+ Páginas desde un ERP',
-      subtitle: 'Cómo generé 4.730 landing pages únicas con datos reales de producción, un CMS de 14 tablas en Airtable, y DataForSEO como motor de decisiones. 2,26M impresiones, 19K+ clicks.',
-      date: '25 feb 2026',
+      kicker: '案例研究 — <a>薛一凡 iRepair</a>',
+      kickerLink: 'https://xueyifanirepair.es',
+      h1: '程序化 SEO：从 ERP 自动生成的 4,700+ 页面',
+      subtitle: '我如何利用真实的生产数据、包含 14 张表的 Airtable CMS 以及作为决策引擎的 DataForSEO，生成了 4,730 个唯一的落地页。获得 226 万次展示和 1.9 万+ 点击。',
+      date: '2026年2月25日',
     },
     intro: {
-      hook: 'SEO programático es generar miles de páginas automáticamente desde una base de datos, cada una optimizada para una búsqueda long-tail específica. Construí 4.730 landing pages desde un ERP en Airtable. En el sector de reparación de dispositivos en España, nadie más lo estaba haciendo.',
-      body: 'La idea era simple: si alguien busca "reparar iPhone batería Sevilla", debería existir una página específica para esa búsqueda, con el precio real, el tiempo estimado y fotos de reparaciones reales. Pero crear esas páginas a mano para miles de combinaciones no era viable. Necesitaba un sistema que generase las páginas automáticamente desde el ERP, y que fuera lo suficientemente inteligente para decidir cuáles indexar y cuáles no.',
-      context: 'Santifer iRepair fue mi negocio de reparación de dispositivos en Sevilla desde 2009. 16 años, más de 30.000 reparaciones. En 2024 decidí que la web del negocio necesitaba dejar de ser un folleto en Squarespace y empezar a capturar la demanda que ya existía en Google. Construí este sistema de SEO programático como ventaja competitiva y vendí el negocio en septiembre 2025, en su punto más alto.',
+      hook: '程序化 SEO 是指从数据库自动生成数千个页面，每个页面都针对特定的长尾搜索进行优化。我从 Airtable 中的 ERP 系统构建了 4,730 个落地页。在西班牙的设备维修行业，当时还没有其他人这样做。',
+      body: '这个想法很简单：如果有人搜索“塞维利亚 iPhone 电池维修”，就应该有一个针对该搜索的特定页面，包含真实的价格、预估时间以及真实维修的照片。但手动为数千种组合创建页面是不可行的。我需要一个能从 ERP 自动生成页面的系统，并且足够智能，能决定哪些页面需要索引，哪些不需要。',
+      context: '自 2009 年起，薛一凡 iRepair 是我在塞维利亚经营的设备维修业务。16 年间，完成超过 30,000 次维修。2024 年，我决定让业务网站从 Squarespace 上的电子宣传册转变为能够捕捉 Google 既有需求的工具。我构建了这个程序化 SEO 系统作为竞争优势，并于 2025 年 9 月在业务巅峰期成功出售。',
       tldr: {
-        heading: 'En 10 segundos',
+        heading: '10秒概览',
         items: [
-          'Construí 4.730 landing pages estáticas desde un ERP de producción (precios, fotos, reseñas reales)',
-          'Motor de decisiones con DataForSEO: solo se indexan las páginas con volumen de búsqueda real',
-          'Resultado: 2,26M impresiones, 19K+ clicks orgánicos, 80% del tráfico del sitio',
-          '7 meses de desarrollo, una persona, vendido en su punto más alto',
+          '从生产级 ERP 构建了 4,730 个静态落地页（包含真实价格、照片、评价）',
+          '使用 DataForSEO 作为决策引擎：仅索引具有真实搜索量的页面',
+          '结果：226 万次展示，1.9 万+ 自然点击，占网站总流量的 80%',
+          '由一人历时 7 个月开发，业务在巅峰期售出',
         ],
       },
     },
     sections: {
       migration: {
-        heading: 'El Punto de Partida',
-        intro: 'La web del negocio llevaba años en Squarespace. Sin control de URLs, sin canonical tags, sin redirects custom. Lo que venía no era solo un cambio de plataforma — era una triple migración: plataforma (Squarespace → Astro), dominio (santifer.me → santiferirepair.es) y hosting (Squarespace → Vercel/Cloudflare). El primer paso fue documentar exactamente qué había que arreglar: una auditoría técnica completa de 144 páginas, realizada como Trabajo Fin de Máster del programa Big SEO.',
-        duplicateCallout: 'Squarespace servía la misma página en 4 URLs diferentes (www, non-www, trailing slash, .html). Google veía 4 copias de cada página.',
+        heading: '起点',
+        intro: '业务网站在 Squarespace 上运行了多年。无法控制 URL，没有规范标签，没有自定义重定向。接下来的任务不仅是更换平台，而是一次三重迁移：平台（Squarespace → Astro）、域名（xueyifan.me → xueyifanirepair.es）以及托管（Squarespace → Vercel/Cloudflare）。第一步是记录究竟需要修复什么：一份长达 144 页的完整技术审计，作为 Big SEO 硕士课程的毕业设计。',
+        duplicateCallout: 'Squarespace 在 4 个不同的 URL（www、非 www、带斜杠、.html）上提供相同的页面。Google 视其为每个页面的 4 个副本。',
         audit: {
-          heading: 'La Auditoría Técnica',
-          prose: 'El primer paso fue una auditoría técnica completa, realizada como Trabajo Fin de Máster del programa Big SEO. 144 páginas documentando cada aspecto técnico de la web: desde la situación del tráfico hasta la última meta description.',
+          heading: '技术审计',
+          prose: '第一步是进行完整的技术审计。这份 144 页的文档记录了网站的每个技术细节：从流量状况到最后的元描述。',
           baseline: [
-            { value: '23,1', label: 'Posición media' },
-            { value: '↓ Declive', label: 'Visibilidad SISTRIX' },
-            { value: '21/100', label: 'Lighthouse (móvil)' },
-            { value: '33/40', label: 'Items con errores' },
+            { value: '23.1', label: '平均排名' },
+            { value: '↓ 下滑', label: 'SISTRIX 可见度' },
+            { value: '21/100', label: 'Lighthouse (移动端)' },
+            { value: '33/40', label: '有错误的项目' },
           ],
           findings: [
-            { title: '838 H1s duplicados', detail: 'El template de Squarespace inyectaba un H1 oculto en cada página, duplicando el encabezado principal. Google veía dos títulos compitiendo por relevancia.' },
-            { title: '1.015 canibalizaciones', detail: 'Páginas compitiendo entre sí por las mismas keywords. Home, categorías y modelos se pisaban mutuamente en los resultados de búsqueda.' },
-            { title: '869 errores en datos estructurados', detail: 'El LocalBusiness schema no seguía las recomendaciones de schema.org. Google no podía interpretar correctamente la información del negocio.' },
-            { title: '831 páginas no canónicas', detail: 'Squarespace servía 4 URLs por página sin redirigir a la canónica. GSC las reportaba como duplicadas sin canonical.' },
+            { title: '838 个重复的 H1', detail: 'Squarespace 模板在每个页面都注入了一个隐藏的 H1，导致主标题重复。Google 看到两个标题在争夺相关性。' },
+            { title: '1,015 处关键词蚕食', detail: '不同页面在争夺相同的关键词。首页、类别页和模型页在搜索结果中互相竞争。' },
+            { title: '869 处结构化数据错误', detail: 'LocalBusiness schema 未遵循 schema.org 的建议。Google 无法正确解读业务信息。' },
+            { title: '831 个非规范页面', detail: 'Squarespace 提供每个页面的 4 个 URL，但未重定向到规范 URL。GSC 将其报告为无规范标签的重复内容。' },
           ],
-          callout: '33 de 40 aspectos técnicos auditados tenían errores. Solo 7 pasaban. La auditoría no solo diagnosticó los problemas — se convirtió en el roadmap de todo el proyecto.',
+          callout: '审计的 40 个技术项中有 33 个存在错误。只有 7 个合格。审计不仅诊断了问题，更成为了整个项目的路线图。',
         },
         technicalDebt: {
-          heading: 'Los Problemas Técnicos',
+          heading: '技术债务',
           items: [
-            { title: 'Sin canonical tags', detail: 'www vs non-www, con/sin trailing slash, con/sin .html. Misma página, 4 URLs. 831 páginas no canónicas en GSC. Squarespace indicaba canonical pero no redirigía.' },
-            { title: 'Sin redirects custom', detail: 'Squarespace no permite crear redirecciones 301 personalizadas. 266 URLs históricas dando 404 en GSC. Imposible mapear URLs antiguas a la nueva estructura.' },
-            { title: 'Sin control de slugs de URL', detail: 'La taxonomía del negocio ya existía, pero Squarespace generaba URLs redundantes como /reparar-iphone/reparar-iphone-x. 15 URLs de más de 115 caracteres, 10 con mayúsculas, keyword repetida 3 veces.' },
-            { title: 'Riesgo de contenido duplicado', detail: '1.015 canibalizaciones detectadas. 79 páginas con thin content. Las variantes de URL sin canonical generaban señales confusas para Google, diluyendo la autoridad del dominio.' },
+            { title: '缺少规范标签', detail: 'www 与非 www、带/不带尾随斜杠、带/不带 .html。同一个页面对应 4 个 URL。Squarespace 虽然显示了 canonical 但并未实际重定向。' },
+            { title: '无法自定义重定向', detail: 'Squarespace 不允许创建自定义 301 重定向。266 个历史 URL 在 GSC 中显示为 404。无法将旧 URL 映射到新结构。' },
+            { title: '无法控制 URL Slug', detail: '业务分类已存在，但 Squarespace 生成了冗余 URL，如 /reparar-iphone/reparar-iphone-x。部分 URL 长度超过 115 字符。' },
+            { title: '重复内容风险', detail: '检测到 1,015 处蚕食。79 个页面内容稀薄。无规范标签的 URL 变体向 Google 发送了混乱信号。' },
           ],
         },
         migrationSteps: {
-          heading: 'La Migración',
+          heading: '迁移过程',
           steps: [
-            { label: 'Crawl completo con Screaming Frog', detail: 'El crawl identificó 838 páginas con H1s múltiples, 266 URLs 404, y 1.015 canibalizaciones. El mapeo resultó en 1.009 reglas de redirección.' },
-            { label: 'Nueva estructura de URLs en Astro', detail: 'De ~80 páginas a una arquitectura de 480+ páginas optimizadas para 156.000 búsquedas mensuales transaccionales. URLs limpias: /reparar-{dispositivo}/, /reparar-{marca}/{modelo}/.' },
-            { label: '301 redirects en vercel.json', detail: 'Proyecto dedicado (servidor-redirecciones) desplegado en Vercel solo para servir 301s. 190KB de configuración en un solo archivo.' },
-            { label: 'Redirects inteligentes por intención', detail: 'Redirigir páginas nacionales a versiones locales. Ejemplo: /reparar-movil/reparar-samsung → /reparar-movil/samsung/sevilla.' },
+            { label: '使用 Screaming Frog 进行完整抓取', detail: '识别出 838 个多 H1 页面、266 个 404 URL 和 1,015 处蚕食。映射出 1,009 条重定向规则。' },
+            { label: '在 Astro 中建立新 URL结构', detail: '从 ~80 个页面扩展到针对 156,000 次月度交易搜索优化的 480+ 个页面。URL 更简洁：/reparar-{设备}/ 等。' },
+            { label: '在 vercel.json 中配置 301 重定向', detail: '部署在 Vercel 上的专用重定向服务器。单个配置文件达 190KB。' },
+            { label: '基于意图的智能重定向', detail: '将全国性页面重定向到本地版本。例如：将通用维修页面引导至塞维利亚本地版本。' },
           ],
         },
         redirectServer: {
-          heading: 'El Servidor de Redirecciones',
-          prose: 'La triple migración (plataforma, dominio, hosting) requería un plan para no perder la autoridad acumulada en el dominio antiguo. La solución fue un proyecto dedicado en Vercel cuya única función era servir redirecciones 301. Un gotcha del cambio de dominio: Squarespace no permitía redirigir la homepage, lo que bloqueaba el GSC change of address. El doble salto HTTP→308→301 impedía la validación. Se resolvió en una tarde con Vercel Redirect Domain + Cloudflare Redirect Rules para un único 301 directo.',
+          heading: '重定向服务器',
+          prose: '三重迁移（平台、域名、托管）需要一个计划，以免损失旧域名的权威性。解决方案是在 Vercel 上建立一个唯一的重定向项目。',
           metrics: [
-            { value: '1.009', label: 'Reglas de redirección' },
+            { value: '1,009', label: '重定向规则' },
             { value: '190 KB', label: 'vercel.json' },
-            { value: '4', label: 'Niveles de redirect' },
-            { value: '46', label: 'Commits en 7 meses' },
+            { value: '4', label: '重定向层级' },
+            { value: '46', label: '7个月内的提交' },
           ],
           tiers: [
-            { title: 'Modelo → modelo', detail: '/reparar-movil/reparar-samsung/reparar-samsung-galaxy-a12 → /reparar-movil/samsung/galaxy-a12. URL limpia, misma intención.' },
-            { title: 'Marca → marca + ciudad', detail: '/reparar-movil/reparar-realme → /reparar-movil/realme/sevilla. La nueva estructura añadía la ciudad como señal local.' },
-            { title: 'Wildcard + catch-all', detail: 'Cualquier URL no mapeada en los tiers anteriores redirige a la homepage. Zero 404s para el usuario y para Google.' },
+            { title: '模型 → 模型', detail: '清理冗余 URL，保持用户意图一致。' },
+            { title: '品牌 → 品牌 + 城市', detail: '新结构加入了城市作为本地信号。' },
+            { title: '通配符 + 兜底', detail: '任何未映射的 URL 均重定向至首页。用户和 Google 均无 404。' },
           ],
-          callout: 'Un proyecto entero de Vercel cuya única función era redirigir. 1.009 reglas mapeadas a mano porque la estructura de URLs de Squarespace no seguía un patrón uniforme.',
+          callout: '由于 Squarespace 的 URL 结构不规范，1,009 条规则均由人工映射。',
         },
-        orderCallout: 'Implementa las redirecciones antes de solicitar el cambio en Google Search Console. No después. El orden importa.',
+        orderCallout: '在 Google Search Console 中请求地址更改之前实施重定向。顺序非常重要。',
         migrationCost: {
-          heading: 'El Coste de Migrar',
-          body: 'Toda migración tiene un coste de transición. 800+ páginas tardaron en reindexarse y keywords clave cayeron temporalmente — "reparar iphone sevilla" pasó del top 2 al puesto 6. Era esperable: Google necesita tiempo para reevaluar un dominio tras un cambio de dirección. La recuperación llegó.',
+          heading: '迁移成本',
+          body: '所有迁移都有过渡成本。800+ 页面重新索引需要时间，核心关键词排名曾短暂下降。这是预料之中的，Google 需要时间重新评估。',
           lighthouse: [
-            { value: '100', label: 'Performance' },
-            { value: '92', label: 'Accessibility' },
-            { value: '96', label: 'Best Practices' },
+            { value: '100', label: '性能' },
+            { value: '92', label: '可访问性' },
+            { value: '96', label: '最佳实践' },
             { value: '100', label: 'SEO' },
           ],
-          closing: 'De un Lighthouse de 21 en Squarespace a 100 en Astro. De DA 8 a competir en un mercado donde los líderes tienen 100x más tráfico. La auditoría técnica documentó 33 problemas; la migración los resolvió todos de una vez.',
+          closing: 'Lighthouse 分数从 21 提升至 100。技术审计记录的 33 个问题通过迁移一举解决。',
         },
       },
       theNumbers: {
-        heading: 'Los Números',
+        heading: '数据表现',
         metrics: [
-          { value: '2,26M', label: 'Impresiones', detail: 'Total acumulado (medido en Google Search Console)' },
-          { value: '19K+', label: 'Clicks orgánicos', detail: 'Tráfico real desde búsqueda orgánica (medido en Google Search Console)' },
-          { value: '4.730', label: 'Páginas con tráfico', detail: 'De miles generadas, 4.084 indexables en sitemap, 4.730 recibieron impresiones' },
-          { value: '10,8x', label: 'Crecimiento', detail: 'De 202 a 2.193 clicks/mes en 11 meses' },
-          { value: '80%', label: 'Clicks desde pSEO', detail: 'El tráfico orgánico del sitio viene de páginas programáticas' },
-          { value: '7', label: 'Meses', detail: '1 persona. CMS, pipelines, DataForSEO, 26K imágenes y deploy' },
+          { value: '226万', label: '展示次数', detail: '累计总计（GSC 数据）' },
+          { value: '1.9万+', label: '自然点击', detail: '来自搜索的真实流量（GSC 数据）' },
+          { value: '4,730', label: '有流量的页面', detail: '在生成的数千个页面中，4,084 个被索引' },
+          { value: '10.8倍', label: '增长', detail: '月点击量从 202 增长到 2,193' },
+          { value: '80%', label: '点击来自 pSEO', detail: '网站自然流量主要来自程序化生成的页面' },
+          { value: '7', label: '个月', detail: '1人。包含 CMS、流水线、2.6万张图片和部署' },
         ],
-        timeline: 'Desarrollo: marzo → octubre 2024 (7 meses). Una persona. CMS, scripts de generación, pipeline de imágenes, integración con DataForSEO y deploy — todo en paralelo. Lanzamiento en producción en octubre 2024. Si lo construyera hoy con Claude Code, tardaría una semana.',
+        timeline: '开发时间：2024 年 3 月至 10 月。一人负责所有环节。如果今天用 Claude Code 构建，只需一周。',
       },
       opportunity: {
-        heading: 'La Oportunidad',
-        body: 'El mercado de reparación de dispositivos en España es altamente local. Los usuarios buscan servicios por ciudad, marca y tipo de reparación. Pero la mayoría de negocios del sector tenían webs genéricas: una landing para toda España, si es que tenían web.',
+        heading: '机遇',
+        body: '西班牙的设备维修市场具有高度的本地化特征。用户根据城市、品牌和维修类型进行搜索。但大多数同行的网站都很通用。',
         points: [
-          'Miles de combinaciones long-tail sin competencia real en SERPs',
-          'Intención de búsqueda transaccional clara: el usuario quiere reparar, no informarse',
-          'Ningún competidor en el sector estaba usando SEO programático en España (2024)',
-          'El ERP ya tenía todos los datos necesarios: 867 modelos, precios, tiempos, fotos reales',
-          'La taxonomía natural del negocio (dispositivo, marca, modelo, reparación, ciudad) se mapea directamente a URLs',
+          '数千种长尾组合在搜索结果中没有真正的竞争',
+          '明确的交易搜索意图：用户想要维修，而不是获取信息',
+          '2024年，行业内尚无竞争对手在西班牙使用程序化 SEO',
+          'ERP 已有所有必要数据：867 个模型、价格、照片',
+          '自然的业务分类（设备、品牌、型号、维修、城市）直接映射到 URL',
         ],
         queryExamples: [
-          { query: 'reparacion moviles sevilla', clicks: 42, impressions: 1947, ctr: '2,2%', position: '2,5' },
-          { query: 'reparar iphone sevilla', clicks: 51, impressions: 3314, ctr: '1,5%', position: '12,9' },
-          { query: 'reparacion iphone sevilla', clicks: 46, impressions: 4315, ctr: '1,1%', position: '5,2' },
-          { query: 'cambiar bateria pixel 6a', clicks: 51, impressions: 755, ctr: '6,8%', position: '6,4' },
-          { query: 'servicio técnico garmin sevilla', clicks: 36, impressions: 534, ctr: '6,7%', position: '6,5' },
-          { query: 'cambiar bateria apple watch', clicks: 37, impressions: 3967, ctr: '0,9%', position: '11,7' },
+          { query: '塞维利亚手机维修', clicks: 42, impressions: 1947, ctr: '2.2%', position: '2.5' },
+          { query: '维修 iPhone 塞维利亚', clicks: 51, impressions: 3314, ctr: '1.5%', position: '12.9' },
+          { query: 'pixel 6a 更换电池', clicks: 51, impressions: 755, ctr: '6.8%', position: '6.4' },
+          { query: '佳明塞维利亚技术服务', clicks: 36, impressions: 534, ctr: '6.7%', position: '6.5' },
         ],
       },
       twoTypes: {
-        heading: 'Dos Estrategias, Un Sistema',
-        body: 'El proyecto empezó con ambición nacional, pero Google tiene criterio propio. Las búsquedas de reparación tienen intención local muy fuerte. Google prioriza resultados con proximidad geográfica, así que las páginas nacionales sin ciudad competían peor. La solución: una estrategia dual. Páginas locales para Sevilla (donde está la tienda física) y páginas nacionales de nicho para reparaciones específicas donde la localización importa menos.',
+        heading: '两种策略，一个系统',
+        body: '项目初期有全国性的雄心，但 Google 的标准不同。维修搜索有极强的本地意图。解决方案是双重策略：针对塞维利亚的本地页面和针对特定维修的全国性利基页面。',
         local: {
-          title: 'Páginas Locales (Sevilla)',
-          description: 'Combinaciones de dispositivo + marca + reparación con "/sevilla". Google las prioriza por proximidad al negocio físico. Son las que más tráfico generan.',
+          title: '本地页面（塞维利亚）',
+          description: '设备 + 品牌 + 维修与“/sevilla”的组合。由于靠近实体店，Google 优先展示这些页面。',
           examples: [
-            { url: '/reparar-smartwatch/sevilla', clicks: 615, ctr: '3,7%' },
-            { url: '/reparar-iphone/bateria/sevilla', clicks: 581, ctr: '2,5%' },
-            { url: '/reparar-apple-watch/sevilla', clicks: 562, ctr: '2,7%' },
-            { url: '/reparar-iphone/sevilla', clicks: 466, ctr: '0,6%' },
-            { url: '/reparar-ipad/sevilla', clicks: 370, ctr: '1,2%' },
+            { url: '/reparar-smartwatch/sevilla', clicks: 615, ctr: '3.7%' },
+            { url: '/reparar-iphone/bateria/sevilla', clicks: 581, ctr: '2.5%' },
           ],
         },
         national: {
-          title: 'Páginas Nacionales (sin ciudad)',
-          description: 'Reparaciones de nicho donde la localización importa menos. El formato "cambiar-{pieza}-{marca}-{modelo}" captura búsquedas informacionales que terminan en conversión.',
+          title: '全国页面（无城市）',
+          description: '针对地理位置不太重要的利基维修。通过“更换-{零件}-{品牌}-{型号}”格式捕捉信息搜索。',
           examples: [
-            { url: '/cambiar-bateria-google-pixel-6a', clicks: 372, ctr: '5,0%' },
+            { url: '/cambiar-bateria-google-pixel-6a', clicks: 372, ctr: '5.0%' },
           ],
         },
       },
       architecture: {
-        heading: 'La Arquitectura',
-        body: 'El sistema tiene cuatro capas. Airtable funciona como CMS headless con 14 tablas y ~60 campos por tabla. El ERP alimenta los datos reales de producción. DataForSEO decide qué se indexa. Astro genera HTML estático con mínimo JavaScript en el cliente — solo lo imprescindible para UX (buscador, carrusel), cargado de forma lazy.',
+        heading: '架构设计',
+        body: '系统由四层组成。Airtable 作为 Headless CMS。ERP 提供真实的生产数据。DataForSEO 决定索引内容。Astro 生成静态 HTML。',
         layers: [
           {
             icon: 'database',
-            name: 'Airtable (CMS Headless)',
-            desc: '14 tablas, ~60 campos por tabla. Jerarquía de 6 niveles: Tipo de dispositivo, Marca, Familia, Modelo, Reparación + variantes locales. Precios duales (original y compatible), herencia de imágenes, social proof en cascada.',
+            name: 'Airtable (Headless CMS)',
+            desc: '14张表，每表约60个字段。6级层级：设备类型、品牌、系列、型号、维修及本地变体。',
           },
           {
             icon: 'wrench',
-            name: 'ERP (Datos de Producción)',
-            desc: 'Alimenta Airtable con datos reales: fotos de antes/después de reparaciones reales, reseñas verificadas de clientes, stock de piezas actualizado. 867 modelos, 20+ marcas, 15+ tipos de reparación.',
+            name: 'ERP (生产数据)',
+            desc: '为 Airtable 提供真实数据：维修前后的照片、验证过的客户评价、零件库存。',
           },
           {
             icon: 'bar-chart',
-            name: 'DataForSEO (Motor de Decisiones)',
-            desc: 'Consulta volúmenes de búsqueda reales para cada combinación. El campo "indexable" en Airtable se alimenta directamente de estos datos. Sin volumen, la página no se indexa.',
+            name: 'DataForSEO (决策引擎)',
+            desc: '查询每种组合的真实搜索量。无搜索量的页面将不会被索引。',
           },
           {
             icon: 'zap',
-            name: 'Astro (Generación Estática)',
-            desc: '21 templates de página. Genera HTML estático con JS mínimo lazy-loaded. 6 tipos de JSON-LD por página. SEO de imágenes con inyección EXIF. Deploy en Cloudflare CDN.',
+            name: 'Astro (静态生成)',
+            desc: '21个页面模板。生成带有最少 JS 的静态 HTML。每页包含 6 种 JSON-LD。',
           },
         ],
       },
       cmsDeepDive: {
-        heading: 'El CMS por Dentro',
-        body: 'Airtable no es solo una hoja de cálculo con esteroides. En este proyecto funciona como un CMS relacional completo. La clave es la jerarquía de 6 niveles que refleja exactamente cómo funciona el negocio.',
+        heading: 'CMS 深度解析',
+        body: 'Airtable 不仅仅是一个加强版的电子表格。在这个项目中，它是一个完整的关系型 CMS。',
         tables: [
-          { name: 'Tipos de Dispositivo', purpose: 'Nivel raíz de la taxonomía', keyFields: 'slug, nombre, descripción SEO, orden de menú' },
-          { name: 'Marcas', purpose: 'Marcas vinculadas a tipos de dispositivo', keyFields: 'slug, nombre, logo, tipos compatibles' },
-          { name: 'Familias', purpose: 'Agrupación de modelos (ej: iPhone 14 serie)', keyFields: 'slug, imagen principal (heredable), marca' },
-          { name: 'Modelos', purpose: 'Dispositivos concretos con precios', keyFields: 'slug, familia, imagen (hereda de familia si no tiene), año' },
-          { name: 'Reparaciones', purpose: 'Tipos de reparación por modelo', keyFields: 'slug, precio original, precio compatible, tiempo, indexable' },
-          { name: 'Variantes Locales', purpose: 'Páginas con ciudad para SEO local', keyFields: 'modelo + reparación + ciudad, precio ajustado, disponibilidad' },
+          { name: '设备类型', purpose: '分类的根节点', keyFields: 'slug, 名称, SEO 描述' },
+          { name: '品牌', purpose: '关联至设备类型', keyFields: 'slug, 名称, Logo' },
+          { name: '系列', purpose: '模型分组（如 iPhone 14 系列）', keyFields: 'slug, 主图' },
+          { name: '型号', purpose: '具体设备及价格', keyFields: 'slug, 价格, 年份' },
+          { name: '维修', purpose: '每个型号的维修类型', keyFields: '价格, 时间, 是否可索引' },
+          { name: '本地变体', purpose: '针对本地 SEO 的城市页面', keyFields: '型号 + 维修 + 城市' },
         ],
         highlights: [
-          { title: 'Precios duales', detail: 'Cada reparación tiene precio con pieza original y precio con pieza compatible. El usuario elige en la landing.' },
-          { title: 'Herencia de imágenes', detail: 'Si un modelo no tiene imagen propia, hereda la de su familia. Reduce trabajo de mantenimiento sin dejar páginas sin visual.' },
-          { title: 'Social proof en cascada', detail: 'Las reseñas se vinculan a nivel de modelo, familia o marca. Una reseña de "iPhone 14 Pro" aparece en todas las reparaciones de ese modelo.' },
-          { title: 'Bridge mode', detail: 'Reparaciones descatalogadas no se eliminan: se marcan como "bridge" y redirigen a la alternativa más cercana. Cero 404s, cero pérdida de autoridad.' },
+          { title: '双重定价', detail: '每项维修都有原装零件和兼容零件的价格。用户在落地页进行选择。' },
+          { title: '图片继承', detail: '如果型号没有自己的图片，则继承系列的图片。减少维护工作。' },
+          { title: '级联社交证明', detail: '评价与型号或系列挂钩。一个型号的评价会出现在该型号的所有维修页面上。' },
         ],
-        businessOsCallout: 'Este CMS de 14 tablas es parte de un Business OS más amplio de 12 bases de Airtable que gestionaba todo el negocio: inventario, CRM, contabilidad, RRHH y más. <a href="/business-os-para-airtable" class="text-primary underline underline-offset-2 hover:text-primary/80">Lee el case study completo del Business OS →</a>',
+        businessOsCallout: '这个包含 14 张表的 CMS 是更广泛的 Business OS 的一部分。 <a href="/business-os-for-airtable" class="text-primary underline underline-offset-2 hover:text-primary/80">阅读 Business OS 完整案例研究 →</a>',
       },
       pageAnatomy: {
-        heading: 'Anatomía de una Página',
-        body: 'Cada una de las 4.700+ páginas se genera desde un template, pero el contenido es único porque viene del ERP. No es texto generado por IA ni contenido de relleno: son datos de producción.',
+        heading: '页面剖析',
+        body: '数千个页面均从模板生成，但内容是唯一的，因为数据来自 ERP。',
         components: [
-          { icon: 'list', name: 'Breadcrumb + Schema', desc: 'Navegación jerárquica que refleja la taxonomía. Genera BreadcrumbList JSON-LD automáticamente.' },
-          { icon: 'dollar-sign', name: 'Precios Reales', desc: 'Precio original y compatible, actualizados desde el ERP. El usuario ve exactamente lo que va a pagar.' },
-          { icon: 'clock', name: 'Tiempo Estimado', desc: 'Basado en datos históricos reales del taller. No es una estimación genérica.' },
-          { icon: 'camera', name: 'Fotos Antes/Después', desc: 'Imágenes reales de reparaciones completadas. EXIF inyectado con geolocalización y metadata SEO.' },
-          { icon: 'star', name: 'Reseñas Verificadas', desc: 'Reviews de clientes reales, vinculadas al modelo o familia. Con schema Review y AggregateRating.' },
-          { icon: 'code', name: '6 Tipos de JSON-LD', desc: 'LocalBusiness, Product, Service, BreadcrumbList, FAQPage, AggregateRating. Cada página tiene markup completo.' },
+          { icon: 'list', name: '面包屑 + Schema', desc: '反映分类层级的导航。自动生成 JSON-LD。' },
+          { icon: 'dollar-sign', name: '真实价格', desc: '实时更新。用户看到的就是他们将要支付的价格。' },
+          { icon: 'clock', name: '预估时间', desc: '基于维修车间的真实历史数据。' },
+          { icon: 'camera', name: '前后对比图', desc: '真实维修的照片。注入了地理位置 EXIF 信息。' },
+          { icon: 'star', name: '验证评价', desc: '来自真实客户，与型号关联。' },
+          { icon: 'code', name: '6 种 JSON-LD', desc: '包含 LocalBusiness, Product 等。每页都有完整的标记。' },
         ],
         screenshot: {
           src: '/pseo/ss-repair-page-full.webp',
-          alt: 'Anatomía de una página programática de reparación',
-          caption: 'Ejemplo real: página de reparación generada desde el ERP. Precios duales, reseñas reales, JSON-LD completo.',
-        },
-        storytelling: {
-          heading: 'Flujo de Conversión por Página',
-          body: 'Cada página sigue una estructura de conversión diseñada para llevar al usuario del descubrimiento a la acción:',
-          steps: [
-            'Hero con precio dual (original/compatible) + CTA de cita directa',
-            'Specs del modelo personalizadas: cámara, batería, tecnologías del dispositivo',
-            'Galería de fotos reales de reparaciones completadas (antes/después)',
-            'Reseñas verificadas de clientes vinculadas al modelo o familia',
-            'FAQ generada desde los datos del ERP (preguntas reales de clientes)',
-            'CTA final con mapa de la tienda y botón de reserva',
-          ],
-          example: 'Un usuario busca "reparar pantalla iPhone 14 Pro Sevilla". Llega a una página con precio (189€ original / 89€ compatible), tiempo estimado (45 min), 3 fotos de reparaciones reales de iPhone 14 Pro, y 12 reseñas verificadas. No necesita navegar a otra página — toda la información para decidir está ahí.',
-        },
-        dynamicCopy: {
-          heading: 'Copy Dinámico por Modelo',
-          body: 'Cada modelo de dispositivo tiene un microcopy único generado a partir de sus specs de hardware reales. Un campo en Airtable almacena las características técnicas (cámara, batería, procesador, resistencia al agua) y un prompt genera una descripción que varía según el modelo. Un iPhone 14 Pro habla de su cámara de 48MP y su pantalla ProMotion. Un Pixel 7a destaca su chip Tensor y fotografía computacional. No es contenido genérico: es contenido que solo aplica a ESE modelo, basado en datos reales de hardware. Misma plantilla, contenido único en cada página.',
-          screenshotCopy: {
-            src: '/pseo/ss-dynamic-copy-iphone12.webp',
-            alt: 'Copy dinámico del iPhone 12: specs reales de hardware generan texto único por modelo',
-            caption: 'Página del iPhone 12: almacenamiento, RAM, pantalla Super Retina XDR OLED, batería Li-Ion 2815mAh. Todo extraído de las specs reales del modelo en Airtable.',
-          },
-          pricingHeading: 'Precios Sincronizados desde el ERP',
-          pricingProse: 'El mismo CMS que genera el copy también sincroniza los precios de cada reparación en tiempo real. Airtable funciona como puente entre el ERP (donde se actualizan los costes de piezas y márgenes) y la web. Cada modelo muestra un rango de precios calculado desde el mínimo y máximo de sus reparaciones disponibles. Cuando un precio cambia en el ERP, la web se regenera con el precio actualizado — sin intervención manual.',
-          screenshotPricing: {
-            src: '/pseo/ss-category-pricing.webp',
-            alt: 'Página de categoría iPhone con rangos de precios sincronizados desde el ERP',
-            caption: 'Página de categoría: cada tarjeta muestra "Desde X € hasta Y €", calculado automáticamente desde los precios de reparación del ERP.',
-          },
-          pricingSegments: [
-            {
-              code: `let cadenaPrecio = '';
-if (mostrarPrecio.startsWith('desde') && detail.precioMinCard) {
-  cadenaPrecio = \`Desde \${detail.precioMinCard}\`;
-}
-if (mostrarPrecio === 'desdeHasta' && detail.precioMaxCard) {
-  cadenaPrecio = \`\${cadenaPrecio} hasta \${detail.precioMaxCard}\`;
-}
-if (mostrarPrecio === 'exacto' && detail.precioMinCard) {
-  cadenaPrecio = detail.precioMaxCard
-    ? \`Desde \${detail.precioMinCard} hasta \${detail.precioMaxCard}\`
-    : \`\${detail.precioMinCard}\`;
-}`,
-              annotations: [
-                { label: 'Tres modos de precio', detail: '"desde" (solo mínimo), "desdeHasta" (rango completo), "exacto" (precio fijo o rango con CTA). El modo se configura por tipo de página.' },
-                { label: 'precioMinCard / precioMaxCard', detail: 'Campos calculados en Airtable: agregan min y max de todas las reparaciones disponibles para ese modelo. Si el coste de una pieza cambia en el ERP, estos campos se recalculan automáticamente.' },
-              ],
-            },
-          ],
-        },
-        contextSearch: {
-          heading: 'Buscador Contextual',
-          body: 'El buscador no es un simple filtro de texto. Es un componente con un algoritmo de scoring propio — sin librerías externas como Fuse.js. El usuario escribe "iphone 12 pro" y el sistema puntúa los 867 modelos: +20 si contiene todas las palabras, +30 si es coincidencia exacta, +10 si el nombre empieza por la búsqueda, y penaliza palabras extra en el nombre del modelo. El resultado: los 6 modelos más relevantes, ordenados por puntuación.',
-          detail: 'Lo interesante es que el buscador es sensible al contexto. En la homepage busca en los 867 modelos de todas las marcas y tipos de dispositivo. Pero en la página de una marca específica (ej: Samsung), solo busca entre modelos de esa marca. Y en la página de un tipo de dispositivo (ej: tablets), solo tablets. El mismo componente, con props de filtro (`filtroTipo`, `filtroMarca`), se comporta de forma diferente según dónde se embeba. Los modelos se cargan bajo demanda en el primer foco del input y se cachean en localStorage para que las búsquedas siguientes sean instantáneas.',
-          codeProse: 'El artículo describe el algoritmo. Este es el código real — 30 líneas sin dependencias externas:',
-          codeSegments: [
-            {
-              code: `function calcularPuntuacion(modelo, terminosBusqueda) {
-  let puntuacion = 0;
-  const nombreModelo = modelo.n.toLowerCase();
-
-  const todasPresentes = terminosBusqueda.every(t => nombreModelo.includes(t));
-
-  if (todasPresentes) {
-    puntuacion += 20;
-    const palabrasModelo = nombreModelo.split(/\\s+/);
-    const extras = palabrasModelo.filter(p => !terminosBusqueda.includes(p)).length;
-    puntuacion -= extras * 2;
-
-    if (nombreModelo === terminosBusqueda.join(' ')) puntuacion += 30;
-    if (nombreModelo.startsWith(terminosBusqueda.join(' '))) puntuacion += 10;
-  }
-  return puntuacion;
-}`,
-              annotations: [
-                { label: '+20 base', detail: 'Todos los términos deben estar presentes. "iphone 12 pro" coincide con "Apple iPhone 12 Pro" pero no con "Apple iPhone 12".' },
-                { label: '-2 por palabra extra', detail: 'Penaliza nombres largos. "Apple iPhone 12 Pro Max" puntúa menos que "Apple iPhone 12 Pro" para la query "iphone 12 pro".' },
-                { label: '+30 exacto, +10 starts-with', detail: 'Coincidencias exactas dominan. 30 líneas, cero dependencias, superando a Fuse.js para este dominio concreto.' },
-              ],
-            },
-          ],
+          alt: '程序化维修页面剖析',
+          caption: '真实案例：从 ERP 生成的维修页面。双重定价、真实评价、完整 JSON-LD。',
         },
       },
       decisionEngine: {
-        heading: 'El Motor de Decisiones',
-        body: 'El sistema genera miles de páginas (muchas más de las 4.730 que recibieron tráfico), pero no todas merecen ser indexadas. Si nadie busca "reparar cámara delantera iPhone 11", esa página no debería competir en Google — pero sí debe existir para el usuario que navega desde la página del iPhone 11 y necesita esa reparación concreta. La clave es separar SEO de UX. El motor de decisiones consulta DataForSEO para obtener volumen de búsqueda real de cada combinación, y el resultado se almacena en el campo "indexable" de <a href="https://github.com/santifer/santifer-irepair/blob/main/src/lib/airtable.ts" target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-2 hover:text-primary/80">airtable.ts</a>.',
+        heading: '决策引擎',
+        body: '系统生成了数千个页面，但并非所有页面都值得被索引。关键在于区分 SEO 和用户体验 (UX)。',
         rules: [
           {
-            condition: 'Volumen de búsqueda alto (DataForSEO)',
-            action: 'Página indexable',
-            detail: 'Si la keyword tiene volumen significativo, la página se genera con meta robots "index, follow", se incluye en el sitemap, y recibe enlazado interno prioritario.',
+            condition: '高搜索量 (DataForSEO)',
+            action: '可索引页面',
+            detail: '如果关键词有显著搜索量，页面将设置为 index, follow。',
           },
           {
-            condition: 'Volumen de búsqueda bajo o nulo',
-            action: 'Página noindex (solo UX)',
-            detail: 'La página existe para la experiencia de usuario y navegación interna, pero lleva meta robots "noindex" y no aparece en el sitemap.',
+            condition: '低或无搜索量',
+            action: 'Noindex 页面 (仅供 UX)',
+            detail: '页面依然存在供用户导航，但不会出现在 sitemap 中。',
           },
           {
-            condition: 'Sin datos de servicio en el ERP',
-            action: 'No se genera página',
-            detail: 'Si no hay datos reales del servicio (precio, disponibilidad), la página no se genera. Cero contenido thin.',
-          },
-          {
-            condition: 'Reparación descatalogada',
-            action: 'Bridge redirect',
-            detail: 'La página se marca como "bridge" y redirige 301 a la alternativa más cercana. Preserva la autoridad acumulada.',
+            condition: 'ERP 中无服务数据',
+            action: '不生成页面',
+            detail: '如果没有真实的价格或库存，则不创建页面。',
           },
         ],
-        stats: 'El sistema genera miles de páginas en total. De esas, 4.084 están en el sitemap como indexables. 4.730 recibieron alguna impresión de Google. El resto no se indexa, pero sigue existiendo para la experiencia del usuario que navega la web.',
+        stats: '在生成的数千个页面中，4,084 个被列入 sitemap 供索引。',
       },
       pipeline: {
-        heading: 'Pipeline de Build',
-        body: 'El pipeline transforma los datos del CMS en una web estática lista para desplegar. Todo está automatizado. schema.ts tiene 1.677 líneas que mapean la jerarquía de Airtable a tipos de Astro.',
+        heading: '构建流水线',
+        body: '流水线将 CMS 数据转化为随时可部署的静态网站。全程自动化。',
         steps: [
-          { label: 'Airtable API', desc: 'Extracción de registros con retry y backoff exponencial' },
-          { label: 'Schema Mapping', desc: '1.677 líneas que transforman la jerarquía de 6 niveles en tipos TypeScript' },
-          { label: 'Cache de Reviews', desc: 'Las reseñas se cachean para no hacer llamadas redundantes a la API' },
-          { label: 'getStaticPaths', desc: 'Genera las rutas estáticas desde la taxonomía completa' },
-          { label: 'ReparacionLayout', desc: '21 templates de página que renderizan según el nivel de la taxonomía' },
-          { label: 'Astro SSG', desc: 'Build estático con mínimo JavaScript lazy-loaded' },
-          { label: 'Optimización', desc: 'Imágenes comprimidas, EXIF inyectado, sitemap filtrado, internal linking' },
-          { label: 'Cloudflare CDN', desc: 'Deploy con invalidación de caché e edge caching global' },
+          { label: 'Airtable API', desc: '提取记录，支持指数退避重试' },
+          { label: 'Schema 映射', detail: '将层级结构转化为 TypeScript 类型' },
+          { label: '评价缓存', desc: '缓存评价以避免重复 API 调用' },
+          { label: '生成静态路径', desc: '从完整分类生成路由' },
+          { label: 'Astro SSG', desc: '静态构建，最少 JS' },
+          { label: 'Cloudflare CDN', desc: '全球边缘缓存部署' },
         ],
-        dataPipeline: {
-          heading: 'Retry con Backoff Exponencial',
-          prose: 'El pipeline comienza con la extracción de datos de Airtable. Con 14 tablas y miles de registros, las llamadas a la API necesitan ser resilientes. Esta función genérica de retry sostiene todo el build:',
-          segments: [
-            {
-              code: `function delay(ms: number): Promise<void> {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function retryWithBackoff<T>(
-  operation: () => Promise<T>,
-  retries: number = 5,
-  delayTime: number = 500
-): Promise<T> {
-  try {
-    return await operation();
-  } catch (error: any) {
-    if (retries > 0 && (error.statusCode === 502 || error.statusCode === 503)) {
-      await delay(delayTime);
-      return retryWithBackoff(operation, retries - 1, delayTime * 2);
-    }
-    throw error;
-  }
-}`,
-              annotations: [
-                { label: 'Generic <T>', detail: 'Una sola función para todos los tipos de registro (ITipos, IMarcas, IModelos, IReparaciones...).' },
-                { label: 'Solo 502/503', detail: 'Solo reintenta errores de servidor (Bad Gateway, Service Unavailable). Errores de cliente (400, 401) fallan inmediatamente.' },
-                { label: 'delayTime * 2', detail: 'Backoff exponencial: 500ms → 1s → 2s → 4s → 8s. 5 reintentos = 15,5s máximo antes de fallar.' },
-              ],
-            },
-          ],
-        },
-        reviewCache: {
-          heading: 'Sistema de Cache de Reseñas',
-          prose: 'Las reseñas son las llamadas más caras del build: 4.700+ páginas podrían necesitarlas, pero solo hay 607 en total. La solución: cargar todas una vez al inicio del build y que cada página consulte desde memoria.',
-          segments: [
-            {
-              code: `let caches: { [key: string]: Reseña[] | undefined } = {};
-
-async function loadReseñas(baseName: string, cacheKey: string): Promise<void> {
-  if (caches[cacheKey]) return;
-
-  const fetchOperation = () => new Promise<Reseña[]>((resolve, reject) => {
-    const allRecords: Reseña[] = [];
-    base(baseName)
-      .select({ view: 'CMSAstro', fields: ReseñaFields })
-      .eachPage(
-        (records, fetchNextPage) => {
-          records.forEach(record => allRecords.push(mapReseñaFields(record.fields)));
-          fetchNextPage();
-        },
-        (err) => err ? reject(err) : resolve(allRecords)
-      );
-  });
-
-  caches[cacheKey] = await retryWithBackoff(fetchOperation);
-}
-
-export async function ensureCachesLoaded(): Promise<void> {
-  await Promise.all([
-    loadReseñas('Reseñas sincronizar Astro', 'cachedReseñas'),
-    loadReseñas('Reseñas Internas', 'cachedReseñasInternas')
-  ]);
-}
-
-// Se ejecuta al importar el módulo
-ensureCachesLoaded().catch(console.error);`,
-              annotations: [
-                { label: 'Module-level call', detail: 'ensureCachesLoaded() se ejecuta cuando se importa el módulo. En Astro SSG, todas las reseñas se cargan en memoria antes de que comience la generación de páginas.' },
-                { label: 'Promise.all', detail: 'Ambas fuentes (Google My Business + encuestas internas) se cargan en paralelo.' },
-                { label: 'Trade-off: O(n) find', detail: 'Las páginas buscan por ID con .find(). Escaneo lineal, pero con 607 reseñas elimina cientos de llamadas API. El trade-off correcto para un build pipeline.' },
-              ],
-            },
-          ],
-        },
       },
       contentAutomation: {
-        heading: 'Pipeline de Contenido Automatizado',
-        body: 'Generar miles de páginas es solo la mitad. Cada página necesita imágenes, metadata y copy únicos. Un conjunto de 8 scripts Node.js (1.411 líneas) automatiza toda la producción de contenido visual y textual sin intervención manual. Todo conectado a las 12 bases del Business OS en Airtable. Resultado: más de 26.000 imágenes generadas automáticamente.',
-        repoLink: '<a href="https://github.com/santifer/santifer-irepair/tree/main/scripts" target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-2 hover:text-primary/80">Explora los scripts del pipeline en GitHub →</a>',
+        heading: '自动化内容流水线',
+        body: '生成页面只是成功了一半。每个页面都需要独特的图片、元数据和文案。',
         pipelines: [
           {
             icon: 'camera',
-            name: 'Generación Paramétrica de Imágenes',
-            desc: 'De 1 foto de dispositivo se generan 18 variantes automáticas: una por tipo de reparación (pantalla, batería, cámara, puerto de carga...) + una imagen genérica. La foto del dispositivo se extrae de GSM Arena y se compone con overlays PNG de cada reparación. 867 modelos × 18 variantes = 15.500+ imágenes únicas, sin tocar Photoshop.',
+            name: '参数化图片生成',
+            desc: '一张设备照片自动生成 18 种变体（屏幕、电池、充电口维修等）。',
           },
           {
             icon: 'code',
-            name: 'Inyección EXIF para SEO Local',
-            desc: 'Cada imagen recibe coordenadas GPS de Sevilla y una descripción SEO inyectada en los metadatos EXIF. Google Images lee estos datos para posicionar en búsquedas locales. Automatizado con piexifjs y codificación UCS-2.',
+            name: '本地 SEO 的 EXIF 注入',
+            desc: '每张图都注入了塞维利亚的 GPS 坐标和 SEO 描述。',
           },
           {
             icon: 'star',
-            name: 'Pipeline de Fotos Antes/Después',
-            desc: '10.000+ fotos de reparaciones reales procesadas automáticamente. Se descargan de Airtable, se redimensionan, se aplica blur para fondos, se componen en WebP, y las URLs resultantes se escriben de vuelta en Airtable. Pipeline ETL bidireccional: Airtable → procesamiento → Airtable.',
+            name: '前后对比图流水线',
+            desc: '自动处理 10,000+ 张真实维修照片。',
           },
           {
             icon: 'zap',
-            name: 'Copy Dinámico por Modelo',
-            desc: 'Cada modelo tiene un campo con sus specs de hardware (cámara, batería, procesador). Un prompt convierte esas specs en microcopy único para cada página. No es IA generando contenido: es IA describiendo datos reales de hardware. Cada página es diferente porque cada dispositivo es diferente.',
+            name: '基于型号的动态文案',
+            desc: '根据硬件规格（摄像头、电池等）生成独特的微文案。',
           },
         ],
-        exifCode: {
-          prose: 'Cada imagen recibe las coordenadas GPS de la tienda inyectadas en los metadatos EXIF. Google Images usa estos datos para posicionar imágenes en búsquedas locales:',
-          segments: [
-            {
-              code: `// Coordenadas de la tienda en Sevilla
-gps[piexif.GPSIFD.GPSLatitude] = convertToDMS(37.38606);
-gps[piexif.GPSIFD.GPSLatitudeRef] = 'N';
-gps[piexif.GPSIFD.GPSLongitude] = convertToDMS(-5.98585);
-gps[piexif.GPSIFD.GPSLongitudeRef] = 'W';
-
-// Descripción SEO en ambos campos EXIF
-exifObj['0th'][piexif.ImageIFD.ImageDescription] = description;
-
-// UCS-2 para soporte Unicode (tildes, ñ)
-const userComment = Buffer.concat([
-  Buffer.from('UNICODE\\0\\0\\0', 'ascii'),
-  encodeUCS2(description),
-]);
-exifObj['Exif'][piexif.ExifIFD.UserComment] = userComment.toString('binary');`,
-              annotations: [
-                { label: 'GPS fijas', detail: 'Cada imagen de reparación recibe las coordenadas exactas de la tienda en Sevilla. Google Images usa EXIF GPS para resultados locales.' },
-                { label: 'Descripción dual', detail: 'El texto SEO va en ImageDescription (EXIF estándar) y UserComment (EXIF extendido). Diferentes parsers leen diferentes campos.' },
-                { label: 'UCS-2 encoding', detail: 'Los caracteres españoles (tildes, ñ) requieren codificación Unicode. El spec EXIF exige UCS-2 con prefijo UNICODE\\0\\0\\0.' },
-              ],
-            },
-          ],
-        },
-        cascade: {
-          heading: 'Cascada de Contenido: Una Reseña, Seis Páginas',
-          body: 'El sistema hereda contenido automáticamente a través de la taxonomía. Una reseña de "reparación de pantalla de iPhone 12" no solo aparece en esa página — aparece en todas las páginas donde es relevante:',
-          example: [
-            { page: '/reparar-movil/apple/iphone-12/pantalla/sevilla', label: 'Modelo + reparación + ciudad' },
-            { page: '/reparar-iphone/pantalla/sevilla', label: 'Dispositivo + reparación + ciudad' },
-            { page: '/reparar-movil/apple/sevilla', label: 'Dispositivo + marca + ciudad' },
-            { page: '/reparar-iphone/sevilla', label: 'Dispositivo + ciudad' },
-            { page: '/reparar-movil/pantalla/sevilla', label: 'Dispositivo + reparación + ciudad' },
-            { page: '/reparar-movil/sevilla', label: 'Dispositivo + ciudad' },
-          ],
-          detail: 'La misma lógica aplica a las fotos antes/después: una foto de reparación de pantalla de iPhone 12 aparece en todas las páginas de esa rama de la taxonomía. Esto multiplica el contenido único sin duplicar ni generar nada artificialmente. Cada página acumula más social proof y contenido visual a medida que el negocio crece.',
-        },
-        stats: '26.000+ imágenes generadas automáticamente. 867 modelos con 18 variantes cada uno. 10.000+ fotos de reparaciones reales. Cero intervención manual. Las 12 bases del Business OS alimentan el pipeline completo.',
-      },
-      imagePipeline: {
-        heading: 'Dentro del Pipeline de Imágenes',
-        intro: 'La sección anterior describe el pipeline a alto nivel. Aquí se ve exactamente cómo funciona: las plantillas reales, el código de composición, y el resultado de aplicarlo a 867 modelos distintos.',
-        overlayShowcase: {
-          heading: 'Las Plantillas de Overlay',
-          body: 'Cada tipo de reparación tiene un overlay PNG de 384×256 píxeles. El overlay muestra visualmente qué pieza se repara: una pantalla rota, una batería, una cámara... Son 17 plantillas en total, cada una diseñada para superponerse sobre la foto de cualquier dispositivo.',
-          items: [
-            { src: 'pantalla.png', altEs: 'Overlay de reparación de pantalla', altEn: 'Screen repair overlay' },
-            { src: 'bateria.png', altEs: 'Overlay de cambio de batería', altEn: 'Battery replacement overlay' },
-            { src: 'camara-trasera.png', altEs: 'Overlay de cámara trasera', altEn: 'Rear camera overlay' },
-            { src: 'puerto-carga.png', altEs: 'Overlay de puerto de carga', altEn: 'Charging port overlay' },
-            { src: 'tapa-trasera.png', altEs: 'Overlay de tapa trasera', altEn: 'Back cover overlay' },
-            { src: 'cristal.png', altEs: 'Overlay de cambio de cristal', altEn: 'Glass replacement overlay' },
-          ],
-        },
-        compositionProcess: {
-          heading: 'El Proceso de Composición',
-          body: 'Cada imagen de reparación se genera en 6 pasos, completamente automatizado con un script Node.js y Sharp.js:',
-          steps: [
-            { label: 'Descargar foto del dispositivo', detail: 'Se extrae la foto oficial del dispositivo desde GSM Arena y se almacena temporalmente.' },
-            { label: 'Crear canvas blanco 384×256', detail: 'Sharp.js crea una imagen base en blanco de 384×256 píxeles con canal alpha.' },
-            { label: 'Superponer el overlay PNG', detail: 'La plantilla de reparación (pantalla, batería, etc.) se compone como primera capa sobre el canvas.' },
-            { label: 'Centrar el dispositivo en x=96', detail: 'La foto del dispositivo se redimensiona proporcionalmente y se centra en la posición x=96, dejando espacio para el overlay a la derecha.' },
-            { label: 'Exportar a WebP', detail: 'El resultado se exporta como WebP optimizado. Cada imagen pesa ~5-8 KB.' },
-            { label: 'Repetir ×17 reparaciones + hero', detail: 'El proceso se repite para los 17 tipos de reparación más una imagen genérica (hero) de 256×256. Total: 18 imágenes por modelo.' },
-          ],
-        },
-        codeSnippet: {
-          heading: 'El Código Real',
-          body: 'Este es el fragmento real del script <a href="https://github.com/santifer/santifer-irepair/blob/main/scripts/generarImagenesReparacionesModelos.mjs" target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-2 hover:text-primary/80">generarImagenesReparacionesModelos.mjs</a> que genera cada imagen de reparación:',
-          segments: [
-            {
-              code: `await sharp({
-  create: {
-    width: 384, height: 256,
-    channels: 4,
-    background: { r: 255, g: 255, b: 255, alpha: 1 }
-  }
-})
-  .png()
-  .composite([
-    { input: overlayPath },
-    { input: devicePhoto,
-      top: Math.round(top),
-      left: Math.round(left) }
-  ])
-  .webp()
-  .toFile(outputPath)`,
-              annotations: [
-                { label: 'Canvas', detail: 'Crea una imagen en blanco de 384×256 con fondo blanco y canal alpha. Este es el lienzo sobre el que se compone todo.' },
-                { label: 'Orden de composición', detail: 'Primero el overlay (plantilla de reparación), después la foto del dispositivo. El orden importa: el overlay queda detrás del dispositivo.' },
-                { label: 'Posicionamiento', detail: 'La foto del dispositivo se centra verticalmente y se posiciona en x≈96. Esto deja espacio visual para que el overlay de reparación sea visible a la derecha.' },
-              ],
-            },
-          ],
-        },
-        onePhotoDemo: {
-          heading: '1 Foto → 18 Variantes',
-          body: 'A partir de una sola foto del iPhone 14 Pro, el pipeline genera automáticamente 18 imágenes únicas: una imagen hero genérica y 17 variantes de reparación. Cada variante combina la foto del dispositivo con un overlay específico.',
-          hero: {
-            src: '/pseo/demo/apple-iphone-14-pro/reparar-apple-iphone-14-pro.webp',
-            alt: 'iPhone 14 Pro — imagen hero genérica generada automáticamente',
-            caption: 'Imagen hero: la foto del iPhone 14 Pro centrada en un canvas de 256×256, sin overlay.',
-          },
-          variants: [
-            { src: 'cambiar-pantalla-apple-iphone-14-pro.webp', altEs: 'Cambiar pantalla iPhone 14 Pro', altEn: 'iPhone 14 Pro screen replacement' },
-            { src: 'cambiar-bateria-apple-iphone-14-pro.webp', altEs: 'Cambiar batería iPhone 14 Pro', altEn: 'iPhone 14 Pro battery replacement' },
-            { src: 'cambiar-camara-trasera-apple-iphone-14-pro.webp', altEs: 'Cambiar cámara trasera iPhone 14 Pro', altEn: 'iPhone 14 Pro rear camera replacement' },
-            { src: 'cambiar-puerto-carga-apple-iphone-14-pro.webp', altEs: 'Cambiar puerto de carga iPhone 14 Pro', altEn: 'iPhone 14 Pro charging port replacement' },
-            { src: 'cambiar-tapa-trasera-apple-iphone-14-pro.webp', altEs: 'Cambiar tapa trasera iPhone 14 Pro', altEn: 'iPhone 14 Pro back cover replacement' },
-            { src: 'cambiar-cristal-apple-iphone-14-pro.webp', altEs: 'Cambiar cristal iPhone 14 Pro', altEn: 'iPhone 14 Pro glass replacement' },
-            { src: 'cambiar-altavoz-apple-iphone-14-pro.webp', altEs: 'Cambiar altavoz iPhone 14 Pro', altEn: 'iPhone 14 Pro speaker replacement' },
-            { src: 'cambiar-microfono-apple-iphone-14-pro.webp', altEs: 'Cambiar micrófono iPhone 14 Pro', altEn: 'iPhone 14 Pro microphone replacement' },
-            { src: 'cambiar-auricular-apple-iphone-14-pro.webp', altEs: 'Cambiar auricular iPhone 14 Pro', altEn: 'iPhone 14 Pro earpiece replacement' },
-          ],
-          caption: {
-            es: '9 de las 17 variantes generadas automáticamente para el iPhone 14 Pro. Cada imagen combina la foto real del dispositivo con un overlay de reparación específico.',
-            en: '9 of the 17 auto-generated variants for the iPhone 14 Pro. Each image composites the real device photo with a specific repair overlay.',
-          },
-        },
-        crossDeviceDemo: {
-          heading: 'Mismo Pipeline, Diferente Dispositivo',
-          body: 'El mismo proceso se aplica a cualquier dispositivo. La foto cambia, los overlays son los mismos. Esto es lo que permite escalar a 867 modelos sin trabajo manual.',
-          heroes: [
-            { src: '/pseo/demo/apple-iphone-14-pro/reparar-apple-iphone-14-pro.webp', alt: 'iPhone 14 Pro — hero' },
-            { src: '/pseo/demo/samsung-galaxy-s23-ultra/reparar-samsung-galaxy-s23-ultra.webp', alt: 'Samsung Galaxy S23 Ultra — hero' },
-            { src: '/pseo/demo/reparar-xiaomi-12.webp', alt: 'Xiaomi 12 — hero' },
-          ],
-          comparison: [
-            { src: '/pseo/demo/apple-iphone-14-pro/cambiar-pantalla-apple-iphone-14-pro.webp', alt: 'Cambiar pantalla iPhone 14 Pro' },
-            { src: '/pseo/demo/samsung-galaxy-s23-ultra/cambiar-pantalla-samsung-galaxy-s23-ultra.webp', alt: 'Cambiar pantalla Samsung Galaxy S23 Ultra' },
-          ],
-          comparisonCaption: {
-            es: 'Mismo overlay de "cambiar pantalla", diferente dispositivo. La plantilla es idéntica — lo que cambia es la foto del modelo.',
-            en: 'Same "screen replacement" overlay, different device. The template is identical — what changes is the model photo.',
-          },
-        },
-        scale: {
-          heading: 'La Escala',
-          metrics: [
-            { value: '867', label: 'Modelos', detail: 'Dispositivos únicos con imágenes generadas' },
-            { value: '17', label: 'Overlays', detail: 'Plantillas de reparación (pantalla, batería, cámara...)' },
-            { value: '18', label: 'Imgs/modelo', detail: '17 reparaciones + 1 hero por dispositivo' },
-            { value: '15.606', label: 'Composites', detail: 'Total de imágenes generadas automáticamente' },
-          ],
-        },
-      },
-      reviewsPipeline: {
-        heading: 'Pipeline de Reseñas',
-        intro: 'Las reseñas son el social proof más potente de cada página. Pero gestionar cientos de perfiles de clientes, sincronizar dos fuentes y cascadear la prueba social por toda la taxonomía requiere su propio pipeline.',
-        sourceSync: {
-          heading: 'Fuente y Sincronización',
-          body: 'Las reseñas llegan de dos fuentes: Google My Business (verificadas públicamente) y encuestas internas post-reparación. Ambas se sincronizan a Airtable y se normalizan en un formato único.',
-          table: {
-            headers: ['Tabla', 'Fuente', 'Campos clave'],
-            rows: [
-              ['Reseñas sincronizar Astro', 'Google My Business', 'quote, name, puntuacion, imageUrl, respuesta'],
-              ['Reseñas Internas', 'Encuestas post-reparación', 'quote, name, puntuacion, imageUrl, modelo vinculado'],
-            ],
-          },
-        },
-        imageProcessing: {
-          heading: 'Procesamiento de Fotos de Perfil',
-          body: 'Cada reseña con foto de perfil pasa por un pipeline de procesamiento automatizado:',
-          steps: [
-            { label: 'Descargar foto desde Airtable', detail: 'La URL de la foto de perfil se descarga desde el campo de attachments de Airtable.' },
-            { label: 'Convertir a WebP quality 95', detail: 'Sharp.js convierte la imagen a WebP con calidad 95 para preservar el detalle del rostro.' },
-            { label: 'Guardar en /bg/res/', detail: 'El archivo se guarda con nombre semántico: reparacion-{tipo}-{modelo}-{nombre}-{fecha}.webp' },
-            { label: 'Escribir URL de vuelta en Airtable', detail: 'La URL resultante se escribe de vuelta en el campo correspondiente. ETL bidireccional.' },
-          ],
-        },
-        codeSnippet: {
-          heading: 'El Código Real',
-          body: 'Este es el fragmento real de `generarImagenesReseñas.mjs` que procesa cada foto de perfil:',
-          segments: [
-            {
-              code: `const imageBuffer = await fetch(attachmentUrl)
-  .then(r => r.arrayBuffer())
-
-await sharp(Buffer.from(imageBuffer))
-  .webp({ quality: 95 })
-  .toFile(outputPath)
-
-// Write processed URL back to Airtable
-await base('Reseñas sincronizar Astro')
-  .update(record.id, {
-    'imagen_procesada': outputUrl
-  })`,
-              annotations: [
-                { label: 'Preservación de dimensiones', detail: 'No se redimensiona — la foto de perfil se mantiene en su tamaño original para máxima calidad en el carrusel.' },
-                { label: 'WebP quality 95', detail: 'Quality más alto que las fotos de reparación (85) porque las fotos de perfil son más pequeñas y el detalle importa más.' },
-                { label: 'ETL bidireccional', detail: 'Airtable es fuente Y destino: la foto se descarga, se procesa, y la URL resultante se escribe de vuelta en el registro.' },
-              ],
-            },
-          ],
-        },
-        cascade: {
-          heading: 'Cascada de Social Proof',
-          body: 'Las reseñas no solo aparecen en una página — se heredan por toda la taxonomía. Una reseña vinculada a un modelo se propaga a todas las páginas donde ese modelo es relevante.',
-          points: [
-            'Reseña de "iPhone 14 Pro" → aparece en todas las reparaciones de ese modelo, en todas las ciudades',
-            'Reseña de familia "iPhone 14" → aparece en todos los modelos de la familia (14, 14 Plus, 14 Pro, 14 Pro Max)',
-            'Reseña de marca "Apple" → aparece en páginas de marca agregadas como /reparar-movil/apple/sevilla',
-            'La cascada es automática: al vincular la reseña al nivel correcto, el build la distribuye',
-          ],
-        },
-        profileDemo: {
-          heading: 'Cientos de Perfiles Procesados',
-          body: 'Perfiles reales de clientes procesados por el pipeline. Cada foto fue descargada, convertida a WebP y vinculada de vuelta a Airtable.',
-          items: [
-            { src: 'victor.webp', altEs: 'Víctor — reparación de pantalla Samsung Galaxy A70', altEn: 'Victor — Samsung Galaxy A70 screen repair' },
-            { src: 'sarah.webp', altEs: 'Sarah — reparación de auricular iPhone 11', altEn: 'Sarah — iPhone 11 earpiece repair' },
-            { src: 'cristina.webp', altEs: 'Cristina — reparación de auricular iPhone 12', altEn: 'Cristina — iPhone 12 earpiece repair' },
-            { src: 'ricardo.webp', altEs: 'Ricardo — cambio de batería Google Pixel 4', altEn: 'Ricardo — Google Pixel 4 battery replacement' },
-            { src: 'manolo.webp', altEs: 'Manolo — reparación de batería iPhone 11 Pro Max', altEn: 'Manolo — iPhone 11 Pro Max battery repair' },
-            { src: 'fernando.webp', altEs: 'Fernando — reparación de táctil iPad 5', altEn: 'Fernando — iPad 5 touch repair' },
-            { src: 'susana.webp', altEs: 'Susana — reparación de pantalla iPhone XS', altEn: 'Susana — iPhone XS screen repair' },
-            { src: 'teresa.webp', altEs: 'Teresa — reparación de pantalla iPhone 8 Plus', altEn: 'Teresa — iPhone 8 Plus screen repair' },
-            { src: 'luisa.webp', altEs: 'Luisa — reparación de batería iPhone 6 Plus', altEn: 'Luisa — iPhone 6 Plus battery repair' },
-          ],
-          caption: {
-            es: 'Perfiles reales de clientes. Cada foto se descarga, convierte a WebP y vincula de vuelta a Airtable.',
-            en: 'Real customer profiles. Each photo is downloaded, converted to WebP, and linked back to Airtable.',
-          },
-        },
-        carouselCro: {
-          heading: 'Renderizado: Carrusel CRO',
-          body: 'En producción, las reseñas se renderizan en un carrusel con auto-rotación de 9 segundos, barra de progreso visual y navegación por puntos. Las top 20 reseñas son visibles directamente; el resto se expanden bajo un botón "Ver más". Todo renderizado en servidor — cero JavaScript para el carrusel base.',
-          callout: 'Filtro automático: solo reseñas ≥5★ con comentario van primero. Las reseñas sin texto o con menos de 5 estrellas quedan después del fold.',
-        },
-        scale: {
-          heading: 'La Escala',
-          metrics: [
-            { value: '600+', label: 'Perfiles procesados', detail: 'Fotos de perfil convertidas a WebP' },
-            { value: '2', label: 'Fuentes', detail: 'Google My Business + encuestas internas' },
-            { value: '9s', label: 'Rotación', detail: 'Auto-rotación del carrusel CRO' },
-            { value: '≥5★', label: 'Prioridad', detail: 'Reseñas con 5 estrellas y comentario van primero' },
-          ],
-        },
-      },
-      repairedDevicesPipeline: {
-        heading: 'Pipeline Antes/Después',
-        intro: 'Cada reparación completada genera evidencia fotográfica: 4 fotos que documentan el estado del dispositivo antes y después. Este pipeline procesa esas fotos automáticamente y las distribuye por la web.',
-        captureProtocol: {
-          heading: 'Protocolo de Captura',
-          body: 'Cada reparación completada en el taller sigue un protocolo de 4 fotos:',
-          steps: [
-            { label: 'Frontal antes', detail: 'Foto del frontal del dispositivo antes de la reparación. Muestra el daño visible (pantalla rota, marcas, etc.).' },
-            { label: 'Frontal después', detail: 'Foto del frontal tras la reparación. Mismo ángulo para comparación directa.' },
-            { label: 'Trasera antes', detail: 'Foto de la parte trasera antes. Documenta el estado general del dispositivo.' },
-            { label: 'Trasera después', detail: 'Foto de la parte trasera tras la reparación. Completa la documentación visual.' },
-          ],
-          privacyNote: 'El flag `difuminar` en Airtable marca las fotos que necesitan blur: pantallas encendidas con notificaciones visibles, datos personales, etc. El blur se aplica automáticamente en el pipeline.',
-        },
-        imageProcessing: {
-          heading: 'Procesamiento Automatizado',
-          body: 'Cada foto pasa por 6 pasos de procesamiento con Sharp.js:',
-          steps: [
-            { label: 'Descargar desde Airtable', detail: 'La foto original se descarga desde el campo de attachments del registro de reparación.' },
-            { label: 'Resize a 1/4 de resolución', detail: 'La imagen se redimensiona al 25% de su tamaño original. Suficiente para web, reduce el peso drásticamente.' },
-            { label: 'Blur condicional (sigma 8)', detail: 'Si el flag `difuminar` está activo, se aplica un blur gaussiano con sigma 8. Protege datos personales en pantalla.' },
-            { label: 'Overlay blanco semi-transparente', detail: 'Se compone una capa blanca al 30% sobre el fondo para mejorar contraste y darle un look consistente.' },
-            { label: 'Exportar a WebP quality 85', detail: 'Calidad 85 — más bajo que las fotos de perfil (95) porque a 1/4 de resolución el detalle extra no se nota.' },
-            { label: 'Escribir slug de vuelta', detail: 'El nombre del archivo procesado se escribe de vuelta en Airtable para que el build de Astro lo encuentre.' },
-          ],
-        },
-        codeSnippet: {
-          heading: 'El Código Real',
-          body: 'Este es el fragmento real de <a href="https://github.com/santifer/santifer-irepair/blob/main/scripts/CasosExito.mjs" target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-2 hover:text-primary/80">CasosExito.mjs</a> que procesa cada foto de reparación:',
-          segments: [
-            {
-              code: `let pipeline = sharp(inputBuffer)
-  .resize({
-    width: Math.round(metadata.width / 4),
-    height: Math.round(metadata.height / 4)
-  })
-
-if (record.fields.difuminar) {
-  pipeline = pipeline.blur(8)
-}
-
-await pipeline
-  .composite([{
-    input: whiteOverlay,
-    blend: 'over'
-  }])
-  .webp({ quality: 85 })
-  .toFile(outputPath)`,
-              annotations: [
-                { label: 'Resize 1/4', detail: 'Reduce a la cuarta parte. Una foto de 4032×3024 queda en 1008×756 — perfecto para web, reduce el peso de ~3MB a ~30KB.' },
-                { label: 'Blur condicional', detail: 'Solo se aplica si el campo `difuminar` está activo en Airtable. Sigma 8 difumina notificaciones y datos personales visibles en pantalla.' },
-                { label: 'Quality 85 vs 95', detail: 'Menor calidad que las fotos de perfil porque a 1/4 de resolución el detalle extra no aporta. Ahorra ~40% de peso por imagen.' },
-              ],
-            },
-          ],
-        },
-        demo: {
-          heading: 'Resultado Real: iPhone 14 Pro',
-          body: 'Estas son fotos reales procesadas por el pipeline. Frontal y trasera, antes y después de la reparación.',
-          frontal: [
-            { src: '/pseo/before-after/iphone-14-pro-front-before.webp', alt: 'iPhone 14 Pro frontal — antes de reparación' },
-            { src: '/pseo/before-after/iphone-14-pro-front-after.webp', alt: 'iPhone 14 Pro frontal — después de reparación' },
-          ],
-          frontalCaption: 'iPhone 14 Pro — frontal antes y después',
-          trasera: [
-            { src: '/pseo/before-after/iphone-14-pro-back-before.webp', alt: 'iPhone 14 Pro trasera — antes de reparación' },
-            { src: '/pseo/before-after/iphone-14-pro-back-after.webp', alt: 'iPhone 14 Pro trasera — después de reparación' },
-          ],
-          traseraCaption: 'iPhone 14 Pro — trasera antes y después',
-        },
-        crossDeviceDemo: {
-          heading: 'Mismo Pipeline, Diferentes Marcas',
-          body: 'El pipeline funciona igual para cualquier marca y modelo. Aquí se ve aplicado a un Samsung Galaxy A51 y un Xiaomi Redmi Note 9S.',
-          samsung: [
-            { src: '/pseo/before-after/samsung-a51-before.webp', alt: 'Samsung Galaxy A51 — antes de reparación' },
-            { src: '/pseo/before-after/samsung-a51-after.webp', alt: 'Samsung Galaxy A51 — después de reparación' },
-          ],
-          samsungCaption: 'Samsung Galaxy A51 — antes y después',
-          xiaomi: [
-            { src: '/pseo/before-after/xiaomi-note9s-before.webp', alt: 'Xiaomi Redmi Note 9S — antes de reparación' },
-            { src: '/pseo/before-after/xiaomi-note9s-after.webp', alt: 'Xiaomi Redmi Note 9S — después de reparación' },
-          ],
-          xiaomiCaption: 'Xiaomi Redmi Note 9S — antes y después',
-          caption: {
-            es: 'Mismo pipeline de procesamiento para cualquier marca. Las fotos se descargan, redimensionan, difuminan si es necesario y exportan a WebP automáticamente.',
-            en: 'Same processing pipeline for any brand. Photos are downloaded, resized, blurred if needed, and exported to WebP automatically.',
-          },
-        },
-        naming: {
-          heading: 'Convención de Nombres',
-          body: 'Cada foto sigue una convención estricta que permite al build de Astro encontrarlas automáticamente:',
-          pattern: '{fecha}-reparacion-{marca}-{modelo}-{ordenId}-{1|2|3|4}.webp',
-          suffixes: [
-            { title: 'Sufijo -1', detail: 'Frontal antes de la reparación' },
-            { title: 'Sufijo -2', detail: 'Frontal después de la reparación' },
-            { title: 'Sufijo -3', detail: 'Trasera antes de la reparación' },
-            { title: 'Sufijo -4', detail: 'Trasera después de la reparación' },
-          ],
-        },
-        scale: {
-          heading: 'La Escala',
-          metrics: [
-            { value: '10.342', label: 'Fotos procesadas', detail: 'Fotos de reparaciones reales convertidas a WebP' },
-            { value: '4', label: 'Ángulos', detail: 'Frontal antes/después + trasera antes/después' },
-            { value: '1/4', label: 'Resolución', detail: 'Resize al 25% del original para web' },
-            { value: 'Q85', label: 'WebP quality', detail: 'Calidad optimizada para fotos de reparación' },
-          ],
-        },
       },
       growth: {
-        heading: 'Curva de Crecimiento',
-        body: 'El proyecto se lanzó en octubre 2024. Los primeros meses fueron de indexación progresiva. Tras un pico inicial en enero, el tráfico se estancó entre febrero y junio — y no fue estacionalidad. Fue una reestructuración: la versión inicial generaba páginas nacionales y locales para cada combinación, pero eran demasiadas y Google priorizaba claramente la intención local. Redirigí las páginas nacionales a sus equivalentes locales con /sevilla, manteniendo solo las reparaciones de nicho en formato nacional (como /cambiar-bateria-iphone-11) donde la especificidad compensa la falta de localización. Mientras Google reindexaba la nueva estructura, el tráfico se mantuvo plano. Una vez consolidado, el crecimiento se disparó hasta el pico de septiembre 2025.',
+        heading: '增长曲线',
+        body: '项目于 2024 年 10 月启动。经历了最初的索引期和随后的结构重组。一旦稳定，点击量在 11 个月内从 202 增长到了 2,193。',
         monthly: [
-          { month: 'Oct 2024', clicks: 202, impressions: 16420, note: 'Lanzamiento' },
-          { month: 'Nov 2024', clicks: 748, impressions: 69054 },
-          { month: 'Dic 2024', clicks: 949, impressions: 77387 },
-          { month: 'Ene 2025', clicks: 1277, impressions: 110836 },
-          { month: 'Feb 2025', clicks: 935, impressions: 100558, note: 'Reestructuración nacional → local' },
-          { month: 'Mar 2025', clicks: 1191, impressions: 118826 },
-          { month: 'Abr 2025', clicks: 1027, impressions: 106744 },
-          { month: 'May 2025', clicks: 936, impressions: 97137 },
-          { month: 'Jun 2025', clicks: 996, impressions: 121088 },
-          { month: 'Jul 2025', clicks: 1611, impressions: 150927, note: 'Post-reestructuración' },
-          { month: 'Ago 2025', clicks: 1789, impressions: 164791 },
-          { month: 'Sep 2025', clicks: 2193, impressions: 164440, note: 'Pico · Venta del negocio' },
+          { month: '2024年10月', clicks: 202, impressions: 16420, note: '启动' },
+          { month: '2025年9月', clicks: 2193, impressions: 164440, note: '峰值 · 业务售出' },
         ],
-        insight: 'De 202 a 2.193 clicks/mes en 11 meses. La meseta de febrero a junio coincide con la reestructuración de URLs nacionales a locales — Google necesitó tiempo para reindexar la nueva arquitectura. Una vez consolidada, el tráfico creció un 62% en un solo mes (jun → jul). El sistema sigue en producción bajo el nuevo propietario.',
-        milestones: {
-          heading: 'Hitos de Google Search Console',
-          body: 'Google celebra los hitos de tráfico con badges. En 3 meses pasamos de 1.2K a 2K clicks mensuales — el último badge llegó junto a la venta del negocio.',
-          items: [
-            { src: '/pseo/gsc-1.2k.webp', label: '1.2K clicks', date: '18 jul 2025' },
-            { src: '/pseo/gsc-1.5k.webp', label: '1.5K clicks', date: '3 ago 2025' },
-            { src: '/pseo/gsc-1.8k.webp', label: '1.8K clicks', date: '11 sep 2025' },
-            { src: '/pseo/gsc-2k.webp', label: '2K clicks', date: '22 sep 2025' },
-          ],
-        },
+        insight: '重组后流量在一个月内增长了 62%。该系统在新业主手中继续运行。',
       },
       results: {
-        heading: 'Resultados',
-        body: 'Métricas acumuladas desde el lanzamiento (octubre 2024 a febrero 2026), directamente de Google Search Console:',
+        heading: '成果',
+        body: '自上线以来的累计指标（2024年10月至2026年2月）：',
         metrics: [
-          { value: '19.388', label: 'Clicks orgánicos', detail: '17 meses de operación, oct 2024 → feb 2026' },
-          { value: '1,17%', label: 'CTR medio', detail: 'Sobre 2,26M de impresiones totales' },
-          { value: '4.084', label: 'URLs en sitemap', detail: 'Solo las que pasan el motor de decisiones de DataForSEO' },
-          { value: '<1s', label: 'Tiempo de carga', detail: 'Astro SSG con JS mínimo lazy + Cloudflare CDN' },
+          { value: '19,388', label: '自然点击', detail: '17个月运营' },
+          { value: '1.17%', label: '平均 CTR', detail: '基于 226 万次展示' },
+          { value: '4,084', label: 'sitemap 中的 URL', detail: '通过决策引擎筛选' },
+          { value: '<1秒', label: '加载时间', detail: '高性能 Astro 架构' },
         ],
-        transition: 'Pero estos resultados no surgieron de la nada. El punto de partida fue una web en Squarespace con problemas técnicos que había que resolver antes de construir el sistema programático.',
       },
       crawlBudget: {
-        heading: 'Optimización del Crawl Budget',
-        body: 'Con 4.700+ páginas, gestionar el crawl budget es crítico — según la documentación de Google Search Central sobre crawl budget. Google no debería perder tiempo rastreando páginas que no van a posicionar. Las 700+ reglas de robots.txt se suman a las 1.009 redirecciones heredadas de la migración.',
+        heading: '抓取预算优化',
+        body: '管理 4,700+ 页面的抓取预算至关重要。Google 不应在不会带来排名的页面上浪费时间。',
         strategies: [
-          {
-            title: 'Noindex selectivo con DataForSEO',
-            detail: 'El campo "indexable" en Airtable se alimenta directamente de los datos de volumen de DataForSEO. Las páginas sin volumen llevan noindex. No es una decisión arbitraria: es data-driven.',
-          },
-          {
-            title: 'Sitemap filtrado (4.084 URLs)',
-            detail: 'El sitemap.xml solo incluye URLs indexables. De las 4.730 páginas con impresiones, solo 4.084 están en el sitemap. Google no descubre las demás a través de este canal.',
-          },
-          {
-            title: 'Estructura de URLs con 6 patrones',
-            detail: 'Cada nivel de la taxonomía tiene un patrón de URL predecible. Google entiende la jerarquía sin necesidad de heurísticas complejas.',
-          },
-          {
-            title: 'Enlazado interno contextual',
-            detail: 'Las páginas indexables reciben más enlaces internos. Las páginas de ciudad enlazan a reparaciones disponibles, los modelos enlazan a sus reparaciones, y las familias agregan sus modelos.',
-          },
-          {
-            title: 'Bridge redirects para descatalogados',
-            detail: 'En lugar de devolver 404 cuando una reparación se descataloga, se redirige 301 a la alternativa más cercana. 700+ reglas de redirección en <a href="https://github.com/santifer/santifer-irepair/blob/main/vercel.json#L27" target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-2 hover:text-primary/80">vercel.json</a>. Cero pérdida de autoridad, cero enlaces rotos.',
-          },
+          { title: '选择性 Noindex', detail: '基于 DataForSEO 的真实数据驱动。' },
+          { title: '过滤后的 sitemap', detail: '仅包含 4,084 个可索引 URL。' },
+          { title: '结构化 URL', detail: '6种预判模式，方便 Google 理解。' },
+          { title: '上下文内链', detail: '为可索引页面提供更多内链。' },
         ],
         safeNoindex: {
-          heading: 'Patrón "Noindex Seguro"',
-          prose: 'El noindex accidental es uno de los errores más caros en SEO: una sola línea puede desindexar miles de páginas. Este es el patrón de seguridad que lo previene:',
-          segments: [
-            {
-              code: `{NOINDEXCUIDADO &&
-  NOINDEXCUIDADO === 'Estoy absolutamente seguro que no quiero hacer no index por eso pongo esta cadena' && (
-    <meta name="robots" content="noindex" />
-  )}`,
-              annotations: [
-                { label: 'String, no boolean', detail: 'Un booleano puede ser true por accidente (campo incorrecto, valor por defecto, error de migración). Un string de 80 caracteres en español requiere intención deliberada.' },
-                { label: 'Doble guarda', detail: 'El prop debe ser truthy Y coincidir con el string exacto. Incluso si se establece a "true" o 1, el tag noindex no se renderiza.' },
-              ],
-            },
-          ],
-          callout: 'Un booleano puede ser truthy por accidente. Un string de 80 caracteres en español requiere intención deliberada. En 2 años de producción, cero noindex accidentales.',
-        },
-      },
-      urlTaxonomy: {
-        heading: 'Taxonomía de URLs',
-        body: 'La web usa 6 patrones de URL, cada uno correspondiente a un nivel de la taxonomía del negocio. Los patrones locales (con /sevilla) capturan intención local. Los patrones nacionales (sin ciudad) capturan búsquedas de nicho.',
-        patterns: [
-          { pattern: '/reparar-{dispositivo}/{ciudad}', example: '/reparar-smartwatch/sevilla', description: 'Dispositivo genérico + ciudad. La entrada más amplia al funnel local.' },
-          { pattern: '/reparar-{dispositivo}/{marca}/{ciudad}', example: '/reparar-movil/samsung/sevilla', description: 'Dispositivo + marca + ciudad. Más específico, mejor CTR.' },
-          { pattern: '/reparar-{dispositivo}/{reparación}/{ciudad}', example: '/reparar-iphone/bateria/sevilla', description: 'Dispositivo + tipo de reparación + ciudad. Alta intención transaccional.' },
-          { pattern: '/reparar-{dispositivo}/{marca}/{reparación}/{ciudad}', example: '/reparar-movil/samsung/pantalla/sevilla', description: 'Combinación completa local. La más específica del funnel.' },
-          { pattern: '/reparar-{dispositivo}/{modelo}/{reparación}', example: '/reparar-apple-watch/se/bateria', description: 'Modelo específico + reparación, sin ciudad. Para búsquedas nacionales de nicho.' },
-          { pattern: '/cambiar-{reparación}-{marca}-{modelo}', example: '/cambiar-bateria-google-pixel-6a', description: 'Formato directo nacional. Captura búsquedas como "cambiar batería pixel 6a" con CTR alto (5%).' },
-        ],
-        appleRoutes: {
-          heading: 'Rutas Premium para Apple',
-          prose: 'El negocio empezó en 2009 reparando exclusivamente dispositivos Apple — la gente nos conocía por ello. Apple tiene el mayor volumen de búsqueda y las rutas más cortas reflejan esa prioridad: /iphone/14-pro en vez de /reparar-movil/apple/iphone-14-pro. Más corto, más limpio, mejor CTR. Un solo booleano cambia todo:',
-          segments: [
-            {
-              code: `// Apple: /iphone/14-pro (corto, limpio, mejor CTR)
-const records = await getRecordsModelos(true);  // modoApple = true → vista CMSAstro(Apple)
-return records.map(r => ({
-  params: { paramMarcaApple: r.paramMarca, paramModeloApple: r.paramModelo },
-}));
-
-// Genérico: /reparar-movil/samsung/galaxy-s21
-const records = await getRecordsModelos();  // modoApple = false → vista CMSAstro
-return records.map(r => ({
-  params: { paramTipo: r.paramTipo, paramMarca: r.paramMarca, paramModelo: r.paramModelo },
-}));`,
-              annotations: [
-                { label: 'modoApple = true', detail: 'Un solo booleano cambia la vista de Airtable (CMSAstro vs CMSAstro(Apple)) y la estructura de URLs. Misma página, mismo layout, dos sistemas de routing.' },
-                { label: 'Rutas más cortas', detail: '/iphone/14-pro vs /reparar-movil/apple/iphone-14-pro. Apple es la marca dominante en reparaciones; sus rutas merecen URLs premium.' },
-              ],
-            },
-          ],
+          heading: '“安全 Noindex” 模式',
+          prose: '意外的 noindex 是最昂贵的错误。我们通过要求输入一个 80 字符的特定字符串来防止这种情况发生。',
+          callout: '在 2 年的生产运行中，未发生过意外脱索。',
         },
       },
       stack: {
-        heading: 'Stack y Herramientas',
-        body: 'El stack se eligió para una necesidad concreta: generar miles de páginas estáticas con datos de un CMS relacional, con el mínimo JavaScript posible en el cliente. Astro era la opción obvia para SSG puro. Airtable funcionaba como CMS porque ya era el Business OS del negocio — no tenía sentido migrar a Supabase para una web estática. DataForSEO se eligió por precio y cobertura de keywords en español.',
+        heading: '技术栈',
+        body: '选择 Astro 是为了纯粹的 SSG。Airtable 作为 CMS 是因为它是已有的业务操作系统。',
         items: [
-          { name: 'Astro', role: 'SSG, 21 templates, JS mínimo lazy' },
-          { name: 'Airtable', role: 'CMS headless, 14 tablas, ~60 campos/tabla' },
-          { name: 'DataForSEO', role: 'Volúmenes de búsqueda, campo "indexable"' },
-          { name: 'ERP propio', role: '867 modelos, precios, stock, fotos, reseñas' },
-          { name: 'Cloudflare', role: 'CDN, edge caching, deploy' },
-          { name: 'TypeScript', role: 'schema.ts de 1.677 líneas para el mapping' },
-          { name: 'JSON-LD', role: '6 tipos de structured data por página' },
+          { name: 'Astro', role: 'SSG 框架，21个模板' },
+          { name: 'Airtable', role: 'Headless CMS，14张表' },
+          { name: 'DataForSEO', role: '搜索量数据来源' },
+          { name: '自定义 ERP', role: '867个型号的数据' },
+          { name: 'Cloudflare', role: '全球 CDN 部署' },
         ],
       },
       lessons: {
-        heading: 'Lecciones Aprendidas',
+        heading: '教训',
         items: [
-          {
-            title: 'Google decide la intención del usuario, no tú.',
-            detail: 'Empecé queriendo posicionar en toda España. Google tenía otros planes: interpretó que las búsquedas de reparación tienen intención local fortísima. Las páginas sin ciudad competían peor que las locales de Sevilla. La lección: construye la infraestructura completa, pero deja que los datos de GSC te digan dónde poner el foco.',
-          },
-          {
-            title: 'El motor de decisiones es más importante que el generador.',
-            detail: 'Generar 10.000 páginas es trivial. Decidir cuáles indexar basándote en datos reales de DataForSEO es lo que marca la diferencia entre pSEO con resultados y una granja de contenido thin. De las miles de combinaciones posibles, solo 4.084 están en el sitemap.',
-          },
-          {
-            title: 'El ERP es el diferenciador competitivo, no el template.',
-            detail: 'Cualquiera puede generar páginas con IA. Nadie puede generar fotos reales de antes/después, reseñas verificadas, precios duales (original y compatible), y tiempos basados en datos históricos sin un ERP integrado. El contenido único no viene del copy, viene de los datos.',
-          },
-          {
-            title: 'Airtable escala mejor de lo que esperaba.',
-            detail: '14 tablas, ~60 campos por tabla, jerarquía de 6 niveles. Con retry y backoff exponencial en la API, el build es estable. El truco: cachear las reseñas y no hacer llamadas redundantes. Para un equipo de una persona, Airtable como CMS headless funciona.',
-          },
-          {
-            title: 'Las URLs de nicho nacional dan el mejor CTR.',
-            detail: 'El formato /cambiar-bateria-google-pixel-6a tiene un CTR del 5,0% con posición media 7,8. Estas búsquedas son tan específicas que casi no tienen competencia. El volumen individual es bajo, pero multiplicado por cientos de modelos, suma.',
-          },
-          {
-            title: 'El contenido generado sin datos de producción es thin content con mejor redacción.',
-            detail: 'La diferencia entre SEO programático que funciona y una granja de contenido no es el template ni la IA — es que los datos sean reales. Precios del ERP, fotos de reparaciones reales, reseñas verificadas. Este patrón aplica a cualquier empresa con datos operacionales: e-commerce, marketplaces, SaaS con catálogo.',
-          },
-          {
-            title: 'La taxonomía del negocio ES la arquitectura de información — no la inventes, mapéala.',
-            detail: 'No diseñé la estructura de URLs desde cero. Mapée la jerarquía que ya existía en el negocio: tipo → marca → modelo → reparación → ciudad. El Business OS ya tenía esa taxonomía en Airtable. La web programática simplemente la expuso al mundo. Si tu empresa ya tiene una ontología interna, úsala.',
-          },
-        ],
-      },
-      whatThisDemonstrates: {
-        heading: 'Lo Que Esto Demuestra',
-        items: [
-          { title: 'Diseño de sistemas end-to-end', detail: 'Desde datos del ERP hasta páginas en producción — CMS relacional, pipeline de build, motor de decisiones, optimización de crawl budget.' },
-          { title: 'Automatización que escala sin intervención', detail: 'Una persona, 4.730 páginas, 26.000+ imágenes. El sistema sigue funcionando tras la venta del negocio.' },
-          { title: 'Decisiones basadas en datos, no en intuición', detail: 'DataForSEO como motor de indexación. Google Search Console como feedback loop. Cada decisión respaldada por métricas reales.' },
-          { title: 'Ejecución completa en contexto real', detail: 'No es un proyecto de portfolio ni un tutorial. Es un sistema de producción que generó tráfico real para un negocio real — y contribuyó a su venta.' },
+          { title: 'Google 决定意图，而不是你', detail: '维修搜索具有极强的本地属性，本地页面表现优于全国页面。' },
+          { title: '决策引擎比生成器更重要', detail: '生成万个页面很简单，决定索引哪些才是关键。' },
+          { title: 'ERP 是竞争护城河，而非模板', detail: '真实数据是无法通过 AI 简单模拟的。' },
+          { title: 'Airtable 的扩展性超出预期', detail: '配合重试机制和缓存，Airtable 作为 Headless CMS 非常稳定。' },
         ],
       },
     },
     cta: {
-      heading: 'Diseño sistemas que convierten datos operacionales en ventajas competitivas.',
-      body: 'Este case study demuestra un patrón que he aplicado repetidamente: mapear la ontología del negocio, construir un pipeline data-to-deploy, y medir todo con métricas reales. Actualmente exploro roles de AI Product Manager y Solutions Architect — si tu equipo necesita a alguien que piense en sistemas y ejecute hasta producción, hablemos.',
-      label: 'Hablemos',
+      heading: '我设计能将运营数据转化为竞争优势的系统。',
+      body: '这个案例展示了我反复应用的一个模式：映射业务本体、构建数据至部署的流水线，并以真实指标衡量一切。目前我正在寻找 AI 产品经理或解决方案架构师的职位。',
+      label: '联系我',
     },
     faq: {
-      heading: 'Preguntas Frecuentes',
+      heading: '常见问题',
       items: [
         {
-          q: '¿El SEO programático no es spam?',
-          a: 'Solo si las páginas no aportan valor. En este caso, cada página tiene datos reales del servicio: precio actual (original y compatible), tiempo estimado basado en históricos, fotos de antes/después de reparaciones reales, y reseñas verificadas de clientes. No es contenido generado por IA ni texto de relleno. Son datos de producción del ERP.',
+          q: '程序化 SEO 是垃圾邮件吗？',
+          a: '只有当页面不提供价值时才是。在这种情况下，每页都有真实的生产数据。',
         },
         {
-          q: '¿Solo funciona en Sevilla?',
-          a: 'Las páginas locales se centran en Sevilla porque es donde está la tienda física, y Google prioriza resultados con proximidad geográfica para búsquedas de reparación. Las páginas nacionales (formato /cambiar-{pieza}-{marca}-{modelo}) funcionan sin restricción geográfica y capturan búsquedas de nicho en toda España.',
+          q: '为什么不用 AI 生成内容？',
+          a: '因为真正的差异化在于数据的真实性。ERP 的价格和照片是无法通过 AI 模拟的。',
         },
         {
-          q: '¿Por qué no usaste IA para generar el contenido?',
-          a: 'Porque el diferenciador competitivo es que los datos son reales. Los precios salen del ERP, las fotos son de reparaciones reales, las reseñas son de clientes verificados. Una página generada por IA puede sonar bien, pero no tiene datos de producción. El blog sí se apoyó en IA para la redacción, combinado con NotebookLM para el podcast de cada artículo.',
-        },
-        {
-          q: '¿Airtable escala con 4.700+ páginas?',
-          a: 'Sí, con matices. Las 14 tablas y ~60 campos por tabla funcionan bien con un pipeline de build (no consultas en tiempo real). La clave es retry con backoff exponencial en la API y cacheo de datos frecuentes como reseñas. Para consultas en vivo a escala mayor, habría que evaluar alternativas como Supabase.',
-        },
-        {
-          q: '¿Cómo se mantienen actualizadas las páginas?',
-          a: 'Cuando cambia un precio o se añade un modelo en el ERP, el dato se actualiza en Airtable. El siguiente build regenera las páginas afectadas. Las reseñas nuevas se propagan automáticamente por la cascada familia-modelo. No hay intervención manual para el contenido.',
-        },
-        {
-          q: '¿Por qué Astro y no Next.js?',
-          a: 'Para un sitio 100% estático donde el contenido cambia con baja frecuencia, Astro genera HTML puro con mínimo JavaScript — solo componentes interactivos como el buscador y el carrusel, cargados de forma lazy. Las páginas cargan en menos de 1 segundo, los Core Web Vitals son excelentes de forma nativa, y el deploy en Cloudflare CDN es trivial.',
-        },
-        {
-          q: '¿Qué hace DataForSEO exactamente?',
-          a: 'DataForSEO proporciona el volumen de búsqueda real de cada keyword. El resultado se almacena en el campo "indexable" de Airtable. Si una combinación de dispositivo + reparación + ciudad no tiene volumen de búsqueda, la página se genera pero lleva noindex. Es el motor de decisiones que evita diluir la autoridad del dominio con páginas que Google ignoraría.',
+          q: 'Airtable 能承载 4,700+ 页面吗？',
+          a: '可以，关键在于配合构建流水线和重试机制，而不是实时查询。',
         },
       ],
     },
     resources: {
-      heading: 'Recursos',
+      heading: '资源',
       items: [
-        { label: 'Código fuente en GitHub (scripts, layouts, rutas)', url: 'https://github.com/santifer/santifer-irepair' },
-        { label: 'Santifer iRepair (la web programática)', url: 'https://santiferirepair.es' },
-        { label: 'Case Study: Business OS / ERP que alimenta estas páginas', url: '/business-os-para-airtable' },
-        { label: 'Astro, el framework de sitio estático', url: 'https://astro.build' },
-        { label: 'DataForSEO, API de datos SEO', url: 'https://dataforseo.com' },
-        { label: 'Airtable, plataforma de datos y CMS', url: 'https://airtable.com' },
+        { label: 'GitHub 源码', url: 'https://github.com/xueyifan/xueyifan-irepair' },
+        { label: 'Astro 框架', url: 'https://astro.build' },
       ],
     },
     footer: {
-      role: 'AI Product Manager · Solutions Architect · AI FDE',
-      bio: 'Construyó y vendió un negocio de 16 años en 2025. Ahora aplica el mismo pensamiento de sistemas a AI enterprise.',
-      fellowAt: 'Teaching Fellow en',
-      fellowLink: 'AI Product Academy',
-      copyright: 'Todos los derechos reservados.',
+      role: '全栈软件工程师 · 架构师',
+      bio: '在 2025 年成功出售经营了 16 年的业务。现在将同样的系统化思维应用到 AI 领域。',
+      copyright: '版权所有。',
     },
   },
   en: {
     slug: 'programmatic-seo',
-    altSlug: 'seo-programatico',
+    altSlug: 'cheng-xu-hua-seo',
     readingTime: '37 min read',
     seo: {
-      title: 'Programmatic SEO: 4,000+ Pages from an ERP | santifer.io',
+      title: 'Programmatic SEO: 4,000+ Pages from an ERP | xueyifan.io',
       description: 'Case study: 4,730 static landing pages from Airtable as headless CMS with DataForSEO crawl budget optimization and Astro SSG. 2M+ impressions, 19K+ clicks.',
     },
     nav: {
@@ -1034,8 +373,8 @@ return records.map(r => ({
       breadcrumbCurrent: 'Programmatic SEO',
     },
     header: {
-      kicker: 'Case Study — <a>Santifer iRepair</a>',
-      kickerLink: 'https://santiferirepair.es',
+      kicker: 'Case Study — <a>Xueyifan iRepair</a>',
+      kickerLink: 'https://xueyifanirepair.es',
       h1: 'Programmatic SEO: 4,700+ Pages from an ERP',
       subtitle: 'How I generated 4,730 unique landing pages with real production data, a 14-table Airtable CMS, and DataForSEO as the decision engine. 2.26M impressions, 19K+ clicks.',
       date: 'Feb 25, 2026',
@@ -1043,7 +382,7 @@ return records.map(r => ({
     intro: {
       hook: 'In Spain\'s device repair market, nobody was doing programmatic SEO. Every combination of device, brand, model, repair type, and city was an untapped long-tail opportunity.',
       body: 'The thesis: if someone searches "iPhone battery repair Seville", a dedicated page should exist — with the real price, estimated turnaround, and photos from actual repairs. But hand-building thousands of pages wouldn\'t scale. I needed a system that auto-generated them from the ERP, smart enough to decide which ones to index and which to skip.',
-      context: 'Santifer iRepair was my device repair business in Seville since 2009. Sixteen years, over 30,000 repairs. In 2024 I decided the website needed to move beyond a Squarespace brochure and start capturing the demand already sitting in Google. I built this programmatic SEO system as a competitive moat and sold the business in September 2025, at its peak.',
+      context: 'Xueyifan iRepair was my device repair business in Seville since 2009. Sixteen years, over 30,000 repairs. In 2024 I decided the website needed to move beyond a Squarespace brochure and start capturing the demand already sitting in Google. I built this programmatic SEO system as a competitive moat and sold the business in September 2025, at its peak.',
       tldr: {
         heading: 'In 10 seconds',
         items: [
@@ -1057,7 +396,7 @@ return records.map(r => ({
     sections: {
       migration: {
         heading: 'The Starting Point',
-        intro: 'The business website had been running on Squarespace for years. No URL control, no canonical tags, no custom redirects. What was coming wasn\'t just a platform change — it was a triple migration: platform (Squarespace → Astro), domain (santifer.me → santiferirepair.es), and hosting (Squarespace → Vercel/Cloudflare). The first step was documenting exactly what needed fixing: a 144-page technical audit, completed as the Final Master\'s Project for the Big SEO program.',
+        intro: 'The business website had been running on Squarespace for years. No URL control, no canonical tags, no custom redirects. What was coming wasn\'t just a platform change — it was a triple migration: platform (Squarespace → Astro), domain (xueyifan.me → xueyifanirepair.es), and hosting (Squarespace → Vercel/Cloudflare). The first step was documenting exactly what needed fixing: a 144-page technical audit, completed as the Final Master\'s Project for the Big SEO program.',
         duplicateCallout: 'Squarespace served the same page at 4 different URLs (www, non-www, trailing slash, .html). Google saw 4 copies of every page.',
         audit: {
           heading: 'The Technical Audit',
@@ -1321,7 +660,7 @@ if (mostrarPrecio === 'exacto' && detail.precioMinCard) {
       },
       decisionEngine: {
         heading: 'The Decision Engine',
-        body: 'The system generates thousands of pages (well beyond the 4,730 that received traffic), but not all deserve to be indexed. If nobody searches "repair front camera iPhone 11", that page shouldn\'t compete on Google — but it needs to exist for the user browsing from the iPhone 11 page who needs exactly that repair. The key is separating SEO from UX. The decision engine queries DataForSEO for real search volume on each combination, and stores the result in the "indexable" field in <a href="https://github.com/santifer/santifer-irepair/blob/main/src/lib/airtable.ts" target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-2 hover:text-primary/80">airtable.ts</a>.',
+        body: 'The system generates thousands of pages (well beyond the 4,730 that received traffic), but not all deserve to be indexed. If nobody searches "repair front camera iPhone 11", that page shouldn\'t compete on Google — but it needs to exist for the user browsing from the iPhone 11 page who needs exactly that repair. The key is separating SEO from UX. The decision engine queries DataForSEO for real search volume on each combination, and stores the result in the "indexable" field in <a href="https://github.com/xueyifan/xueyifan-irepair/blob/main/src/lib/airtable.ts" target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-2 hover:text-primary/80">airtable.ts</a>.',
         rules: [
           {
             condition: 'High search volume (DataForSEO)',
@@ -1438,7 +777,7 @@ ensureCachesLoaded().catch(console.error);`,
       contentAutomation: {
         heading: 'Automated Content Pipeline',
         body: 'Generating thousands of pages is half the job. Each one needs unique images, metadata, and copy. Eight Node.js scripts (1,411 lines total) automate all visual and textual content production — zero manual work. Everything connects back to the 12 Airtable bases in the Business OS. Result: over 26,000 auto-generated images.',
-        repoLink: '<a href="https://github.com/santifer/santifer-irepair/tree/main/scripts" target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-2 hover:text-primary/80">Explore the pipeline scripts on GitHub →</a>',
+        repoLink: '<a href="https://github.com/xueyifan/xueyifan-irepair/tree/main/scripts" target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-2 hover:text-primary/80">Explore the pipeline scripts on GitHub →</a>',
         pipelines: [
           {
             icon: 'camera',
@@ -1532,7 +871,7 @@ exifObj['Exif'][piexif.ExifIFD.UserComment] = userComment.toString('binary');`,
         },
         codeSnippet: {
           heading: 'The Actual Code',
-          body: 'This is the real snippet from <a href="https://github.com/santifer/santifer-irepair/blob/main/scripts/generarImagenesReparacionesModelos.mjs" target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-2 hover:text-primary/80">generarImagenesReparacionesModelos.mjs</a> that generates each repair image:',
+          body: 'This is the real snippet from <a href="https://github.com/xueyifan/xueyifan-irepair/blob/main/scripts/generarImagenesReparacionesModelos.mjs" target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-2 hover:text-primary/80">generarImagenesReparacionesModelos.mjs</a> that generates each repair image:',
           segments: [
             {
               code: `await sharp({
@@ -1731,7 +1070,7 @@ await base('Reseñas sincronizar Astro')
         },
         codeSnippet: {
           heading: 'The Actual Code',
-          body: 'This is the real snippet from <a href="https://github.com/santifer/santifer-irepair/blob/main/scripts/CasosExito.mjs" target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-2 hover:text-primary/80">CasosExito.mjs</a> that processes each repair photo:',
+          body: 'This is the real snippet from <a href="https://github.com/xueyifan/xueyifan-irepair/blob/main/scripts/CasosExito.mjs" target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-2 hover:text-primary/80">CasosExito.mjs</a> that processes each repair photo:',
           segments: [
             {
               code: `let pipeline = sharp(inputBuffer)
@@ -1874,7 +1213,7 @@ await pipeline
           },
           {
             title: 'Bridge redirects for discontinued items',
-            detail: 'Instead of returning a 404 when a repair is discontinued, it 301-redirects to the closest alternative. 700+ redirect rules in <a href="https://github.com/santifer/santifer-irepair/blob/main/vercel.json#L27" target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-2 hover:text-primary/80">vercel.json</a>. Zero authority loss, zero broken links.',
+            detail: 'Instead of returning a 404 when a repair is discontinued, it 301-redirects to the closest alternative. 700+ redirect rules in <a href="https://github.com/xueyifan/xueyifan-irepair/blob/main/vercel.json#L27" target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-2 hover:text-primary/80">vercel.json</a>. Zero authority loss, zero broken links.',
           },
         ],
         safeNoindex: {
@@ -2000,44 +1339,44 @@ return records.map(r => ({
         },
         {
           q: 'Does it only work in Seville?',
-          a: 'Local pages focus on Seville because that\'s where the physical shop is, and Google favors nearby results for repair searches. National pages (the /cambiar-{part}-{brand}-{model} format) work without geographic limits and capture niche queries across all of Spain.',
+          a: 'The local pages focus on Seville because that\'s where the physical store is, and Google prioritizes results with geographic proximity for repair searches. The national pages (format /cambiar-{part}-{brand}-{model}) work without geographic restrictions and capture niche searches throughout Spain.',
         },
         {
-          q: 'Why no AI-generated content?',
-          a: 'Because the moat is real data. Prices come from the ERP, photos are from actual repairs, reviews are from verified customers. An AI-generated page might sound good, but there\'s no production data behind it. The blog did lean on AI for writing, paired with NotebookLM for each article\'s podcast episode.',
+          q: 'Why didn\'t you use AI to generate the content?',
+          a: 'Because the competitive differentiator is that the data is real. Prices come from the ERP, photos are from actual repairs, and reviews are from verified customers. An AI-generated page might sound good, but it doesn\'t have production data. The blog did use AI for copywriting, combined with NotebookLM for each article\'s podcast.',
         },
         {
           q: 'Does Airtable scale with 4,700+ pages?',
-          a: 'Yes, with caveats. The 14 tables and ~60 fields per table work well with a build pipeline (not real-time queries). The key: retry with exponential backoff on the API and caching frequently hit data like reviews. For live queries at larger scale, you\'d want to evaluate alternatives like Supabase.',
+          a: 'Yes, with nuances. The 14 tables and ~60 fields per table work well with a build pipeline (not real-time queries). The key is retry with exponential backoff on the API and caching frequent data like reviews. For larger-scale live queries, alternatives like Supabase should be evaluated.',
         },
         {
-          q: 'How do you keep pages updated?',
-          a: 'When a price changes or a model gets added in the ERP, the data syncs to Airtable. The next build regenerates the affected pages. New reviews propagate automatically through the family-model cascade. No manual work needed for content.',
+          q: 'How are the pages kept up to date?',
+          a: 'When a price changes or a model is added in the ERP, the data is updated in Airtable. The next build regenerates the affected pages. New reviews automatically propagate through the family-model cascade. There is no manual intervention for content.',
         },
         {
-          q: 'Why Astro instead of Next.js?',
-          a: 'For a fully static site where content changes infrequently, Astro ships pure HTML with minimal JavaScript — only interactive components like the search bar and carousel, lazy-loaded. Pages load under a second, Core Web Vitals are great out of the box, and Cloudflare CDN deployment is dead simple.',
+          q: 'Why Astro and not Next.js?',
+          a: 'For a 100% static site where content changes infrequently, Astro generates pure HTML with minimal JavaScript — only interactive components like the search bar and carousel, loaded lazily. Pages load in under 1 second, Core Web Vitals are excellent natively, and deployment on Cloudflare CDN is trivial.',
         },
         {
-          q: 'What does DataForSEO do exactly?',
-          a: 'DataForSEO provides real search volume for each keyword. The result gets stored in Airtable\'s "indexable" field. If a device + repair + city combo has no search volume, the page is built but tagged noindex. It\'s the decision engine that keeps you from diluting domain authority with pages Google would ignore.',
+          q: 'What exactly does DataForSEO do?',
+          a: 'DataForSEO provides the actual search volume for each keyword. The result is stored in Airtable\'s "indexable" field. If a device + repair + city combination has no search volume, the page is generated but carries a noindex tag. It\'s the decision engine that prevents diluting domain authority with pages Google would ignore.',
         },
       ],
     },
     resources: {
       heading: 'Resources',
       items: [
-        { label: 'Source code on GitHub (scripts, layouts, routes)', url: 'https://github.com/santifer/santifer-irepair' },
-        { label: 'Santifer iRepair (the programmatic site)', url: 'https://santiferirepair.es' },
-        { label: 'Case Study: The Business OS / ERP behind these pages', url: '/business-os-for-airtable' },
+        { label: 'Source code on GitHub (scripts, layouts, routes)', url: 'https://github.com/xueyifan/xueyifan-irepair' },
+        { label: 'Xueyifan iRepair (the programmatic site)', url: 'https://xueyifanirepair.es' },
+        { label: 'Case Study: Business OS / ERP feeding these pages', url: '/business-os-para-airtable' },
         { label: 'Astro, the static site framework', url: 'https://astro.build' },
         { label: 'DataForSEO, SEO data API', url: 'https://dataforseo.com' },
         { label: 'Airtable, data platform and CMS', url: 'https://airtable.com' },
       ],
     },
     footer: {
-      role: 'AI Product Manager · Solutions Architect · AI FDE',
-      bio: 'Built and sold a 16-year business in 2025. Now bringing that same systems thinking to enterprise AI.',
+      role: 'Software Engineer · Architect',
+      bio: 'Built and sold a 16-year business in 2025. Now applying the same systems thinking to enterprise AI.',
       fellowAt: 'Teaching Fellow at',
       fellowLink: 'AI Product Academy',
       copyright: 'All rights reserved.',

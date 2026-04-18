@@ -1,6 +1,6 @@
-# Evals Suite - Chatbot "Santi"
+# Evals Suite - Chatbot "Yifan"
 
-Suite de evaluaciones profesionales para el chatbot de CV que habla como Santiago.
+Suite de evaluaciones profesionales para el chatbot de CV que habla como Yifan.
 
 ## Qué son los Evals
 
@@ -35,7 +35,7 @@ npm run evals
 
 **Opción 2: Contra producción** (para validar el deploy)
 ```bash
-CHAT_API_URL=https://santifer.io/api/chat npm run evals
+CHAT_API_URL=https://xueyifan.io/api/chat npm run evals
 ```
 
 > **Nota:** `npm run dev` (Vite) no sirve las edge functions de `/api/chat`. Usa `vercel dev` para desarrollo local.

@@ -174,7 +174,7 @@ function printConversation(trace: Trace) {
       }
       console.log(`  ${colors.green}│${colors.reset}`);
     } else {
-      console.log(`  ${colors.blue}├─ 🤖 SANTI${colors.reset}`);
+      console.log(`  ${colors.blue}├─ 🤖 Yifan${colors.reset}`);
       console.log(`  ${colors.blue}│${colors.reset}`);
       const lines = msg.content.split('\n');
       for (const line of lines) {
@@ -187,7 +187,7 @@ function printConversation(trace: Trace) {
   }
 
   if (lastOutput) {
-    console.log(`  ${colors.blue}├─ 🤖 SANTI${colors.reset}`);
+    console.log(`  ${colors.blue}├─ 🤖 Yifan${colors.reset}`);
     console.log(`  ${colors.blue}│${colors.reset}`);
     const lines = lastOutput.split('\n');
     for (const line of lines) {

@@ -61,7 +61,7 @@
       "lang": "en",
       "assertions": [
         { "type": "rag_not_used" },
-        { "type": "contains_any", "values": ["hi@santifer.io", "santifer.io"] }
+        { "type": "contains_any", "values": ["yifanxue.sde@gmail.com", "xueyifan.io"] }
       ]
     },
     {

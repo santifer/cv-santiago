@@ -233,7 +233,7 @@ export const ARTICLE_KEYWORDS = {
   'business-os':          ['business os', 'erp', 'airtable bases', 'crm', 'inventory'],
   'programmatic-seo':     ['seo programático', 'programmatic seo', 'web programática', 'programmatic web', 'decision engine', 'indexable', 'dataforseo', 'seo pipeline', 'seo automatizado', 'automated seo'],
   'self-healing-chatbot': ['chatbot', 'this chat', 'este chat', 'evals', 'self-healing', 'closed-loop', 'langfuse', 'rag'],
-  'santifer-irepair':     ['santifer irepair', 'irepair', 'repair business', 'taller de reparación'],
+  'xueyifan-irepair':     ['xueyifan irepair', 'irepair', 'repair business', 'taller de reparación'],
 }
 
 /** Filter RAG sources to only articles actually mentioned in the response, max 3 */
@@ -254,7 +254,7 @@ export const ARTICLE_ROUTES = {
   'business-os':          { page_path_es: '/business-os-para-airtable', page_path_en: '/business-os-for-airtable' },
   'programmatic-seo':     { page_path_es: '/seo-programatico', page_path_en: '/programmatic-seo' },
   'self-healing-chatbot': { page_path_es: '/chatbot-que-se-cura-solo', page_path_en: '/self-healing-chatbot' },
-  'santifer-irepair':     { page_path_es: '/santifer-irepair', page_path_en: '/santifer-irepair-founder' },
+  'xueyifan-irepair':     { page_path_es: '/xueyifan-irepair', page_path_en: '/xueyifan-irepair-founder' },
 }
 
 // Home fallback
@@ -409,7 +409,7 @@ export function classifyIntent(text) {
     tags.push('jailbreak-attempt')
   }
 
-  if (/experiencia|experience|trabajo|work|career|carrera|santifer|irepair/.test(lower)) tags.push('topic:experience')
+  if (/experiencia|experience|trabajo|work|career|carrera|xueyifan|irepair/.test(lower)) tags.push('topic:experience')
   if (/proyecto|project|portfolio|github|código|code/.test(lower)) tags.push('topic:projects')
   if (/contact|contacto|email|linkedin|hablar|talk|hire|contratar/.test(lower)) tags.push('topic:contact')
   if (/stack|tech|tecnolog|python|react|airtable|claude|ai|ia|llm|agente|agent/.test(lower)) tags.push('topic:technical')
@@ -433,9 +433,9 @@ export async function sendJailbreakAlert(userMessage) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      from: 'Santi Bot <onboarding@resend.dev>',
+      from: 'Yifan Bot <onboarding@resend.dev>',
       to: process.env.ALERT_EMAIL,
-      subject: '🚨 JAILBREAK ATTEMPT - santifer.io',
+      subject: '🚨 JAILBREAK ATTEMPT - xueyifan.io',
       html: `
         <h2>🚨 Jailbreak Attempt Detected</h2>
         <p><strong>Time:</strong> ${new Date().toISOString()}</p>

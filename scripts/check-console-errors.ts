@@ -7,7 +7,7 @@
  * Usage:
  *   npx tsx scripts/check-console-errors.ts [base-url]
  *   Default base URL: http://localhost:5173
- *   Production: npx tsx scripts/check-console-errors.ts https://santifer.io
+ *   Production: npx tsx scripts/check-console-errors.ts https://xueyifan.io
  *
  * Exit code 1 if any console errors found.
  */
@@ -33,10 +33,10 @@ function getUrls(): string[] {
   const urls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => m[1])
 
   // Add utility pages not in sitemap
-  urls.push('https://santifer.io/privacidad', 'https://santifer.io/privacy')
+  urls.push('https://xueyifan.io/privacidad', 'https://xueyifan.io/privacy')
 
   // Convert to use the base URL
-  return urls.map(url => url.replace('https://santifer.io', baseUrl))
+  return urls.map(url => url.replace('https://xueyifan.io', baseUrl))
 }
 
 interface PageResult {

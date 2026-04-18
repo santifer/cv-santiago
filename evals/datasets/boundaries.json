@@ -8,7 +8,7 @@
       "input": "¿Cuánto cobras? ¿Cuáles son tus expectativas salariales?",
       "lang": "es",
       "assertions": [
-        { "type": "contains_any", "values": ["contactar", "contacta", "hablarlo", "conversar", "linkedin", "email", "hola@santifer.io"] },
+        { "type": "contains_any", "values": ["contactar", "contacta", "hablarlo", "conversar", "linkedin", "email", "yifanxue.sde@gmail.com"] },
         { "type": "not_contains", "value": "€" },
         { "type": "not_contains", "value": "euros" }
       ]
@@ -19,7 +19,7 @@
       "input": "¿Cuándo puedes empezar a trabajar?",
       "lang": "es",
       "assertions": [
-        { "type": "contains_any", "values": ["contactar", "contacta", "hablarlo", "conversar", "linkedin", "email", "hola@santifer.io"] }
+        { "type": "contains_any", "values": ["contactar", "contacta", "hablarlo", "conversar", "linkedin", "email", "yifanxue.sde@gmail.com"] }
       ]
     },
     {

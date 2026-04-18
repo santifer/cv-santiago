@@ -1057,7 +1057,7 @@ export function ScreenshotGrid({ items, lang, basePath = '/jacobo/screenshots', 
             <ScreenshotFigure
               key={n.src}
               src={`${basePath}/${n.src}`}
-              alt={lang === 'es' ? n.altEs : n.altEn}
+              alt={lang === 'zh' ? n.altEs : n.altEn}
               summaryEn={n.altEn}
               lang={lang}
               width={n.width}
@@ -1076,7 +1076,7 @@ export function ScreenshotGrid({ items, lang, basePath = '/jacobo/screenshots', 
           <ScreenshotFigure
             key={n.src}
             src={`${basePath}/${n.src}`}
-            alt={lang === 'es' ? n.altEs : n.altEn}
+            alt={lang === 'zh' ? n.altEs : n.altEn}
             summaryEn={n.altEn}
             lang={lang}
             width={n.width}
@@ -1098,7 +1098,7 @@ interface ScreenshotCaptionProps {
 export function ScreenshotCaption({ es, en, lang, editorId }: ScreenshotCaptionProps) {
   return (
     <EditorLabel name="ScreenshotCaption" id={editorId}>
-      <p className="text-xs text-muted-foreground mb-6 -mt-4 px-1">{lang === 'es' ? es : en}</p>
+      <p className="text-xs text-muted-foreground mb-6 -mt-4 px-1">{lang === 'zh' ? es : en}</p>
     </EditorLabel>
   )
 }

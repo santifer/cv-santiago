@@ -1,9 +1,9 @@
-# Security Policy for santifer.io
+# Security Policy for xueyifan.io
 # https://securitytxt.org/ — RFC 9116
 
-Contact: mailto:hi@santifer.io
+Contact: mailto:yifanxue.sde@gmail.com
 Preferred-Languages: en, es
-Canonical: https://santifer.io/.well-known/security.txt
+Canonical: https://xueyifan.io/.well-known/security.txt
 Expires: 2027-02-19T00:00:00.000Z
 
 # Security measures implemented:

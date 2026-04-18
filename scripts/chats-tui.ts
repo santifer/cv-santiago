@@ -178,7 +178,7 @@ function traceToPlainText(trace: Trace, index: number): string {
       lines.push(msg.content);
     } else {
       lines.push('');
-      lines.push(`🤖 SANTI:`);
+      lines.push(`🤖 Yifan:`);
       lines.push(msg.content);
       lines.push('');
       turnNumber++;
@@ -187,7 +187,7 @@ function traceToPlainText(trace: Trace, index: number): string {
 
   if (lastOutput) {
     lines.push('');
-    lines.push(`🤖 SANTI:`);
+    lines.push(`🤖 Yifan:`);
     lines.push(lastOutput);
   }
 
@@ -220,7 +220,7 @@ async function exportAllChats(traces: Trace[], traceDetails: (Trace | null)[], j
 
   const header = [
     '╔══════════════════════════════════════════════════════════╗',
-    '║          HISTORIAL DE CONVERSACIONES - SANTI BOT        ║',
+    '║          HISTORIAL DE CONVERSACIONES - Yifan BOT        ║',
     '╚══════════════════════════════════════════════════════════╝',
     '',
     `Exportado: ${now.toLocaleString('es-ES')}`,
@@ -276,7 +276,7 @@ function renderConversation(trace: Trace, index: number, total: number, scrollOf
       }
       lines.push(`${GREEN}│${RESET}`);
     } else {
-      lines.push(`${BLUE}├─ 🤖 SANTI${RESET}`);
+      lines.push(`${BLUE}├─ 🤖 Yifan${RESET}`);
       lines.push(`${BLUE}│${RESET}`);
       const wrapped = wrapText(msg.content, contentWidth - 4);
       for (const line of wrapped) {
@@ -289,7 +289,7 @@ function renderConversation(trace: Trace, index: number, total: number, scrollOf
   }
 
   if (lastOutput) {
-    lines.push(`${BLUE}├─ 🤖 SANTI${RESET}`);
+    lines.push(`${BLUE}├─ 🤖 Yifan${RESET}`);
     lines.push(`${BLUE}│${RESET}`);
     const wrapped = wrapText(lastOutput, contentWidth - 4);
     for (const line of wrapped) {

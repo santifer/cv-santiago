@@ -68,7 +68,7 @@ async function fetchMemberCount(): Promise<number | null> {
   try {
     const res = await fetch(
       `https://discord.com/api/v10/invites/${INVITE_CODE}?with_counts=true`,
-      { headers: { 'User-Agent': 'santifer-build/1.0' } },
+      { headers: { 'User-Agent': 'xueyifan-build/1.0' } },
     )
     if (!res.ok) {
       console.warn(`  ⚠ Discord API returned ${res.status}`)

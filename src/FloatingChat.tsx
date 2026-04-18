@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   X,
@@ -13,6 +13,7 @@ import {
   Mic,
   MessageSquare,
   PhoneOff,
+  RotateCcw,
 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -100,7 +101,7 @@ function linkifyUrls(text: string): string {
   return fixed;
 }
 
-const STORAGE_KEY = 'santi-chat';
+const STORAGE_KEY = 'yifan-chat';
 
 function loadSession(fallbackGreeting: string): { messages: Message[]; sessionId: string; showPrompts: boolean } {
   try {
@@ -151,8 +152,22 @@ export default function FloatingChat({ lang }: FloatingChatProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [isStreaming, setIsStreaming] = useState(false);
   const [showPrompts, setShowPrompts] = useState(session.showPrompts);
-  const [sessionId] = useState(session.sessionId);
+  const [sessionId, setSessionId] = useState(session.sessionId);
   const [mode, setMode] = useState<'text' | 'voice'>('text');
+
+  const handleReset = useCallback(() => {
+    const newSessionId = `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+    const initialMessages: Message[] = [{ role: 'assistant', content: t.greeting }];
+    
+    sessionStorage.removeItem(STORAGE_KEY);
+    setMessages(initialMessages);
+    setSessionId(newSessionId);
+    setShowPrompts(true);
+    
+    // Stop voice if active
+    if (mode === 'voice') handleStopVoice();
+    if (abortRef.current) abortRef.current.abort();
+  }, [t.greeting, mode]);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -564,7 +579,7 @@ export default function FloatingChat({ lang }: FloatingChatProps) {
           bottom: 'max(1.5rem, env(safe-area-inset-bottom, 0px) + 0.5rem)',
           right: 'max(1.5rem, env(safe-area-inset-right, 0px) + 0.5rem)',
         }}
-        aria-label={lang === 'en' ? (isOpen ? 'Close chat with Santi' : 'Open chat with Santi') : (isOpen ? 'Cerrar chat con Santi' : 'Abrir chat con Santi')}
+        aria-label={lang === 'en' ? (isOpen ? 'Close chat with Yifan' : 'Open chat with Yifan') : (isOpen ? 'Cerrar chat con Yifan' : 'Abrir chat con Yifan')}
       >
         <AnimatePresence mode="wait">
           {isOpen ? (
@@ -588,16 +603,13 @@ export default function FloatingChat({ lang }: FloatingChatProps) {
               className="relative w-full h-full"
             >
               {/* Avatar */}
-              <picture>
-                <source srcSet="/foto-avatar-sm.webp" type="image/webp" />
-                <img
-                  src="/foto-avatar-sm.webp"
-                  alt={lang === 'en' ? 'Chat with Santi' : 'Chat con Santi'}
-                  className="w-full h-full rounded-full object-cover"
-                  width={56}
-                  height={56}
-                />
-              </picture>
+              <img
+                src="/foto-avatar.png"
+                alt={lang === 'en' ? 'Chat with Yifan' : 'Chat con Yifan'}
+                className="w-full h-full rounded-full object-cover"
+                width={56}
+                height={56}
+              />
               {/* Pulse ring animation */}
               <motion.div
                 className="absolute inset-0 rounded-full border-2 border-primary"
@@ -625,7 +637,7 @@ export default function FloatingChat({ lang }: FloatingChatProps) {
             ref={chatContainerRef}
             role="dialog"
             aria-modal="true"
-            aria-label={lang === 'en' ? 'Chat with Santi' : 'Chat con Santi'}
+            aria-label={lang === 'en' ? 'Chat with Yifan' : 'Chat con Yifan'}
             initial={isMobile ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.95 }}
             animate={isMobile ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
             exit={isMobile ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.95 }}
@@ -646,19 +658,15 @@ export default function FloatingChat({ lang }: FloatingChatProps) {
               }
             >
               <div className="flex items-center gap-3">
-                <picture>
-                  <source srcSet="/foto-avatar-sm.webp" type="image/webp" />
-                  <img
-                    src="/foto-avatar-sm.webp"
-                    alt="santifer avatar"
-                    className="w-10 h-10 rounded-full object-cover ring-2 ring-primary/20"
-                    width={40}
-                    height={40}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </picture>
-                <div>
+                <img
+                  src="/foto-avatar.png"
+                  alt="yifan avatar"
+                  className="w-10 h-10 rounded-full object-cover ring-2 ring-primary/20"
+                  width={40}
+                  height={40}
+                  loading="lazy"
+                  decoding="async"
+                />                <div>
                   <h3 className="font-display font-semibold text-foreground">
                     {t.title}
                   </h3>
@@ -668,6 +676,15 @@ export default function FloatingChat({ lang }: FloatingChatProps) {
                 </div>
               </div>
               <div className="flex items-center gap-2">
+                {/* Reset Chat button */}
+                <button
+                  onClick={handleReset}
+                  className="w-10 h-10 rounded-full bg-muted/30 flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
+                  aria-label={t.reset}
+                  title={t.reset}
+                >
+                  <RotateCcw className="w-4 h-4" aria-hidden="true" />
+                </button>
                 {/* Mode indicator (subtle icon) */}
                 {mode === 'voice' && (
                   <motion.div
@@ -788,7 +805,7 @@ export default function FloatingChat({ lang }: FloatingChatProps) {
                           {message.role === 'assistant' && message.ragSources && message.ragSources.length > 0 && !isLoading && !isStreaming && (
                             <div className="flex flex-wrap gap-1.5 mt-2 px-1">
                               {message.ragSources.map((source, si) => {
-                                const targetPath = lang === 'es' ? source.page_path_es : source.page_path_en;
+                                const targetPath = lang === 'zh' ? source.page_path_es : source.page_path_en;
                                 const sectionLabels = getSectionLabels()[targetPath] || {};
                                 const anchorId = source.section_anchor.replace(/^#/, '');
                                 const sectionName = sectionLabels[anchorId] || '';
@@ -932,7 +949,7 @@ export default function FloatingChat({ lang }: FloatingChatProps) {
             {mode === 'voice' && voiceMode.voiceSources.length > 0 && (
               <div className="flex flex-wrap justify-center gap-1.5 px-4 py-2 border-t border-border/50 bg-card/80">
                 {voiceMode.voiceSources.map((source, si) => {
-                  const targetPath = lang === 'es' ? source.page_path_es : source.page_path_en;
+                  const targetPath = lang === 'zh' ? source.page_path_es : source.page_path_en;
                   const sectionLabels = getSectionLabels()[targetPath] || {};
                   const anchorId = source.section_anchor.replace(/^#/, '');
                   const sectionName = sectionLabels[anchorId] || '';

@@ -136,7 +136,7 @@ async function compareResponses(v1Response: string, v2Response: string, testInpu
     max_tokens: 200,
     messages: [{
       role: 'user',
-      content: `Compare two chatbot responses to the same question. This is Santiago's CV chatbot.
+      content: `Compare two chatbot responses to the same question. This is Yifan's CV chatbot.
 
 Question: "${testInput.slice(0, 200)}"
 

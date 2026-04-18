@@ -1,1556 +1,211 @@
-import { useState, useEffect, useCallback, useMemo, useReducer, useRef } from 'react'
-import { useLocation, Link } from 'react-router-dom'
-import { motion, AnimatePresence } from 'motion/react'
-import { Mail, ExternalLink, Briefcase, GraduationCap, Award, Code, Users, Globe, Bot, Zap, Database, Layout, BadgeCheck, FolderGit2, Sparkles, Download, Github, Package, MessageSquare, Receipt, CalendarCheck, FileText, GitBranch, GitFork, Star, Network, Calendar, Percent, UserCheck, Image, TrendingUp, Timer, SkipForward, ThumbsUp, MessageCircle, Share2, ChevronRight, List, ArrowUp, Brain, Target, Inbox, Compass, GitMerge } from 'lucide-react'
-import { translations, seo, type Lang } from './i18n'
-import { useHomeSeo } from './articles/use-article-seo'
-import { getTechIcon } from './tech-icons'
+import { StrictMode, lazy, Suspense, useState, useEffect, useRef, Component, type ReactNode, type ComponentType } from 'react'
+import { createRoot } from 'react-dom/client'
+import { BrowserRouter, Routes, Route, useLocation, Link, useParams } from 'react-router-dom'
+import { Analytics } from '@vercel/analytics/react'
+import { motion, AnimatePresence } from 'framer-motion'
+import {
+  Code,
+  Globe,
+  Briefcase,
+  Mail,
+  ExternalLink,
+  ChevronRight,
+  Zap,
+  Star,
+  GitFork,
+  MessageSquare,
+  Search,
+  Bot,
+  Layout,
+  Database,
+  ArrowRight,
+  Sparkles,
+  Lock,
+  Layers,
+  Repeat,
+  RefreshCcw,
+  ShieldCheck,
+  Cpu,
+  BarChart3,
+  Network,
+  Calendar,
+  Percent,
+  Package,
+  UserCheck,
+  Timer,
+  FileText,
+  Image,
+  TrendingUp,
+  GitBranch,
+  Github,
+  GraduationCap,
+  FolderGit2
+} from 'lucide-react'
 
+import './index.css'
+import { translations } from './i18n'
+import GlobalNav from './GlobalNav'
 
-function LinkedInLogo({ className = "w-4 h-4" }: { className?: string }) {
+// UI Components
+const LinkedInLogo = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+  </svg>
+)
+
+const AnimatedSection = ({ children, delay = 0, className = "" }: { children: ReactNode, delay?: number, className?: string }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "-100px" }}
+    transition={{ duration: 0.5, delay }}
+    className={className}
+  >
+    {children}
+  </motion.div>
+)
+
+const BeamPill = ({ children }: { children: ReactNode }) => (
+  <span className="relative inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold border border-primary/20 overflow-hidden group">
+    <span className="relative z-10">{children}</span>
+    <span className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/20 to-transparent -translate-x-full group-hover:animate-beam" />
+  </span>
+)
+
+const StorySection = ({ t }: { t: any }) => {
   return (
-    <svg className={className} viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-      <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
-    </svg>
-  )
-}
-
-function useHydrated() {
-  const [hydrated, setHydrated] = useState(false)
-  useEffect(() => setHydrated(true), [])
-  return hydrated
-}
-
-function useInView(threshold = 0.1) {
-  const [ref, setRef] = useState<HTMLElement | null>(null)
-  const [isInView, setIsInView] = useState(false)
-
-  useEffect(() => {
-    if (!ref) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true)
-          observer.disconnect()
-        }
-      },
-      { threshold }
-    )
-    observer.observe(ref)
-    return () => observer.disconnect()
-  }, [ref, threshold])
-
-  return { ref: setRef, isInView }
-}
-
-const HEAL_PARTICLES = [
-  { char: '+', left: '10%', delay: '0s', dur: '2.8s', size: '24px' },
-  { char: '·', left: '30%', delay: '0.6s', dur: '2.2s', size: '20px' },
-  { char: '✦', left: '55%', delay: '1.2s', dur: '3s', size: '18px' },
-  { char: '0', left: '75%', delay: '0.3s', dur: '2.5s', size: '22px' },
-  { char: '+', left: '90%', delay: '1.8s', dur: '2.6s', size: '20px' },
-  { char: '1', left: '20%', delay: '2.1s', dur: '2.4s', size: '22px' },
-  { char: '·', left: '65%', delay: '0.9s', dur: '3.2s', size: '18px' },
-  { char: '✦', left: '45%', delay: '1.5s', dur: '2.7s', size: '20px' },
-]
-
-function BeamPill({ children }: { children: React.ReactNode }) {
-  const hydrated = useHydrated()
-  return (
-    <span className={`relative inline-block pl-0 pr-0 ${hydrated ? 'beam-pill' : ''}`}>
-      <span className="relative z-10">{children}</span>
-      {hydrated && HEAL_PARTICLES.map((p, i) => (
-        <span
-          key={i}
-          className="absolute pointer-events-none select-none"
-          style={{
-            left: p.left,
-            bottom: '50%',
-            fontSize: p.size,
-            color: '#4ade80',
-            opacity: 0,
-            animation: `heal-float ${p.dur} ease-out ${p.delay} infinite`,
-          }}
-          aria-hidden="true"
-        >
-          {p.char}
-        </span>
-      ))}
-    </span>
-  )
-}
-
-// Inject animation styles once (avoids hydration mismatch from inline <style> in h1)
-const HERO_STYLES_ID = 'hero-beam-styles'
-function useHeroStyles() {
-  useEffect(() => {
-    if (document.getElementById(HERO_STYLES_ID)) return
-    const style = document.createElement('style')
-    style.id = HERO_STYLES_ID
-    style.textContent = `
-      @keyframes blink { 0%, 100% { opacity: 1 } 50% { opacity: 0 } }
-      @keyframes heal-float {
-        0% { opacity: 0; transform: translateY(0) scale(0.6); }
-        12% { opacity: 0.25; }
-        40% { opacity: 0.15; }
-        100% { opacity: 0; transform: translateY(-65px) scale(0.2); }
-      }
-      @property --beam-angle {
-        syntax: '<angle>';
-        inherits: false;
-        initial-value: 0deg;
-      }
-      @keyframes beam-spin {
-        0% { --beam-angle: 0deg; }
-        100% { --beam-angle: 360deg; }
-      }
-      .beam-pill::before {
-        content: '';
-        position: absolute;
-        inset: -1px -10px -1px -10px;
-        border-radius: 9999px;
-        padding: 2px;
-        background: conic-gradient(
-          from var(--beam-angle),
-          transparent 0%,
-          transparent 82%,
-          rgba(74, 222, 128, 0.05) 86%,
-          rgba(74, 222, 128, 0.15) 89%,
-          rgba(74, 222, 128, 0.35) 92%,
-          rgba(74, 222, 128, 0.6) 95%,
-          rgba(74, 222, 128, 0.9) 98%,
-          #4ade80 100%,
-          transparent 100%
-        );
-        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-        animation: beam-spin 2s linear infinite;
-      }
-    `
-    document.head.appendChild(style)
-  }, [])
-}
-
-// ---------------------------------------------------------------------------
-// GridSnakes — subtle animated trails on the dot grid (hero only)
-// ---------------------------------------------------------------------------
-const GRID = 24                // matches CSS dot grid size
-const SNAKE_COUNT = 3
-const SNAKE_LENGTH = 8         // dots per trail
-const TICK_MS = 180            // movement speed (lower = faster)
-const DIRS: [number, number][] = [[1,0],[-1,0],[0,1],[0,-1]]
-
-function GridSnakes() {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const parent = canvas.parentElement
-    if (!parent) return
-
-    const resize = () => {
-      canvas.width = parent.clientWidth
-      canvas.height = parent.clientHeight
-    }
-    resize()
-    window.addEventListener('resize', resize)
-
-    // Initialize snakes at random grid positions
-    const cols = () => Math.floor(canvas.width / GRID)
-    const rows = () => Math.floor(canvas.height / GRID)
-
-    type Snake = { trail: [number, number][]; dir: [number, number] }
-    const snakes: Snake[] = Array.from({ length: SNAKE_COUNT }, () => {
-      const x = Math.floor(Math.random() * cols())
-      const y = Math.floor(Math.random() * rows())
-      return { trail: [[x, y]], dir: DIRS[Math.floor(Math.random() * 4)] }
-    })
-
-    const tick = () => {
-      const c = cols()
-      const r = rows()
-
-      for (const snake of snakes) {
-        // 30% chance to turn
-        if (Math.random() < 0.3) {
-          snake.dir = DIRS[Math.floor(Math.random() * 4)]
-        }
-        const [hx, hy] = snake.trail[snake.trail.length - 1]
-        let nx = hx + snake.dir[0]
-        let ny = hy + snake.dir[1]
-
-        // Wrap around edges
-        if (nx < 0) nx = c - 1
-        if (nx >= c) nx = 0
-        if (ny < 0) ny = r - 1
-        if (ny >= r) ny = 0
-
-        snake.trail.push([nx, ny])
-        if (snake.trail.length > SNAKE_LENGTH) snake.trail.shift()
-      }
-
-      // Draw
-      const ctx = canvas.getContext('2d')
-      if (!ctx) return
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-      for (const snake of snakes) {
-        for (let i = 0; i < snake.trail.length; i++) {
-          const [gx, gy] = snake.trail[i]
-          const alpha = ((i + 1) / snake.trail.length) * 0.5
-          ctx.beginPath()
-          ctx.arc(gx * GRID + GRID / 2, gy * GRID + GRID / 2, 1.5, 0, Math.PI * 2)
-          ctx.fillStyle = `rgba(0, 217, 255, ${alpha})`
-          ctx.fill()
-        }
-      }
-    }
-
-    const interval = setInterval(tick, TICK_MS)
-    return () => { clearInterval(interval); window.removeEventListener('resize', resize) }
-  }, [])
-
-  return <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-[1]" />
-}
-
-
-function useTypewriterRotation(roles: readonly string[], { typeSpeed = 80, deleteSpeed = 60, pauseAfterType = 2000, pauseAfterDelete = 300 } = {}) {
-  const [roleIndex, setRoleIndex] = useState(0)
-  const [displayText, setDisplayText] = useState(roles[0])
-  const [isDeleting, setIsDeleting] = useState(false)
-  const currentRole = roles[roleIndex]
-
-  useEffect(() => {
-    let timeout: ReturnType<typeof setTimeout>
-
-    if (!isDeleting && displayText === currentRole) {
-      // Finished typing — pause then start deleting
-      timeout = setTimeout(() => setIsDeleting(true), pauseAfterType)
-    } else if (isDeleting && displayText === '') {
-      // Finished deleting — move to next role and start typing
-      timeout = setTimeout(() => {
-        setRoleIndex(i => (i + 1) % roles.length)
-        setIsDeleting(false)
-      }, pauseAfterDelete)
-    } else if (isDeleting) {
-      // Deleting word by word (ctrl+backspace style)
-      timeout = setTimeout(() => {
-        const words = displayText.trimEnd().split(' ')
-        words.pop()
-        setDisplayText(words.length > 0 ? words.join(' ') + ' ' : '')
-      }, deleteSpeed)
-    } else {
-      // Typing character by character
-      timeout = setTimeout(() => {
-        setDisplayText(currentRole.slice(0, displayText.length + 1))
-      }, typeSpeed)
-    }
-
-    return () => clearTimeout(timeout)
-  }, [displayText, isDeleting, currentRole, roles, typeSpeed, deleteSpeed, pauseAfterType, pauseAfterDelete])
-
-  return { displayText, roleIndex, isDeleting }
-}
-
-const HOME_TOC_SECTIONS = [
-  { id: 'experience', es: 'Experiencia', en: 'Experience' },
-  { id: 'projects', es: 'Proyectos', en: 'Projects' },
-  { id: 'speaking', es: 'Compartiendo', en: 'Sharing' },
-  { id: 'education', es: 'Formación', en: 'Education' },
-  { id: 'tech', es: 'Skills & Stack', en: 'Skills & Stack' },
-  { id: 'contact', es: 'Contacto', en: 'Contact' },
-] as const
-
-function HomeToc({ lang }: { lang: Lang }) {
-  const [hasRevealed, setHasRevealed] = useState(false)
-  const [visible, setVisible] = useState(false)
-  const [activeId, setActiveId] = useState('')
-  const [tocOpen, setTocOpen] = useState(false)
-
-  // Show when #experience top reaches viewport, hide when user scrolls above it
-  useEffect(() => {
-    const check = () => {
-      const trigger = document.getElementById('experience')
-      if (!trigger) return
-      const show = trigger.getBoundingClientRect().top <= 100
-      setVisible(show)
-      if (show && !hasRevealed) setHasRevealed(true)
-    }
-    check()
-    window.addEventListener('scroll', check, { passive: true })
-    return () => window.removeEventListener('scroll', check)
-  }, [hasRevealed])
-
-  // Track active section — last section whose top has scrolled past 40% of viewport
-  // At page bottom, force last section as active
-  useEffect(() => {
-    if (!hasRevealed) return
-    const update = () => {
-      const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 50
-      if (atBottom) {
-        setActiveId(HOME_TOC_SECTIONS[HOME_TOC_SECTIONS.length - 1].id)
-        return
-      }
-      const threshold = window.innerHeight * 0.4
-      let current = ''
-      for (const s of HOME_TOC_SECTIONS) {
-        const el = document.getElementById(s.id)
-        if (el && el.getBoundingClientRect().top <= threshold) current = s.id
-      }
-      if (current) setActiveId(current)
-    }
-    update()
-    window.addEventListener('scroll', update, { passive: true })
-    return () => window.removeEventListener('scroll', update)
-  }, [hasRevealed])
-
-  const scrollTo = useCallback((id: string) => {
-    const el = document.getElementById(id)
-    if (!el) return
-    setTocOpen(false)
-    const isLast = id === HOME_TOC_SECTIONS[HOME_TOC_SECTIONS.length - 1].id
-    const top = isLast
-      ? document.documentElement.scrollHeight - window.innerHeight
-      : el.getBoundingClientRect().top + window.scrollY - 96
-    requestAnimationFrame(() => { window.scrollTo({ top, behavior: 'instant' }) })
-  }, [])
-
-  const activeIdx = HOME_TOC_SECTIONS.findIndex(s => s.id === activeId)
-
-  const lastIdx = HOME_TOC_SECTIONS.length - 1
-  // Progress as fraction between first and last dot (0 to 1)
-  const progressFrac = activeIdx >= 0 ? activeIdx / lastIdx : 0
-
-  const tocNav = (
-    <nav aria-label="Table of contents" className="relative">
-      {/* Vertical track — spans from first dot center to last dot center */}
-      <div className="absolute left-[5.5px] top-[14px] w-px bg-border" style={{ height: 'calc(100% - 28px)' }} />
-      {/* Animated progress fill */}
-      <motion.div
-        className="absolute left-[5.5px] top-[14px] w-px bg-primary origin-top"
-        initial={{ scaleY: 0 }}
-        animate={{ scaleY: progressFrac }}
-        style={{ height: 'calc(100% - 28px)' }}
-        transition={{ duration: 0.3, ease: 'easeOut' }}
-      />
-      <ul className="relative space-y-1">
-        {HOME_TOC_SECTIONS.map((section, i) => {
-          const isActive = activeId === section.id
-          const isPast = i <= activeIdx
-          return (
-            <li key={section.id} className="flex items-center gap-3">
-              <motion.span
-                className={`relative z-10 w-3 h-3 rounded-full border-2 shrink-0 transition-colors duration-300 ${
-                  isActive ? 'border-primary bg-primary shadow-[0_0_8px_rgba(var(--primary-rgb),0.4)]'
-                  : isPast ? 'border-primary/50 bg-card'
-                  : 'border-border bg-card'
-                }`}
-                animate={isActive ? { scale: [1, 1.3, 1] } : { scale: 1 }}
-                transition={{ duration: 0.3 }}
-              />
-              <button
-                onClick={() => scrollTo(section.id)}
-                className={`text-left text-[13px] tracking-wide py-1 transition-all duration-300 ${
-                  isActive ? 'text-primary font-semibold translate-x-0.5'
-                  : isPast ? 'text-foreground/70'
-                  : 'text-muted-foreground/60 hover:text-foreground/80'
-                }`}
-              >
-                {section[lang]}
-              </button>
-            </li>
-          )
-        })}
-      </ul>
-    </nav>
-  )
-
-  return (
-    <AnimatePresence>
-      {visible && (
-        <>
-          {/* Desktop: sticky sidebar */}
-          <motion.div
-            initial={hasRevealed ? { opacity: 0, x: -12 } : false}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -12 }}
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="hidden 2xl:block fixed top-24 left-[max(1rem,calc(50%-46rem))] w-48 max-h-[calc(100vh-8rem)] overflow-visible z-30"
-          >
-            {tocNav}
-          </motion.div>
-
-          {/* Mobile / narrow desktop: floating button + drawer */}
-          <motion.button
-            initial={hasRevealed ? { opacity: 0, scale: 0.8 } : false}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.3 }}
-            onClick={() => setTocOpen(o => !o)}
-            className="2xl:hidden fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full bg-primary text-primary-foreground shadow-lg flex items-center justify-center"
-            aria-label="Toggle table of contents"
-          >
-            <List className="w-5 h-5" />
-          </motion.button>
-          {tocOpen && (
-            <>
-              <div className="2xl:hidden fixed inset-0 bg-background/60 backdrop-blur-sm z-40" onClick={() => setTocOpen(false)} />
-              <div className="2xl:hidden fixed bottom-20 right-6 z-50 w-64 max-h-[70vh] overflow-y-auto bg-card border border-border rounded-xl shadow-xl p-4">
-                {tocNav}
+    <section className="py-16 md:py-24 overflow-hidden relative">
+      <div className="max-w-5xl mx-auto px-6 relative z-10">
+        <div className="grid lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-7">
+            <AnimatedSection>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold mb-6 border border-accent/20">
+                <Sparkles className="w-3.5 h-3.5" />
+                {t.summary.title}
               </div>
-            </>
-          )}
-        </>
-      )}
-    </AnimatePresence>
-  )
-}
-
-function AnimatedSection({ children, className = '', delay = 0 }: { children: React.ReactNode, className?: string, delay?: number }) {
-  const [ref, setRef] = useState<HTMLElement | null>(null)
-  const [isInView, setIsInView] = useState(false)
-  const [detected, setDetected] = useState(false)
-  const hydrated = useHydrated()
-  const wasAboveFold = useRef(false)
-
-  useEffect(() => {
-    if (!ref) return
-
-    // IntersectionObserver instead of getBoundingClientRect (avoids forced reflow).
-    // First callback fires immediately for visible elements → above-fold detection.
-    let firstCallback = true
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (firstCallback) {
-          firstCallback = false
-          if (entry.isIntersecting) wasAboveFold.current = true
-          setDetected(true)
-        }
-        if (entry.isIntersecting) {
-          setIsInView(true)
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.1 }
-    )
-    observer.observe(ref)
-    return () => observer.disconnect()
-  }, [ref])
-
-  return (
-    <motion.div
-      ref={setRef}
-      initial={false}
-      animate={
-        !hydrated || !detected
-          ? false  // Pre-hydration / pre-detection: preserve SSR DOM state
-          : isInView
-            ? { opacity: 1, y: 0 }
-            : { opacity: 0, y: 40 }
-      }
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  )
-}
-
-// Parsea texto con marcadores de highlight:
-// *texto* = Tipo B: gradiente durante typewriter (frase activa), luego normal
-// +texto+ = Tipo C: normal durante typewriter, gradiente en encendido final
-// **texto** = gradiente siempre (permanent) + slow typing
-type ParsedHighlights = {
-  clean: string
-  ranges: [number, number][]          // backward compat
-  typewriterRanges: [number, number][] // *texto* - Tipo B: gradiente solo durante typewriter
-  finalRanges: [number, number][]      // +texto+ - Tipo C: gradiente solo en encendido final
-  permanentRanges: [number, number][]  // **texto** - siempre gradiente
-  slowRanges: [number, number][]       // para typing lento
-}
-
-function parseHighlights(text: string): ParsedHighlights {
-  const typewriterRanges: [number, number][] = []  // Tipo B: *texto*
-  const finalRanges: [number, number][] = []       // Tipo C: +texto+
-  const permanentRanges: [number, number][] = []   // **texto**
-  const slowRanges: [number, number][] = []
-  let clean = ''
-  let i = 0
-
-  while (i < text.length) {
-    // Check for ** (permanent highlight + slow)
-    if (text[i] === '*' && text[i + 1] === '*') {
-      const start = clean.length
-      i += 2
-      while (i < text.length && !(text[i] === '*' && text[i + 1] === '*')) {
-        clean += text[i]
-        i++
-      }
-      permanentRanges.push([start, clean.length])
-      slowRanges.push([start, clean.length])
-      i += 2
-    }
-    // Check for + (Tipo C: gradiente solo en encendido final)
-    // Si +digit (ej: +15), mostrar como "15+" (convención internacional)
-    else if (text[i] === '+') {
-      const nextIsDigit = /\d/.test(text[i + 1] || '')
-      const start = clean.length
-      i++ // skip opening +
-      if (nextIsDigit) {
-        // Leer dígitos primero, luego añadir + después (15+ en vez de +15)
-        while (i < text.length && /\d/.test(text[i])) {
-          clean += text[i]
-          i++
-        }
-        clean += '+'
-      }
-      while (i < text.length && text[i] !== '+') {
-        clean += text[i]
-        i++
-      }
-      finalRanges.push([start, clean.length])
-      i++ // skip closing +
-    }
-    // Check for single * (Tipo B: gradiente solo durante typewriter)
-    else if (text[i] === '*') {
-      const start = clean.length
-      i++
-      while (i < text.length && text[i] !== '*') {
-        clean += text[i]
-        i++
-      }
-      typewriterRanges.push([start, clean.length])
-      i++
-    } else {
-      clean += text[i]
-      i++
-    }
-  }
-
-  // For backward compatibility
-  const ranges: [number, number][] = [...permanentRanges]
-  return { clean, ranges, typewriterRanges, finalRanges, permanentRanges, slowRanges }
-}
-
-// Renderiza texto con rangos destacados y soporte para transición
-// Tipos de highlight:
-// - typewriter (Tipo B): gradiente durante typewriter, luego normal
-// - final (Tipo C): normal durante typewriter, gradiente en encendido final
-// - permanent: siempre gradiente
-function renderHighlightedText(
-  text: string,
-  _ranges: [number, number][],  // kept for API compatibility
-  options?: {
-    dimmed?: boolean           // texto atenuado (después del typewriter)
-    finalReveal?: boolean      // Tipo C se enciende con gradiente
-    revealed?: boolean         // resto del texto se enciende
-    typewriterRanges?: [number, number][]  // Tipo B
-    finalRanges?: [number, number][]       // Tipo C
-    permanentRanges?: [number, number][]
-    highlightsActive?: boolean // gradiente activo durante typewriter
-  }
-) {
-  const {
-    dimmed = false,
-    finalReveal = false,
-    revealed = false,
-    typewriterRanges = [],
-    finalRanges = [],
-    permanentRanges = [],
-    highlightsActive = false
-  } = options || {}
-
-  // Build a map of character positions to their highlight type
-  type HighlightType = 'typewriter' | 'final' | 'permanent' | null
-  const charTypes: HighlightType[] = new Array(text.length).fill(null)
-
-  typewriterRanges.forEach(([start, end]) => {
-    for (let i = start; i < end && i < text.length; i++) charTypes[i] = 'typewriter'
-  })
-  finalRanges.forEach(([start, end]) => {
-    for (let i = start; i < end && i < text.length; i++) charTypes[i] = 'final'
-  })
-  permanentRanges.forEach(([start, end]) => {
-    for (let i = start; i < end && i < text.length; i++) charTypes[i] = 'permanent'
-  })
-
-  // Opacity states - SEPARADOS para cada tipo
-  // Texto normal y Tipo B: atenuados, luego quedan en segundo plano (opacity-50)
-  const textOpacity = dimmed ? (revealed ? 'opacity-50' : 'opacity-15') : 'opacity-100'
-  // Tipo C: atenuados hasta que finalReveal=true (se encienden ANTES que el resto)
-  const isFinalLowOpacity = dimmed && !finalReveal
-
-  // UN SOLO TIMING para TODO - sincronización perfecta
-  const timing = 'duration-[2500ms] ease-in-out'
-
-  // If no special ranges, render as plain text
-  if (typewriterRanges.length === 0 && finalRanges.length === 0 && permanentRanges.length === 0) {
-    return (
-      <span className={`text-muted-foreground transition-opacity ${timing} ${textOpacity}`}>
-        {text}
-      </span>
-    )
-  }
-
-  // Group consecutive characters by type
-  const parts: React.ReactNode[] = []
-  let currentType: HighlightType = charTypes[0]
-  let currentStart = 0
-
-  // Per-word inline-grid so highlighted text can wrap naturally on narrow screens.
-  // Each word shows its slice of the full-phrase gradient via background-size/position.
-  const pushHighlightWords = (
-    seg: string, baseKey: number, showGradient: boolean, normalOpacity: string
-  ) => {
-    const gOp = showGradient ? 'opacity-100' : 'opacity-0'
-    const totalLen = seg.length
-    let charPos = 0
-    seg.split(/( +)/).forEach((word, wIdx) => {
-      if (!word) return
-      if (/^ +$/.test(word)) {
-        parts.push(<span key={`${baseKey}s${wIdx}`}>{word}</span>)
-        charPos += word.length
-      } else {
-        const wordFrac = word.length / totalLen
-        const startFrac = charPos / totalLen
-        // Continuous gradient: size spans full phrase, position shows this word's slice
-        const bgSize = wordFrac >= 1 ? 100 : 100 / wordFrac
-        const bgPos = wordFrac >= 1 ? 0 : startFrac * 100 / (1 - wordFrac)
-        parts.push(
-          <span key={`${baseKey}w${wIdx}`} className="inline-grid">
-            <span
-              className={`col-start-1 row-start-1 font-medium transition-opacity ${timing} ${gOp}`}
-              style={{
-                backgroundImage: 'linear-gradient(to right, hsl(var(--gradient-from)), hsl(var(--gradient-to)))',
-                backgroundSize: `${bgSize}% 100%`,
-                backgroundPosition: `${bgPos}% 0`,
-                WebkitBackgroundClip: 'text',
-                backgroundClip: 'text',
-                color: 'transparent',
-              }}
-            >{word}</span>
-            <span className={`col-start-1 row-start-1 text-muted-foreground transition-opacity ${timing} ${normalOpacity}`}>{word}</span>
-          </span>
-        )
-        charPos += word.length
-      }
-    })
-  }
-
-  for (let i = 1; i <= text.length; i++) {
-    const type = i < text.length ? charTypes[i] : null
-    if (type !== currentType || i === text.length) {
-      const segment = text.slice(currentStart, i)
-      if (segment) {
-        if (currentType === null) {
-          // Plain text - dims then stays as background context
-          parts.push(
-            <span
-              key={currentStart}
-              className={`text-muted-foreground transition-opacity ${timing} ${textOpacity}`}
-            >
-              {segment}
-            </span>
-          )
-        } else if (currentType === 'typewriter') {
-          // Tipo B: gradiente SOLO durante typewriter (highlightsActive), luego texto normal
-          const showGradient = highlightsActive
-          pushHighlightWords(segment, currentStart, showGradient,
-            showGradient ? 'opacity-0' : textOpacity)
-        } else if (currentType === 'final') {
-          // Tipo C: normal durante typewriter, gradiente en encendido final (finalReveal)
-          const showGradient = finalReveal
-          pushHighlightWords(segment, currentStart, showGradient,
-            showGradient ? 'opacity-0' : isFinalLowOpacity ? 'opacity-15' : 'opacity-100')
-        } else {
-          // permanent: siempre gradiente (mientras no esté revealed)
-          const showGradient = !revealed
-          pushHighlightWords(segment, currentStart, showGradient,
-            showGradient ? 'opacity-0' : 'opacity-100')
-        }
-      }
-      currentStart = i
-      currentType = type
-    }
-  }
-
-  return parts
-}
-
-// Typewriter reflexivo con fases: contexto → reflexiones (se borran) → hook final
-type Phase = 'idle' | 'context' | 'pause-after-context' | 'reflection' | 'pause-before-delete' | 'deleting' | 'hook' | 'complete'
-
-type TypewriterState = {
-  phase: Phase
-  displayText: string
-  contextComplete: boolean
-  currentReflection: number
-  completedHookLines: string[][]
-  currentHookParagraph: number
-  currentHookLine: number
-}
-
-type TypewriterAction =
-  | { type: 'START' }
-  | { type: 'TICK'; char: string }
-  | { type: 'PHASE_CHANGE'; phase: Phase }
-  | { type: 'CONTEXT_COMPLETE' }
-  | { type: 'CLEAR_TEXT' }
-  | { type: 'DELETE_WORD' }
-  | { type: 'NEXT_REFLECTION' }
-  | { type: 'COMPLETE_HOOK_LINE'; text: string }
-  | { type: 'NEXT_HOOK_LINE' }
-  | { type: 'NEXT_HOOK_PARAGRAPH' }
-  | { type: 'SKIP_TO_COMPLETE'; allHookLines: string[][] }
-  | { type: 'RESET' }
-
-const initialTypewriterState: TypewriterState = {
-  phase: 'idle',
-  displayText: '',
-  contextComplete: false,
-  currentReflection: 0,
-  completedHookLines: [],
-  currentHookParagraph: 0,
-  currentHookLine: 0,
-}
-
-function typewriterReducer(state: TypewriterState, action: TypewriterAction): TypewriterState {
-  switch (action.type) {
-    case 'START':
-      return { ...state, phase: 'context' }
-    case 'TICK':
-      return { ...state, displayText: state.displayText + action.char }
-    case 'PHASE_CHANGE':
-      return { ...state, phase: action.phase }
-    case 'CONTEXT_COMPLETE':
-      return { ...state, contextComplete: true }
-    case 'CLEAR_TEXT':
-      return { ...state, displayText: '' }
-    case 'DELETE_WORD': {
-      const trimmed = state.displayText.trimEnd()
-      const lastSpace = trimmed.lastIndexOf(' ')
-      return { ...state, displayText: lastSpace === -1 ? '' : state.displayText.slice(0, lastSpace + 1) }
-    }
-    case 'NEXT_REFLECTION':
-      return { ...state, currentReflection: state.currentReflection + 1, displayText: '', phase: 'reflection' }
-    case 'COMPLETE_HOOK_LINE': {
-      const newCompleted = [...state.completedHookLines]
-      if (!newCompleted[state.currentHookParagraph]) newCompleted[state.currentHookParagraph] = []
-      newCompleted[state.currentHookParagraph][state.currentHookLine] = action.text
-      return { ...state, completedHookLines: newCompleted }
-    }
-    case 'NEXT_HOOK_LINE':
-      return { ...state, currentHookLine: state.currentHookLine + 1, displayText: '' }
-    case 'NEXT_HOOK_PARAGRAPH':
-      return { ...state, currentHookParagraph: state.currentHookParagraph + 1, currentHookLine: 0, displayText: '' }
-    case 'SKIP_TO_COMPLETE':
-      return {
-        ...state,
-        phase: 'complete',
-        contextComplete: true,
-        completedHookLines: action.allHookLines,
-        displayText: '',
-      }
-    case 'RESET':
-      return initialTypewriterState
-    default:
-      return state
-  }
-}
-
-const STORY_SEEN_KEY = 'story-animation-seen-v1'
-
-function ReflectiveTypewriter({
-  context,
-  reflections,
-  hookParagraphs,
-  className = '',
-  dimmed = false,
-  finalReveal = false,
-  revealed = false,
-  onComplete,
-  skipRef,
-  onStart
-}: {
-  context: string
-  reflections: readonly string[]
-  hookParagraphs: readonly (readonly string[])[]
-  className?: string
-  dimmed?: boolean
-  finalReveal?: boolean
-  revealed?: boolean
-  onComplete?: () => void
-  skipRef?: React.MutableRefObject<(() => void) | null>
-  onStart?: () => void
-}) {
-  const [state, dispatch] = useReducer(typewriterReducer, initialTypewriterState)
-  const { phase, displayText, contextComplete, currentReflection, completedHookLines, currentHookParagraph, currentHookLine } = state
-
-  const { ref, isInView } = useInView(0.5)
-  const containerRef = useRef<HTMLDivElement | null>(null)
-  const abortRef = useRef<AbortController | null>(null)
-
-  // Parse context for highlights
-  const parsedContext = useMemo(() => parseHighlights(context), [context])
-
-  // Parse hook lines for highlights
-  const parsedHookLines = useMemo(() =>
-    hookParagraphs.flatMap(p => [...p]).map(parseHighlights),
-    [hookParagraphs]
-  )
-
-  // Build all hook lines for skip functionality
-  const allHookLinesComplete = useMemo(() => {
-    const result: string[][] = []
-    let flatIdx = 0
-    for (let p = 0; p < hookParagraphs.length; p++) {
-      result[p] = []
-      for (let l = 0; l < hookParagraphs[p].length; l++) {
-        result[p][l] = parsedHookLines[flatIdx]?.clean || ''
-        flatIdx++
-      }
-    }
-    return result
-  }, [hookParagraphs, parsedHookLines])
-
-  // Skip to complete function
-  const skipToComplete = useCallback(() => {
-    abortRef.current?.abort()
-    dispatch({ type: 'SKIP_TO_COMPLETE', allHookLines: allHookLinesComplete })
-    sessionStorage.setItem(STORY_SEEN_KEY, 'true')
-    onComplete?.()
-  }, [allHookLinesComplete, onComplete])
-
-  // Expose skipToComplete to parent via ref
-  useEffect(() => {
-    if (skipRef) skipRef.current = skipToComplete
-  }, [skipRef, skipToComplete])
-
-  // Check sessionStorage on mount - skip if already seen
-  useEffect(() => {
-    const seen = sessionStorage.getItem(STORY_SEEN_KEY)
-    if (seen && phase === 'idle') {
-      skipToComplete()
-    }
-  }, []) // Only on mount
-
-  // Reset and cancel on language change
-  useEffect(() => {
-    abortRef.current?.abort()
-    abortRef.current = new AbortController()
-    dispatch({ type: 'RESET' })
-
-    // Check if already seen after reset
-    const seen = sessionStorage.getItem(STORY_SEEN_KEY)
-    if (seen) {
-      dispatch({ type: 'SKIP_TO_COMPLETE', allHookLines: allHookLinesComplete })
-    }
-  }, [context, reflections, hookParagraphs, allHookLinesComplete])
-
-  // Start when in view
-  useEffect(() => {
-    if (isInView && phase === 'idle') {
-      dispatch({ type: 'START' })
-      onStart?.()
-    }
-  }, [isInView, phase, onStart])
-
-  // Click to skip handler
-  useEffect(() => {
-    if (phase === 'complete' || phase === 'idle') return
-
-    const handleClick = () => {
-      skipToComplete()
-    }
-
-    const container = containerRef.current
-    container?.addEventListener('click', handleClick)
-
-    return () => container?.removeEventListener('click', handleClick)
-  }, [phase, skipToComplete])
-
-  // Typing delay function
-  const getTypingDelay = useCallback((char: string, prevChar: string) => {
-    let delay = 40
-    if (/[.,!?;:—]/.test(char)) delay += 120 + Math.random() * 100
-    else if (char === ' ') delay += 20 + Math.random() * 30
-    else if (prevChar === ' ') delay += 25 + Math.random() * 20
-    else if (/[áéíóúñü¿¡]/i.test(char)) delay += 30 + Math.random() * 20
-    delay += (Math.random() - 0.5) * 20
-    return Math.max(25, delay)
-  }, [])
-
-  // Main animation effect
-  useEffect(() => {
-    if (phase === 'idle' || phase === 'complete') return
-
-    const signal = abortRef.current?.signal
-
-    // Phase: context (use clean text without markers)
-    if (phase === 'context') {
-      const cleanContext = parsedContext.clean
-      if (displayText === cleanContext) {
-        const timer = setTimeout(() => {
-          if (signal?.aborted) return
-          dispatch({ type: 'PHASE_CHANGE', phase: 'pause-after-context' })
-        }, 100)
-        return () => clearTimeout(timer)
-      } else {
-        const nextChar = cleanContext[displayText.length]
-        const prevChar = displayText.length > 0 ? cleanContext[displayText.length - 1] : ''
-        const delay = getTypingDelay(nextChar, prevChar)
-        const timer = setTimeout(() => {
-          if (signal?.aborted) return
-          dispatch({ type: 'TICK', char: nextChar })
-        }, delay)
-        return () => clearTimeout(timer)
-      }
-    }
-
-    // Phase: pause after context
-    if (phase === 'pause-after-context') {
-      dispatch({ type: 'CONTEXT_COMPLETE' })
-      const timer = setTimeout(() => {
-        if (signal?.aborted) return
-        dispatch({ type: 'CLEAR_TEXT' })
-        dispatch({ type: 'PHASE_CHANGE', phase: 'reflection' })
-      }, 800)
-      return () => clearTimeout(timer)
-    }
-
-    // Phase: reflection (typing)
-    if (phase === 'reflection') {
-      const currentText = reflections[currentReflection]
-      if (displayText === currentText) {
-        const timer = setTimeout(() => {
-          if (signal?.aborted) return
-          dispatch({ type: 'PHASE_CHANGE', phase: 'pause-before-delete' })
-        }, 600)
-        return () => clearTimeout(timer)
-      } else {
-        const nextChar = currentText[displayText.length]
-        const prevChar = displayText.length > 0 ? currentText[displayText.length - 1] : ''
-        const delay = getTypingDelay(nextChar, prevChar)
-        const timer = setTimeout(() => {
-          if (signal?.aborted) return
-          dispatch({ type: 'TICK', char: nextChar })
-        }, delay)
-        return () => clearTimeout(timer)
-      }
-    }
-
-    // Phase: pause before delete
-    if (phase === 'pause-before-delete') {
-      const timer = setTimeout(() => {
-        if (signal?.aborted) return
-        dispatch({ type: 'PHASE_CHANGE', phase: 'deleting' })
-      }, 400)
-      return () => clearTimeout(timer)
-    }
-
-    // Phase: deleting (word by word, like Alt+Backspace)
-    if (phase === 'deleting') {
-      if (displayText === '') {
-        if (currentReflection < reflections.length - 1) {
-          dispatch({ type: 'NEXT_REFLECTION' })
-        } else {
-          dispatch({ type: 'PHASE_CHANGE', phase: 'hook' })
-        }
-      } else {
-        const delay = 80 + Math.random() * 40
-        const timer = setTimeout(() => {
-          if (signal?.aborted) return
-          dispatch({ type: 'DELETE_WORD' })
-        }, delay)
-        return () => clearTimeout(timer)
-      }
-    }
-
-    // Phase: hook
-    if (phase === 'hook') {
-      const flatIndex = (() => {
-        let idx = 0
-        for (let p = 0; p < currentHookParagraph; p++) idx += hookParagraphs[p].length
-        return idx + currentHookLine
-      })()
-      const { clean: currentText } = parsedHookLines[flatIndex]
-
-      if (displayText === currentText) {
-        dispatch({ type: 'COMPLETE_HOOK_LINE', text: currentText })
-
-        const isLastLine = currentHookLine >= hookParagraphs[currentHookParagraph].length - 1
-        const isLastParagraph = currentHookParagraph >= hookParagraphs.length - 1
-
-        if (isLastLine && isLastParagraph) {
-          const timer = setTimeout(() => {
-            if (signal?.aborted) return
-            dispatch({ type: 'PHASE_CHANGE', phase: 'complete' })
-            sessionStorage.setItem(STORY_SEEN_KEY, 'true')
-            onComplete?.()
-          }, 600)
-          return () => clearTimeout(timer)
-        } else if (isLastLine) {
-          const timer = setTimeout(() => {
-            if (signal?.aborted) return
-            dispatch({ type: 'NEXT_HOOK_PARAGRAPH' })
-          }, 800)
-          return () => clearTimeout(timer)
-        } else {
-          const timer = setTimeout(() => {
-            if (signal?.aborted) return
-            dispatch({ type: 'NEXT_HOOK_LINE' })
-          }, 500)
-          return () => clearTimeout(timer)
-        }
-      } else {
-        const nextCharIndex = displayText.length
-        const nextChar = currentText[nextCharIndex]
-        const prevChar = nextCharIndex > 0 ? currentText[nextCharIndex - 1] : ''
-
-        const { slowRanges } = parsedHookLines[flatIndex]
-        const isInSlowRange = slowRanges.some(([start, end]) => nextCharIndex >= start && nextCharIndex < end)
-
-        const textSoFar = currentText.slice(0, nextCharIndex)
-        const isAfterSentenceEnd = prevChar === '.' && nextChar === ' ' && textSoFar.includes('negocio')
-
-        let delay = getTypingDelay(nextChar, prevChar)
-
-        if (isAfterSentenceEnd) {
-          delay = 800
-        } else if (isInSlowRange) {
-          delay = delay * 4 + 80
-        }
-
-        const timer = setTimeout(() => {
-          if (signal?.aborted) return
-          dispatch({ type: 'TICK', char: nextChar })
-        }, delay)
-        return () => clearTimeout(timer)
-      }
-    }
-  }, [phase, displayText, context, reflections, currentReflection, hookParagraphs, parsedHookLines, currentHookParagraph, currentHookLine, getTypingDelay, onComplete])
-
-  const showCursor = phase !== 'complete' && phase !== 'idle'
-
-  // Helper to get parsed highlights for hook line
-  const getHookParsed = (pIdx: number, lIdx: number): ParsedHighlights => {
-    let flatIdx = 0
-    for (let p = 0; p < pIdx; p++) flatIdx += hookParagraphs[p].length
-    return parsedHookLines[flatIdx + lIdx] || { clean: '', fadeOutRanges: [], permanentRanges: [], fadeInRanges: [], slowRanges: [] }
-  }
-
-  // Combine refs
-  const setRefs = useCallback((node: HTMLDivElement | null) => {
-    containerRef.current = node
-    ref(node)
-  }, [ref])
-
-  return (
-    <div
-      ref={setRefs}
-      className={`${className} min-h-[7rem] md:min-h-[8rem] ${phase !== 'complete' && phase !== 'idle' ? 'cursor-pointer' : ''}`}
-      title={phase !== 'complete' && phase !== 'idle' ? 'Click to skip' : undefined}
-    >
-      {/* Context line */}
-      <span className="md:block md:-mb-1">
-        {phase === 'context' ? (
-          <>
-            {renderHighlightedText(displayText, [], {
-              dimmed,
-              finalReveal,
-              revealed,
-              typewriterRanges: parsedContext.typewriterRanges,
-              finalRanges: parsedContext.finalRanges,
-              permanentRanges: parsedContext.permanentRanges,
-              highlightsActive: true, // gradiente activo durante typewriter del context
-            })}
-            {showCursor && <span className="ml-0.5 inline-block text-primary" style={{ animation: 'blink 0.6s step-end infinite' }}>|</span>}
-          </>
-        ) : contextComplete ? (
-          <>
-            {renderHighlightedText(parsedContext.clean, [], {
-              dimmed,
-              finalReveal,
-              revealed,
-              typewriterRanges: parsedContext.typewriterRanges,
-              finalRanges: parsedContext.finalRanges,
-              permanentRanges: parsedContext.permanentRanges,
-              highlightsActive: false, // ya no estamos en el context, gradiente apagado
-            })}
-            {phase === 'pause-after-context' && (
-              <span className="ml-0.5 inline-block text-primary" style={{ animation: 'blink 0.6s step-end infinite' }}>|</span>
-            )}
-          </>
-        ) : null}
-      </span>{' '}
-
-      {/* Reflection line (becomes the hook line) */}
-      {(phase === 'reflection' || phase === 'pause-before-delete' || phase === 'deleting') && (
-        <p className="mb-1">
-          <span className="text-gradient-theme">{displayText}</span>
-          {showCursor && <span className="ml-0.5 inline-block text-primary" style={{ animation: 'blink 0.6s step-end infinite' }}>|</span>}
-        </p>
-      )}
-
-      {/* Hook paragraphs */}
-      {/* Hook paragraphs: pIdx=0 inline on mobile (flows with context), block on desktop */}
-      {(phase === 'hook' || phase === 'complete') && hookParagraphs.map((paragraph, pIdx) => {
-        const Tag = pIdx === 0 ? 'span' : 'p'
-        const wrapperClass = pIdx === 0
-          ? "md:block md:mb-4"
-          : "mt-4 md:mt-0"
-        return (
-          <Tag key={pIdx} className={wrapperClass}>
-            {paragraph.map((_, lIdx) => {
-              const parsed = getHookParsed(pIdx, lIdx)
-              const isCurrentLine = pIdx === currentHookParagraph && lIdx === currentHookLine
-              const isCompleted = completedHookLines[pIdx]?.[lIdx] !== undefined
-
-              // Unificar renderizado para permitir transiciones CSS suaves
-              // El texto a mostrar: completado > actual (displayText) > vacío
-              const textToShow = isCompleted
-                ? completedHookLines[pIdx][lIdx]
-                : (isCurrentLine && phase === 'hook')
-                  ? displayText
-                  : ''
-
-              // Tipo B highlights activos SOLO mientras se escribe esta línea
-              const highlightsActive = isCurrentLine && phase === 'hook'
-
-              // Solo renderizar si hay texto o es la línea actual
-              if (!textToShow && !isCurrentLine) return null
-
-              return (
-                <span key={lIdx} className={lIdx > 0 ? "md:block md:-mt-1" : ""}>
-                  {lIdx > 0 && <span className="md:hidden"> </span>}
-                  {renderHighlightedText(textToShow, [], {
-                    dimmed,
-                    finalReveal,
-                    revealed,
-                    typewriterRanges: parsed.typewriterRanges,
-                    finalRanges: parsed.finalRanges,
-                    permanentRanges: parsed.permanentRanges,
-                    highlightsActive,
-                  })}
-                  {isCurrentLine && phase === 'hook' && showCursor && (
-                    <span className="ml-0.5 inline-block text-primary" style={{ animation: 'blink 0.6s step-end infinite' }}>|</span>
-                  )}
-                </span>
-              )
-            })}
-          </Tag>
-        )
-      })}
-    </div>
-  )
-}
-
-// Sección de historia con typewriter y animaciones
-function StorySection({ t }: { t: (typeof translations)[Lang] }) {
-  const [typewriterComplete, setTypewriterComplete] = useState(false)
-  const [textDimmed, setTextDimmed] = useState(false)
-  const [finalReveal, setFinalReveal] = useState(false)  // Tipo C se enciende con gradiente
-  const [textRevealed, setTextRevealed] = useState(false) // Resto del texto se enciende
-  const [animationStarted, setAnimationStarted] = useState(false)
-  const [scrollSkipped, setScrollSkipped] = useState(false)
-  const skipRef = useRef<(() => void) | null>(null)
-  const sectionRef = useRef<HTMLElement>(null)
-
-  // Reset states when language changes
-  useEffect(() => {
-    // Check if animation was already seen (skip case)
-    const seen = sessionStorage.getItem(STORY_SEEN_KEY)
-    if (seen) {
-      setTypewriterComplete(true)
-      setTextDimmed(true)
-      setFinalReveal(true)
-      setTextRevealed(true)
-    } else {
-      setTypewriterComplete(false)
-      setTextDimmed(false)
-      setFinalReveal(false)
-      setTextRevealed(false)
-      setAnimationStarted(false)
-      setScrollSkipped(false)
-    }
-  }, [t])
-
-  // Transition sequence: dim → finalReveal (Tipo C gradient) → revealed (rest)
-  const sequenceStartedRef = useRef(false)
-
-  useEffect(() => {
-    // Reset ref when language changes
-    sequenceStartedRef.current = false
-  }, [t])
-
-  useEffect(() => {
-    if (!typewriterComplete || sequenceStartedRef.current) return
-    sequenceStartedRef.current = true
-
-    // Secuencia de animación post-typewriter:
-    // 1. Esperar a que Tipo B (Construir) termine de desvanecerse (~2.5s transición)
-    // 2. Dimmed: todo se atenúa
-    // 3. FinalReveal: Tipo C se enciende con gradiente (+15 años + sistemas)
-    // 4. Revealed: resto del texto se enciende, Tipo C MANTIENE gradiente
-
-    // Step 1: Dim everything (2500ms - espera a que Tipo B haya perdido gradiente)
-    const dimTimer = setTimeout(() => {
-      setTextDimmed(true)
-    }, 2500)
-
-    // Step 2: Tipo C se enciende con gradiente (4500ms - contenido adicional ya visible)
-    const finalRevealTimer = setTimeout(() => {
-      setFinalReveal(true)
-    }, 4500)
-
-    // Step 3: Resto del texto se enciende (8000ms - Tipo C tuvo tiempo de brillar)
-    const revealTimer = setTimeout(() => {
-      setTextRevealed(true)
-    }, 8000)
-
-    return () => {
-      clearTimeout(dimTimer)
-      clearTimeout(finalRevealTimer)
-      clearTimeout(revealTimer)
-    }
-  }, [typewriterComplete])
-
-  // Scroll-past-as-skip: si el usuario scrollea pasando la sección, auto-skip
-  useEffect(() => {
-    if (typewriterComplete) return
-    const section = sectionRef.current
-    if (!section) return
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
-          setScrollSkipped(true)
-          skipRef.current?.()
-        }
-      },
-      { threshold: 0 }
-    )
-    observer.observe(section)
-    return () => observer.disconnect()
-  }, [typewriterComplete])
-
-  return (
-    <section ref={sectionRef} id="about" className="relative py-16 md:py-24">
-      {/* Vignette horizontal: tapa puntos en el centro, se ven en los bordes */}
-      <div className="absolute inset-0 pointer-events-none" style={{
-        background: 'linear-gradient(90deg, transparent 0%, hsl(var(--background)) 25%, hsl(var(--background)) 75%, transparent 100%)',
-      }} />
-      {/* Fade vertical: transparente arriba → fondo sólido abajo */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background pointer-events-none" />
-      <div className="relative z-10 max-w-5xl mx-auto px-6">
-        {/* Hook emocional con typewriter reflexivo + botón skip */}
-        <div className="relative pb-12">
-          <ReflectiveTypewriter
-            context={t.story.context}
-            reflections={t.story.reflections}
-            hookParagraphs={t.story.hookParagraphs}
-            dimmed={textDimmed}
-            finalReveal={finalReveal}
-            revealed={textRevealed}
-            className="font-display text-lg md:text-2xl leading-relaxed text-center max-w-3xl mx-auto"
-            onComplete={() => setTypewriterComplete(true)}
-            skipRef={skipRef}
-            onStart={() => setAnimationStarted(true)}
-          />
-
-          {/* Botón skip — posición absoluta debajo del texto, en el padding reservado */}
-          <AnimatePresence>
-            {animationStarted && !typewriterComplete && (
-              <motion.button
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                onClick={() => skipRef.current?.()}
-                className="absolute bottom-0 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 px-4 py-1.5 rounded-full text-sm text-muted-foreground border border-border/50 bg-card backdrop-blur-sm cursor-pointer hover:bg-primary/10 hover:border-primary/30 hover:text-foreground transition-colors duration-200"
-              >
-                <SkipForward className="w-3.5 h-3.5" />
-                {t.story.skipButton}
-              </motion.button>
-            )}
-          </AnimatePresence>
-        </div>
-
-        {/* Contenido que aparece después del typewriter - expansión suave (instantánea si scroll-skip) */}
-        <motion.div
-          initial={{ height: 0, opacity: 0 }}
-          animate={typewriterComplete
-            ? { height: 'auto', opacity: 1 }
-            : { height: 0, opacity: 0 }
-          }
-          transition={scrollSkipped
-            ? { duration: 0 }
-            : {
-                height: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
-                opacity: { duration: 0.4, delay: 0.1 }
-              }
-          }
-          style={{ overflow: 'hidden' }}
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={typewriterComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-            transition={{ duration: 0.6, delay: typewriterComplete ? 0.1 : 0, ease: [0.25, 0.46, 0.45, 0.94] }}
-          >
-            <p className={`text-base md:text-lg text-muted-foreground leading-relaxed text-center max-w-3xl mx-auto transition-opacity duration-[2500ms] ease-in-out ${textDimmed ? (textRevealed ? 'opacity-50' : 'opacity-15') : 'opacity-100'}`}>
-              {t.story.why}
-            </p>
-          </motion.div>
-
-          <div className="mt-6 text-center max-w-3xl mx-auto">
-            {t.story.seeking.map((line, i) => {
-              // Spotlight: lines 0 and 2 light up with finalReveal, line 1 stays as background
-              const isSpotlit = i === 0 || i === 2
-              const dimOpacity = textDimmed
-                ? (isSpotlit ? (finalReveal ? 'opacity-100' : 'opacity-15') : (textRevealed ? 'opacity-50' : 'opacity-15'))
-                : 'opacity-100'
-
-              return (
-                <motion.p
-                  key={i}
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={typewriterComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-                  transition={{ duration: 0.6, delay: typewriterComplete ? 0.3 + i * 0.2 : 0, ease: [0.25, 0.46, 0.45, 0.94] }}
-                  className={`transition-opacity duration-[2500ms] ease-in-out ${dimOpacity} ${
-                    i === 2
-                      ? 'font-display text-lg md:text-2xl font-bold text-gradient-theme leading-snug'
-                      : i === 1
-                        ? 'font-display text-lg md:text-2xl text-muted-foreground leading-snug'
-                        : 'font-display text-lg md:text-2xl font-bold text-foreground leading-snug'
-                  }`}
-                >
-                  {line}
-                </motion.p>
-              )
-            })}
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
+                {t.summary.p1} <span className="text-primary">{t.summary.p1Highlight}</span> {t.summary.p1End}
+              </h2>
+              <div className="space-y-4 text-lg text-muted-foreground leading-relaxed mb-8">
+                {t.story.hookParagraphs.map((paras: string[], i: number) => (
+                  <p key={i}>
+                    {paras.map((text, j) => {
+                      if (text.startsWith('*') && text.endsWith('*')) return <strong key={j} className="text-foreground">{text.slice(1, -1)}</strong>
+                      if (text.startsWith('+') && text.endsWith('+')) return <span key={j} className="text-primary font-medium">{text.slice(1, -1)}</span>
+                      return text
+                    })}
+                  </p>
+                ))}
+              </div>
+            </AnimatedSection>
           </div>
-
-          {/* Burbujas de navegación - delays sincronizados */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={typewriterComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-            transition={{ duration: 0.6, delay: typewriterComplete ? 0.9 : 0, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className={`flex flex-wrap justify-center gap-3 mt-10 mb-12 transition-opacity duration-[2500ms] ease-in-out ${textDimmed && !textRevealed ? 'opacity-15' : 'opacity-100'}`}
-          >
-          {t.story.nav.map((item) => {
-            const icons: Record<string, React.ReactNode> = {
-              briefcase: <Briefcase className="w-4 h-4" />,
-              folder: <FolderGit2 className="w-4 h-4" />,
-              mail: <Mail className="w-4 h-4" />,
-              bot: <Bot className="w-4 h-4" />
-            }
-            const isHighlight = 'highlight' in item && item.highlight
-            const handleClick = (e: React.MouseEvent) => {
-              if (item.href === '#chat') {
-                e.preventDefault()
-                window.dispatchEvent(new Event('openChat'))
-              }
-            }
-            return (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={handleClick}
-                className={isHighlight
-                  ? "flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-theme text-white border border-transparent hover:brightness-110 hover:shadow-xl hover:shadow-primary/30 active:brightness-95 transition-all duration-200 text-sm font-medium shadow-lg shadow-primary/25"
-                  : "flex items-center gap-2 px-4 py-2 rounded-full bg-card border border-border hover:border-primary/50 hover:bg-primary/5 transition-all duration-200 text-sm font-medium"
-                }
-              >
-                {icons[item.icon]}
-                {item.label}
-              </a>
-            )
-          })}
-          </motion.div>
-        </motion.div>
+          <div className="lg:col-span-5">
+            <div className="grid gap-4">
+              {t.summary.cards.map((card: any, i: number) => (
+                <AnimatedSection key={i} delay={0.1 * (i + 1)}>
+                  <div className="p-5 rounded-2xl bg-card border border-border hover:border-primary/30 transition-all group">
+                    <h3 className="font-bold mb-1 group-hover:text-primary transition-colors">{card.title}</h3>
+                    <p className="text-sm text-muted-foreground">{card.desc}</p>
+                  </div>
+                </AnimatedSection>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   )
 }
 
-function CertLogo({ logo }: { logo: string }) {
-  const logos: Record<string, React.ReactNode> = {
-    anthropic: (
-      <svg viewBox="0 0 92.2 65" className="w-6 h-6" fill="currentColor" aria-hidden="true">
-        <path d="M66.5,0H52.4l25.7,65h14.1L66.5,0z M25.7,0L0,65h14.4l5.3-13.6h26.9L51.8,65h14.4L40.5,0C40.5,0,25.7,0,25.7,0z M24.3,39.3l8.8-22.8l8.8,22.8H24.3z"/>
-      </svg>
-    ),
-    airtable: (
-      <svg viewBox="0 0 200 170" className="w-6 h-6" aria-hidden="true">
-        <path fill="#FCB400" d="M90.039 12.368 24.079 39.66c-3.667 1.519-3.63 6.729.062 8.192l66.235 26.266a24.58 24.58 0 0 0 18.12 0l66.236-26.266c3.69-1.463 3.729-6.673.062-8.192l-65.96-27.292a24.58 24.58 0 0 0-18.795 0"/>
-        <path fill="#18BFFF" d="M105.312 88.46v65.617c0 3.12 3.147 5.258 6.048 4.108l73.806-28.648a4.42 4.42 0 0 0 2.79-4.108V59.813c0-3.121-3.147-5.258-6.048-4.108l-73.806 28.648a4.42 4.42 0 0 0-2.79 4.108"/>
-        <path fill="#F82B60" d="m88.078 91.846-21.904 10.576-2.224 1.075-46.238 22.155c-2.93 1.414-6.672-.722-6.672-3.978V60.088c0-1.178.604-2.195 1.414-2.96a5 5 0 0 1 1.12-.84c1.104-.663 2.68-.84 4.02-.31L87.71 83.76c3.564 1.414 3.844 6.408.368 8.087"/>
-        <path fill="#8B8B8B" d="m88.078 91.846-21.904 10.576-53.72-45.295a5 5 0 0 1 1.12-.839c1.104-.663 2.68-.84 4.02-.31L87.71 83.76c3.564 1.414 3.844 6.408.368 8.087"/>
-      </svg>
-    ),
-    make: (
-      <svg viewBox="0 0 24 24" className="w-6 h-6" aria-hidden="true">
-        <defs>
-          <linearGradient gradientUnits="userSpaceOnUse" id="make-fill-0" x1="1.5" x2="12" y1="19.5" y2="0">
-            <stop stopColor="#F0F"/><stop offset=".17" stopColor="#E90CF9"/><stop offset=".54" stopColor="#C023ED"/><stop offset="1" stopColor="#B02DE9"/>
-          </linearGradient>
-          <linearGradient gradientUnits="userSpaceOnUse" id="make-fill-1" x1="0" x2="24" y1="24" y2="0">
-            <stop stopColor="#B02DE9"/><stop offset="1" stopColor="#6D00CC"/>
-          </linearGradient>
-          <linearGradient gradientUnits="userSpaceOnUse" id="make-fill-2" x1="0" x2="24" y1="24" y2="0">
-            <stop stopColor="#F0F"/><stop offset=".3" stopColor="#B02DE9"/><stop offset="1" stopColor="#6021C3"/>
-          </linearGradient>
-        </defs>
-        <path d="M6.989 4.036L.062 17.818a.577.577 0 00.257.774l3.733 1.876a.577.577 0 00.775-.256L11.753 6.43a.577.577 0 00-.257-.775L7.763 3.78a.575.575 0 00-.774.257z" fill="url(#make-fill-0)"/>
-        <path d="M19.245 3.832h4.179c.318 0 .577.26.577.577v15.425a.578.578 0 01-.577.578h-4.179a.578.578 0 01-.577-.578V4.41c0-.318.259-.577.577-.577z" fill="url(#make-fill-1)"/>
-        <path d="M12.815 4.085L9.85 19.108a.576.576 0 00.453.677l4.095.826c.314.063.62-.14.681-.454l2.964-15.022a.577.577 0 00-.453-.677l-4.096-.827a.577.577 0 00-.68.454z" fill="url(#make-fill-2)"/>
-      </svg>
-    ),
-  }
-  return logos[logo] || null
-}
-
-function App() {
-  const location = useLocation()
-  const lang: Lang = location.pathname === '/en' ? 'en' : 'es'
+const App = ({ lang = 'en' }: { lang?: 'zh' | 'en' }) => {
   const t = translations[lang]
-  const hydrated = useHydrated()
-  useHeroStyles()
-  const { displayText: roleText, roleIndex } = useTypewriterRotation(t.greetingRoles)
+  const [hydrated, setHydrated] = useState(false)
+  const [roleIndex, setRoleIndex] = useState(0)
 
-
-  // SEO: Dynamic meta tags based on language
-  const seoData = seo[lang]
-  useHomeSeo({ lang, title: seoData.title, description: seoData.description })
+  useEffect(() => {
+    setHydrated(true)
+    const interval = setInterval(() => {
+      setRoleIndex((prev) => (prev + 1) % t.greetingRoles.length)
+    }, 3000)
+    return () => clearInterval(interval)
+  }, [t.greetingRoles.length])
 
   return (
-    <main className="min-h-screen bg-background bg-[length:24px_24px] [background-image:radial-gradient(circle,hsl(var(--dot-grid))_1px,transparent_1px)]">
-      {/* Skip navigation — accessible keyboard shortcut */}
-      <a
-        href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-primary focus:text-primary-foreground focus:font-medium focus:shadow-lg"
-      >
-        {lang === 'en' ? 'Skip to content' : 'Saltar al contenido'}
-      </a>
+    <main className="min-h-screen bg-background text-foreground selection:bg-primary/20 overflow-x-hidden">
+      <GlobalNav />
 
-      <HomeToc lang={lang} />
+      {/* Hero */}
+      <header className="relative pt-32 pb-16 md:pt-48 md:pb-32 overflow-hidden">
+        {/* Background effects */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl aspect-square bg-[radial-gradient(circle_at_center,hsl(var(--primary)/0.08)_0%,transparent_70%)]" />
+          <div className="absolute top-[20%] right-[-10%] w-[40%] aspect-square bg-[radial-gradient(circle_at_center,hsl(var(--accent)/0.05)_0%,transparent_70%)]" />
+        </div>
 
-      {/* Hero Section */}
-      <header id="main-content" className="relative overflow-hidden">
-        <GridSnakes />
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent" />
-        <div className="absolute top-0 right-[max(0px,calc(50%-40rem))] w-[600px] h-[600px] rounded-full blur-3xl -translate-y-1/3 translate-x-1/3 hidden sm:block animate-[hero-glow_8s_ease-in-out_infinite]" style={{ backgroundColor: 'hsl(var(--hero-orb-primary))' }} />
-        <div className="absolute bottom-0 left-[max(0px,calc(50%-40rem))] w-[550px] h-[550px] rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 hidden sm:block animate-[hero-glow_11s_ease-in-out_infinite_reverse]" style={{ backgroundColor: 'hsl(var(--hero-orb-accent))' }} />
-
-        <div className="relative max-w-5xl mx-auto px-6 py-20 md:py-32">
+        <div className="max-w-5xl mx-auto px-6 relative z-10">
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-            {/* Photo */}
+            {/* Avatar */}
             <motion.div
-              initial={hydrated ? { opacity: 0, scale: 0.8 } : false}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="relative"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5, type: 'spring' }}
+              className="relative w-32 h-32 md:w-48 md:h-48 shrink-0"
             >
-              <div className="relative w-40 h-40 md:w-48 md:h-48">
-                {/* Glow effect */}
-                <div className="absolute inset-0 rounded-full bg-gradient-theme-30 blur-xl" />
-                {/* Glassmorphism frame */}
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/20 to-white/5 md:backdrop-blur-sm border border-white/20 shadow-2xl" />
-                {/* Inner border */}
-                <div className="absolute inset-2 rounded-full bg-gradient-theme-50 p-[2px]">
-                  <div className="w-full h-full rounded-full overflow-hidden">
-                    <img src="/foto-avatar-sm.webp" srcSet="/foto-avatar-sm.webp 192w, /foto-avatar.webp 384w" sizes="(max-width: 768px) 160px, 192px" alt="Santiago Fernández de Valderrama" className="w-full h-full object-cover" width={192} height={192} fetchPriority="high" />
-                  </div>
-                </div>
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary to-accent blur-2xl opacity-20 animate-pulse" />
+              <div className="relative w-full h-full rounded-full border-2 border-border overflow-hidden bg-muted p-1">
+                <img src="/foto-avatar.png" alt="Yifan Xue" className="w-full h-full rounded-full object-cover" />
               </div>
-              <motion.div
-                initial={hydrated ? { scale: 0 } : false}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.4, type: "spring", stiffness: 200 }}
-                className="absolute -bottom-1 -right-1 w-10 h-10 rounded-full bg-gradient-theme flex items-center justify-center shadow-lg border-2 border-background"
-              >
-                <BadgeCheck className="w-6 h-6 text-white" />
-              </motion.div>
             </motion.div>
 
+            {/* Title & Roles */}
             <motion.div
-              initial={hydrated ? { opacity: 0, x: -20 } : false}
+              initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-center md:text-left"
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-center md:text-left flex-1"
             >
-              <p className="text-lg text-muted-foreground mb-2">
-                {lang === 'es' ? 'Hola, soy' : "Hi, I'm"} <Link to={lang === 'es' ? '/sobre-mi' : '/about'} className="text-gradient-theme font-semibold hover:opacity-80 transition-opacity">@santifer</Link>,
-              </p>
-              <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 leading-tight">
-                <span className="text-gradient-theme">{hydrated ? roleText : t.greetingRoles[0]}</span>
-                {hydrated && roleIndex === 2 && roleText.includes('career-ops') && (
-                  <a href="https://github.com/santifer/career-ops" target="_blank" rel="noopener noreferrer" aria-label="career-ops on GitHub" className="inline-flex items-center ml-2 text-primary hover:opacity-80 transition-opacity align-middle">
-                    <svg viewBox="0 0 24 24" className="w-6 h-6 md:w-7 md:h-7" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-                  </a>
-                )}
-                {hydrated && <span className="inline-block w-[3px] h-[0.85em] bg-primary ml-1 rounded-sm translate-y-[2px]" style={{ animation: 'blink 1s step-end infinite' }} />}
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted border border-border text-xs font-medium mb-4">
+                <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
+                {t.location}
+              </div>
+
+              <h1 className="text-4xl md:text-6xl font-bold font-display tracking-tight mb-4">
+                {lang === 'zh' ? '我是' : "I'm"} <span className="text-primary">Yifan Xue</span>
                 <br />
-                {lang === 'es' ? (
-                  <>
-                    {t.greeting}
-                    <br />
-                    de IA con <BeamPill>HITL <span className="opacity-60">+</span> MCP <span className="opacity-60">+</span> RAG</BeamPill>
-                  </>
-                ) : (
-                  <>
-                    {t.greeting} {t.role}
-                    <br />
-                    with <BeamPill>HITL <span className="opacity-60">+</span> MCP <span className="opacity-60">+</span> RAG</BeamPill>
-                  </>
-                )}
+                <span className="text-muted-foreground">{t.greeting}</span>
+                <br />
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={roleIndex}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="text-foreground"
+                  >
+                    {t.greetingRoles[roleIndex]}
+                  </motion.span>
+                </AnimatePresence>
               </h1>
 
               <div className="flex flex-wrap justify-center md:justify-start gap-3">
-                {t.pillLabels.map((label, i) => (
-                  <span
-                    key={label}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 backdrop-blur-sm ${
-                      hydrated && i === roleIndex
-                        ? 'border border-[#20d6ee] bg-[#20d6ee]/15 text-foreground scale-105'
-                        : 'border border-[#20d6ee]/30 bg-background/80 text-muted-foreground'
-                    }`}
-                  >
+                {t.pillLabels.map((label) => (
+                  <span key={label} className="px-4 py-2 rounded-full border border-border bg-muted/50 text-sm font-medium">
                     {label}
                   </span>
                 ))}
-                <Link
-                  to={lang === 'es' ? '/career-ops' : '/career-ops-system'}
-                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 backdrop-blur-sm ${
-                    hydrated && roleIndex === 2
-                      ? 'border border-[#20d6ee] bg-[#20d6ee]/15 text-foreground scale-105'
-                      : 'border border-[#20d6ee]/30 bg-background/80 text-muted-foreground'
-                  }`}
-                >
-                  <Github className="w-3.5 h-3.5" />
-                  <span>career-ops</span>
-                  <Star className="w-3 h-3 text-yellow-500" />
-                  {/* hero-stats:career-ops:stars */}<span className="font-medium">35.6K</span>
-                  <GitFork className="w-3 h-3" />
-                  {/* hero-stats:career-ops:forks */}<span>7.1K</span>
-                </Link>
               </div>
-
             </motion.div>
           </div>
-
         </div>
       </header>
 
-      {/* Summary - Con storytelling integrado */}
       <StorySection t={t} />
 
-      {/* Experience - Con preámbulo de competencias */}
-      <section id="experience" className="py-16 md:py-24 bg-muted/30" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 2000px' }}>
+      {/* Experience */}
+      <section id="experience" className="py-16 md:py-24 bg-muted/30">
         <div className="max-w-5xl mx-auto px-6">
           <AnimatedSection>
-            <h2 className="font-display text-2xl font-semibold mb-8 flex items-center gap-3">
+            <h2 className="font-display text-2xl font-semibold mb-12 flex items-center gap-3">
               <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
                 <Briefcase className="w-5 h-5 text-primary" />
               </div>
@@ -1558,1440 +213,153 @@ function App() {
             </h2>
           </AnimatedSection>
 
-          {/* Preámbulo: Cómo trabajo + Competencias */}
-          <AnimatedSection delay={0.1}>
-            <div className="mb-12 p-6 rounded-2xl bg-card/50">
-              <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-6">
-                {t.summary.p2} <span className="text-foreground font-medium">{t.summary.p2Highlight}</span>{t.summary.p2End}
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 max-w-3xl mx-auto">
-                {t.coreCompetencies.items.map((item, i) => (
-                  <div
-                    key={i}
-                    className="p-3 sm:p-4 rounded-xl bg-background/50 border border-border hover:border-accent/30 transition-colors group"
-                  >
-                    <div className="flex items-center sm:items-start gap-2 sm:mb-1 sm:min-h-[2.5rem]">
-                      <Zap className="w-4 h-4 text-accent shrink-0" />
-                      <span className="text-sm font-semibold group-hover:text-accent transition-colors leading-tight">{item.title}</span>
-                    </div>
-                    <p className="text-sm text-muted-foreground pl-6 hidden sm:block">{item.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </AnimatedSection>
-
-          {/* Zinkee */}
-          <AnimatedSection delay={0.1}>
-            <div className="mb-12">
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-2">
-                <div className="flex items-center gap-3">
-                  <img src="/zinkee-logo.webp" alt="Zinkee" className="w-10 h-10 shrink-0" width={40} height={40} loading="lazy" decoding="async" />
-                  <h3 className="font-display text-2xl font-bold">{t.experience.zinkee.company}</h3>
-                </div>
-                <span className="text-sm text-muted-foreground">{t.experience.zinkee.location}</span>
-              </div>
-              <p className="text-primary font-medium mb-1">{t.experience.zinkee.role}</p>
-              <p className="text-sm text-muted-foreground mb-2">{t.experience.zinkee.period}</p>
-              <p className="text-muted-foreground whitespace-pre-line">{t.experience.zinkee.desc}</p>
-            </div>
-          </AnimatedSection>
-
-          {/* Santifer iRepair - Bento Grid */}
-          <AnimatedSection delay={0.1}>
-            <div className="mb-12">
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-2">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl overflow-hidden bg-[#888] shrink-0">
-                    <picture>
-                      <source srcSet="/logo-santifer.webp" type="image/webp" />
-                      <img src="/logo-santifer.jpg" alt={t.experience.santifer.company} className="w-full h-full object-cover" width={40} height={40} loading="lazy" decoding="async" />
-                    </picture>
-                  </div>
-                  <h3 className="font-display text-2xl font-bold">{t.experience.santifer.company}</h3>
-                </div>
-                <Link to={lang === 'en' ? '/santifer-irepair-founder' : '/santifer-irepair'} className="text-sm text-primary hover:underline flex items-center gap-1">
-                  santifer irepair
-                </Link>
-                <span className="text-sm text-muted-foreground">{t.experience.santifer.location}</span>
-              </div>
-              <p className="text-primary font-medium mb-1">{t.experience.santifer.role}</p>
-              <p className="text-sm text-muted-foreground mb-4">{t.experience.santifer.period}</p>
-              <ul className="text-sm text-muted-foreground space-y-1 mb-6">
-                {t.experience.santifer.highlights.map((h, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <span className="text-primary mt-1">•</span>
-                    <span>{h}</span>
-                  </li>
-                ))}
-              </ul>
-
-              {/* Trusted By - Corporate Logos */}
-              <div className="pt-4 border-t border-border/50">
-                <p className="text-xs text-muted-foreground/60 uppercase tracking-wider mb-4">{t.experience.santifer.trustedBy.label}</p>
-                <div className="flex flex-wrap items-center gap-x-6 gap-y-3 md:gap-x-8">
-                  {t.experience.santifer.trustedBy.logos.map((logo, i) => (
-                    <div key={i} className="flex items-center gap-2 hover:opacity-90 transition-opacity duration-200">
-                      {'src' in logo ? (
-                        <img src={logo.src} alt={logo.name} className="h-5 w-auto shrink-0 invert opacity-60 hover:opacity-80 dark:invert-0 dark:opacity-70 dark:hover:opacity-90" loading="lazy" width={20} height={20} />
-                      ) : (
-                        <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 shrink-0 opacity-60 dark:opacity-70" aria-hidden="true" dangerouslySetInnerHTML={{ __html: logo.icon }} />
-                      )}
-                      <span className="text-sm font-medium opacity-60 dark:opacity-70">{logo.name}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Deep dive CTA */}
-              <Link to={t.experience.santifer.caseStudyUrl} className="inline-flex items-center gap-2 mt-6 text-sm font-medium text-primary hover:text-primary/80 transition-colors duration-200 group/cta">
-                <span className="px-4 py-2 rounded-lg bg-primary/10 border border-primary/30 group-hover/cta:bg-primary/20 group-hover/cta:border-primary/50 transition-all duration-200">{t.experience.santifer.caseStudyLabel}</span>
-              </Link>
-            </div>
-          </AnimatedSection>
-
-          {/* Business OS - Full Width Hero Card */}
-          <AnimatedSection delay={0.1} className="mb-8">
-            <div className="p-8 rounded-2xl bg-gradient-to-br from-gold/15 via-gold/5 to-transparent border border-gold/30 hover:border-gold/50 transition-colors duration-200 group">
-              <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
-                <div className="flex-1 flex flex-col">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center shrink-0">
-                      <svg viewBox="0 0 200 170" className="w-6 h-6" aria-hidden="true">
-                        <path fill="#FCB400" d="M90.039 12.368 24.079 39.66c-3.667 1.519-3.63 6.729.062 8.192l66.235 26.266a24.58 24.58 0 0 0 18.12 0l66.236-26.266c3.69-1.463 3.729-6.673.062-8.192l-65.96-27.292a24.58 24.58 0 0 0-18.795 0"/>
-                        <path fill="#18BFFF" d="M105.312 88.46v65.617c0 3.12 3.147 5.258 6.048 4.108l73.806-28.648a4.42 4.42 0 0 0 2.79-4.108V59.813c0-3.121-3.147-5.258-6.048-4.108l-73.806 28.648a4.42 4.42 0 0 0-2.79 4.108"/>
-                        <path fill="#F82B60" d="m88.078 91.846-21.904 10.576-2.224 1.075-46.238 22.155c-2.93 1.414-6.672-.722-6.672-3.978V60.088c0-1.178.604-2.195 1.414-2.96a5 5 0 0 1 1.12-.84c1.104-.663 2.68-.84 4.02-.31L87.71 83.76c3.564 1.414 3.844 6.408.368 8.087"/>
-                      </svg>
-                    </div>
-                    <span className="badge px-3 py-1 bg-gold/20 text-gold">Source of Truth</span>
-                  </div>
-                  <h4 className="font-display text-2xl font-bold mb-4">{t.experience.santifer.businessOS.title}</h4>
-                  <p className="text-muted-foreground mb-6">{t.experience.santifer.businessOS.desc}</p>
-                  <ul className="text-sm text-muted-foreground space-y-2">
-                    {t.experience.santifer.businessOS.modules.map((item, i) => {
-                      const icons: Record<string, React.ReactNode> = {
-                        database: <Database className="w-4 h-4" />,
-                        users: <Users className="w-4 h-4" />,
-                        layout: <Layout className="w-4 h-4" />,
-                        package: <Package className="w-4 h-4" />,
-                        messageSquare: <MessageSquare className="w-4 h-4" />,
-                        receipt: <Receipt className="w-4 h-4" />,
-                        calendarCheck: <CalendarCheck className="w-4 h-4" />
-                      }
-                      return (
-                        <li key={i} className="flex items-start gap-3">
-                          <span className="text-gold mt-0.5">{icons[item.icon]}</span>
-                          <span>{item.text}</span>
-                        </li>
-                      )
-                    })}
-                  </ul>
-                  <Link to={t.experience.santifer.caseStudyUrl} className="inline-flex items-center gap-2 mt-auto pt-6 text-sm font-medium text-gold hover:text-gold/80 transition-colors duration-200 group/cta">
-                    <span className="px-4 py-2 rounded-lg bg-gold/10 border border-gold/30 group-hover/cta:bg-gold/20 group-hover/cta:border-gold/50 transition-all duration-200">{t.experience.santifer.businessOS.footer}</span>
-                    <ChevronRight className="w-4 h-4 group-hover/cta:translate-x-0.5 transition-transform duration-200" />
-                  </Link>
-                </div>
-                <div className="grid grid-cols-3 lg:flex lg:flex-col gap-2 lg:gap-3 mt-4 lg:mt-0">
-                  {t.experience.santifer.businessOS.metrics.map((metric, i) => (
-                    <div key={i} className="text-center p-2 lg:p-4 rounded-xl bg-background/50 border border-gold/20">
-                      <div className="font-display text-lg lg:text-2xl font-bold text-gold">{metric.value}</div>
-                      <div className="text-[10px] lg:text-xs text-muted-foreground leading-tight">{metric.label}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </AnimatedSection>
-
-          {/* Bento Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-            {/* Large card - AI Agent */}
-            <AnimatedSection delay={0.15} className="col-span-2 row-span-2">
-              <div className="h-full p-6 rounded-2xl bg-gradient-to-br from-primary/10 to-accent/10 border border-primary/20 hover:border-primary/40 transition-colors duration-200 group flex flex-col">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
-                    <Bot className="w-6 h-6 text-primary" />
-                  </div>
-                  <span className="badge px-3 py-1 bg-primary/10 text-primary">{t.experience.santifer.jacobo.badge}</span>
-                </div>
-                <h4 className="font-display text-xl font-bold mb-2 group-hover:text-primary transition-colors">{t.experience.santifer.jacobo.title}</h4>
-                <p className="text-muted-foreground text-sm mb-4">{t.experience.santifer.jacobo.desc}</p>
-                <ul className="text-sm text-muted-foreground space-y-2">
-                  {t.experience.santifer.jacobo.items.map((item, i) => {
-                    const icons: Record<string, React.ReactNode> = {
-                      network: <Network className="w-4 h-4" />,
-                      calendar: <Calendar className="w-4 h-4" />,
-                      percent: <Percent className="w-4 h-4" />,
-                      package: <Package className="w-4 h-4" />,
-                      userCheck: <UserCheck className="w-4 h-4" />
-                    }
-                    return (
-                      <li key={i} className="flex items-start gap-2">
-                        <span className="text-primary mt-0.5 shrink-0">{icons[item.icon]}</span>
-                        <span>{item.text}</span>
-                      </li>
-                    )
-                  })}
-                </ul>
-                <Link to={t.experience.santifer.jacobo.caseStudyUrl} className="inline-flex items-center gap-2 mt-auto pt-4 text-sm font-medium text-primary hover:text-primary/80 transition-colors duration-200 group/cta">
-                  <span className="px-4 py-2 rounded-lg bg-primary/10 border border-primary/30 group-hover/cta:bg-primary/20 group-hover/cta:border-primary/50 transition-all duration-200">{t.experience.santifer.jacobo.soldWith}</span>
-                  <ChevronRight className="w-4 h-4 group-hover/cta:translate-x-0.5 transition-transform duration-200" />
-                </Link>
-                <div className="flex items-center gap-3 pt-4">
-                  <a href={`https://github.com/${t.experience.santifer.jacobo.github}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs text-primary hover:underline">
-                    <Github className="w-4 h-4" />
-                    {lang === 'es' ? 'Ver código' : 'View code'}
-                  </a>
-                  <span className="flex items-center gap-1 text-xs text-muted-foreground"><Star className="w-3.5 h-3.5 text-yellow-500" />{t.experience.santifer.jacobo.stars}</span>
-                  <span className="flex items-center gap-1 text-xs text-muted-foreground"><GitFork className="w-3.5 h-3.5" />{t.experience.santifer.jacobo.forks}</span>
-                </div>
-              </div>
-            </AnimatedSection>
-
-            {/* Large card - Web Programática + SEO */}
-            <AnimatedSection delay={0.2} className="col-span-2 row-span-2">
-              <div className="h-full p-6 rounded-2xl bg-gradient-to-br from-accent/10 to-primary/10 border border-accent/20 hover:border-accent/40 transition-colors duration-200 group flex flex-col">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-accent/20 flex items-center justify-center">
-                    <Layout className="w-6 h-6 text-accent" />
-                  </div>
-                  <span className="badge px-3 py-1 bg-accent/10 text-accent">{t.experience.santifer.webSeo.badge}</span>
-                </div>
-                <h4 className="font-display text-xl font-bold mb-2 group-hover:text-accent transition-colors">{t.experience.santifer.webSeo.title}</h4>
-                <p className="text-muted-foreground text-sm mb-4">{t.experience.santifer.webSeo.desc}</p>
-                <ul className="text-sm text-muted-foreground space-y-2">
-                  {t.experience.santifer.webSeo.items.map((item, i) => {
-                    const icons: Record<string, React.ReactNode> = {
-                      fileText: <FileText className="w-4 h-4" />,
-                      image: <Image className="w-4 h-4" />,
-                      trendingUp: <TrendingUp className="w-4 h-4" />,
-                      gitBranch: <GitBranch className="w-4 h-4" />,
-                      bot: <Bot className="w-4 h-4" />
-                    }
-                    return (
-                      <li key={i} className="flex items-start gap-2">
-                        <span className="text-accent mt-0.5 shrink-0">{icons[item.icon]}</span>
-                        <span>{item.text}</span>
-                      </li>
-                    )
-                  })}
-                </ul>
-                <Link to={t.experience.santifer.webSeo.caseStudyUrl} className="inline-flex items-center gap-2 mt-auto pt-4 text-sm font-medium text-accent hover:text-accent/80 transition-colors duration-200 group/cta">
-                  <span className="px-4 py-2 rounded-lg bg-accent/10 border border-accent/30 group-hover/cta:bg-accent/20 group-hover/cta:border-accent/50 transition-all duration-200">{t.experience.santifer.webSeo.codeAvailable}</span>
-                  <ChevronRight className="w-4 h-4 group-hover/cta:translate-x-0.5 transition-transform duration-200" />
-                </Link>
-                <div className="flex items-center gap-3 pt-4">
-                  <a href={`https://github.com/${t.experience.santifer.webSeo.github}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs text-accent hover:underline">
-                    <Github className="w-4 h-4" />
-                    {lang === 'es' ? 'Ver código' : 'View code'}
-                  </a>
-                  <span className="flex items-center gap-1 text-xs text-muted-foreground"><Star className="w-3.5 h-3.5 text-yellow-500" />{t.experience.santifer.webSeo.stars}</span>
-                  <span className="flex items-center gap-1 text-xs text-muted-foreground"><GitFork className="w-3.5 h-3.5" />{t.experience.santifer.webSeo.forks}</span>
-                </div>
-              </div>
-            </AnimatedSection>
-
-            {/* EXIT 2025 - Verde Success para destacar logro/credibilidad */}
-            <AnimatedSection delay={0.25} className="col-span-2">
-              <div className="h-full p-5 rounded-2xl bg-gradient-to-r from-success/10 to-success/5 border border-success/30 hover:border-success/50 transition-colors duration-200">
-                <div className="flex items-center gap-3 mb-2">
-                  <Zap className="w-5 h-5 text-success" />
-                  <span className="font-display font-bold text-success">{t.experience.santifer.exit}</span>
-                </div>
-                <p className="text-sm text-muted-foreground">{t.experience.santifer.exitDesc}</p>
-              </div>
-            </AnimatedSection>
-
-            {/* ERP card */}
-            <AnimatedSection delay={0.3}>
-              <Link to={t.experience.santifer.erp.caseStudyUrl} className="block h-full p-5 rounded-2xl bg-card border border-border hover:border-primary/30 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/5 transition-all duration-200 flex flex-col group/card">
-                <Database className="w-5 h-5 text-primary mb-3" />
-                <p className="font-medium text-sm mb-1">{t.experience.santifer.erp.title}</p>
-                <p className="text-sm text-muted-foreground">{t.experience.santifer.erp.desc}</p>
-                <div className="flex items-center justify-between mt-auto pt-3">
-                  <span className="text-xs font-medium text-primary">{t.experience.santifer.erp.metric}</span>
-                  <ChevronRight className="w-3.5 h-3.5 text-muted-foreground/0 group-hover/card:text-primary group-hover/card:translate-x-0.5 transition-all duration-200" />
-                </div>
-              </Link>
-            </AnimatedSection>
-
-            {/* GPTs card */}
-            <AnimatedSection delay={0.35}>
-              <Link to={t.experience.santifer.gpts.caseStudyUrl} className="block h-full p-5 rounded-2xl bg-card border border-border hover:border-primary/30 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/5 transition-all duration-200 flex flex-col group/card">
-                <Bot className="w-5 h-5 text-accent mb-3" />
-                <p className="font-medium text-sm mb-1">{t.experience.santifer.gpts.title}</p>
-                <p className="text-sm text-muted-foreground">{t.experience.santifer.gpts.desc}</p>
-                <div className="flex items-center justify-between mt-auto pt-3">
-                  <span className="text-xs font-medium text-primary">{t.experience.santifer.gpts.metric}</span>
-                  <ChevronRight className="w-3.5 h-3.5 text-muted-foreground/0 group-hover/card:text-primary group-hover/card:translate-x-0.5 transition-all duration-200" />
-                </div>
-              </Link>
-            </AnimatedSection>
-
-            {/* Reservas card */}
-            <AnimatedSection delay={0.4}>
-              <Link to={t.experience.santifer.reservas.caseStudyUrl} className="block h-full p-5 rounded-2xl bg-card border border-border hover:border-primary/30 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/5 transition-all duration-200 flex flex-col group/card">
-                <Timer className="w-5 h-5 text-primary mb-3" />
-                <p className="font-medium text-sm mb-1">{t.experience.santifer.reservas.title}</p>
-                <p className="text-sm text-muted-foreground">{t.experience.santifer.reservas.desc}</p>
-                <div className="flex items-center justify-between mt-auto pt-3">
-                  <span className="text-xs font-medium text-accent">{t.experience.santifer.reservas.metric}</span>
-                  <ChevronRight className="w-3.5 h-3.5 text-muted-foreground/0 group-hover/card:text-primary group-hover/card:translate-x-0.5 transition-all duration-200" />
-                </div>
-              </Link>
-            </AnimatedSection>
-
-            {/* CRM card */}
-            <AnimatedSection delay={0.45}>
-              <Link to={t.experience.santifer.crm.caseStudyUrl} className="block h-full p-5 rounded-2xl bg-card border border-border hover:border-primary/30 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/5 transition-all duration-200 flex flex-col group/card">
-                <Users className="w-5 h-5 text-accent mb-3" />
-                <p className="font-medium text-sm mb-1">{t.experience.santifer.crm.title}</p>
-                <p className="text-sm text-muted-foreground">{t.experience.santifer.crm.desc}</p>
-                <div className="flex items-center justify-between mt-auto pt-3">
-                  <span className="text-xs font-medium text-primary">{t.experience.santifer.crm.metric}</span>
-                  <ChevronRight className="w-3.5 h-3.5 text-muted-foreground/0 group-hover/card:text-primary group-hover/card:translate-x-0.5 transition-all duration-200" />
-                </div>
-              </Link>
-            </AnimatedSection>
-
-            {/* GenAI Marketing card */}
-            <AnimatedSection delay={0.5}>
-              <Link to={t.experience.santifer.genAI.caseStudyUrl} className="block h-full p-5 rounded-2xl bg-card border border-border hover:border-primary/30 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/5 transition-all duration-200 flex flex-col group/card">
-                <Sparkles className="w-5 h-5 text-primary mb-3" />
-                <p className="font-medium text-sm mb-1">{t.experience.santifer.genAI.title}</p>
-                <p className="text-sm text-muted-foreground">{t.experience.santifer.genAI.desc}</p>
-                <div className="flex items-center justify-between mt-auto pt-3">
-                  <span className="text-xs font-medium text-accent">{t.experience.santifer.genAI.metric}</span>
-                  <ChevronRight className="w-3.5 h-3.5 text-muted-foreground/0 group-hover/card:text-primary group-hover/card:translate-x-0.5 transition-all duration-200" />
-                </div>
-              </Link>
-            </AnimatedSection>
-          </div>
-
-          {/* LICO Cosmetics */}
-          <AnimatedSection delay={0.5} className="mt-16">
-            <div className="mb-6">
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-2">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl overflow-hidden bg-[#F5F3EE] flex items-center justify-center shrink-0">
-                    <picture>
-                      <source srcSet="/logo-lico.webp" type="image/webp" />
-                      <img src="/logo-lico.png" alt={t.experience.lico.company} className="w-full h-full object-contain p-1" width={40} height={40} loading="lazy" decoding="async" />
-                    </picture>
-                  </div>
-                  <h3 className="font-display text-2xl font-bold">{t.experience.lico.company}</h3>
-                </div>
-                <a href="https://licocosmetics.es" target="_blank" rel="noopener noreferrer nofollow" className="text-sm text-accent hover:underline flex items-center gap-1">
-                  licocosmetics.es <ExternalLink className="w-3 h-3" aria-hidden="true" />
-                </a>
-                <span className="text-sm text-muted-foreground">{t.experience.lico.location}</span>
-              </div>
-              <p className="text-accent font-medium mb-1">{t.experience.lico.role}</p>
-              <p className="text-sm text-muted-foreground mb-4">{t.experience.lico.period}</p>
-              <p className="text-muted-foreground">{t.experience.lico.desc}</p>
-
-              {/* Testimonial */}
-              <a href="https://www.linkedin.com/in/santifer/details/recommendations/" target="_blank" rel="noopener noreferrer" className="block group">
-                <blockquote className="mt-6 p-4 rounded-xl bg-accent/5 border border-accent/10 group-hover:border-[hsl(var(--linkedin)/0.3)] transition-colors">
-                  <p className="text-sm text-muted-foreground italic mb-4">
-                    "{t.experience.lico.testimonial.quote}"
-                  </p>
-                  <footer className="flex items-center gap-3">
-                    <picture>
-                      <source srcSet="/juan-sabate.webp" type="image/webp" />
-                      <img src="/juan-sabate.jpeg" alt={t.experience.lico.testimonial.author} className="w-10 h-10 rounded-full object-cover" width={40} height={40} loading="lazy" decoding="async" />
-                    </picture>
-                    <div className="flex-1">
-                      <span className="text-sm font-medium text-foreground block">{t.experience.lico.testimonial.author}</span>
-                      <span className="text-xs text-muted-foreground">{t.experience.lico.testimonial.role}</span>
-                    </div>
-                    <LinkedInLogo className="w-4 h-4 text-[hsl(var(--linkedin))]" />
-                  </footer>
-                </blockquote>
-              </a>
-            </div>
-          </AnimatedSection>
-
-          {/* Everis */}
-          <AnimatedSection delay={0.6} className="mt-16">
-            <div className="mb-6">
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-2">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl overflow-hidden bg-white flex items-center justify-center shrink-0 p-1.5">
-                    <picture>
-                      <source srcSet="/logo-everis.webp" type="image/webp" />
-                      <img src="/logo-everis.jpg" alt={t.experience.everis.company} className="w-full h-full object-contain" width={40} height={40} loading="lazy" decoding="async" />
-                    </picture>
-                  </div>
-                  <h3 className="font-display text-2xl font-bold">{t.experience.everis.company}</h3>
-                </div>
-              </div>
-              <p className="text-primary font-medium mb-1">{t.experience.everis.role}</p>
-              <p className="text-sm text-muted-foreground mb-2">{t.experience.everis.period}</p>
-              <p className="text-muted-foreground">{t.experience.everis.desc}</p>
-            </div>
-            <div className="mt-6 p-6 rounded-2xl bg-gradient-to-br from-primary/10 to-accent/10 border border-primary/20">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center shrink-0">
-                  <Bot className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <h4 className="font-display font-bold mb-2">{t.experience.everis.tesauro.title}</h4>
-                  <p className="text-sm text-muted-foreground">{t.experience.everis.tesauro.desc}</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Testimonial */}
-            <a href="https://www.linkedin.com/in/santifer/details/recommendations/" target="_blank" rel="noopener noreferrer" className="block group">
-              <blockquote className="mt-6 p-4 rounded-xl bg-primary/5 border border-primary/10 group-hover:border-[hsl(var(--linkedin)/0.3)] transition-colors">
-                <p className="text-sm text-muted-foreground italic mb-4">
-                  "{t.experience.everis.testimonial.quote}"
-                </p>
-                <footer className="flex items-center gap-3">
-                  <picture>
-                    <source srcSet="/manuel-lopez.webp" type="image/webp" />
-                    <img src="/manuel-lopez.jpeg" alt={t.experience.everis.testimonial.author} className="w-10 h-10 rounded-full object-cover" width={40} height={40} loading="lazy" decoding="async" />
-                  </picture>
-                  <div className="flex-1">
-                    <span className="text-sm font-medium text-foreground block">{t.experience.everis.testimonial.author}</span>
-                    <span className="text-xs text-muted-foreground">{t.experience.everis.testimonial.role}</span>
-                  </div>
-                  <LinkedInLogo className="w-4 h-4 text-[hsl(var(--linkedin))]" />
-                </footer>
-              </blockquote>
-            </a>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Projects & Claude Code */}
-      <section id="projects" className="py-16 md:py-24" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 1500px' }}>
-        <div className="max-w-5xl mx-auto px-6">
-          <AnimatedSection>
-            <div className="flex items-center justify-between mb-12">
-              <h2 className="font-display text-2xl font-semibold flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <FolderGit2 className="w-5 h-5 text-primary" />
-                </div>
-                {t.projects.title}
-              </h2>
-              <a
-                href={`https://${t.projects.githubLink}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors"
-              >
-                <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor" aria-hidden="true">
-                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                </svg>
-                {t.projects.githubLink.split('/').pop()}
-              </a>
-            </div>
-          </AnimatedSection>
-
-          {/* AI Agent Infrastructure — premium narrative header */}
-          <AnimatedSection delay={0.03} className="mb-12">
-            <div className="p-8 rounded-2xl bg-gradient-to-br from-gold/15 via-gold/5 to-transparent border border-gold/30 hover:border-gold/50 transition-colors duration-200 group relative overflow-hidden">
-              <div className="absolute -top-24 -right-24 w-48 h-48 bg-gold/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative">
-                <div className="flex items-start justify-between gap-4 mb-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center shrink-0">
-                      <Network className="w-6 h-6 text-gold" />
-                    </div>
-                    <div>
-                      <h3 className="font-display text-2xl font-bold text-foreground">{t.projects.agentInfra.title}</h3>
-                      <p className="text-sm md:text-base text-muted-foreground mt-1">{t.projects.agentInfra.subtitle}</p>
-                    </div>
-                  </div>
-                </div>
-                {(() => {
-                  const iconMap: Record<string, React.ReactNode> = {
-                    brain: <Brain className="w-4 h-4" />,
-                    target: <Target className="w-4 h-4" />,
-                    inbox: <Inbox className="w-4 h-4" />,
-                    compass: <Compass className="w-4 h-4" />,
-                    gitMerge: <GitMerge className="w-4 h-4" />,
-                    layout: <Layout className="w-4 h-4" />,
-                    briefcase: <Briefcase className="w-4 h-4" />,
-                    users: <Users className="w-4 h-4" />,
-                  }
-                  const lifeOs = t.projects.agentInfra.agents.find(a => a.name === 'life-os')!
-                  const others = t.projects.agentInfra.agents.filter(a => a.name !== 'life-os')
-                  return (
-                    <>
-                      {/* Life OS — full-width orchestrator */}
-                      <div className="relative mb-3 p-4 rounded-xl bg-gold/15 border border-gold/40">
-                        <div className="absolute -top-2 left-4 px-2 py-0.5 rounded-full bg-gold/20 border border-gold/40 text-[9px] uppercase tracking-widest text-gold font-semibold">Orquestador</div>
-                        <div className="flex items-center gap-4">
-                          <div className="w-12 h-12 rounded-lg bg-gold/25 text-gold flex items-center justify-center shrink-0">
-                            <Brain className="w-6 h-6" />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-baseline gap-2 flex-wrap">
-                              <span className="font-display font-bold text-lg text-foreground">{lifeOs.name}</span>
-                              <span className="text-[10px] uppercase tracking-wider text-gold">{lifeOs.tag}</span>
-                            </div>
-                            <p className="text-sm text-muted-foreground mt-0.5">{lifeOs.desc}</p>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Other 6 agents — satellites */}
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                        {others.map((agent, i) => {
-                          const isOpen = agent.tag.includes('open source')
-                          return (
-                            <div
-                              key={i}
-                              className={`flex items-start gap-3 p-3 rounded-lg border transition-colors ${
-                                isOpen ? 'bg-accent/5 border-accent/20 hover:border-accent/40' : 'bg-card/60 border-border/50 hover:border-border'
-                              }`}
-                            >
-                              <div className={`w-8 h-8 rounded-md flex items-center justify-center shrink-0 ${
-                                isOpen ? 'bg-accent/10 text-accent' : 'bg-muted text-muted-foreground'
-                              }`}>
-                                {iconMap[agent.icon]}
-                              </div>
-                              <div className="flex-1 min-w-0">
-                                <div className="flex items-baseline gap-2 flex-wrap">
-                                  <span className="font-semibold text-sm text-foreground">{agent.name}</span>
-                                  <span className={`text-[10px] uppercase tracking-wider ${
-                                    isOpen ? 'text-accent' : 'text-muted-foreground/70'
-                                  }`}>{agent.tag}</span>
-                                </div>
-                                <p className="text-xs text-muted-foreground mt-0.5">{agent.desc}</p>
-                              </div>
-                            </div>
-                          )
-                        })}
-                      </div>
-                    </>
-                  )
-                })()}
-              </div>
-            </div>
-          </AnimatedSection>
-
-          {/* Projects Grid with Dependency Lines */}
-          {(() => {
-            // Tipo para proyecto
-            type Project = {
-              title: string
-              badge: string
-              badgeBuilding: string
-              desc: string
-              tech: readonly string[]
-              link: string
-              isDependency?: boolean
-              dependencyRole?: string
-              caseStudyUrl?: string
-              caseStudyLabel?: string
-              stars?: string
-              forks?: string
-            }
-
-            // Separar proyectos
-            const allProjects = t.projects.items as readonly Project[]
-            const contentDigest = allProjects.find(p => p.title === 'Content Digest')!
-            const lifeOS = allProjects.find(p => p.title === 'Life OS')!
-            const careerOps = allProjects.find(p => p.title === 'Career Ops')!
-            const santiferIo = allProjects.find(p => p.title === 'santifer.io')!
-            const selfHealingChatbot = allProjects.find(p => p.title === 'Self-Healing Chatbot')!
-            // Tools que dependen de santifer.io
-            const claudeEye = allProjects.find(p => p.title === 'Claude Eye')!
-            const claudeable = allProjects.find(p => p.title === 'Claudeable')!
-            // Fila 4: Claude Pulse + ProjectOS Predict
-            const claudePulse = allProjects.find(p => p.title === 'Claude Pulse')!
-            const projectOSPredict = allProjects.find(p => p.title === 'ProjectOS Predict')!
-
-            // Helper para parsear **bold** a elementos con estilo
-            const parseBold = (text: string): React.ReactNode[] => {
-              return text.split(/\*\*(.*?)\*\*/g).map((part, i) =>
-                i % 2 === 1 ? <strong key={i} className="text-tool font-semibold">{part}</strong> : part
-              )
-            }
-
-            // Refs para cada tarjeta (para calcular posiciones de conexiones)
-            const containerRef = useRef<HTMLDivElement>(null)
-            const cardRefs = {
-              contentDigest: useRef<HTMLDivElement>(null),
-              lifeOS: useRef<HTMLDivElement>(null),
-              careerOps: useRef<HTMLDivElement>(null),
-              santiferIo: useRef<HTMLDivElement>(null),
-              selfHealingChatbot: useRef<HTMLDivElement>(null),
-              claudeEye: useRef<HTMLDivElement>(null),
-              claudeable: useRef<HTMLDivElement>(null),
-              claudePulse: useRef<HTMLDivElement>(null),
-              projectOSPredict: useRef<HTMLDivElement>(null),
-            }
-
-            // Hook para calcular líneas de conexión SVG
-            const [lines, setLines] = useState<string[]>([])
-            const { ref: visibilityRef, isInView: isVisible } = useInView(0.1)
-
-            useEffect(() => {
-              if (!isVisible || !containerRef.current) return
-
-              const calculate = () => {
-                const container = containerRef.current!.getBoundingClientRect()
-                const isMobile = window.innerWidth < 768 // Tailwind md breakpoint
-
-                type Edge = 'top' | 'bottom' | 'left' | 'right'
-                const getPoint = (ref: React.RefObject<HTMLDivElement | null>, edge: Edge, ratio = 0.5) => {
-                  const rect = ref.current?.getBoundingClientRect()
-                  if (!rect) return null
-                  const x = rect.left - container.left
-                  const y = rect.top - container.top
-                  switch (edge) {
-                    case 'top': return { x: x + rect.width * ratio, y }
-                    case 'bottom': return { x: x + rect.width * ratio, y: y + rect.height }
-                    case 'left': return { x, y: y + rect.height * ratio }
-                    case 'right': return { x: x + rect.width, y: y + rect.height * ratio }
-                  }
-                }
-
-                // Definir conexiones según el grafo
-                type Connection = {
-                  from: React.RefObject<HTMLDivElement | null>
-                  fromEdge: Edge
-                  fromRatio?: number
-                  to: React.RefObject<HTMLDivElement | null>
-                  toEdge: Edge
-                  toRatio?: number
-                }
-
-                // En móvil: conexiones verticales simples (tarjetas apiladas)
-                // En desktop: grafo complejo con conexiones horizontales y diagonales
-                const connections: Connection[] = isMobile ? [
-                  // Móvil: flujo vertical simple
-                  { from: cardRefs.lifeOS, fromEdge: 'bottom', to: cardRefs.careerOps, toEdge: 'top' },
-                  { from: cardRefs.careerOps, fromEdge: 'bottom', to: cardRefs.santiferIo, toEdge: 'top' },
-                  { from: cardRefs.santiferIo, fromEdge: 'bottom', to: cardRefs.selfHealingChatbot, toEdge: 'top' },
-                  { from: cardRefs.selfHealingChatbot, fromEdge: 'bottom', to: cardRefs.claudeEye, toEdge: 'top' },
-                  { from: cardRefs.claudeEye, fromEdge: 'bottom', to: cardRefs.claudeable, toEdge: 'top' },
-                  { from: cardRefs.claudeable, fromEdge: 'bottom', to: cardRefs.claudePulse, toEdge: 'top' },
-                  { from: cardRefs.claudePulse, fromEdge: 'bottom', to: cardRefs.contentDigest, toEdge: 'top' },
-                  { from: cardRefs.contentDigest, fromEdge: 'bottom', to: cardRefs.projectOSPredict, toEdge: 'top' },
-                ] : [
-                  // Desktop: grafo complejo
-                  // Fila 1: Life OS ↔ Career Ops (horizontal)
-                  { from: cardRefs.lifeOS, fromEdge: 'right', to: cardRefs.careerOps, toEdge: 'left' },
-                  // Fila 1 → Fila 2: diagonales hacia santifer.io + chatbot
-                  { from: cardRefs.lifeOS, fromEdge: 'bottom', to: cardRefs.santiferIo, toEdge: 'top' },
-                  { from: cardRefs.careerOps, fromEdge: 'bottom', to: cardRefs.selfHealingChatbot, toEdge: 'top' },
-                  // Fila 2: santifer.io ↔ chatbot (horizontal)
-                  { from: cardRefs.santiferIo, fromEdge: 'right', to: cardRefs.selfHealingChatbot, toEdge: 'left' },
-                  // Fila 2 → Fila 3: hacia tools
-                  { from: cardRefs.santiferIo, fromEdge: 'bottom', to: cardRefs.claudeEye, toEdge: 'top' },
-                  { from: cardRefs.selfHealingChatbot, fromEdge: 'bottom', to: cardRefs.claudeable, toEdge: 'top' },
-                  // Fila 3 → Fila 4
-                  { from: cardRefs.claudeEye, fromEdge: 'bottom', to: cardRefs.claudePulse, toEdge: 'top' },
-                  { from: cardRefs.claudeable, fromEdge: 'bottom', to: cardRefs.contentDigest, toEdge: 'top' },
-                  // Fila 4 → Fila 5: diagonales hacia ProjectOS
-                  { from: cardRefs.claudePulse, fromEdge: 'bottom', to: cardRefs.projectOSPredict, toEdge: 'top', toRatio: 0.25 },
-                  { from: cardRefs.contentDigest, fromEdge: 'bottom', to: cardRefs.projectOSPredict, toEdge: 'top', toRatio: 0.75 },
-                ]
-
-                const paths = connections.map(conn => {
-                  const start = getPoint(conn.from, conn.fromEdge, conn.fromRatio ?? 0.5)
-                  const end = getPoint(conn.to, conn.toEdge, conn.toRatio ?? 0.5)
-                  if (!start || !end) return ''
-
-                  // Móvil: líneas rectas simples | Desktop: curvas Bézier
-                  if (isMobile) {
-                    return `M ${start.x} ${start.y} L ${end.x} ${end.y}`
-                  }
-
-                  // Determinar si es conexión horizontal o vertical
-                  const isHorizontal = conn.fromEdge === 'left' || conn.fromEdge === 'right'
-                  if (isHorizontal) {
-                    // Curva Bézier horizontal
-                    const midX = (start.x + end.x) / 2
-                    return `M ${start.x} ${start.y} C ${midX} ${start.y}, ${midX} ${end.y}, ${end.x} ${end.y}`
-                  } else {
-                    // Curva Bézier vertical
-                    const midY = (start.y + end.y) / 2
-                    return `M ${start.x} ${start.y} C ${start.x} ${midY}, ${end.x} ${midY}, ${end.x} ${end.y}`
-                  }
-                }).filter(Boolean)
-
-                setLines(paths)
-              }
-
-              // Delay para dar tiempo a las animaciones de entrada (AnimatedSection ~0.6s)
-              const initialTimeout = setTimeout(calculate, 700)
-
-              // Debounce para resize
-              let resizeTimeout: ReturnType<typeof setTimeout>
-              const debouncedCalc = () => {
-                clearTimeout(resizeTimeout)
-                resizeTimeout = setTimeout(calculate, 100)
-              }
-              window.addEventListener('resize', debouncedCalc)
-              return () => {
-                window.removeEventListener('resize', debouncedCalc)
-                clearTimeout(initialTimeout)
-                clearTimeout(resizeTimeout)
-              }
-            }, [isVisible, lang])
-
-            // Componente de tarjeta de proyecto
-            const ProjectCard = ({ project, variant = 'default', cardRef }: {
-              project: Project,
-              variant?: 'default' | 'highlight' | 'tool' | 'tool-static',
-              cardRef?: React.RefObject<HTMLDivElement | null> | ((el: HTMLDivElement | null) => void)
-            }) => {
-              const isHighlight = variant === 'highlight'
-              const isTool = variant === 'tool' || variant === 'tool-static'
-              const hasHover = variant !== 'tool-static'
-
-              return (
-                <div
-                  ref={cardRef}
-                  className={`h-full p-6 rounded-2xl transition-colors duration-200 flex flex-col ${hasHover ? 'group' : ''} ${
-                    isHighlight
-                      ? 'bg-gradient-to-br from-accent/5 to-transparent border-2 border-accent/50 hover:border-accent/70'
-                      : isTool
-                      ? `bg-card border border-tool/30 ${hasHover ? 'hover:border-tool/50' : ''}`
-                      : 'bg-card border border-border hover:border-primary/30'
-                  }`}
-                >
-                  <div className="flex items-start justify-between mb-3">
-                    <h3 className={`font-display text-xl font-bold transition-colors ${
-                      isTool ? 'group-hover:text-tool' : 'group-hover:text-primary'
-                    }`}>{project.title}</h3>
-                    <div className="flex items-center gap-2">
-                      <span className={`badge px-2 py-0.5 ${
-                        isTool
-                          ? 'bg-tool/10 text-tool'
-                          : isHighlight
-                          ? 'bg-accent/10 text-accent'
-                          : 'bg-primary/10 text-primary'
-                      }`}>{project.badge}</span>
-                      {project.badgeBuilding && (
-                        <span className="badge px-2 py-0.5 bg-success/5 text-success flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-success animate-pulse-dot"></span>
-                          {project.badgeBuilding}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    {parseBold(project.desc)}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tech.map((tech) => (
-                      <span key={tech} className={`px-2 py-1 rounded-md text-xs ${
-                        isTool
-                          ? 'bg-tool/10 text-tool'
-                          : 'bg-muted text-muted-foreground'
-                      }`}>{tech}</span>
-                    ))}
-                  </div>
-                  <div className="flex flex-col gap-3 mt-auto">
-                    {project.caseStudyUrl && (
-                      <Link
-                        to={project.caseStudyUrl}
-                        className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent/80 transition-colors duration-200 group/cta"
-                      >
-                        <span className="px-4 py-2 rounded-lg bg-accent/10 border border-accent/30 group-hover/cta:bg-accent/20 group-hover/cta:border-accent/50 transition-all duration-200">{project.caseStudyLabel}</span>
-                        <ChevronRight className="w-4 h-4 group-hover/cta:translate-x-0.5 transition-transform duration-200" />
-                      </Link>
-                    )}
-                    {project.link && (
-                      <div className="flex items-center gap-3">
-                        <a
-                          href={`https://${project.link}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`inline-flex items-center gap-2 text-xs ${
-                            isTool ? 'text-tool hover:text-tool' : 'text-primary'
-                          } hover:underline`}
-                        >
-                          {project.link.includes('github.com') ? (
-                            <>
-                              <Github className="w-4 h-4" />
-                              {t.projects.viewCode}
-                            </>
-                          ) : (
-                            <>
-                              <ExternalLink className="w-4 h-4" aria-hidden="true" />
-                              {t.projects.viewPrototype}
-                            </>
-                          )}
-                        </a>
-                        {project.stars && (
-                          <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                            <Star className="w-3.5 h-3.5 text-yellow-500" />
-                            {project.stars}
-                          </span>
-                        )}
-                        {project.forks && (
-                          <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                            <GitFork className="w-3.5 h-3.5" />
-                            {project.forks}
-                          </span>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              )
-            }
-
-
-            return (
-              <div ref={(el) => { containerRef.current = el; visibilityRef(el) }} className="mb-12 relative">
-                {/* SVG de conexiones - absoluto, z-0 para quedar detrás */}
-                <svg
-                  className="absolute inset-0 pointer-events-none"
-                  style={{ zIndex: 0, overflow: 'visible' }}
-                >
-                  {lines.map((d, i) => (
-                    <path
-                      key={i}
-                      d={d}
-                      className="dependency-line"
-                      stroke="hsl(var(--primary))"
-                      strokeWidth="1.5"
-                      fill="none"
-                      strokeDasharray="4 4"
-                      style={{
-                        opacity: isVisible ? 0.6 : 0,
-                        transition: `opacity 0.6s ease-out ${i * 0.1}s`
-                      }}
-                    />
-                  ))}
-                </svg>
-
-                {/* Fila 1: Life OS + Career Ops */}
-                <div className="grid md:grid-cols-2 gap-6 mb-6 relative z-10">
-                  <AnimatedSection delay={0.1}>
-                    <ProjectCard project={lifeOS} cardRef={cardRefs.lifeOS} />
-                  </AnimatedSection>
-                  <AnimatedSection delay={0.15}>
-                    <ProjectCard project={careerOps} cardRef={cardRefs.careerOps} />
-                  </AnimatedSection>
-                </div>
-
-                {/* Fila 2: santifer.io + Self-Healing Chatbot (highlight) */}
-                <div className="grid md:grid-cols-2 gap-6 mb-6 relative z-10">
-                  <AnimatedSection delay={0.2}>
-                    <ProjectCard project={santiferIo} variant="highlight" cardRef={cardRefs.santiferIo} />
-                  </AnimatedSection>
-                  <AnimatedSection delay={0.25}>
-                    <ProjectCard project={selfHealingChatbot} variant="highlight" cardRef={cardRefs.selfHealingChatbot} />
-                  </AnimatedSection>
-                </div>
-
-                {/* Fila 3: Claude Eye + Claudeable — tools */}
-                <div className="grid md:grid-cols-2 gap-6 mb-6 relative z-10">
-                  <AnimatedSection delay={0.25}>
-                    <ProjectCard project={claudeEye} variant="tool-static" cardRef={cardRefs.claudeEye} />
-                  </AnimatedSection>
-                  <AnimatedSection delay={0.3}>
-                    <ProjectCard project={claudeable} variant="tool-static" cardRef={cardRefs.claudeable} />
-                  </AnimatedSection>
-                </div>
-
-                {/* Fila 4: Claude Pulse + Content Digest */}
-                <div className="grid md:grid-cols-2 gap-6 mb-6 relative z-10">
-                  <AnimatedSection delay={0.35}>
-                    <ProjectCard project={claudePulse} variant="tool-static" cardRef={cardRefs.claudePulse} />
-                  </AnimatedSection>
-                  <AnimatedSection delay={0.4}>
-                    <ProjectCard project={contentDigest} cardRef={cardRefs.contentDigest} />
-                  </AnimatedSection>
-                </div>
-
-                {/* Fila 5: ProjectOS Predict (full width) */}
-                <div className="relative z-10">
-                  <AnimatedSection delay={0.45}>
-                    <ProjectCard project={projectOSPredict} cardRef={cardRefs.projectOSPredict} />
-                  </AnimatedSection>
-                </div>
-              </div>
-            )
-          })()}
-
-          {/* Claude Code Power User */}
-          <AnimatedSection delay={0.3}>
-            <div className="p-6 rounded-2xl bg-gradient-to-br from-accent/10 to-primary/10 border border-accent/20">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-accent/20 flex items-center justify-center shrink-0">
-                  <Sparkles className="w-6 h-6 text-accent" />
-                </div>
-                <div>
-                  <div className="flex items-center gap-3 mb-2">
-                    <h3 className="font-display font-bold">{t.claudeCode.title}</h3>
-                    <span className="badge px-2 py-0.5 bg-accent/10 text-accent">{t.claudeCode.badge}</span>
-                  </div>
-                  <p className="text-sm text-muted-foreground">{t.claudeCode.desc}</p>
-                  {t.claudeCode.highlights && (
-                    <ul className="mt-3 space-y-1.5">
-                      {(t.claudeCode.highlights as readonly string[]).map((h: string, i: number) => (
-                        <li key={i} className="text-xs text-muted-foreground flex gap-2">
-                          <span className="text-accent mt-0.5 shrink-0">›</span>
-                          <span>{h}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                  {t.claudeCode.certs && (
-                    <div className="flex flex-wrap gap-2 mt-3">
-                      {t.claudeCode.certs.map((cert: { title: string; url: string }, i: number) => (
-                        <a
-                          key={i}
-                          href={cert.url}
-                          target="_blank"
-                          rel="noopener noreferrer nofollow"
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-accent/10 text-xs text-muted-foreground hover:text-accent hover:bg-accent/20 transition-colors"
-                        >
-                          <BadgeCheck className="w-3.5 h-3.5" />
-                          {cert.title}
-                        </a>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Sharing — Teaching + LinkedIn */}
-      <section id="speaking" className="py-16 md:py-24 bg-muted/30" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 800px' }}>
-        <div className="max-w-5xl mx-auto px-6">
-          <AnimatedSection>
-            <h2 className="font-display text-2xl font-semibold mb-8 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                <Share2 className="w-5 h-5 text-primary" />
-              </div>
-              {t.speaking.title}
-            </h2>
-          </AnimatedSection>
-
-          {/* X Post — Garry Tan hero card */}
-          {t.xPost && (
+          <div className="space-y-12">
+            {/* Sagent */}
             <AnimatedSection delay={0.1}>
-              <div className="mb-8">
-                <div
-                  className="flex flex-col p-5 rounded-2xl bg-card border border-border/50 hover:border-border transition-colors relative cursor-pointer"
-                  onClick={(e) => { if ((e.target as HTMLElement).closest('.garry-card')) return; window.open(t.xPost.url, '_blank') }}
-                >
-                  {/* Santiago — two column layout like Garry Tan */}
-                  <div className="flex gap-4 mb-8">
-                    <img src="/foto-avatar.webp" alt="santifer" role="presentation" width={384} height={384} className="w-16 h-16 md:w-20 md:h-20 rounded-full shrink-0" />
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-1.5 flex-wrap mb-1">
-                        <span className="text-base md:text-lg font-bold text-foreground">santifer | AI Builder</span>
-                        <svg viewBox="0 0 22 22" className="w-5 h-5 text-[#1d9bf0] shrink-0" fill="currentColor"><path d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.855-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.69-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.636.433 1.221.878 1.69.47.446 1.055.752 1.69.883.635.13 1.294.083 1.902-.143.271.586.702 1.084 1.24 1.438.54.354 1.167.551 1.813.568.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.225 1.261.272 1.893.143.636-.131 1.221-.437 1.69-.883.445-.47.751-1.054.882-1.69.132-.633.083-1.29-.14-1.898.587-.273 1.084-.704 1.438-1.244.354-.54.551-1.17.569-1.816zM9.662 14.85l-3.429-3.428 1.293-1.302 2.072 2.072 4.4-4.794 1.347 1.246z"/></svg>
-                        <svg viewBox="0 0 24 24" className="w-4 h-4 shrink-0 ml-auto" fill="currentColor" opacity={0.4}>
-                          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                        </svg>
-                      </div>
-                      <p className="text-sm text-muted-foreground mb-3">@santifer</p>
-                      <p className="text-base md:text-lg text-foreground leading-relaxed">{t.xPost.hook}</p>
-                      <p className="text-base md:text-lg text-foreground mt-1">{t.xPost.hookLinkPrefix}<span className="text-[#1d9bf0]">{t.xPost.hookLinkUrl}</span></p>
-                    </div>
+              <div className="relative pl-8 md:pl-12 border-l-2 border-border pb-12">
+                <div className="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-primary ring-4 ring-background" />
+                <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
+                  <div>
+                    <h3 className="text-2xl font-bold">{t.experience.sagent.company}</h3>
+                    <p className="text-primary font-medium">{t.experience.sagent.role}</p>
                   </div>
-
-                  {/* Garry Tan quote — hero sized with gradient border */}
-                  <a href={t.xPost.quoteUrl} target="_blank" rel="noopener noreferrer" className="garry-card block rounded-2xl p-[2px] bg-gradient-theme w-full max-w-3xl mx-auto hover:brightness-110 transition-all group/garry" onClick={(e) => e.stopPropagation()}>
-                    <div className="rounded-[calc(1rem-2px)] bg-card text-left overflow-hidden">
-                      <div className="flex gap-4 p-5 pb-4">
-                        <img src="/garry-tan.jpg" alt="Garry Tan" className="w-16 h-16 md:w-20 md:h-20 rounded-full shrink-0" width={80} height={80} loading="lazy" />
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-1.5 flex-wrap mb-1">
-                            <span className="text-base md:text-lg font-bold text-foreground">{t.xPost.quoteAuthor}</span>
-                            <svg viewBox="0 0 22 22" className="w-5 h-5 text-[#1d9bf0] shrink-0" fill="currentColor"><path d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.855-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.69-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.636.433 1.221.878 1.69.47.446 1.055.752 1.69.883.635.13 1.294.083 1.902-.143.271.586.702 1.084 1.24 1.438.54.354 1.167.551 1.813.568.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.225 1.261.272 1.893.143.636-.131 1.221-.437 1.69-.883.445-.47.751-1.054.882-1.69.132-.633.083-1.29-.14-1.898.587-.273 1.084-.704 1.438-1.244.354-.54.551-1.17.569-1.816zM9.662 14.85l-3.429-3.428 1.293-1.302 2.072 2.072 4.4-4.794 1.347 1.246z"/></svg>
-                            <svg viewBox="0 0 24 24" className="w-5 h-5 shrink-0" fill="#FF6600"><rect x="4" y="4" width="16" height="16" rx="2"/><text x="12" y="17" textAnchor="middle" fill="white" fontSize="14" fontWeight="bold" fontFamily="sans-serif">Y</text></svg>
-                            <svg viewBox="0 0 24 24" className="w-4 h-4 shrink-0 ml-auto" fill="currentColor" opacity={0.4}>
-                              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                            </svg>
-                          </div>
-                          <p className="text-sm text-muted-foreground mb-2">{t.xPost.quoteHandle} · {t.xPost.quoteRole}</p>
-                          <p className="text-base md:text-lg text-muted-foreground leading-relaxed">"{t.xPost.quoteText}"</p>
-                        </div>
-                      </div>
-                      {/* Career-Ops demo video — edge to edge, no padding */}
-                      {hydrated && (
-                        <div className="relative w-full" style={{ paddingBottom: '62.5%' }}>
-                          <iframe
-                            src="https://player.mux.com/Zhl5qjj02PoD2g01ZsOwJptHNTvThw7udv47tnza1VLUc?accent-color=%2300D9FF&loop=true&muted=true&autoplay=true"
-                            className="absolute inset-0 w-full h-full"
-                            allow="autoplay; fullscreen; picture-in-picture"
-                            loading="lazy"
-                          />
-                        </div>
-                      )}
-                      {/* Garry Tan tweet metrics */}
-                      <div className="px-5 py-3 border-t border-border/30 flex items-center gap-6 text-sm text-muted-foreground">
-                        <span className="flex items-center gap-1.5">
-                          <MessageCircle className="w-4 h-4" />
-                          {t.xPost.quoteReplies}
-                        </span>
-                        <span className="flex items-center gap-1.5">
-                          <Share2 className="w-4 h-4" />
-                          {t.xPost.quoteRetweets}
-                        </span>
-                        <span className="flex items-center gap-1.5">
-                          <ThumbsUp className="w-4 h-4" />
-                          {t.xPost.quoteLikes}
-                        </span>
-                        <span className="flex items-center gap-1.5">
-                          <TrendingUp className="w-4 h-4" />
-                          {t.xPost.quoteViews}
-                        </span>
-                        <span className="ml-auto text-foreground hover:underline flex items-center gap-1.5 transition-colors">
-                          {t.xPost.cta}
-                          <ExternalLink className="w-3 h-3" aria-hidden="true" />
-                        </span>
-                      </div>
-                    </div>
-                  </a>
-
-                  {/* Santiago tweet metrics */}
-                  <a href={t.xPost.url} target="_blank" rel="noopener noreferrer" className="mt-8 pt-4 border-t border-border/50 w-full flex items-center justify-center gap-8 text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    <span className="flex items-center gap-1.5">
-                      <MessageCircle className="w-4 h-4" />
-                      {t.xPost.replies}
-                    </span>
-                    <span className="flex items-center gap-1.5">
-                      <Share2 className="w-4 h-4" />
-                      {t.xPost.retweets}
-                    </span>
-                    <span className="flex items-center gap-1.5">
-                      <ThumbsUp className="w-4 h-4" />
-                      {t.xPost.likes}
-                    </span>
-                    <span className="flex items-center gap-1.5">
-                      <TrendingUp className="w-4 h-4" />
-                      {t.xPost.views}
-                    </span>
-                    <span className="ml-auto text-foreground hover:underline flex items-center gap-1.5 transition-colors">
-                      {t.xPost.cta}
-                      <ExternalLink className="w-3 h-3" aria-hidden="true" />
-                    </span>
-                  </a>
-                </div>
-              </div>
-            </AnimatedSection>
-          )}
-
-          {/* Reddit Posts */}
-          <div className="grid md:grid-cols-2 gap-4">
-          {t.redditPosts?.map((rp, i) => (
-            <AnimatedSection key={rp.url} delay={0.15 + i * 0.1}>
-              <div className="h-full">
-                <a
-                  href={rp.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex flex-col p-5 rounded-2xl bg-card border border-border/50 border-t-2 border-t-[#FF4500] hover:border-border transition-colors group h-full"
-                >
-                  <div className="flex gap-3">
-                    <img src="/foto-avatar.webp" alt="" role="presentation" width={384} height={384} className="w-10 h-10 rounded-full shrink-0 mt-0.5" />
-                    <div className="flex-1 min-w-0">
-                      <div className="flex justify-between items-start gap-2">
-                        <p className="text-sm text-foreground leading-relaxed">{rp.hook}<span className="text-muted-foreground">...</span> <span className="text-[#FF4500] group-hover:text-[#FF4500] transition-colors">ver más</span></p>
-                        <svg viewBox="0 0 24 24" className="w-4 h-4 shrink-0 mt-0.5" fill="#FF4500">
-                          <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-4 pt-3 border-t border-border/50 flex items-center gap-4 text-xs text-muted-foreground">
-                    <span className="flex items-center gap-1.5">
-                      <ArrowUp className="w-3.5 h-3.5" />
-                      {rp.upvotes}
-                    </span>
-                    <span className="flex items-center gap-1.5">
-                      <MessageCircle className="w-3.5 h-3.5" />
-                      {rp.comments}
-                    </span>
-                    <span className="text-muted-foreground/60">{rp.subreddit}</span>
-                    <span className="ml-auto text-[#FF4500] group-hover:underline flex items-center gap-1.5 transition-colors">
-                      {rp.cta}
-                      <ExternalLink className="w-3 h-3" aria-hidden="true" />
-                    </span>
-                  </div>
-                </a>
-              </div>
-            </AnimatedSection>
-          ))}
-          </div>
-
-          <div className="h-6" />
-
-          {/* LinkedIn Posts */}
-          <div className="grid md:grid-cols-2 gap-6">
-            {t.linkedinPosts.items.map((post: { hook: string; reactions: string; comments: string; url: string }, i: number) => (
-              <AnimatedSection key={`li-${i}`} delay={0.2 + i * 0.1}>
-                <a
-                  href={post.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex flex-col p-5 rounded-2xl bg-card border border-border/50 border-t-2 border-t-[hsl(var(--linkedin))] hover:border-border transition-colors group h-full"
-                >
-                  <div className="flex gap-3 flex-1">
-                    <img src="/foto-avatar.webp" alt="" role="presentation" width={384} height={384} className="w-10 h-10 rounded-full shrink-0 mt-0.5" />
-                    <div className="flex-1 min-w-0">
-                      <div className="flex justify-between items-start gap-2">
-                        <p className="text-sm text-foreground leading-relaxed">{post.hook}<span className="text-muted-foreground">...</span> <span className="text-[hsl(var(--linkedin))] group-hover:text-[hsl(var(--linkedin))] transition-colors">ver más</span></p>
-                        <LinkedInLogo className="w-4 h-4 text-[hsl(var(--linkedin))] shrink-0 mt-0.5" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-4 pt-3 border-t border-border/50 flex items-center gap-4 text-xs text-muted-foreground">
-                    <span className="flex items-center gap-1.5">
-                      <ThumbsUp className="w-3.5 h-3.5" />
-                      {post.reactions}
-                    </span>
-                    <span className="flex items-center gap-1.5">
-                      <MessageCircle className="w-3.5 h-3.5" />
-                      {post.comments}
-                    </span>
-                    <span className="ml-auto text-[hsl(var(--linkedin))] group-hover:text-[hsl(var(--linkedin))] group-hover:underline flex items-center gap-1.5 transition-colors">
-                      {t.linkedinPosts.cta}
-                      <ExternalLink className="w-3 h-3" aria-hidden="true" />
-                    </span>
-                  </div>
-                </a>
-              </AnimatedSection>
-            ))}
-          </div>
-
-          
-          {/* Separator */}
-          <div className="my-10 border-t border-border/40" />
-
-{/* Teaching / Speaking cards */}
-          <div className="grid md:grid-cols-2 gap-6">
-            {t.speaking.items.map((talk: { year: string; event: string; eventUrl: string; title: string; desc: string; pdf: string; featured: boolean; materialUrl?: string; materialLabel?: string }, i: number) => (
-              <AnimatedSection key={i} delay={0.1 + i * 0.1}>
-                {talk.featured ? (
-                  <div className="relative rounded-2xl p-[1.5px] bg-gradient-theme h-full">
-                    <div className="p-6 rounded-[calc(1rem-1.5px)] bg-card h-full flex flex-col">
-                      <span className="text-xs text-primary font-medium">
-                        {talk.year} · {talk.eventUrl ? (
-                          <a href={talk.eventUrl} target="_blank" rel="noopener noreferrer" className="hover:underline">
-                            {talk.event} <ExternalLink className="w-3 h-3 inline" aria-hidden="true" />
-                          </a>
-                        ) : talk.event}
-                      </span>
-                      <h3 className="font-display font-bold mt-2 text-gradient-theme">{talk.title}</h3>
-                      <p className="text-sm text-muted-foreground mt-2 flex-1">{talk.desc}</p>
-                      {t.speaking.comingSoon && (
-                        <span className="mt-4 inline-flex items-center gap-2 text-xs text-muted-foreground/60">
-                          {t.speaking.comingSoon}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                ) : (
-                  <div className="p-6 rounded-2xl bg-card border border-border hover:border-primary/30 transition-colors duration-200 group h-full flex flex-col">
-                    <span className="text-xs text-primary font-medium">
-                      {talk.year} · {talk.eventUrl ? (
-                        <a href={talk.eventUrl} target="_blank" rel="noopener noreferrer" className="hover:underline">
-                          {talk.event} <ExternalLink className="w-3 h-3 inline" aria-hidden="true" />
-                        </a>
-                      ) : talk.event}
-                    </span>
-                    <h3 className="font-display font-bold mt-2 group-hover:text-primary transition-colors">{talk.title}</h3>
-                    <p className="text-sm text-muted-foreground mt-2 flex-1">{talk.desc}</p>
-                    <div className="mt-4 flex flex-wrap gap-3">
-                      {talk.pdf && (
-                        <a
-                          href={talk.pdf}
-                          download
-                          className="inline-flex items-center gap-2 text-xs text-primary hover:underline"
-                        >
-                          <Download className="w-4 h-4" />
-                          {t.speaking.slides}
-                        </a>
-                      )}
-                      {talk.materialUrl && (
-                        <Link
-                          to={talk.materialUrl}
-                          className="inline-flex items-center gap-2 text-xs text-primary hover:underline"
-                        >
-                          <FileText className="w-4 h-4" />
-                          {talk.materialLabel || 'Material'}
-                        </Link>
-                      )}
-                    </div>
-                  </div>
-                )}
-              </AnimatedSection>
-            ))}
-          </div>
-
-          {/* AI Fluency Educator card */}
-          {t.speaking.aiFluency && (
-            <AnimatedSection delay={0.3}>
-              <div className="mt-16 p-6 rounded-2xl bg-gradient-to-br from-accent/10 to-primary/10 border border-accent/20">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-accent/20 flex items-center justify-center shrink-0">
-                    <GraduationCap className="w-6 h-6 text-accent" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2 flex-wrap">
-                      <h3 className="font-display font-bold">{t.speaking.aiFluency.title}</h3>
-                      <span className="badge px-2 py-0.5 bg-accent/10 text-accent text-xs">{t.speaking.aiFluency.badge}</span>
-                    </div>
-                    <p className="text-sm text-muted-foreground mb-4">{t.speaking.aiFluency.desc}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {t.speaking.aiFluency.certs.map((cert: { title: string; url: string }, i: number) => (
-                        <a
-                          key={i}
-                          href={cert.url}
-                          target="_blank"
-                          rel="noopener noreferrer nofollow"
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-accent/10 text-xs text-muted-foreground hover:text-accent hover:bg-accent/20 transition-colors"
-                        >
-                          <BadgeCheck className="w-3.5 h-3.5" />
-                          {cert.title}
-                        </a>
-                      ))}
-                    </div>
+                  <div className="text-right">
+                    <p className="text-sm font-bold text-foreground">{t.experience.sagent.period}</p>
+                    <p className="text-xs text-muted-foreground">{t.experience.sagent.location}</p>
                   </div>
                 </div>
+                <p className="text-muted-foreground mb-4">{t.experience.sagent.desc}</p>
+                <ul className="space-y-2">
+                  {t.experience.sagent.highlights.map((h: string, i: number) => (
+                    <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                      {h}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </AnimatedSection>
-          )}
-        </div>
-      </section>
 
-      {/* Education & Certifications */}
-      <section id="education" className="py-16 md:py-24" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 1000px' }}>
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-12">
-            {/* Education */}
-            <div>
-              <AnimatedSection>
-                <h2 className="font-display text-2xl font-semibold mb-8 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <GraduationCap className="w-5 h-5 text-primary" />
+            {/* Walmart */}
+            <AnimatedSection delay={0.2}>
+              <div className="relative pl-8 md:pl-12 border-l-2 border-border pb-4">
+                <div className="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-border ring-4 ring-background" />
+                <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
+                  <div>
+                    <h3 className="text-2xl font-bold">{t.experience.walmart.company}</h3>
+                    <p className="text-primary font-medium">{t.experience.walmart.role}</p>
                   </div>
-                  {t.education.title}
-                </h2>
-              </AnimatedSection>
-
-              <div className="space-y-4">
-                {t.education.items.map((item, i) => (
-                  <AnimatedSection key={i} delay={0.1 + i * 0.1}>
-                    <div className="p-5 rounded-2xl bg-card border border-border hover:border-primary/30 transition-colors duration-200 group">
-                      <div className="flex items-start justify-between">
-                        <div>
-                          <span className="text-xs text-primary font-medium">{item.year} · {item.org}</span>
-                          <h3 className="font-display font-semibold mt-1 group-hover:text-primary transition-colors">{item.title}</h3>
-                          <p className="text-sm text-muted-foreground mt-1">
-                            {item.desc}
-                            {('projectLink' in item && item.projectLink) && (
-                              <>
-                                {' '}
-                                <a
-                                  href={`https://${item.projectLink}`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-1 text-primary hover:underline"
-                                >
-                                  {item.projectLabel}
-                                  <ExternalLink className="w-3 h-3" aria-hidden="true" />
-                                </a>
-                              </>
-                            )}
-                          </p>
-                        </div>
-                      </div>
-                      {/* Testimonial if exists */}
-                      {'testimonial' in item && item.testimonial && (
-                        <a href="https://www.linkedin.com/in/santifer/details/recommendations/" target="_blank" rel="noopener noreferrer" className="block group">
-                          <blockquote className="mt-4 p-4 rounded-xl bg-primary/5 border border-primary/10 group-hover:border-[hsl(var(--linkedin)/0.3)] transition-colors">
-                            <p className="text-sm text-muted-foreground italic mb-4">
-                              "{item.testimonial.quote}"
-                            </p>
-                            <footer className="flex items-center gap-3">
-                              <picture>
-                                <source srcSet={item.testimonial.photo.replace(/\.(png|jpg|jpeg)$/i, '.webp')} type="image/webp" />
-                                <img src={item.testimonial.photo} alt={item.testimonial.author} className="w-10 h-10 rounded-full object-cover" width={40} height={40} loading="lazy" decoding="async" />
-                              </picture>
-                              <div className="flex-1">
-                                <span className="text-sm font-medium text-foreground block">{item.testimonial.author}</span>
-                                <span className="text-xs text-muted-foreground">{item.testimonial.role}</span>
-                              </div>
-                              <LinkedInLogo className="w-4 h-4 text-[hsl(var(--linkedin))]" />
-                            </footer>
-                          </blockquote>
-                        </a>
-                      )}
-                    </div>
-                  </AnimatedSection>
-                ))}
-
-              </div>
-            </div>
-
-            {/* Certifications */}
-            <div>
-              <AnimatedSection>
-                <h2 className="font-display text-2xl font-semibold mb-8 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
-                    <Award className="w-5 h-5 text-accent" />
+                  <div className="text-right">
+                    <p className="text-sm font-bold text-foreground">{t.experience.walmart.period}</p>
+                    <p className="text-xs text-muted-foreground">{t.experience.walmart.location}</p>
                   </div>
-                  {t.certifications.title}
-                </h2>
-              </AnimatedSection>
-
-              <div className="space-y-1 rounded-xl overflow-hidden border border-border">
-                {t.certifications.items.map((cert, i) => {
-                  // Alternate background by logical group: 0-3 tech, 4-7 fluency, 8-10 airtable, 11 make
-                  const group = i < 4 ? 0 : i < 8 ? 1 : i < 11 ? 2 : 3
-                  const isAlt = group % 2 === 1
-                  return (
-                  <AnimatedSection key={i} delay={0.1 + i * 0.05}>
-                    <a
-                      href={cert.url}
-                      target="_blank"
-                      rel="noopener noreferrer nofollow"
-                      className={`flex items-center gap-4 p-4 hover:border-accent/30 transition-colors duration-200 group cursor-pointer ${isAlt ? 'bg-muted/40' : 'bg-card'}`}
-                    >
-                      <span className="text-sm font-mono text-accent font-medium">{cert.year}</span>
-                      <div className="flex-1">
-                        <p className="font-medium group-hover:text-accent transition-colors">{cert.title}</p>
-                        <p className="text-sm text-muted-foreground">{cert.org}</p>
-                      </div>
-                      <div className="opacity-60 group-hover:opacity-100 transition-opacity">
-                        <CertLogo logo={cert.logo} />
-                      </div>
-                    </a>
-                  </AnimatedSection>
-                  )
-                })}
+                </div>
+                <p className="text-muted-foreground mb-4">{t.experience.walmart.desc}</p>
+                <ul className="space-y-2">
+                  {t.experience.walmart.highlights.map((h: string, i: number) => (
+                    <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                      {h}
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
 
-      {/* Skills */}
-      <section id="tech" className="py-16 md:py-24 bg-muted/30" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 600px' }}>
+      {/* Projects section hidden
+      <section id="projects" className="py-16 md:py-24">
+        ...
+      </section>
+      */}
+
+      {/* Education */}
+      <section id="education" className="py-16 md:py-24 bg-muted/30">
         <div className="max-w-5xl mx-auto px-6">
           <AnimatedSection>
             <h2 className="font-display text-2xl font-semibold mb-12 flex items-center gap-3">
               <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                <Code className="w-5 h-5 text-primary" />
+                <GraduationCap className="w-5 h-5 text-primary" />
               </div>
-              {t.skills.title}
+              {t.education.title}
             </h2>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-4 gap-8">
-            <AnimatedSection delay={0.1}>
-              <h3 className="font-display font-semibold mb-4 flex items-center gap-2">
-                <Globe className="w-4 h-4 text-primary" />
-                {t.skills.languages}
-              </h3>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span>{t.skills.spanish}</span>
-                  <span className="text-sm text-primary font-medium">{t.skills.native}</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span>{t.skills.english}</span>
-                  <span className="text-sm text-muted-foreground">{t.skills.professional}</span>
-                </div>
-              </div>
-
-              <h3 className="font-display font-semibold mb-4 mt-8">{t.skills.soft}</h3>
-              <div className="flex flex-wrap gap-2">
-                {t.skills.softSkills.map((skill) => (
-                  <span key={skill} className="px-3 py-1 rounded-full text-sm bg-accent/10 text-accent border border-accent/20 hover:bg-accent/20 transition-colors cursor-default">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.2} className="md:col-span-3">
-              <h3 className="font-display font-semibold mb-4">{t.techStack.title}</h3>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {t.techStack.categories.map((cat) => (
-                  <div key={cat.name} className="p-4 rounded-xl bg-card border border-border">
-                    <span className="text-xs font-medium text-primary uppercase tracking-wide">{cat.name}</span>
-                    <div className="flex flex-wrap gap-2 mt-3">
-                      {cat.items.map((item) => {
-                        const icon = getTechIcon(item)
-                        return (
-                          <span key={item} className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-xs bg-muted text-foreground">
-                            {icon && (
-                              <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 shrink-0" fill={icon.color} aria-hidden="true">
-                                <path d={icon.path} />
-                              </svg>
-                            )}
-                            {item}
-                          </span>
-                        )
-                      })}
-                    </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            {t.education.items.map((edu: any, i: number) => (
+              <AnimatedSection key={i} delay={0.1 * (i + 1)}>
+                <div className="p-6 rounded-2xl bg-card border border-border relative overflow-hidden h-full">
+                  <div className="absolute top-0 right-0 p-4 opacity-5">
+                    <GraduationCap className="w-24 h-24" />
                   </div>
-                ))}
-              </div>
-            </AnimatedSection>
+                  <p className="text-sm font-mono text-primary font-bold mb-2">{edu.year}</p>
+                  <h3 className="text-lg font-bold mb-1">{edu.title}</h3>
+                  <p className="font-medium text-foreground/80 mb-2">{edu.org}</p>
+                  <p className="text-sm text-muted-foreground">{edu.desc}</p>
+                </div>
+              </AnimatedSection>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Footer CTA */}
-      <footer id="contact" className="relative py-16 md:py-24">
-        {/* Vignette horizontal — zona limpia central, puntos en bordes */}
-        <div className="absolute inset-0 pointer-events-none" style={{
-          background: 'linear-gradient(90deg, transparent 0%, hsl(var(--background)) 25%, hsl(var(--background)) 75%, transparent 100%)',
-        }} />
-        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
+      {/* Tech Stack */}
+      <section id="tech" className="py-16 md:py-24">
+        <div className="max-w-5xl mx-auto px-6">
           <AnimatedSection>
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
-              {t.cta.title}
+            <h2 className="font-display text-2xl font-semibold mb-12 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                <Cpu className="w-5 h-5 text-primary" />
+              </div>
+              {t.techStack.title}
+            </h2>
+          </AnimatedSection>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {t.techStack.categories.map((cat: any, i: number) => (
+              <AnimatedSection key={i} delay={0.1 * i}>
+                <div className="p-6 rounded-2xl bg-card border border-border h-full">
+                  <h3 className="text-sm font-bold text-primary uppercase tracking-wider mb-4">{cat.name}</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {cat.items.map((item: string) => (
+                      <span key={item} className="px-3 py-1 rounded-lg bg-muted text-sm font-medium text-muted-foreground">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer id="contact" className="py-16 md:py-24 border-t border-border">
+        <div className="max-w-5xl mx-auto px-6 text-center">
+          <AnimatedSection>
+            <h2 className="text-3xl font-bold mb-4">
+              {lang === 'zh' ? '对合作感兴趣吗？' : 'Interested in working together?'}
             </h2>
             <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-              {t.cta.desc}
+              {lang === 'zh' ? '我一直对新的机会和有趣的项目持开放态度。' : "I'm always open to new opportunities and interesting projects."}
             </p>
-          </AnimatedSection>
-          <AnimatedSection delay={0.1}>
             <div className="flex flex-wrap justify-center gap-4">
-              <a
-                href={`mailto:${t.email}`}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium hover:brightness-110 hover:shadow-lg hover:shadow-primary/25 active:brightness-95 transition-all duration-200"
-              >
-                <Mail className="w-4 h-4" />
-                {t.cta.contact}
+              <a href={`mailto:${t.email}`} className="px-8 py-3 rounded-full bg-primary text-primary-foreground font-bold hover:brightness-110 transition-all flex items-center gap-2">
+                <Mail className="w-5 h-5" /> {lang === 'zh' ? '打个招呼' : 'Say Hello'}
               </a>
-              <a
-                href="https://linkedin.com/in/santifer/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border hover:border-primary/50 transition-colors duration-200 hover:bg-primary/5"
-              >
-                <LinkedInLogo className="w-4 h-4 text-[hsl(var(--linkedin))]" />
-                LinkedIn
-                <ExternalLink className="w-3 h-3" aria-hidden="true" />
+              <a href="https://linkedin.com/in/xueyifan" target="_blank" rel="noopener noreferrer" className="px-8 py-3 rounded-full border border-border font-bold hover:bg-muted transition-all flex items-center gap-2">
+                <LinkedInLogo className="w-5 h-5" /> LinkedIn
               </a>
             </div>
           </AnimatedSection>
-          <p className="mt-12 text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} Santiago Fernández de Valderrama
-            <span className="mx-2 text-border">|</span>
-            <Link to={lang === 'es' ? '/privacidad' : '/privacy'} className="hover:text-primary transition-colors">
-              {lang === 'es' ? 'Privacidad' : 'Privacy'}
-            </Link>
+          <p className="mt-20 text-sm text-muted-foreground">
+            &copy; {new Date().getFullYear()} Yifan Xue. {lang === 'zh' ? '保留所有权利。' : 'All rights reserved.'}
           </p>
         </div>
       </footer>
-
     </main>
   )
 }

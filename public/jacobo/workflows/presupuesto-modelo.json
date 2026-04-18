@@ -7,7 +7,7 @@
         "text": "=## Entrada\n\"modelo\" es:  {{ $json.body.modeloInput }}\n\"modeloLimpio\" es: {{ $json.modelClean }}\n\"reparacionInput\" es: {{ $json.body.reparacionInput }}",
         "hasOutputParser": true,
         "options": {
-          "systemMessage": "=## ROL\nEres un agente especializado en buscar precios de reparación de modelos de móviles, tablets y smartwatches en nuestra base de datos de Airtable.\n\n## OBJETIVO\nDevolver un JSON estructurado con información sobre precios de esa reparación de ese modelo obtenido de Airtable\n\n## HERRAMIENTAS\n1. BuscarModelo: para buscar el \"modelo\" (usando \"modeloLimpio\") y así obtener su RECORD_ID\n2. BuscarReparacionesModelo: para obtener todas las reparaciones disponibles para ese \"modelo\", buscando por su RECORD_ID obtenido del paso anterior.\n3. Structured Output Parser: va a devolver en ese formato la reparación específica del modelo (sólo una reparación)\n\n## PASOS\n1. Primero buscamos el modelo en Airtable. Para buscar la información, vas a usar la herramienta \"BuscarModelos\", en la que vas a buscar por el campo \"modeloLimpio\", que lo recibes del paso anterior. Si no encuentras nada, tienes que ir acotando el modelo para obtener más resultados, hasta que te quedes con el que corresponda.\n\n2. Segundo: Una vez tengas ya el id de airtable del resultado anterior (\"modeloId\", algo estilo recv1Dn5WHIwngW9H), usa la herramienta \"BuscarReparacionesModelo\", dicho resultado te dará todas las reparaciones disponibles de ese modelo. \n\n3. Vas a estructurar la salida con el parser. Para saber si hay stock disponible o no de esa reparación, obtendrás del paso anterior algo tal que así \"(2, DISP: 2, PEDIDO: 1)\" o bien un número suelto. En el primer tipo equivale a (stockTotal, DISP: stockDisponible, PEDIDO: stockPedido) o si es un número suelto equivale a stockDisponible. Ese es el valor que importa, stockDisponible. Si es > 0 devuelves true, y si no, false. Cita diagnóstico va a \"URLCita\". Si una reparación devuelve PRESUPUESTO es que todavía no está creada y va a urlPresupuesto, luego Stock es false, precio es PRESUPUESTO y devuelves el campo urlPresupuesto. urlDiagnostico va a ser el campo \"Cita diagnóstico\" obtenido de \"BuscarModelo\". UrlSantifer del parser es el campo campo UrlSantiferNueva (de BuscarModelo). El campo n8nPiezasRecordsIds incluye todas las piezas de ese modelo con su recordID entre paréntesis, pero sólo vas a obtener el recordId de la pieza en cuestión y lo devuelves al parser\n\n"
+          "systemMessage": "=## ROL\nEres un agente especializado en buscar precios de reparación de modelos de móviles, tablets y smartwatches en nuestra base de datos de Airtable.\n\n## OBJETIVO\nDevolver un JSON estructurado con información sobre precios de esa reparación de ese modelo obtenido de Airtable\n\n## HERRAMIENTAS\n1. BuscarModelo: para buscar el \"modelo\" (usando \"modeloLimpio\") y así obtener su RECORD_ID\n2. BuscarReparacionesModelo: para obtener todas las reparaciones disponibles para ese \"modelo\", buscando por su RECORD_ID obtenido del paso anterior.\n3. Structured Output Parser: va a devolver en ese formato la reparación específica del modelo (sólo una reparación)\n\n## PASOS\n1. Primero buscamos el modelo en Airtable. Para buscar la información, vas a usar la herramienta \"BuscarModelos\", en la que vas a buscar por el campo \"modeloLimpio\", que lo recibes del paso anterior. Si no encuentras nada, tienes que ir acotando el modelo para obtener más resultados, hasta que te quedes con el que corresponda.\n\n2. Segundo: Una vez tengas ya el id de airtable del resultado anterior (\"modeloId\", algo estilo recv1Dn5WHIwngW9H), usa la herramienta \"BuscarReparacionesModelo\", dicho resultado te dará todas las reparaciones disponibles de ese modelo. \n\n3. Vas a estructurar la salida con el parser. Para saber si hay stock disponible o no de esa reparación, obtendrás del paso anterior algo tal que así \"(2, DISP: 2, PEDIDO: 1)\" o bien un número suelto. En el primer tipo equivale a (stockTotal, DISP: stockDisponible, PEDIDO: stockPedido) o si es un número suelto equivale a stockDisponible. Ese es el valor que importa, stockDisponible. Si es > 0 devuelves true, y si no, false. Cita diagnóstico va a \"URLCita\". Si una reparación devuelve PRESUPUESTO es que todavía no está creada y va a urlPresupuesto, luego Stock es false, precio es PRESUPUESTO y devuelves el campo urlPresupuesto. urlDiagnostico va a ser el campo \"Cita diagnóstico\" obtenido de \"BuscarModelo\". UrlXueyifan del parser es el campo campo UrlXueyifanNueva (de BuscarModelo). El campo n8nPiezasRecordsIds incluye todas las piezas de ese modelo con su recordID entre paréntesis, pero sólo vas a obtener el recordId de la pieza en cuestión y lo devuelves al parser\n\n"
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
@@ -42,7 +42,7 @@
           "__rl": true,
           "value": "appXXXXXXXXXXXXXXX",
           "mode": "list",
-          "cachedResultName": "santifer iRepair",
+          "cachedResultName": "xueyifan iRepair",
           "cachedResultUrl": "https://airtable.com/appXXXXXXXXXXXXXXX"
         },
         "table": {
@@ -58,7 +58,7 @@
             "Name",
             "Modelo compacto",
             "Nomenclatura",
-            "URLSantiferNueva",
+            "URLXueyifanNueva",
             "Cita diagnóstico"
           ]
         }
@@ -93,7 +93,7 @@
     },
     {
       "parameters": {
-        "jsonSchemaExample": "{\n  \"modelo\": \"Apple iPhone XS Max\",\n  \"reparacion\": \"Batería\",\n  \"precio\": \"65.9 €\",\n  \"stock\": true,\n  \"urlSantifer\": \"https://santiferirepair.es/reparar-iphone/xs-max\",\n  \"urlCita\": \"https://santifer-citav2-componentes.youcanbook.me/?MOD=Apple%20iPhone%20XS%20Max&REP=Bater%C3%ADa\",\n  \"urlPresupuesto\": \"https://airtable.com/embed/shrXXXXXXXXXXXXXXX?prefill_Modelo=Apple%20iPhone%2015%20Plus&prefill_Averia=Vibrador\",\n  \"urlDiagnostico\":\"https://santifer-citadiag.youcanbook.me/?MOD=Apple%20iPhone%20XS%20Max\",\n  \"idPiezaAirtableParaPedido\": \"rec12312iajsdkj9123\",\n  \"idModeloAirtableParaPedido\": \"receRdxJPz8QwWXzo\"\n}\n"
+        "jsonSchemaExample": "{\n  \"modelo\": \"Apple iPhone XS Max\",\n  \"reparacion\": \"Batería\",\n  \"precio\": \"65.9 €\",\n  \"stock\": true,\n  \"urlXueyifan\": \"https://xueyifanirepair.es/reparar-iphone/xs-max\",\n  \"urlCita\": \"https://xueyifan-citav2-componentes.youcanbook.me/?MOD=Apple%20iPhone%20XS%20Max&REP=Bater%C3%ADa\",\n  \"urlPresupuesto\": \"https://airtable.com/embed/shrXXXXXXXXXXXXXXX?prefill_Modelo=Apple%20iPhone%2015%20Plus&prefill_Averia=Vibrador\",\n  \"urlDiagnostico\":\"https://xueyifan-citadiag.youcanbook.me/?MOD=Apple%20iPhone%20XS%20Max\",\n  \"idPiezaAirtableParaPedido\": \"rec12312iajsdkj9123\",\n  \"idModeloAirtableParaPedido\": \"receRdxJPz8QwWXzo\"\n}\n"
       },
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.2,
@@ -136,7 +136,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const items = $input.all();\n\nconst filteredItems = items.map(item => {\n  // Clonamos sólo el contenido de output\n  const data = { ...item.json.output };\n\n  // 1) Validación de urlSantifer\n  if (!data.urlSantifer || !data.urlSantifer.includes('santiferirepair.es')) {\n    data.urlSantifer = 'NO DISPONIBLE EN WEB AUN';\n  }\n\n  // 2) Reglas de eliminación de campos\n  if (data.precio === 'PRESUPUESTO') {\n    // Caso PRESUPUESTO: borramos urlCita e idPieza\n    delete data.urlCita;\n    delete data.idPiezaAirtableParaPedido;\n\n  } else if (data.stock === true) {\n    // Caso stock disponible: borramos urlPresupuesto e idPieza\n    delete data.urlPresupuesto;\n    delete data.idPiezaAirtableParaPedido;\n    delete data.idModeloAirtableParaPedido;\n\n  } else if (data.stock === false) {\n    // Caso sin stock: borramos urlCita y urlPresupuesto\n    delete data.urlCita;\n    delete data.urlPresupuesto;\n  }\n\n  // 3) Devolvemos el resultado, manteniendo el wrapper `output`\n  return { json: { output: data } };\n});\n\nreturn filteredItems;\n"
+        "jsCode": "const items = $input.all();\n\nconst filteredItems = items.map(item => {\n  // Clonamos sólo el contenido de output\n  const data = { ...item.json.output };\n\n  // 1) Validación de urlXueyifan\n  if (!data.urlXueyifan || !data.urlXueyifan.includes('xueyifanirepair.es')) {\n    data.urlXueyifan = 'NO DISPONIBLE EN WEB AUN';\n  }\n\n  // 2) Reglas de eliminación de campos\n  if (data.precio === 'PRESUPUESTO') {\n    // Caso PRESUPUESTO: borramos urlCita e idPieza\n    delete data.urlCita;\n    delete data.idPiezaAirtableParaPedido;\n\n  } else if (data.stock === true) {\n    // Caso stock disponible: borramos urlPresupuesto e idPieza\n    delete data.urlPresupuesto;\n    delete data.idPiezaAirtableParaPedido;\n    delete data.idModeloAirtableParaPedido;\n\n  } else if (data.stock === false) {\n    // Caso sin stock: borramos urlCita y urlPresupuesto\n    delete data.urlCita;\n    delete data.urlPresupuesto;\n  }\n\n  // 3) Devolvemos el resultado, manteniendo el wrapper `output`\n  return { json: { output: data } };\n});\n\nreturn filteredItems;\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -176,7 +176,7 @@
           "__rl": true,
           "value": "appXXXXXXXXXXXXXXX",
           "mode": "list",
-          "cachedResultName": "santifer iRepair",
+          "cachedResultName": "xueyifan iRepair",
           "cachedResultUrl": "https://airtable.com/appXXXXXXXXXXXXXXX"
         },
         "table": {

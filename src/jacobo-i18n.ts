@@ -1,822 +1,822 @@
 export const jacoboContent = {
-    es: {
+    zh: {
       slug: 'agente-ia-jacobo',
       altSlug: 'ai-agent-jacobo',
-      readingTime: '35 min de lectura',
+      readingTime: '35 分钟阅读',
       seo: {
-        title: 'Jacobo: Agente IA Multi-Agente con Tool Calling y Voice AI · Case Study de Producción | santifer.io',
-        description: 'Case study: cómo un FDE construyó un agente IA omnicanal con sub-agentes, tool calling, HITL y Voice AI (n8n + ElevenLabs) que logra 90% de autoservicio. Workflows descargables.',
+        title: 'Jacobo：结合工具调用和语音 AI 的多代理系统 · 生产环境案例研究 | xueyifan.io',
+        description: '案例研究：FDE 如何构建一个包含子代理、工具调用、HITL 和语音 AI (n8n + ElevenLabs) 的全渠道 AI 代理，实现 90% 的自助服务。工作流可下载。',
       },
       nav: {
-        breadcrumbHome: 'Inicio',
-        breadcrumbCurrent: 'Agente IA Jacobo',
+        breadcrumbHome: '首页',
+        breadcrumbCurrent: 'AI 代理 Jacobo',
       },
       header: {
-        kicker: 'Case Study: Santifer iRepair (búscalo en Google, sigue operando hoy)',
-        h1: 'Jacobo: Agente IA Omnicanal con Sub-agentes y Tool Calling',
-        subtitle: 'Cómo construí un agente IA que atiende por WhatsApp y teléfono fijo, orquesta sub-agentes especializados vía webhooks y logra ~90% de autoservicio en un negocio de reparación de móviles.',
-        badge: 'Sistema vendido con el negocio en 2025. Sigue en producción hoy',
-        date: '25 feb 2026',
+        kicker: '案例研究：薛一凡 iRepair (可在 Google 搜索，目前仍在运营)',
+        h1: 'Jacobo：具备子代理和工具调用的全渠道 AI 代理',
+        subtitle: '我如何构建一个通过 WhatsApp 和固定电话提供服务的 AI 代理，通过 Webhook 编排专业子代理，并在手机维修业务中实现 ~90% 的自助服务。',
+        badge: '系统已于 2025 年随业务一同售出。至今仍在生产环境中运行',
+        date: '2026年2月25日',
       },
       heroMetrics: [
         {
           value: '~90%',
-          label: 'Autoservicio',
+          label: '自助服务率',
         },
         {
-          value: '~80h/mes',
-          label: 'Automatizadas',
+          value: '~80h/月',
+          label: '自动化节省',
         },
         {
           value: '<30s',
-          label: 'Respuesta',
+          label: '响应速度',
         },
         {
           value: '<200€',
-          label: 'Coste/mes',
+          label: '月度成本',
         },
         {
           value: '24/7',
-          label: 'Disponible',
+          label: '全天候可用',
         },
       ],
-      tldr: 'Un sistema multi-agente de IA que resuelve ~90% de las consultas sin intervención humana, 24/7, por <200€/mes. 4 agentes + 3 tools, dual-channel (WhatsApp + teléfono fijo). Construido en <1 mes sobre un Business OS de 5 años. Vendido con el negocio en 2025. Los 7 workflows de n8n son descargables al final.',
+      tldr: '一个多智能体 AI 系统，在不需人工干预的情况下解决 ~90% 的咨询，24/7 全天候运行，每月成本 <200€。包含 4 个代理 + 3 个工具，双渠道（WhatsApp + 固定电话）。在拥有 5 年历史的业务操作系统基础上，用时不到 1 个月建成。于 2025 年随业务一同售出。文章末尾可下载全部 7 个 n8n 工作流。',
       intro: {
-        hook: '~15 interrupciones al día. Cada una, una reparación parada. Cada WhatsApp sin responder, un cliente que se iba a la competencia. Construí un agente IA que gestiona ambos canales: ~90% de las interacciones, 24/7, por menos de 200€/mes.',
-        body: 'No un chatbot con respuestas enlatadas. Un agente que consulta precios reales, verifica stock, gestiona citas y sabe cuándo escalar a un humano con todo el contexto. Así nació Jacobo. En este artículo comparto la arquitectura completa y los workflows de producción para que puedas replicarlo.',
+        hook: '每天约 15 次中断。每一次中断，都意味着一项维修任务被迫停止。每一次未及时回复的 WhatsApp，都可能意味着客户流向了竞争对手。我构建了一个 AI 代理来管理这两个渠道：处理 ~90% 的交互，24/7 全天候在线，每月成本低于 200 欧元。',
+        body: '这不是一个只会机械回复的聊天机器人。它是一个能查询实时价格、验证库存、管理预约，并懂得何时带着完整上下文转接人工的智能代理。这就是 Jacobo 的诞生。在本文中，我将分享完整的架构和生产环境工作流，以便你可以进行复制。',
       },
       internalLinks: {
         businessOs: {
-          text: 'Business OS | Case Study',
+          text: 'Business OS | 案例研究',
           href: '/business-os-para-airtable',
         },
         pseo: {
-          text: 'SEO Programático | Case Study',
+          text: '程序化 SEO | 案例研究',
           href: '/seo-programatico',
         },
         careerOps: {
-          text: 'Career-Ops: Agente IA Multi-Agente | Case Study',
+          text: 'Career-Ops: 多智能体 AI 系统 | 案例研究',
           href: '/career-ops',
         },
       },
       sections: {
         theProblem: {
-          heading: 'El Problema',
-          body: 'Con +30.000 reparaciones completadas y múltiples canales de atención (teléfono, WhatsApp, web), el cuello de botella era claro:',
+          heading: '问题背景',
+          body: '在完成了 30,000+ 次维修并拥有多个服务渠道（电话、WhatsApp、网页）的情况下，瓶颈显而易见：',
           painPoints: [
-            'El 80% de las consultas eran repetitivas: precios, citas, estado de reparación',
-            'Cada consulta interrumpía al técnico que estaba reparando dispositivos',
-            'Los tiempos de respuesta variaban según la carga del día',
-            'La información estaba dispersa entre Airtable, el calendario y el inventario',
-            'El horario de atención limitaba la disponibilidad a horas de tienda',
-            'Un empleado a tiempo parcial dedicado a atención al cliente costaba más de lo que el negocio podía justificar',
-            'Los clientes llegaban por dos canales principales (WhatsApp y teléfono fijo) y la solución tenía que cubrir ambos con la misma lógica, no duplicar el trabajo',
+            '80% 的咨询是重复性的：价格、预约、维修进度',
+            '每次咨询都会打断正在修理设备的技术人员',
+            '响应时间随当天的负载量波动',
+            '信息分散在 Airtable、日历和库存系统中',
+            '服务时间受限于门店营业时间',
+            '专门聘请一名兼职客服的成本超出了业务所能承受的范围',
+            '客户主要通过两个渠道（WhatsApp 和固定电话）接入，解决方案必须以同一套逻辑覆盖两者，而非重复劳动',
           ],
           alternatives: {
-            body: 'Sabía tres cosas desde el principio: Airtable era el cerebro (el Business OS ya llevaba años como SSOT), necesitaba tool calling real contra esos datos, y el agente tenía que ser multimodal (voz + chat) compartiendo los mismos recursos. La pregunta era qué herramienta de orquestación usar:',
+            body: '从一开始我就确定了三件事：Airtable 是大脑（Business OS 已作为 SSOT 运行多年），我需要针对这些数据进行真正的工具调用 (tool calling)，且该代理必须是多模态的（语音 + 聊天）并共享相同资源。问题在于使用哪种编排工具：',
             items: [
               {
                 tool: 'Tidio / Intercom',
-                issue: 'Chatbots generalistas con árboles de decisión. No pueden consultar stock en tiempo real ni calcular precios dinámicos contra Airtable. Para un negocio de reparaciones, son poco más que un FAQ interactivo.',
+                issue: '基于决策树的通用聊天机器人。无法实时查询库存或针对 Airtable 计算动态价格。对于维修业务来说，它们充其量只是一个交互式的常见问题解答 (FAQ)。',
               },
               {
                 tool: 'ManyChat (WhatsApp)',
-                issue: 'Bueno para flujos de marketing, pero sin capacidad de tool calling contra un ERP existente. No puede verificar stock, crear órdenes de trabajo ni hacer handoff con contexto.',
+                issue: '适用于营销流程，但缺乏针对现有 ERP 的工具调用能力。无法验证库存、创建工作单 or 进行带有上下文的人工转接。',
               },
               {
-                tool: 'Solución vertical (RepairDesk chat)',
-                issue: 'Ningún SaaS de reparaciones ofrecía un agente conversacional con lenguaje natural y tool calling contra datos en tiempo real. Los que tenían chat eran básicamente formularios disfrazados.',
+                tool: '垂直领域解决方案 (RepairDesk chat)',
+                issue: '没有任何维修行业的 SaaS 提供具备自然语言能力且能针对实时数据进行工具调用的对话代理。那些带有聊天功能的本质上只是伪装后的表单。',
               },
             ],
-            punchline: 'n8n era la elección natural: orquestación de workflows con webhooks, soporte nativo para agentes con LLMs y tool calling, y la capacidad de que cada sub-agente fuera un workflow independiente testeable. Todo conectado al Business OS que ya existía en Airtable.',
+            punchline: 'n8n 是自然之选：支持 Webhook 的工作流编排、原生支持带有 LLM 和工具调用的代理，且每个子代理都可以作为独立的、可测试的工作流。一切都连接到已在 Airtable 中运行的 Business OS。',
           },
         },
         architecture: {
-          heading: 'La Arquitectura',
-          body: 'Jacobo no es un chatbot con un prompt largo. Es un sistema de sub-agentes especializados, cada uno desplegado como un webhook independiente en n8n, orquestados mediante tool calling desde un router central. Cada workflow que ves en este artículo es descargable: podrás importarlo directamente en n8n.',
+          heading: '系统架构',
+          body: 'Jacobo 并不是一个带有超长提示词的聊天机器人。它是一个由多个专门子代理组成的系统，每个子代理都部署为 n8n 中的独立 Webhook，并通过中心路由器的工具调用进行编排。你在本文中看到的每个工作流都是可下载的：你可以直接将它们导入 n8n。',
           whySubAgents: {
-            heading: '¿Por qué sub-agentes en vez de un prompt monolítico?',
+            heading: '为什么选择子代理而非单体提示词？',
             reasons: [
               {
-                title: 'Testabilidad',
-                detail: 'Cada sub-agente tiene su propio webhook. Puedo probarlo de forma aislada con una llamada HTTP, sin montar el sistema completo.',
+                title: '可测试性',
+                detail: '每个子代理都有自己的 Webhook。我可以通过 HTTP 调用孤立地测试它，而无需搭建整个系统。',
               },
               {
-                title: 'Evolución independiente',
-                detail: 'Un cambio en la lógica de descuentos no toca las citas. Puedo iterar un dominio sin riesgo de romper otro.',
+                title: '独立演进',
+                detail: '折扣逻辑的更改不会影响预约。我可以迭代一个领域而无需承担破坏另一个领域的风险。',
               },
               {
-                title: 'Cost efficiency',
-                detail: 'No todos los sub-agentes necesitan el mismo modelo. Citas usa MiniMax M2.5 (rápido y barato para parsear preferencias temporales). Presupuestos usa GPT-4.1 mini (precisión en structured output). Cada sub-agente con el modelo justo para su tarea.',
+                title: '成本效益',
+                detail: '并非所有子代理都需要相同的模型。预约使用 MiniMax M2.5（快速且廉价，用于解析时间偏好）。报价使用 GPT-4.1 mini（在结构化输出方面更精准）。每个子代理都配备最适合其任务的模型。',
               },
               {
-                title: 'Platform-agnostic',
-                detail: 'Los sub-agentes son webhooks. No saben si los llama n8n (WhatsApp) o ElevenLabs (voz). Reutilizables por cualquier orquestador sin duplicar lógica.',
+                title: '平台无关性',
+                detail: '子代理本质上是 Webhook。它们不知道是 n8n (WhatsApp) 还 ElevenLabs (语音) 在调用它们。任何编排器都可以复用它们，无需重复逻辑。',
               },
             ],
           },
-          agentsHeading: '4 Agentes y 3 Tools Para Gobernarlos a Todos',
-          agentsBody: '4 agentes con LLM propio toman decisiones. 3 tools sin LLM ejecutan lógica de negocio pura. Todo conectado por webhooks.',
-          toolsLabel: 'Tools (sin LLM)',
+          agentsHeading: '用 4 个代理和 3 个工具统领全局',
+          agentsBody: '4 个拥有各自 LLM 的代理负责决策。3 个不带 LLM 的工具执行纯业务逻辑。全部通过 Webhook 连接。',
+          toolsLabel: '工具 (无 LLM)',
           agents: [
             {
               kind: 'agent',
               icon: '🧭',
-              name: 'Router Principal (n8n)',
-              desc: 'El cerebro del canal WhatsApp. Clasifica el intent, elige el sub-agente correcto y mantiene el contexto con una ventana de memoria de 20 mensajes.',
+              name: '主路由器 (n8n)',
+              desc: 'WhatsApp 渠道的大脑。分类意图，选择正确的子代理，并维护一个包含 20 条消息的记忆窗口。',
               details: [
-                'GPT-4.1 vía OpenRouter · 37 nodos',
-                'Patrón LangChain Agent con 7 tools como endpoints HTTP',
-                'Think tool para razonar antes de cadenas complejas',
-                'Pseudo-streaming: parte la respuesta en frases y las envía una a una por WhatsApp',
+                '通过 OpenRouter 运行 GPT-4.1 · 37 个节点',
+                '带有 7 个作为 HTTP 端点的工具的 LangChain Agent 模式',
+                'Think 工具用于在执行复杂链条前进行推理',
+                '伪流式传输 (Pseudo-streaming)：将回复拆分为句子，通过 WhatsApp 逐条发送',
               ],
             },
             {
               kind: 'agent',
               icon: '🎙️',
-              name: 'Voice Router (ElevenLabs)',
-              desc: 'El cerebro del canal de voz. Recibe llamadas vía Aircall → Twilio → ElevenLabs Conversational AI, con su propio system prompt optimizado para conversación hablada.',
+              name: '语音路由器 (ElevenLabs)',
+              desc: '语音渠道的大脑。通过 Aircall → Twilio → ElevenLabs Conversational AI 接收来电，拥有专门为口语对话优化的系统提示词。',
               details: [
                 'ElevenLabs Conversational AI · GPT-4o',
-                'Mismos sub-agentes que el Router Principal, conectados como tools HTTP',
-                'RAG nativo out-of-the-box: knowledge base con catálogo de reparaciones, precios y FAQs',
-                'Latencia optimizada para voz: respuestas cortas y directas',
-                'Detección de horario comercial para transferir a humano fuera de horas',
+                '与主路由器相同的子代理，作为 HTTP 工具连接',
+                '原生开箱即用的 RAG：包含维修目录、价格和常见问题的知识库',
+                '针对语音优化的延迟：短促且直接的回答',
+                '营业时间检测，用于非营业时间转接人工',
               ],
             },
             {
               kind: 'agent',
               icon: '📅',
-              name: 'Sub-agente Citas',
-              desc: 'Convierte "mañana por la mañana" en una cita confirmada. Parsea preferencias temporales en lenguaje natural, consulta YouCanBookMe y envía template de confirmación por WhatsApp.',
+              name: '预约子代理',
+              desc: '将“明天上午”转换为确认的预约。解析自然语言中的时间偏好，查询 YouCanBookMe 并在 WhatsApp 上发送确认模板。',
               details: [
-                'MiniMax M2.5 vía OpenRouter · 18 nodos',
-                '15 reglas de parseo temporal: desde "después de comer" hasta "cualquier día menos lunes"',
-                'El sub-agente más sofisticado del sistema',
+                '通过 OpenRouter 运行 MiniMax M2.5 · 18 个节点',
+                '15 条时间解析规则：从“午饭后”到“除周一外的任何一天”',
+                '系统中最为复杂的子代理',
               ],
             },
             {
               kind: 'agent',
               icon: '💰',
-              name: 'Sub-agente Presupuestos',
-              desc: 'Toda consulta de precio pasa por aquí. Busca modelo y reparación exactos en Airtable, devuelve precio real con estado de stock y decide el siguiente paso.',
+              name: '报价子代理',
+              desc: '所有的价格查询都流经此处。在 Airtable 中查找精确的型号和维修项，返回带有库存状态的真实价格，并决定下一步。',
               details: [
-                'GPT-4.1 mini vía OpenRouter · 11 nodos',
-                '¿Hay stock? → ofrece cita',
-                '¿Sin stock? → ofrece pedido',
-                '¿No existe? → enlace al formulario de presupuesto',
+                '通过 OpenRouter 运行 GPT-4.1 mini · 11 个节点',
+                '有库存？→ 提供预约',
+                '无库存？→ 提供订购',
+                '不存在？→ 链接至报价表单',
               ],
             },
             {
               kind: 'tool',
               icon: '📦',
-              name: 'Pedidos',
-              desc: 'Crea órdenes de reparación en Airtable cuando la pieza no tiene stock.',
+              name: '订单管理',
+              desc: '当零件缺货时，在 Airtable 中创建维修/订购记录。',
               details: [
-                '3 nodos: webhook → crear registro → responder',
-                'Simple por diseño: toda la validación ocurrió en Presupuestos',
+                '3 个节点：Webhook → 创建记录 → 响应',
+                '设计简单：所有的验证工作都已在报价阶段完成',
               ],
             },
             {
               kind: 'tool',
               icon: '🧮',
-              name: 'Calculadora de Descuentos',
-              desc: 'Lógica pura de negocio, sin LLM. Calcula descuentos combo cuando el cliente agrupa varias reparaciones.',
+              name: '折扣计算器',
+              desc: '纯业务逻辑，无 LLM。当客户组合多个维修项时计算套餐折扣。',
               details: [
-                '3 nodos · sin LLM',
-                'Batería + pantalla + cristal trasero = precio multi-reparación automático',
-                'Las reglas de descuento viven aquí, no repartidas entre prompts',
+                '3 个节点 · 无 LLM',
+                '电池 + 屏幕 + 后盖 = 自动计算的多项维修价格',
+                '折扣规则存放在这里，而不是分散在提示词中',
               ],
             },
             {
               kind: 'tool',
               icon: '🙋',
-              name: 'HITL Handoff',
-              desc: 'La válvula de escape. Escala a humano vía Slack con deep-link directo a la conversación en WATI.',
+              name: 'HITL 转接人工',
+              desc: '系统的排压阀。通过 Slack 转接人工，并提供指向 WATI 对话的直接深度链接。',
               details: [
-                '5 nodos · publica en #chat',
-                'Incluye resumen de conversación, intent detectado e historial del cliente',
-                'El humano tiene contexto completo antes de abrir el chat',
+                '5 个节点 · 发布至 #chat 频道',
+                '包含对话摘要、检测到的意图和客户历史记录',
+                '人工在打开聊天前已掌握完整背景',
               ],
             },
           ],
           memory: {
-            heading: 'Memoria Conversacional',
-            body: 'Jacobo no tiene estado propio entre mensajes. Cada vez que llega un mensaje nuevo, reconstruye el contexto leyendo el historial real de la conversación desde WATI:',
+            heading: '对话记忆',
+            body: 'Jacobo 在消息之间不保留自身状态。每当有新消息到达时，它会通过从 WATI 读取真实的对话历史来重构上下文：',
             steps: [
               {
-                label: '¿Atendido?',
-                detail: 'Un switch comprueba si ya existe sesión activa para este número. Si no, dispara la recarga de memoria.',
+                label: '是否已接待？',
+                detail: '一个开关节点检查该号码是否已有活跃会话。如果没有，则触发记忆加载。',
               },
               {
-                label: 'Fetch de WATI',
-                detail: 'Llamada HTTP a getMessages/{waId} con pageSize=80. Recupera los últimos 80 mensajes de la conversación completa: mensajes del cliente, respuestas de Jacobo, templates, broadcasts y mensajes de operadores humanos.',
+                label: '从 WATI 获取',
+                detail: '通过 getMessages/{waId} 进行 HTTP 调用，pageSize=80。获取完整对话中的最后 80 条消息：客户消息、Jacobo 的回复、模板、广播和人工操作员的消息。',
               },
               {
-                label: 'Parseo en 3 fases',
-                detail: 'Tres nodos de código transforman los eventos WATI en pares {human, ai} compatibles con LangChain. Filtra broadcasts, templates de confirmación y eventos de sistema. Un flag __reloadFlag__ permite resetear la memoria manualmente.',
+                label: '三阶段解析',
+                detail: '三个代码节点将 WATI 事件转换为与 LangChain 兼容的 {human, ai} 对。过滤掉广播、确认模板和系统事件。__reloadFlag__ 标识允许手动重置记忆。',
               },
               {
-                label: 'Buffer Window',
-                detail: 'Los últimos 20 mensajes se cargan en el LangChain BufferWindow, keyed por número de teléfono. El agente "recuerda" conversaciones previas: si ayer confirmaste una cita, hoy Jacobo lo sabe.',
+                label: '缓冲窗口',
+                detail: '最后 20 条消息被加载到 LangChain BufferWindow 中，以电话号码为键。代理能“记住”之前的对话：如果你昨天确认了预约，今天 Jacobo 依然知道。',
               },
             ],
-            punchline: 'Esto es lo que permite que Jacobo continúe conversaciones interrumpidas, reconozca clientes recurrentes y sepa que un humano intervino antes en esa conversación.',
+            punchline: '这使得 Jacobo 能够继续被中断的对话，识别回头客，并知道人工之前是否介入过该对话。',
           },
           debugTools: {
-            heading: 'Herramientas de debug en producción',
-            body: 'Dos comandos ocultos para depurar la memoria en producción sin tocar n8n. "Borrar memoria" reseteaba el buffer del cliente, útil cuando una conversación se corrompía o el LLM entraba en bucle. "HISTORIAL" volcaba el JSON crudo del buffer. Y eso fue lo que nos enseñó a sanitizar las respuestas: el LLM devolvía el JSON completo al cliente si no se filtraba.',
+            heading: '生产环境调试工具',
+            body: '两个隐藏命令用于在生产环境中调试记忆而无需改动 n8n。“Borrar memoria”（清除记忆）重置客户缓冲区，当对话损坏或 LLM 进入循环时非常有用。“HISTORIAL”会导出缓冲区的原始 JSON。这教会了我们要对回复进行脱敏：如果不过滤，LLM 会将完整的 JSON 返回给客户。',
           },
           pseudoStreaming: {
-            heading: 'Pseudo-Streaming en WhatsApp',
-            body: 'WhatsApp no soporta streaming. Un párrafo largo se siente como un bot; mensajes secuenciales se sienten como una persona escribiendo. El router divide cada respuesta por saltos de línea y envía cada fragmento con 1 segundo de espera entre ellos vía la API de WATI. El resultado: la experiencia de "está escribiendo..." sin infraestructura de streaming.',
+            heading: 'WhatsApp 中的伪流式传输',
+            body: 'WhatsApp 不支持流式输出。长段落读起来像机器人；连续的消息读起来像真人在打字。路由器根据换行符拆分每个回复，并通过 WATI API 每隔 1 秒发送一个片段。结果：无需流式架构即可实现“正在输入...”的体验。',
           },
-          stackIntro: 'Jacobo se apoya en 8 servicios que cubren desde la entrada del cliente hasta el escalado humano. Cada uno tiene un rol único; ninguno es reemplazable sin cambiar la arquitectura.',
+          stackIntro: 'Jacobo 依托于 8 个服务，涵盖了从客户接入到人工转接的全过程。每个服务都有其独特角色；如果不改动架构，任何一个都不可替代。',
           stack: [
             {
               name: 'WATI',
-              role: 'WhatsApp Business API: canal principal de entrada',
+              role: 'WhatsApp Business API：主要的输入渠道',
             },
             {
               name: 'Aircall',
-              role: 'Cloud PBX: Jacobo como compañero en la centralita',
+              role: '云端 PBX：Jacobo 就像是总机中的一名同事',
             },
             {
               name: 'n8n',
-              role: 'Orquestación de workflows y sub-agentes (7 workflows, ~80 nodos)',
+              role: '工作流和子代理的编排（7 个工作流，约 80 个节点）',
             },
             {
               name: 'OpenRouter',
-              role: 'Gateway model-agnostic para LLMs (MiniMax M2.5 + GPT-4.1)',
+              role: '模型无关的 LLM 网关 (MiniMax M2.5 + GPT-4.1)',
             },
             {
               name: 'ElevenLabs',
-              role: 'Agente de voz conversacional (eleven_flash_v2_5, temp 0.0)',
+              role: '对话式语音代理 (eleven_flash_v2_5, temp 0.0)',
             },
             {
               name: 'Airtable',
-              role: 'CRM, inventario, historial de clientes (source of truth)',
+              role: 'CRM、库存、客户历史（唯一事实来源）',
             },
             {
               name: 'YouCanBookMe',
-              role: 'Gestión de citas y disponibilidad',
+              role: '预约管理与可用性',
             },
             {
               name: 'Slack',
-              role: 'Canal de escalado HITL (#chat)',
+              role: 'HITL 人工转接渠道 (#chat)',
             },
           ],
         },
         e2eFlows: {
-          heading: 'Flujos End-to-End',
-          body: 'Cada flujo traza el happy path desde la consulta del cliente hasta la resolución. Los sub-agentes involucrados aparecen etiquetados en cada paso.',
+          heading: '端到端流程',
+          body: '每个流程描绘了从客户咨询到解决的“快乐路径”。涉及的子代理在每一步中都有标记。',
           items: [
             {
               icon: '🔧',
-              name: 'Cita de Reparación',
-              trigger: 'Cliente pregunta por una reparación',
-              summary: 'Desde la consulta hasta la cita confirmada con piezas reservadas, sin intervención humana.',
+              name: '维修预约',
+              trigger: '客户咨询维修事宜',
+              summary: '从咨询到完成带有预留零件的预约，全程无需人工干预。',
               agentsTouched: [
-                'Router',
-                'Presupuestos',
-                'Citas',
+                '主路由器',
+                '报价子代理',
+                '预约子代理',
               ],
               details: [
-                'Cliente escribe por WhatsApp: "Hola, ¿cuánto cuesta cambiar la pantalla de un iPhone 14 Pro?"',
-                'Router clasifica intent como consulta de precio → delega a sub-agente Presupuestos',
-                'Presupuestos busca en Airtable: modelo + tipo de reparación → devuelve precio real (189€), disponibilidad de pieza y tiempo estimado (45-60 min)',
-                'Stock disponible → Jacobo responde con precio y pregunta: "¿Quieres reservar cita?"',
-                'Cliente dice "Sí, mañana por la mañana" → Router delega a sub-agente Citas',
-                'Citas parsea la preferencia temporal, consulta YouCanBookMe → ofrece slots: "10:00 y 11:30"',
-                'Cliente confirma → cita creada en YouCanBookMe + OT generada en Airtable + piezas auto-reservadas del inventario',
-                'Confirmación enviada por WhatsApp con resumen: fecha, hora, precio, dirección de la tienda',
+                '客户通过 WhatsApp 咨询：“你好，更换 iPhone 14 Pro 屏幕要多少钱？”',
+                '主路由器将意图分类为价格查询 → 委派给报价子代理',
+                '报价子代理在 Airtable 中查找：型号 + 维修类型 → 返回真实价格 (189€)、零件可用性及预估时间 (45-60 分钟)',
+                '库存可用 → Jacobo 回复价格并询问：“您想预约吗？”',
+                '客户回答：“是的，明天上午” → 主路由器委派给预约子代理',
+                '预约子代理解析时间偏好，查询 YouCanBookMe → 提供空档：“10:00 和 11:30”',
+                '客户确认 → 在 YouCanBookMe 中创建预约 + 在 Airtable 中生成工作单 + 从库存中自动预留零件',
+                '通过 WhatsApp 发送包含日期、时间、价格和门店地址的确认信息',
               ],
             },
             {
               icon: '💬',
-              name: 'Consulta de Precios',
-              trigger: 'Cliente pregunta precio de una reparación o producto',
-              summary: 'Búsqueda en Airtable con datos reales, CTA adaptado según disponibilidad de stock.',
+              name: '价格查询',
+              trigger: '客户询问维修或产品价格',
+              summary: '使用真实数据查询 Airtable，并根据库存情况调整引导语 (CTA)。',
               agentsTouched: [
-                'Router',
-                'Presupuestos',
+                '主路由器',
+                '报价子代理',
               ],
               details: [
-                'Cliente: "¿Cuánto cuesta cambiar la batería de un Samsung S23?"',
-                'Router clasifica intent → delega a Presupuestos',
-                'GPT-4.1 busca en Airtable: modelo exacto + tipo de reparación',
-                'Si hay stock → responde con precio, tiempo y ofrece reservar cita',
-                'Si NO hay stock → responde con precio, indica que hay que pedir la pieza y ofrece hacer el pedido',
-                'Si el modelo no existe en la base → Jacobo lo dice claramente en vez de inventar un precio',
-                'Stock-aware routing: el CTA cambia según la disponibilidad real en Airtable',
+                '客户：“换一个三星 S23 电池要多少钱？”',
+                '主路由器分类意图 → 委派给报价子代理',
+                'GPT-4.1 在 Airtable 中查找：精确型号 + 维修类型',
+                '如果有库存 → 回复价格、用时，并提供预约选项',
+                '如果没库存 → 回复价格，说明需要订购零件，并询问是否下单',
+                '如果数据库中不存在该型号 → Jacobo 会如实告知而非胡编乱造价格',
+                '库存感知路由：引导语会根据 Airtable 中的实际库存情况动态变化',
               ],
             },
             {
               icon: '🙋',
-              name: 'Escalado a Humano (HITL)',
-              trigger: 'Intent no claro, garantía, queja o petición explícita',
-              summary: 'Handoff con contexto completo al equipo humano vía Slack. El humano no arranca de cero.',
+              name: '人工转接 (HITL)',
+              trigger: '意图不明、保修相关、投诉或明确要求人工',
+              summary: '带着完整上下文通过 Slack 转接给人工团队。人工无需从零开始询问。',
               agentsTouched: [
-                'Router',
-                'HITL Handoff',
+                '主路由器',
+                'HITL 转接人工',
               ],
               details: [
-                'Triggers de escalado: frustración detectada, consulta fuera de dominio, caso de garantía, petición explícita de hablar con una persona',
-                'Router activa HITL Handoff → envía notificación a Slack (#chat)',
-                'El mensaje de Slack incluye: resumen de la conversación, intent detectado, datos del cliente desde Airtable, razón de la escalación',
-                'Deep-link a WATI: el humano hace clic y salta directo a la conversación de WhatsApp del cliente',
-                'El humano no arranca de cero: tiene todo el contexto. Tiempo medio de resolución post-handoff: segundos, no minutos',
-                'Jacobo avisa al cliente: "Te paso con un compañero que puede ayudarte mejor con esto"',
+                '转接触发器：检测到客户产生挫败感、超出领域咨询、保修案例或明确要求与真人沟通',
+                '主路由器激活 HITL 转接 → 向 Slack (#chat) 发送通知',
+                'Slack 消息包含：对话摘要、检测到的意图、来自 Airtable 的客户数据以及转接原因',
+                'WATI 深度链接：人工点击后直接跳转到客户的 WhatsApp 对话界面',
+                '人工无需从零开始：已掌握所有背景信息。转接后平均解决时间从分钟级降至秒级',
+                'Jacobo 告知客户：“我正为您转接一位同事，他能更好地协助您处理此事”',
               ],
             },
           ],
         },
         deepDiveBooking: {
-          heading: 'Deep Dive: Reservar Cita en Lenguaje Natural',
-          body: 'El sub-agente de citas es el workflow más sofisticado del sistema. Su trabajo: convertir "mañana por la mañana" en una cita confirmada con piezas reservadas, sin que el cliente toque un formulario.',
+          heading: '深度探索：自然语言预约',
+          body: '预约子代理是系统中最复杂的工作流。其任务是将“明天上午”转换为一个已确认且预留了零件的预约，而无需客户填写任何表单。',
           challenge: {
-            heading: 'El reto: cruzar dos mundos',
-            body: 'El cliente habla en lenguaje natural ("el jueves a media mañana, o si no el viernes por la tarde"). La API de YouCanBookMe habla en timestamps Unix. El sub-agente tiene que traducir uno al otro y encontrar la intersección.',
+            heading: '挑战：跨越两个世界',
+            body: '客户使用的是自然语言（“周四上午中间时段，或者周五下午”）。YouCanBookMe API 使用的是 Unix 时间戳。子代理必须进行翻译并找到交集。',
           },
           parseUrl: {
-            heading: 'ParseURL',
-            body: 'Un nodo Code que extrae el subdomain de la URL de YouCanBookMe para determinar qué perfil de reservas usar. Parsea el query string para campos dinámicos del formulario (tipo de reparación, datos del cliente). Diferentes calendarios para diferentes servicios: santifer-citav2-componentes para reparaciones de componentes, santifer-citav2-diagnostico para diagnósticos. El subdomain determina el flujo completo que seguirá la reserva.',
+            heading: 'URL 解析 (ParseURL)',
+            body: '一个代码节点，用于从 YouCanBookMe URL 中提取子域名，以确定使用哪个预约配置。解析查询字符串以获取表单的动态字段（维修类型、客户数据）。针对不同服务有不同的日历：xueyifan-citav2-componentes 用于零件维修，xueyifan-citav2-diagnostico 用于诊断。子域名决定了预约后续的完整流程。',
           },
           analizarDisponibilidad: {
-            heading: 'AnalizarDisponibilidad (LLM)',
-            body: 'Un agente LLM con MiniMax M2.5 convierte lenguaje natural en un array JSON estructurado: [{date, start, end, exact}]. El system prompt contiene 15 reglas de parseo temporal que cubren todos los casos reales. Incluye un Structured Output Parser para garantizar formato válido y memoria por sesión (sessionKey = teléfono/ycbmUrl) para que el cliente pueda refinar preferencias sin empezar de cero. Si no hay preferencia explícita, devuelve los próximos 3 días laborables con horario completo.',
+            heading: '可用性分析 (AnalizarDisponibilidad - LLM)',
+            body: '一个由 MiniMax M2.5 驱动的 LLM 代理，将自然语言转换为结构化的 JSON 数组：[{date, start, end, exact}]。系统提示词包含 15 条涵盖所有真实情况的时间解析规则。包含结构化输出解析器以确保格式有效，并支持按会话记忆（sessionKey = 电话/ycbmUrl），以便客户在不重头开始的情况下微调偏好。如果没有明确偏好，则返回未来 3 个工作日的完整时间段。',
             rules: [
-              'Rangos por defecto: "mañana" = 10:00-14:00, "tarde" = 17:00-21:00, "todo el día" = 10:00-21:00',
-              'Plurales: "mañanas" → próximas 3 mañanas laborables',
-              'Rangos explícitos: "de 10 a 12" → start=10:00, end=12:00, exact=true',
-              'Condicionales: "o si no el viernes" → añade viernes como rango alternativo',
-              'Redondeo: 10:15 → 10:00-11:00 (bloque de 1 hora)',
-              'Filtra fines de semana automáticamente (L-V solamente)',
-              '"Media mañana" = 11:00-13:00, "a primera hora" = 10:00-11:00',
-              '"Después de comer" = 17:00-19:00',
-              'Hoy solo se incluye si quedan ≥2 horas de horario comercial',
-              'Fechas relativas: "pasado mañana", "el próximo martes" → resueltas a fecha absoluta',
+              '默认范围：“上午” = 10:00-14:00，“下午” = 17:00-21:00，“全天” = 10:00-21:00',
+              '复数形式：“上午时段” → 未来 3 个工作日的上午',
+              '明确范围：“10点到12点” → start=10:00, end=12:00, exact=true',
+              '条件连接：“或者周五” → 将周五添加为备选范围',
+              '舍入处理：10:15 → 10:00-11:00（1 小时块）',
+              '自动过滤周末（仅限周一至周五）',
+              '“上午中间” = 11:00-13:00，“一早” = 10:00-11:00',
+              '“午饭后” = 17:00-19:00',
+              '当天仅在营业时间剩余 ≥2 小时时才包含在内',
+              '相对日期：“后天”、“下周二” → 解析为绝对日期',
             ],
           },
           ycbmApi: {
-            heading: 'YCBM API (3 llamadas)',
-            body: 'Pipeline secuencial de 3 HTTP Requests contra la API de YouCanBookMe. Cada llamada depende de la anterior; no se puede paralelizar:',
+            heading: 'YCBM API (3 次调用)',
+            body: '针对 YouCanBookMe API 的 3 个连续 HTTP 请求管道。每次调用都依赖于前一次的结果，无法并行化：',
             steps: [
-              { label: 'POST /v1/intents', detail: 'Envía el subdomain → crea un intent de reserva y devuelve un ID único' },
-              { label: 'GET /v1/intents/{id}/availabilitykey', detail: 'Con el ID del intent → obtiene la clave de disponibilidad' },
-              { label: 'GET /v1/availabilities/{key}', detail: 'Con la clave → obtiene todos los slots reales disponibles con timestamps Unix' },
+              { label: 'POST /v1/intents', detail: '发送子域名 → 创建预约意图并返回唯一 ID' },
+              { label: 'GET /v1/intents/{id}/availabilitykey', detail: '使用意图 ID → 获取可用性密钥' },
+              { label: 'GET /v1/availabilities/{key}', detail: '使用密钥 → 获取所有带 Unix 时间戳的真实可用空档' },
             ],
           },
           filterSlots: {
-            heading: 'FilterSlots: El Cruce',
-            body: 'Un nodo Code puro que realiza la intersección de conjuntos: rangos del LLM × slots reales de YCBM. Convierte timestamps Unix a Europe/Madrid usando Intl.DateTimeFormat, luego filtra: localDate === r.date && localTime >= r.start && localTime < r.end. El output es un array [{date, timestamp, start}] que puede contener 0, 1, o N slots. Es el nodo más elegante del workflow: pura lógica de conjuntos, sin LLM, sin API. Solo matemáticas temporales.',
+            heading: '空档过滤 (FilterSlots)：交集计算',
+            body: '一个纯代码节点，执行集合交集运算：LLM 范围 × YCBM 真实空档。将 Unix 时间戳转换为 Europe/Madrid 时区，然后进行过滤。输出是一个包含 0 个、1 个或多个空档的数组。这是工作流中最优雅的节点：纯粹的集合逻辑，无需 LLM 或 API —— 只有时间维度的数学运算。',
           },
           autoBooking: {
-            heading: 'Auto-booking Condicional',
-            body: 'Un nodo If evalúa slots.length y bifurca en 3 caminos. El sub-agente tiene su propia memoria por sesión: el cliente puede refinar ("no, mejor el jueves") sin empezar de cero.',
+            heading: '条件自动预约',
+            body: '一个 If 节点评估 slots.length 并分出 3 条路径。子代理拥有自己的会话记忆：客户可以在不重头开始的情况下进行修正。',
             paths: [
-              { condition: 'Exactamente 1 slot', action: 'Confirma automáticamente (zero friction): preparePatchBody construye form data con email, teléfono, queryVars dinámicos y comentarios → emailCheck verifica si tiene email → patchSelections (PATCH /v1/intents/{id}/selections) → patchConfirm (PATCH /v1/intents/{id}/confirm) → confirmarCita informa al cliente' },
-              { condition: 'Varios slots', action: 'escogerHora agrupa slots por fecha y presenta opciones al cliente con instrucciones contextuales' },
-              { condition: '0 slots', action: 'Informa que no hay disponibilidad en ese rango y pide otra preferencia horaria' },
+              { condition: '恰好 1 个空档', action: '自动确认（零摩擦）：构造包含邮箱、电话、动态变量和备注的表单数据 → 检查邮箱 → 提交选择 → 提交确认 → 告知客户预约成功' },
+              { condition: '多个空档', action: '按日期对空档分组，并向客户展示选项及上下文说明' },
+              { condition: '0 个空档', action: '告知该时段无可用，并请求客户提供其他时间偏好' },
             ],
           },
-          punchline: 'El resultado: un cliente escribe "mañana a media mañana" y 3 segundos después tiene una cita confirmada con piezas reservadas. Sin formularios, sin "seleccione fecha en el calendario", sin fricción. Para un FDE, esto es la diferencia entre "hice un chatbot" y "diseñé un sistema que traduce intención humana a acciones de API".',
+          punchline: '结果：客户写下“明天上午中间”，3 秒后就能得到一个已确认且预留了零件的预约。无需表单，无需在日历中选日子，零摩擦。对于 FDE 来说，这就是“我做了一个聊天机器人”与“我设计了一个将人类意图转化为 API 动作的系统”之间的区别。',
         },
         toolCalling: {
-          heading: 'Tool Calling en Producción',
-          body: 'Jacobo no genera respuestas desde su training data. Cada respuesta se construye consultando sistemas reales vía 7 tools definidos como HTTP endpoints:',
+          heading: '生产环境中的工具调用 (Tool Calling)',
+          body: 'Jacobo 并不根据训练数据生成回答。每一个回答都是通过 7 个被定义为 HTTP 端点的工具查询真实系统而构建的：',
           tools: [
             {
               name: 'presupuestoModelo',
-              desc: 'Busca precios y stock de reparaciones/accesorios en Airtable. LLM: GPT-4.1 para precisión en structured output.',
+              desc: '在 Airtable 中查找维修/配件的价格和库存。使用 GPT-4.1 以获得精准的结构化输出。',
             },
             {
               name: 'subagenteCitas',
-              desc: 'Gestiona disponibilidad y reservas vía YouCanBookMe. El LLM parsea preferencias temporales en lenguaje natural.',
+              desc: '通过 YouCanBookMe 管理可用性和预约。LLM 负责解析自然语言中的时间偏好。',
             },
             {
               name: 'hacerPedido',
-              desc: 'Crea órdenes de reparación/pedido en Airtable. 3 nodos: webhook → crear registro → responder.',
+              desc: '在 Airtable 中创建维修/订购记录。3 个节点：Webhook → 创建记录 → 响应。',
             },
             {
               name: 'Calculadora',
-              desc: 'Descuento por volumen: más reparaciones juntas = más descuento. Lógica pura de negocio, sin LLM.',
+              desc: '批量折扣：多项维修一起做 = 折扣更高。纯业务逻辑，无需 LLM。',
             },
             {
               name: 'contactarAgenteHumano',
-              desc: 'Escalado HITL vía Slack con motivo de la escalación, deep-link a WATI y contexto completo. Funciona tanto desde WhatsApp como desde llamada telefónica.',
+              desc: '通过 Slack 转接人工，包含转接原因、WATI 链接和完整背景。同时支持 WhatsApp 和电话渠道。',
             },
             {
               name: 'enviarMensajeWati',
-              desc: 'Envía información por WhatsApp en paralelo. Cuando el agente de voz necesitaba mandar un enlace o presupuesto, lo hacía por WhatsApp mientras seguía hablando por teléfono.',
+              desc: '并行发送 WhatsApp 信息。当语音代理需要发送链接或报价时，它会在通话的同时发送 WhatsApp 信息。',
             },
             {
               name: 'Think',
-              desc: 'Meta-tool de razonamiento interno. El agente "piensa en voz alta" antes de cadenas multi-tool para reducir errores.',
+              desc: '内部推理元工具。代理在执行多工具链条前会“大声思考”，以减少错误。',
             },
           ],
           waitMessage: {
-            heading: 'mensajeConsulta: UX mientras piensa',
-            body: 'Cuando Jacobo llama a presupuestoModelo (1-3 segundos de latencia), primero dispara mensajeConsulta: un "Estoy consultando disponibilidad..." que llega al cliente antes de que el sub-agente responda. Sin esto, el cliente veía 5 segundos de silencio y pensaba que el bot se había colgado. Un detalle de UX que marca la diferencia entre "chatbot roto" y "asistente que trabaja".',
+            heading: 'UX 等待消息',
+            body: '当 Jacobo 调用报价工具时（1-3 秒延迟），它会先发送一条“我正在为您查询...”的消息。这极大地提升了用户体验，避免客户因几秒钟的沉默而以为系统挂了。',
           },
           thinkTool: {
-            heading: 'El Tool "Think"',
-            body: 'Antes de ejecutar una cadena de tools (consultar precio → verificar stock → ofrecer cita), el agente invoca Think para planificar la secuencia. Esto reduce errores en cadenas multi-tool porque el LLM explicita su razonamiento antes de actuar.',
+            heading: 'Think 工具',
+            body: '在执行工具链（查价 → 验库存 → 提预约）之前，代理会调用 Think 来规划顺序。这在多工具场景下显著降低了逻辑错误。',
           },
           stockAware: {
-            heading: 'Stock-Aware Routing',
-            body: 'El output de presupuestoModelo determina el siguiente paso. No es un flujo fijo: el CTA cambia según la disponibilidad real.',
+            heading: '库存感知路由',
+            body: '报价工具的输出决定了后续步骤。引导语会根据真实库存状态动态变化。',
             flows: [
               {
-                condition: 'Pieza en stock',
-                action: '→ Ofrece reservar cita de reparación',
+                condition: '零件有货',
+                action: '→ 引导至维修预约',
               },
               {
-                condition: 'Pieza sin stock',
-                action: '→ Ofrece hacer pedido al proveedor con ETA',
+                condition: '零件缺货',
+                action: '→ 引导至向供应商订购（带预计到货时间）',
               },
               {
-                condition: 'Modelo no encontrado',
-                action: '→ Lo dice claramente y ofrece contacto humano',
+                condition: '型号未找到',
+                action: '→ 如实告知并提供人工联系方式',
               },
             ],
           },
         },
         channels: {
-          heading: 'Los Dos Canales',
-          body: 'Jacobo opera en dos canales simultáneos. Lo importante: ambos comparten los mismos sub-agentes webhook. La lógica de negocio se escribe una vez.',
+          heading: '双渠道运营',
+          body: 'Jacobo 同时运行在两个渠道上。关键点在于：两者共享相同的 Webhook 子代理，业务逻辑只需编写一次。',
           whatsapp: {
-            name: 'WhatsApp (mayor volumen)',
-            detail: 'WATI como WhatsApp Business API + n8n como orquestador. El 70% de las consultas llegan por aquí.',
+            name: 'WhatsApp (业务量最大)',
+            detail: '使用 WATI 作为 WhatsApp Business API + n8n 作为编排器。70% 的咨询来自这里。',
             highlights: [
-              'Router n8n con patrón LangChain Agent: 37 nodos, 7 tools como endpoints HTTP, GPT-4.1 vía OpenRouter',
-              'Templates de WhatsApp aprobados por Meta para confirmaciones de cita, seguimiento de pedidos y notificaciones',
-              'Pseudo-streaming: parte la respuesta en frases y las envía una a una. El cliente ve a Jacobo "escribiendo" como una persona real',
-              'Memory: 20 mensajes por sesión, keyed por número de teléfono. Reconstruye contexto leyendo el historial completo de WATI',
-              'Event Routing: 3 switches filtran ruido (eventos de sistema, broadcasts, mensajes del operador humano) antes de llegar al agente',
-              'Human Takeover transparente: cuando un humano toma control vía WATI, Jacobo detecta el cambio y no interrumpe',
+              '采用 LangChain Agent 模式的 n8n 路由器：37 个节点，7 个 HTTP 工具，GPT-4.1 驱动',
+              'Meta 批准的用于预约确认、订单跟踪和通知的 WhatsApp 模板',
+              '伪流式传输：将回复分段发送，让客户感觉 Jacobo 像真人在打字',
+              '记忆功能：每会话 20 条消息，以电话号码为键。通过读取 WATI 完整历史记录重构上下文',
+              '事件路由：3 个开关节点在信息到达代理前过滤掉系统干扰信息',
+              '透明的人工接管：当人工通过 WATI 接管对话时，Jacobo 会检测到并保持静默',
             ],
           },
           voice: {
-            name: 'Teléfono Fijo (voz)',
-            detail: 'Aircall como Cloud PBX + Twilio como bridge telefónico + ElevenLabs como agente de voz conversacional. Jacobo es literalmente un "compañero más" en la centralita Aircall con sus propias reglas de routing.',
+            name: '固定电话 (语音)',
+            detail: 'Aircall 云总机 + Twilio 电话桥接 + ElevenLabs 对话式语音代理。Jacobo 就像是 Aircall 电话系统中的一名“同事”。',
             highlights: [
-              'Integración Aircall → Twilio → ElevenLabs: las llamadas entraban por la centralita Aircall del negocio. Cuando nadie atendía o fuera de horario, Aircall redirigía a un número Twilio dedicado que conectaba con el agente ElevenLabs. Para el cliente, era transparente: marcaba el fijo de la tienda y hablaba con Jacobo',
-              'El cliente llamaba a un teléfono fijo y hablaba con Jacobo como con cualquier empleado. NO era un widget web ni un IVR con menús. Era una llamada telefónica real con voz natural',
-              'ASR de alta calidad (provider: ElevenLabs, PCM 16kHz) + turn_timeout de 7s + silence_end_call de 20s para manejar pausas naturales en conversación',
-              'LLM: GPT-4.1 (temp 0.0) para máxima precisión en tool calling por voz. Latencia optimizada (optimize_streaming_latency: 4)',
-              'Voice model: eleven_flash_v2_5, velocidad 1.2x, stability 0.6, similarity 0.8. Conversaciones de hasta 5 minutos (300s)',
-              'Knowledge base con 3 fuentes (Google Maps, web de Santifer iRepair, resumen del negocio) aprovechando el RAG nativo de ElevenLabs (e5_mistral_7b_instruct). No construí RAG custom: la plataforma lo ofrecía y suponía alto impacto con zero effort. Priorización RICE pura. En n8n no lo necesitaba: el agente de WhatsApp ya accedía al contexto de negocio vía tool calling directo a Airtable',
-              '5 tools webhook compartidos con n8n: presupuestoModelo, subagenteCitas, Calculadora, contactarAgenteHumano y enviarMensajeWati. Timeout de 20s por tool, ejecución inmediata',
-              'enviarMensajeWati era la magia cross-channel: mientras hablaba por teléfono, Jacobo enviaba enlaces y presupuestos por WhatsApp en paralelo usando el caller_id como variable dinámica. A los clientes les encantaba recibir la info en el móvil mientras seguían hablando',
+              'Aircall → Twilio → ElevenLabs 集成：电话进入业务 Aircall 总机。无人接听或非营业时间时，总机转接至连接 ElevenLabs 的 Twilio 号码。对客户而言全程透明',
+              '客户拨打的是固定电话，像和任何员工对话一样和 Jacobo 交谈。它不是网页插件或带菜单的 IVR，而是具备自然声音的真实通话',
+              '高质量 ASR + 7秒回复超时 + 20秒静默挂断，用以处理对话中的自然停顿',
+              'LLM: GPT-4.1 (temp 0.0) 确保语音工具调用的最高精准度。优化了流式延迟',
+              '语音模型：eleven_flash_v2_5，语速 1.2x，兼顾稳定性和相似度',
+              '基于 Google Maps、官网等 3 个来源的知识库，利用 ElevenLabs 原生 RAG。n8n 渠道则直接通过工具调用 Airtable 获取业务上下文',
+              '与 n8n 共享 5 个 Webhook 工具：查价、预约、折扣计算、人工转接及发送 WhatsApp',
+              '跨渠道魔法：在通话时，Jacobo 利用 Caller ID 并行发送 WhatsApp 链接。客户非常喜欢在通话的同时在手机上收到信息',
             ],
           },
           cocaColaAnecdote: {
-            heading: 'Incidente de producción: la Coca-Cola',
-            body: 'Un cliente estaba hablando de una reparación de móvil. A mitad de conversación, se giró para pedir una Coca-Cola a un camarero. Jacobo escuchó. Y le dijo que no servimos Coca-Colas.',
+            heading: '生产事故：可口可乐事件',
+            body: '一名客户正在咨询手机维修。通话中，他转头向服务员要了一瓶可口可乐。Jacobo 听到了 —— 然后告诉他我们这里不卖可口可乐。',
             diagnosis: {
-              heading: 'Diagnóstico: tres señales que el sistema ignoró',
+              heading: '诊断：系统忽略了三个信号',
               items: [
-                { label: 'Volumen', detail: 'Cayó ~40%: se alejó del teléfono' },
-                { label: 'Spectral tilt', detail: 'Cambió: voz off-axis pierde frecuencias altas' },
-                { label: 'Relevancia semántica', detail: '"Coca-Cola" tenía cero relación con reparaciones de móviles' },
+                { label: '音量', detail: '下降了约 40% —— 客户远离了话筒' },
+                { label: '频谱倾斜', detail: '发生了偏移 —— 离轴语音会丢失高频信号' },
+                { label: '语义相关性', detail: '“可口可乐”与手机维修完全不相关' },
               ],
             },
-            takeaway: 'VAD básico no es suficiente. Necesitas addressee detection: proximidad acústica + análisis prosódico + gating semántico trabajando juntos.',
+            takeaway: '基础的 VAD 是不够的。你需要说话人检测 (Addressee detection)：声学近接感应 + 韵律分析 + 语义门控协同工作。',
           },
           missedCallRecovery: {
-            heading: 'Recuperación de Llamadas Perdidas',
-            body: 'Si el cliente colgaba o nadie atendía, Aircall enviaba un webhook a Make.com que disparaba un template de WhatsApp vía WATI con botones de acción. Una gran parte de los leads llegaban por aquí: gente que llamaba, no esperaba, y Jacobo los cazaba. Como se nutría del contexto de WATI, al contestar ya sabía que habían intentado llamar.',
+            heading: '漏接电话挽回',
+            body: '如果客户挂断或无人接听，Aircall 会向 Make.com 发送 Webhook，随后触发 WATI 发送带操作按钮的 WhatsApp 模板。很大一部分潜客来自这里：Jacobo 捕捉到了那些没耐心等待的来电者。由于有 WATI 上下文，回复时它已知道对方曾尝试来电。',
           },
           dualOrchestrator: {
-            heading: 'Arquitectura Dual-Orquestador',
-            body: 'Este es el patrón clave: n8n orquesta WhatsApp, ElevenLabs orquesta voz, pero ambos llaman a los mismos sub-agentes webhook. Es un patrón de microservicios real aplicado a agentes IA. Los sub-agentes no saben quién los llama, y no necesitan saberlo.',
+            heading: '双编排器架构',
+            body: '这是关键模式：n8n 编排 WhatsApp，ElevenLabs 编排语音，但两者都调用相同的 Webhook 子代理。这是应用于 AI 代理的真正微服务模式。子代理不需要知道是谁在调用它们。',
           },
           unifiedVoiceUx: {
-            heading: 'UX Unificada: Una Sola Voz',
-            body: 'Todos los audios de la centralita (bienvenida, menú IVR, buzón de voz) fueron generados con ElevenLabs usando la misma voz que Jacobo. Cuando el cliente pulsa 3 o nadie puede atender y salta el agente real, la voz es idéntica. No hay ruptura. Y si nadie atiende y Jacobo le escribe por WhatsApp tras la llamada perdida, la identidad sigue siendo la misma. Una experiencia unificada de principio a fin, da igual el canal.',
-            punchline: '"Marca 3 para hablar conmigo, Jacobo." Esa es la voz de la centralita presentando al agente IA en primera persona. La misma voz que luego te atiende. Un agente que se anuncia a sí mismo.',
-            audioIntro: 'Escucha la centralita real. La misma voz de Jacobo en bienvenida, IVR y agente en vivo:',
+            heading: '统一 UX：同一个声音',
+            body: '总机的所有音频（欢迎语、IVR 菜单、语音信箱）都使用 Jacobo 的同款 ElevenLabs 声音生成。无论客户通过哪个环节接入，声音始终一致，无断裂感。',
+            punchline: '“请按 3 跟我交谈，我是 Jacobo。” 这是总机在以第一人称介绍 AI 代理。随后接听的是同一个声音。这是一个会自我介绍的代理。',
+            audioIntro: '试听真实的总机录音。欢迎语、IVR 菜单和真人代理使用相同的声音：',
             audios: [
               {
                 src: '/jacobo/pbx-welcome.mp3',
-                label: 'Bienvenida',
-                transcript: '"A continuación, atenderemos tu llamada. Gracias por llamar a Santifer iRepair. Para asegurar la calidad del servicio, tu llamada puede ser grabada."',
+                label: '欢迎语',
+                transcript: '“稍后我们将为您接听。感谢致电薛一凡 iRepair。为确保服务质量，您的通话可能会被录音。”',
               },
               {
                 src: '/jacobo/pbx-ivr.mp3',
-                label: 'Menú IVR',
-                transcript: '"Marca 1 para solicitar una nueva reparación. Marca 2 para consultar el estado de tu reparación. Marca 3 para hablar conmigo, Jacobo. Tu asistente virtual 24/7 en Santifer iRepair. Obtendrás presupuesto y cita al instante."',
-                highlight: 'Marca 3 para hablar conmigo, Jacobo',
+                label: 'IVR 菜单',
+                transcript: '“办理新维修请按 1。查询维修状态请按 2。请按 3 跟我交谈，我是 Jacobo。您在薛一凡 iRepair 的 24/7 虚拟助手。您将立即获得报价并完成预约。”',
+                highlight: '请按 3 跟我交谈，我是 Jacobo',
               },
             ],
           },
           eventRouting: {
-            heading: 'Pre-filtrado: ¿Debe Jacobo Responder?',
-            body: 'Antes de que el mensaje llegue al AI Agent, tres switches filtran el ruido y deciden quién debe responder:',
+            heading: '预过滤：Jacobo 应该回答吗？',
+            body: '在消息到达 AI 代理之前，三个开关节点会过滤噪音并决定由谁回应：',
             steps: [
               {
-                label: 'Tipo de Evento',
-                detail: 'Filtra solo mensajes reales. Ignora eventos de sistema, confirmaciones de entrega, actualizaciones de estado y broadcasts masivos. Sin esto, Jacobo respondería a sus propios mensajes de confirmación.',
+                label: '事件类型',
+                detail: '仅过滤真实消息。忽略系统事件、送达确认、状态更新及群发广播。否则，Jacobo 会回应自己的确认消息。',
               },
               {
-                label: '¿Quién?',
-                detail: 'Detecta si el último en hablar fue el cliente o un operador humano. Cuando un humano toma control de la conversación vía el deep-link de WATI, sus mensajes llegan como owner: true. Jacobo lo sabe y no interrumpe.',
+                label: '发送者是谁？',
+                detail: '检测最后说话的是客户还是人工。当人工通过深度链接接管时，消息标记为 owner: true。Jacobo 会检测到并停止干扰。',
               },
               {
-                label: '¿Atendido?',
-                detail: 'Comprueba si ya existe sesión activa. Si el cliente responde a una conversación que estaba gestionando un humano, pero la tienda ya cerró, Jacobo entra con tono empático: "Hemos cerrado al mediodía, pero yo puedo ayudarte hasta que abramos por la tarde". Graceful degradation real.',
+                label: '是否已接待？',
+                detail: '检查活跃会话。如果客户在人工下班后回复，Jacobo 会以共情口吻切入：“我们中午休息了，但我可以协助您直到下午重新营业”。',
               },
             ],
-            punchline: 'Este filtro de 3 nodos es lo que permite la convivencia humano-agente sin conflictos. El humano puede tomar el mando en cualquier momento, y cuando deja de estar disponible, Jacobo retoma con todo el contexto.',
+            punchline: '这 3 个节点的过滤器实现了人工与代理的和谐共存。人工可以随时接管，离开后 Jacobo 会带着完整上下文继续服务。',
           },
         },
         results: {
-          heading: 'Resultados',
-          body: 'Métricas de producción tras 6 meses operando (los workflows son descargables al final para verificar la arquitectura):',
+          heading: '运营结果',
+          body: '上线 6 个月后的生产环境指标：',
           metrics: [
             {
               value: '~90%',
-              label: 'Autoservicio',
-              detail: 'Consultas resueltas sin intervención humana',
+              label: '自助服务率',
+              detail: '无需人工干预即可解决的咨询比例',
             },
             {
               value: '24/7',
-              label: 'Disponibilidad',
-              detail: 'Sin limitación de horario de tienda',
+              label: '可用性',
+              detail: '不再受限于门店营业时间',
             },
             {
               value: '<30s',
-              label: 'Tiempo de respuesta',
-              detail: 'Vs. minutos cuando dependía de una persona',
+              label: '响应时间',
+              detail: '对比之前依赖人工时的分钟级响应',
             },
             {
               value: '<200€',
-              label: 'Coste mensual',
-              detail: 'Infraestructura total (n8n + WATI + Aircall + LLMs)',
+              label: '每月成本',
+              detail: '总基础设施成本 (n8n + WATI + Aircall + LLMs)',
             },
           ],
           beforeAfter: {
-            heading: 'Antes vs Después',
+            heading: '之前 vs 之后',
             items: [
               {
-                area: 'Consultas de precio/stock',
-                before: '~15 interrupciones/día al técnico',
-                after: 'Jacobo responde con datos reales de Airtable en <30s',
+                area: '价格/库存咨询',
+                before: '技术人员每天被打断约 15 次',
+                after: 'Jacobo 在 30 秒内通过 Airtable 真实数据进行回复',
               },
               {
-                area: 'Reserva de citas',
-                before: 'Manual por teléfono, errores de horario frecuentes',
-                after: 'Automático vía YouCanBookMe, piezas auto-reservadas',
+                area: '预约挂号',
+                before: '通过电话手动记录，时有排程错误',
+                after: '通过 YouCanBookMe 自动完成，零件自动预留',
               },
               {
-                area: 'Fuera de horario',
-                before: 'Consultas perdidas, clientes a la competencia',
-                after: 'Jacobo atiende 24/7 por WhatsApp y teléfono fijo',
+                area: '非营业时间',
+                before: '咨询流失，客户流向竞争对手',
+                after: 'Jacobo 通过 WhatsApp 和固话 24/7 全天候响应',
               },
               {
-                area: 'Escalaciones a humano',
-                before: 'El humano empezaba de cero, repitiendo preguntas',
-                after: 'Handoff con contexto completo, resolución en segundos',
+                area: '人工转接',
+                before: '人工需从零开始，重复询问客户问题',
+                after: '带着完整上下文转接，数秒内即可解决',
               },
               {
-                area: 'Coste de atención al cliente',
-                before: 'Empleado part-time ~800-1.000€/mes',
-                after: '<200€/mes total infraestructura',
+                area: '客服成本',
+                before: '兼职员工每月约 800-1,000€',
+                after: '总基础设施成本每月不到 200€',
               },
             ],
           },
-          roi: 'El ROI no es solo el ahorro directo. Es la disponibilidad 24/7, las citas que antes se perdían fuera de horario, y los técnicos que ahora reparan en vez de contestar preguntas.',
-          benchmarks: 'Benchmark de industria: los contact centers enterprise promedian un 20-30% de resolución por IA (Gartner, 2025 AI Customer Service Report). Los asistentes virtuales más avanzados alcanzan un 15% (Gartner, 2025 Hype Cycle for Customer Service & Support Technologies). Jacobo logró ~90% en un dominio especializado. La diferencia: sub-agentes con acceso a datos en tiempo real vs chatbots genéricos.',
-          exitNarrative: 'Jacobo sigue operando 24/7 bajo nuevo dueño desde septiembre de 2025. El comprador lo adquirió funcionando. La mejor prueba de un sistema: funciona sin su creador. Los patrones de arquitectura documentados aquí son los mismos que llevaría a tu equipo.',
+          roi: '真正的投资回报不仅是成本节省。它让技术人员能专心修手机而非接电话，也让那些晚上 10 点产生的预约不再石沉大海。',
+          benchmarks: '行业基准：企业联络中心平均 AI 解决率为 20-30% (Gartner, 2025)。Jacobo 在专业领域达到了 ~90%。差异点在于：具备实时数据访问能力的特定领域子代理 vs 通用聊天机器人。',
+          exitNarrative: '自 2025 年 9 月业务转让后，Jacobo 仍在新的所有者下 24/7 运行。买家收购的是一套现成的运营资产。一个系统最好的证明就是：在离开创造者后依然运行良好。',
         },
         decisions: {
-          heading: 'Decisiones Técnicas (ADRs)',
-          body: 'Cada decisión técnica tiene un porqué. Estas son las más importantes:',
+          heading: '技术决策记录 (ADRs)',
+          body: '塑造系统的关键决策及其背后的原因：',
           items: [
             {
-              title: 'Multi-model (GPT-4.1 + MiniMax + GPT-4.1 mini) vs single LLM',
-              detail: 'Cada componente con el modelo justo: GPT-4.1 para el router principal y el agente de voz (tool calling preciso), GPT-4.1 mini para presupuestos (structured output), MiniMax M2.5 para citas (rápido y barato para parsear preferencias temporales). OpenRouter como gateway permite cambiar entre modelos sin reescribir workflows.',
+              title: '多模型协作 (GPT-4.1 + MiniMax + GPT-4.1 mini) vs 单一 LLM',
+              detail: '每个组件使用最合适的模型：GPT-4.1 用于主路由和语音（精准工具调用），GPT-4.1 mini 用于报价（结构化输出），MiniMax M2.5 用于预约（解析时间偏好既快又省）。通过 OpenRouter 可以在不重写工作流的情况下切换模型。',
             },
             {
-              title: 'OpenRouter como gateway model-agnostic',
-              detail: 'Cambiar entre modelos sin reescribir workflows, fallback automático si un modelo está caído. Evaluamos Claude, GPT-4, MiniMax: elegimos por caso de uso, no por marca.',
+              title: 'OpenRouter 作为模型无关网关',
+              detail: '在不重写工作流的前提下切换模型，若某个模型宕机可自动降级。我们评估了 Claude, GPT-4, MiniMax：按用例而非品牌进行选择。',
             },
             {
-              title: 'n8n vs Make para orquestación',
-              detail: 'Cada sub-agente es un workflow independiente con webhook propio. Make no permite esta modularidad. n8n permite LangChain agent patterns, memory management y tool calling nativo.',
+              title: '编排工具选择：n8n vs Make',
+              detail: '每个子代理都是一个带 Webhook 的独立工作流。Make 不支持这种模块化。n8n 支持 LangChain 代理模式、记忆管理和原生工具调用。',
             },
             {
-              title: 'Sub-agentes como microservicios webhook',
-              detail: 'Desacoplados, testeables individualmente, deployment independiente. El mismo sub-agente sirve a WhatsApp (vía n8n) y a teléfono (vía ElevenLabs) sin duplicar código.',
+              title: '子代理作为 Webhook 微服务',
+              detail: '解耦、可独立测试及部署。同一个子代理同时服务于 WhatsApp 和语音渠道，无需重复代码。',
             },
             {
-              title: 'Airtable como cerebro vs base de datos',
-              detail: 'Ya existía el Business OS completo en Airtable (12 bases, 2.100+ campos). Single source of truth para stock, precios e historial de clientes. Construir sobre lo que ya existe, no duplicar.',
+              title: 'Airtable 作为大脑而非单纯数据库',
+              detail: '利用已有的 Business OS（12 个库，2,100+ 字段）。它是库存、价格和客户历史的唯一事实来源。在现有基础上构建，而非重复造轮子。',
             },
             {
-              title: 'Memory window: 20 mensajes por sesión',
-              detail: 'Balance entre contexto y coste de tokens. Suficiente para una conversación de reparación (el 95% se resuelve en <10 mensajes). Keyed por número de teléfono para continuidad.',
+              title: '记忆窗口：每会话 20 条消息',
+              detail: '在上下文长度与 Token 成本之间取得平衡。足以应对一次维修咨询（95% 在 10 条消息内解决）。以电话号码为键确保连贯性。',
             },
             {
-              title: 'Think tool para razonamiento interno',
-              detail: 'Razonamiento explícito antes de cadenas multi-tool. Reduce errores porque el LLM planifica la secuencia (consultar precio → verificar stock → ofrecer cita) antes de ejecutar.',
+              title: '用于内部推理的 Think 工具',
+              detail: '在执行多工具链条前显式推理。减少了错误，因为 LLM 在行动前规划了序列（查价 → 验货 → 提约）。',
             },
             {
-              title: 'HITL vía Slack con motivo de escalado',
-              detail: 'El LLM genera el motivo de la escalación y lo incluye en el mensaje de Slack: por qué necesita intervención humana, qué ha intentado y qué necesita el cliente. Funciona igual desde WhatsApp (deep-link a WATI) y desde llamada telefónica. El humano sabe por qué se le necesita antes de abrir la conversación.',
+              title: '带有转接原因的 Slack HITL',
+              detail: 'LLM 生成转接原因并包含在 Slack 消息中：为什么需要人工、尝试过什么、客户需要什么。人工在打开对话前就知道为什么被需要。',
             },
             {
-              title: 'WhatsApp primero, voz después',
-              detail: 'El 70% del volumen llegaba por WhatsApp. Empezar ahí maximizó el impacto antes de expandir a voz. La voz (ElevenLabs + Aircall) reutilizó los sub-agentes existentes.',
+              title: 'WhatsApp 在先，语音在后',
+              detail: '70% 的业务量来自 WhatsApp。从这里开始能最大化初期影响。语音渠道随后复用了已验证的子代理。',
             },
             {
-              title: 'Dual-orquestador con sub-agentes compartidos',
-              detail: 'n8n para WhatsApp/web, ElevenLabs para voz. Los sub-agentes son webhooks platform-agnostic. Reutilizables por cualquier orquestador sin duplicar lógica. Patrón de microservicios real.',
+              title: '共享子代理的双编排器',
+              detail: 'n8n 负责 WhatsApp，ElevenLabs 负责语音。子代理是平台无关的 Webhook。真正的微服务模式应用。',
             },
             {
-              title: 'ElevenLabs como "compañero" en Aircall',
-              detail: 'Jacobo integrado en PBX con routing rules: entra por overflow o fuera de horario. El cliente llama a un teléfono fijo, experiencia transparente. eleven_flash_v2_5 con temp 0.0 para máxima consistencia.',
+              title: 'ElevenLabs 作为 Aircall 中的“同事”',
+              detail: 'Jacobo 集成在 PBX 中，通过路由规则在溢出或非营业时间介入。客户拨打固话，体验透明。使用 temp 0.0 以获得最高一致性。',
             },
             {
-              title: 'Aircall → Twilio → ElevenLabs (y el trade-off de latencia)',
-              detail: 'La cadena Aircall PBX → Twilio (bridge telefónico) → ElevenLabs funcionaba, pero cada hop añadía latencia: ~950-1.500ms mouth-to-ear. Twilio usa G.711 a 8kHz, cuando los modelos STT están optimizados para 16kHz, forzando resampling con pérdida de precisión. Hoy elegiría SIP trunk directo (Telnyx ofrece G.722 wideband a 16kHz nativo e infraestructura co-located con sub-200ms RTT) eliminando el hop intermedio. El diseño platform-agnostic de los sub-agentes facilitaría esta migración: solo cambiaría el transporte, no la lógica.',
+              title: 'Aircall → Twilio → ElevenLabs (关于延迟的权衡)',
+              detail: '这条链条有效但增加了延迟（约 950-1,500ms）。Twilio 使用 8kHz 音频而 STT 模型针对 16kHz 优化，重采样会导致精度损失。今天我会选择直连 SIP trunk 以消除中间环节，降低延迟并提升音频质量。',
             },
           ],
         },
         platformEvolution: {
-          heading: 'Evolución de la Plataforma',
-          tagline: 'Jacobo no fue una ocurrencia. Fue la consecuencia inevitable de 5 años construyendo un Business OS robusto debajo.',
+          heading: '平台演进',
+          tagline: 'Jacobo 并非突发奇想。它是 5 年来在底层构建强大 Business OS 的必然结果。',
           steps: [
             {
               year: '2019-2024',
-              event: 'Business OS como base',
-              detail: 'Cinco años construyendo un sistema operativo de negocio completo en Airtable: 12 bases, 2.100+ campos, inventario en tiempo real, CRM con historial de clientes. Sin esta base de datos limpia y accesible, un agente IA sería un chatbot genérico que inventa respuestas.',
+              event: 'Business OS 奠基',
+              detail: '在 Airtable 中构建完整业务操作系统的五年：12 个库、2,100+ 字段、实时库存、CRM。没有这个干净的数据层，任何 AI 代理都只是会胡编乱造的普通聊天机器人。',
             },
             {
-              year: 'Ene 2025',
-              event: 'Formación y diseño deliberado',
-              detail: 'Antes de escribir una línea, me formé en arquitecturas de agentes IA. Sabía que necesitaba tool calling, que Airtable era el SSOT, y que el agente tenía que ser multimodal: voz y chat compartiendo los mismos recursos.',
+              year: '2025年1月',
+              event: '进修与审慎设计',
+              detail: '在写第一行代码前，我研究了 AI 代理架构。我知道我需要工具调用，Airtable 是 SSOT，且同一后端必须同时服务于语音和聊天。',
             },
             {
-              year: 'Feb 2025',
-              event: 'Primera versión de prueba (monolítica)',
-              detail: 'Probé el enfoque de un solo prompt con mucho contexto y confirmé lo que intuía: un prompt monolítico no escala con múltiples dominios. La prueba validó la decisión de sub-agentes como webhooks, platform-agnostic por diseño.',
+              year: '2025年2月',
+              event: '首个测试版 (单体)',
+              detail: '尝试了全上下文的单一提示词方案。证实了我的怀疑：单体提示词无法跨多个领域扩展。这次测试验证了基于 Webhook 的子代理架构。',
             },
             {
-              year: 'Feb 2025',
-              event: 'Versión definitiva multi-agente',
-              detail: 'Mi primer agente IA, en producción en menos de un mes. Arquitectura de sub-agentes completa: cada dominio en su propio workflow con webhook independiente, router central con tool calling, multi-model por caso de uso. La velocidad se debe al Business OS que ya existía debajo. Todo en paralelo a las demás responsabilidades del negocio.',
+              year: '2025年2月',
+              event: '最终多代理版本',
+              detail: '我的首个 AI 代理，不到一个月即上线。完整的子代理架构：每个领域独立工作流、带工具调用的中心路由、按需匹配的多模型。速度源于底层已运行的 Business OS。',
             },
             {
-              year: 'Mar 2025',
-              event: 'Canal de voz (Aircall + Twilio + ElevenLabs)',
-              detail: 'Jacobo como compañero en la centralita Aircall, conectado vía Twilio a ElevenLabs. Reutilizó los sub-agentes existentes sin duplicar lógica. Validación del diseño platform-agnostic: los webhooks sirvieron a un segundo orquestador sin tocar una línea.',
+              year: '2025年3月',
+              event: '语音渠道上线',
+              detail: 'Jacobo 作为 Aircall 系统中的一员，通过 Twilio 连接到 ElevenLabs。复用了现有子代理，验证了平台无关设计的有效性。',
             },
             {
-              year: 'Sep 2025',
-              event: 'Going-concern sale',
-              detail: 'Jacobo lleva activo 24/7 desde su lanzamiento. Formó parte de la venta del negocio como activo operativo: el comprador lo adquirió funcionando. Cinco años de arquitectura limpia lo hicieron inevitable.',
+              year: '2025年9月',
+              event: '业务整体售出',
+              detail: 'Jacobo 自上线起 24/7 运行。它作为运营资产随业务一同出售。五年的整洁架构让这次退出成为可能。',
             },
           ],
-          bridge: ['Jacobo no fue un experimento.', '16 años construyendo un negocio con mis manos.', 'Sistematizarlo hasta que funcionara {sin mí}.', 'Jacobo fue la pieza que {cerró el ciclo}.', 'Vendí el negocio como empresa en marcha.', 'Los sistemas siguen operando hoy — bajo {nuevo dueño}.'],
+          bridge: ['Jacobo 并非一次实验。', '那是亲手构建业务的 16 年。', '将其系统化直到能在 {没有我} 的情况下运行。', 'Jacobo 是完成这个 {闭环} 的最后一块拼图。', '我将业务整体转让。', '我构建的系统仍在运行 —— 在 {新的所有者} 手下。'],
           crossLink: {
-            text: 'Jacobo se construyó sobre el Business OS que diseñé durante 5 años. Lee el case study completo →',
+            text: 'Jacobo 构建于我历时 5 年设计的 Business OS 之上 —— 阅读完整案例研究 →',
             href: '/business-os-para-airtable',
           },
         },
         lessons: {
-          heading: 'Lecciones Aprendidas',
+          heading: '经验教训',
           items: [
             {
-              title: 'Sub-agentes > un prompt monolítico.',
-              detail: 'Durante el diseño, probé un prompt con todo el contexto y confirmé que no escala con múltiples dominios. La arquitectura de sub-agentes fue una decisión deliberada desde el principio: cada pieza testeable, iterable e independiente. Un cambio en descuentos no puede romper las citas. Es la misma lógica que los microservicios, aplicada a agentes IA.',
+              title: '子代理 > 单体提示词。',
+              detail: '单体提示词无法在多领域扩展。子代理架构是深思熟虑的决定：每一块都可测试、可迭代且相互独立。折扣逻辑的改动不会弄挂预约系统。',
             },
             {
-              title: 'HITL no es un fallback, es una feature.',
-              detail: 'El handoff humano bien hecho genera más confianza que un bot que intenta resolver todo. Los clientes valoran que el sistema sepa cuándo necesitan a una persona. El truco: que el humano no empiece de cero.',
+              title: 'HITL 不是备选方案，它是核心功能。',
+              detail: '完善的人工转接比试图解决一切的机器人更能赢得信任。客户看重系统知道何时需要真人。关键在于：人工接手时已具备完整背景。',
             },
             {
-              title: 'El CRM es el cerebro del agente, no el LLM.',
-              detail: 'Jacobo no es inteligente por el modelo de lenguaje. Es inteligente porque consulta precios, stock e historial de clientes en Airtable. Sin esos datos, es un chatbot genérico que inventa respuestas.',
+              title: 'CRM 是代理的大脑，而非 LLM。',
+              detail: 'Jacobo 的聪明在于它能查询 Airtable 中的真实价格、库存和历史。剥离这些数据，它就只是另一个胡言乱语的聊天机器人。',
             },
             {
-              title: 'Empieza por el canal de mayor volumen.',
-              detail: 'WhatsApp representaba el 70% de las consultas. Empezar ahí maximizó el impacto. Cuando añadimos voz, los sub-agentes ya estaban probados y solo hubo que conectar un orquestador nuevo.',
+              title: '从流量最高的渠道开始。',
+              detail: 'WhatsApp 占了 70% 的咨询量。从这里开始能最大化影响。当语音渠道随后上线时，子代理已久经沙场，只需接入新的编排器。',
             },
             {
-              title: 'Los modelos se eligen por caso de uso, no por marca.',
-              detail: 'GPT-4.1 para el router y voz (tool calling preciso), GPT-4.1 mini para presupuestos (structured output), MiniMax M2.5 para citas (rápido y económico). OpenRouter como gateway permite cambiar sin reescribir. Esto es más FDE que decir "uso X para todo".',
+              title: '按需选模型，而非看品牌。',
+              detail: 'GPT-4.1 用于路由和语音（精准工具调用），GPT-4.1 mini 用于报价（结构化输出），MiniMax M2.5 用于预约（快且省）。OpenRouter 方便我们随时切换。',
             },
             {
-              title: 'El Think tool previene errores en cadenas multi-tool.',
-              detail: 'Antes de consultar precio → verificar stock → ofrecer cita, el agente explicita su plan. Un paso de razonamiento explícito reduce errores en la secuencia. Es como el "rubber duck debugging" pero para el propio agente.',
+              title: 'Think 工具预防连锁错误。',
+              detail: '在执行链条前，代理会明确其计划。一个推理步骤减少了链条中的错误。这是代理自己的“橡皮鸭调试”。',
             },
           ],
         },
         whatIdDoDifferently: {
-          heading: 'Qué Haría Diferente',
-          body: 'Jacobo funcionó en producción durante meses, pero con perspectiva hay decisiones que cambiaría:',
+          heading: '我会做哪些改变',
+          body: 'Jacobo 运行了数月，回过头看有些决策我会调整：',
           items: [
             {
-              title: 'Evaluación estructurada desde el día 1',
-              detail: 'Implementé evals post-hoc cuando el sistema ya estaba en producción. Si empezara de nuevo, definiría métricas de calidad de respuesta, intent classification accuracy y HITL rate antes de la primera versión. Retrofitear observabilidad es más costoso que diseñarla desde el inicio.',
+              title: '从第一天起就进行结构化评估',
+              detail: '我在系统上线后才补上评估 (evals)。重新开始的话，我会在 v1 之前定义响应质量指标、意图分类准确率和 HITL 频率。事后补救可观测性的成本远高于原生设计。',
             },
             {
-              title: 'SIP trunk directo en vez de Aircall → Twilio → ElevenLabs',
-              detail: 'La cadena de 3 hops añadía ~950-1.500ms de latencia mouth-to-ear y forzaba resampling de G.711 (8kHz) a 16kHz. Con Telnyx SIP trunk directo a ElevenLabs, tendría G.722 wideband nativo y sub-200ms RTT. Elegí la cadena larga porque Aircall ya estaba contratado; hoy priorizaría latencia sobre conveniencia.',
+              title: '使用直连 SIP trunk 而非 Aircall → Twilio → ElevenLabs',
+              detail: '3 跳链条增加了延迟并导致重采样损失。使用 Telnyx 直连 ElevenLabs 会提供原生 16kHz 音频和极低延迟。我当时选择了长链条是因为 Aircall 是现成的，今天我会优先考虑延迟。',
             },
             {
-              title: 'Vector store para memoria en vez de fetch bruto de WATI',
-              detail: 'El fetch de 80 mensajes desde WATI funciona, pero no escala a clientes con historial largo ni permite búsqueda semántica. Un vector store (Pinecone, Qdrant) con embeddings de conversaciones permitiría "recuerda aquella vez que trajiste el iPhone 12" sin cargar toda la conversación.',
+              title: '使用向量数据库处理记忆',
+              detail: '从 WATI 获取 80 条消息的方式无法扩展到长期客户，也无法进行语义搜索。使用 Pinecone 或 Qdrant 处理对话嵌入将能解锁诸如“记得上次我带 iPhone 12 来的时候”之类的功能。',
             },
           ],
         },
         enterprisePatterns: {
-          heading: 'Patrones Transferibles a Enterprise',
-          body: 'Jacobo se construyó para una PYME, pero los patrones de arquitectura son enterprise-grade. Esto es lo que construí vs. lo que añadiría a escala enterprise:',
+          heading: '可迁移的企业级模式',
+          body: 'Jacobo 是为中小企业构建的，但模式是企业级的。以下是我交付的内容 vs 在企业规模下我会增加的内容：',
           builtVsEnterprise: [
             {
-              pattern: 'Sub-agent routing con tool calling',
-              built: 'Router + 7 sub-agentes webhook con intent classification y delegation',
-              enterprise: 'Añadir circuit breakers, retry policies y fallback a modelo alternativo por sub-agente',
+              pattern: '带工具调用的子代理路由',
+              built: '路由器 + 7 个具备意图分类和委派能力的 Webhook 子代理',
+              enterprise: '增加熔断器 (circuit breakers)、重试策略及针对子代理的模型回退',
             },
             {
-              pattern: 'Multi-model orchestration',
-              built: 'GPT-4.1 (router/voz) + GPT-4.1 mini (presupuestos) + MiniMax (citas) vía OpenRouter',
-              enterprise: 'A/B testing de modelos por sub-agente, canary deployments de nuevas versiones de prompts',
+              pattern: '多模型编排',
+              built: '通过 OpenRouter 运行 GPT-4.1 (路由/语音) + GPT-4.1 mini (报价) + MiniMax (预约)',
+              enterprise: '子代理模型 A/B 测试，新版本提示词的灰度发布',
             },
             {
-              pattern: 'HITL framework',
-              built: 'Escalado vía Slack con contexto completo y deep-link a la conversación',
-              enterprise: 'Queue management, SLAs por tier de cliente, analytics de razones de escalado',
+              pattern: 'HITL 框架',
+              built: '通过 Slack 进行带完整上下文和深度链接的转接',
+              enterprise: '队列管理、按客户等级划分的 SLA、转接原因分析',
             },
             {
-              pattern: 'Platform-agnostic sub-agents',
-              built: 'Webhooks compartidos entre n8n (WhatsApp) y ElevenLabs (voz)',
-              enterprise: 'API gateway, rate limiting, autenticación, versionado de endpoints',
+              pattern: '平台无关的子代理',
+              built: '在 n8n (WhatsApp) 和 ElevenLabs (语音) 之间共享 Webhook',
+              enterprise: 'API 网关、速率限制、认证及端点版本管理',
             },
             {
-              pattern: 'Observabilidad',
-              built: 'Logs de n8n + alertas de Slack',
-              enterprise: 'Langfuse/Datadog para traces, latencia y cost tracking por conversación',
+              pattern: '可观测性',
+              built: 'n8n 日志 + Slack 告警',
+              enterprise: '使用 Langfuse/Datadog 进行追踪 (traces)、延迟监控及每会话成本跟踪',
             },
             {
-              pattern: 'Infraestructura de voz',
-              built: 'Aircall → Twilio → ElevenLabs: funcional, pero cada hop añade latencia (~950-1.500ms mouth-to-ear). Twilio usa G.711 a 8kHz, requiere resampling a 16kHz para los modelos de STT, degradando precisión',
-              enterprise: 'SIP trunk directo (Telnyx/Plivo) → ElevenLabs vía SIP, eliminando el hop de Twilio. Telnyx ofrece G.722 wideband a 16kHz nativo (sin resampling) e infraestructura co-located (GPU + telefonía en el mismo PoP) con sub-200ms RTT. Para apps/web: WebRTC directo (Opus 16-48kHz) vía LiveKit, sin PSTN, con 300-600ms mouth-to-ear',
+              pattern: '语音基础设施',
+              built: 'Aircall → Twilio → ElevenLabs：可用，但增加了延迟。Twilio 的 8kHz 采样率降低了 STT 精度',
+              enterprise: '直连 SIP trunk，消除 Twilio 环节。Telnyx 提供原生 16kHz 音频和亚 200ms 延迟。App/Web 端使用 WebRTC 直连，延迟降至 300-600ms',
             },
           ],
           applicability: {
-            heading: 'Aplicabilidad por industria',
+            heading: '行业适用性',
             examples: [
               {
-                domain: 'Travel (Hopper, Booking)',
-                detail: 'Sub-agentes para vuelos, hoteles, seguros. HITL para cambios complejos. Tool calling contra availability APIs.',
+                domain: '旅游 (Booking)',
+                detail: '针对航班、酒店、保险的子代理。针对复杂变更的 HITL。针对可用性 API 的工具调用。',
               },
               {
-                domain: 'Fintech',
-                detail: 'Sub-agentes para transacciones, consultas de saldo, soporte. Stock-aware routing → balance-aware routing.',
+                domain: '金融科技',
+                detail: '针对交易、余额查询、支持的子代理。库存感知路由 → 余额感知路由。',
               },
               {
-                domain: 'Healthcare',
-                detail: 'Sub-agentes para citas, resultados, triage. HITL como feature crítica para derivación a especialista.',
+                domain: '医疗健康',
+                detail: '针对预约、检查结果、分诊的子代理。HITL 作为专科转诊的关键功能。',
               },
               {
-                domain: 'E-commerce',
-                detail: 'Sub-agentes para tracking, devoluciones, recomendaciones. Los mismos patrones de inventory lookup y booking.',
+                domain: '电子商务',
+                detail: '针对物流追踪、退货、推荐的子代理。同样的库存查询和预约模式。',
               },
               {
-                domain: 'Plataformas de Voice AI',
-                detail: 'Orquestación de agentes conversacionales con latencia optimizada. Los patrones de cross-channel (voz → texto) y HITL aplican directamente a cualquier plataforma de voz.',
+                domain: '语音 AI 平台',
+                detail: '针对延迟优化的对话代理编排。跨渠道 (语音 → 文本) 和 HITL 模式直接适用。',
               },
               {
-                domain: 'Plataformas de Datos/AI',
-                detail: 'Tool calling contra APIs internas, routing de sub-agentes por intent, memory management. La misma arquitectura escala a cualquier orquestador de agentes.',
+                domain: '数据/AI 平台',
+                detail: '针对内部 API 的工具调用、按意图路由子代理、记忆管理。同一架构可扩展至任何代理编排器。',
               },
             ],
           },
         },
         promptEngineering: {
-          heading: 'Prompt Engineering en Producción',
-          body: 'No hice fine-tuning. Para un chatbot de tienda de reparaciones, iterar sobre el prompt con hard rules es más pragmático, más barato y más rápido de ajustar que entrenar un modelo custom. Cada regla que ves abajo nació de un caso real en producción.',
+          heading: '生产环境中的提示词工程',
+          body: '我没有进行微调 (fine-tuning)。对于维修店代理，迭代提示词规则比训练模型更务实、更便宜。以下每条规则背后都有一个真实的生产事故案例。',
           whyNotFineTuning: {
-            heading: '¿Por qué hard rules en el prompt y no fine-tuning?',
+            heading: '为什么选择提示词规则而非微调？',
             reasons: [
-              'Fine-tuning es caro y lento de iterar. Una regla en el prompt se cambia en segundos y se despliega al instante.',
-              'El dominio cambiaba constantemente: precios, stock, horarios, promociones. Un modelo fine-tuned queda obsoleto en días.',
-              'Las reglas son auditables: cualquier persona del equipo puede leer el prompt y entender por qué Jacobo se comporta así.',
-              'El 90% de los errores de producción se resolvieron añadiendo una línea al prompt, no reentrenando un modelo.',
+              '微调成本高且迭代慢。提示词规则几秒钟就能修改并上线。',
+              '领域知识变化快：价格、库存、活动。微调模型几天就会过时。',
+              '规则是可审计的。团队中任何人都能读懂提示词并理解 Jacobo 的行为。',
+              '90% 的生产错误通过增加一行提示词就能解决，而不是重新训练模型。',
             ],
           },
           businessHours: {
-            heading: 'Detección de horario comercial',
-            body: 'Un nodo de código JavaScript verificaba si la tienda estaba abierta antes de cada conversación. El resultado se inyectaba como variable dinámica en el prompt: si `isBH` era false, Jacobo ajustaba su tono ("fuera de horario intentaré ayudarte igualmente") y no prometía respuestas inmediatas de compañeros humanos.',
+            heading: '营业时间检测',
+            body: 'JavaScript 节点在每次对话前检查门店是否营业。结果作为动态变量注入提示词：若 `isBH` 为 false，Jacobo 会调整语气（“下班了但我也会尽力帮您”）并停止承诺人工立即回复。',
             code: `const madridTime = new Date().toLocaleString('en-US', {
   timeZone: 'Europe/Madrid',
 });
 const madridDate = new Date(madridTime);
-const day  = madridDate.getDay();   // 0-domingo … 6-sábado
+const day  = madridDate.getDay();   // 0=Sunday … 6=Saturday
 const hour = madridDate.getHours();
 
 const isBH = day >= 1 && day <= 5 &&
@@ -825,425 +825,317 @@ const isBH = day >= 1 && day <= 5 &&
 return [{ json: { isBH } }];`,
           },
           mainPrompt: {
-            heading: 'System prompt del router principal (n8n)',
-            body: 'Versión simplificada del prompt de producción. El original tiene 18 reglas y variables adicionales, pero cada bloque aquí refleja una técnica deliberada de prompt engineering.',
+            heading: '主路由器系统提示词 (n8n)',
+            body: '生产提示词的简化版。原始版本有 18 条规则和额外变量。这里的每个块都反映了一种刻意的提示词工程技术。',
             segments: [
               {
-                code: `## ROL
-Te llamas Jacobo y trabajas en Santifer iRepair, tienda de reparación
-de móviles, tablets, smartwatches en Sevilla. Eres un experto comercial
-y en electrónica, que sabe diagnosticar los problemas que tienen los
-usuarios en sus dispositivos móviles.`,
+                code: `## 角色
+你叫 Jacobo，在位于塞维利亚的手机、平板、智能手表维修店 Xueyifan iRepair 工作。你是商业及电子专家，擅长诊断用户移动设备的故障。`,
                 annotations: [
                   {
-                    label: 'Role prompting + persona',
-                    detail: 'Definir ROL, nombre, empresa y dominio de expertise acota el espacio de respuestas. Sin esto, el LLM divaga o inventa servicios que no ofrecemos.',
+                    label: '角色提示 + 人设',
+                    detail: '定义角色、姓名、公司和专业领域限制了回答空间。没有这个，LLM 可能会闲聊或虚构我们不提供的服务。',
                   },
                 ],
               },
               {
-                code: `HorarioComercial={{ \$('isBH').item.json.isBH }}
-- Si false → la tienda está cerrada: informa con amabilidad
-- Si true → responde con normalidad y ofrece ayuda inmediata`,
+                code: `营业时间={{ \$('isBH').item.json.isBH }}
+- 若 false → 门店已关门：礼貌告知
+- 若 true → 正常回复并提供即时帮助`,
                 annotations: [
                   {
-                    label: 'Variables dinámicas inyectadas',
-                    detail: 'HorarioComercial se inyecta como variable del workflow. El prompt cambia de comportamiento sin cambiar el prompt: una decisión de negocio (horario) controla el tono del agente.',
+                    label: '动态变量注入',
+                    detail: '营业时间作为变量注入。提示词行为随外部业务决策（营业时间）改变。',
                   },
                 ],
               },
               {
-                code: `## Objetivo
-Identificar modelo + avería → consultar stock → conversión hacia cita,
-pedido o presupuesto.`,
+                code: `## 目标
+识别型号 + 故障 → 查询库存 → 引导至预约、订购或报价。`,
                 annotations: [
                   {
-                    label: 'Objetivo orientado a conversión',
-                    detail: 'El objetivo explícito ("conversión hacia cita, pedido o presupuesto") evita que el LLM se quede en conversación técnica sin avanzar. Sin esto, Jacobo explicaba diferencias entre chips durante minutos.',
+                    label: '转化导向的目标',
+                    detail: '明确的目标（“引导至预约、订购或报价”）防止 LLM 陷入技术闲聊。',
                   },
                 ],
               },
               {
-                code: `Si el dispositivo no es móvil, tablet o
-smartwatch, dar ayuda general pero no invitar a dejarlo en tienda.`,
+                code: `若设备非手机、平板或手表，提供一般性帮助但不邀请来店。`,
                 annotations: [
                   {
-                    label: 'Scope limiting',
-                    detail: 'Limita el alcance sin rechazar al cliente: el agente sigue siendo útil fuera de su dominio pero no hace promesas.',
+                    label: '范围限制',
+                    detail: '限制服务范围且不生硬拒绝：代理在其领域外依然有用但不做过度承诺。',
                   },
                 ],
               },
               {
-                code: `## Instrucciones
-1. Identificar modelo y síntomas → llamar a "presupuestoModelo"
-2. Si varias reparaciones → llamar a "Calculadora" (array de precios)
-3. Tras respuesta de presupuestoModelo:
-   3.1 Hay stock → ofrecer cita vía "subagenteCitas" con urlCita
-   3.2 No hay stock → ofrecer pedido urgente vía "hacerPedido"
-   3.3 No hay presupuesto → facilitar urlPresupuesto
+                code: `## 指令
+1. 识别型号和症状 → 调用 "presupuestoModelo"
+2. 若多项维修 → 调用 "Calculadora" (价格数组)
+3. 根据报价结果：
+   3.1 有货 → 通过 "subagenteCitas" 提供预约
+   3.2 缺货 → 通过 "hacerPedido" 提供紧急订购
+   3.3 无报价 → 提供 urlPresupuesto
 
-## Herramientas
-- "mensajeConsulta": mensaje de espera antes de consultar precio
-- "presupuestoModelo": lookup de modelo + avería en Airtable
-- "contactarAgenteHumano": escalado HITL vía Slack
-- "Think": razonamiento interno antes de tool calls complejos
-- "Calculadora": descuento multi-reparación
-- "subagenteCitas": gestión de citas vía YouCanBookMe
-- "hacerPedido": crear pedido en Airtable cuando no hay stock`,
+## 工具
+- "mensajeConsulta": 查询前的等待消息
+- "presupuestoModelo": Airtable 中的型号及故障查询
+- "contactarAgenteHumano": Slack 上的 HITL 转接
+- "Think": 复杂调用前的内部推理
+- "Calculadora": 多项维修折扣
+- "subagenteCitas": 通过 YouCanBookMe 管理预约
+- "hacerPedido": 缺货时在 Airtable 创建订单`,
                 annotations: [
                   {
-                    label: 'Tool definitions como contrato',
-                    detail: 'Cada herramienta documentada con su función exacta y cuándo usarla. El LLM necesita saber qué hace cada tool Y en qué orden llamarlas. Sin el contrato, hacía tool calls redundantes o en orden incorrecto.',
+                    label: '作为契约的工具定义',
+                    detail: '每个工具都记录了功能及使用时机。LLM 需要知道工具的作用及调用顺序。',
                   },
                 ],
               },
               {
-                code: `## HARD RULES (nacidas de producción)
-1. Siempre llamar a Think antes de responder o pasar datos`,
+                code: `## 硬性规则 (源自生产实践)
+1. 回复或传递数据前必须调用 Think`,
                 annotations: [
                   {
-                    label: 'Think tool como chain-of-thought forzado',
-                    detail: '"Siempre llamar a Think antes de responder o pasar datos" fuerza razonamiento explícito. Sin esto, el agente saltaba directamente a tool calls sin verificar que tenía todos los parámetros, generando errores.',
+                    label: '强制思维链推理',
+                    detail: '“回复前必须调用 Think”强制代理进行显式推理，避免在未校验参数时直接调用工具。',
                   },
                 ],
               },
               {
-                code: `2. No modificar URLs de "presupuestoModelo" (Meta da error)
-3. Un solo * para negrita (WhatsApp), no dos **
-4. iPhone + Pantalla → ofrecer SIEMPRE opción premium (12 meses
-   garantía vs 6). No está en web → derivar a humano si interesa
-5. Enlaces planos, sin markdown (Meta rechaza [text](url))
-6. Solo llamar a subagenteCitas TRAS presupuestoModelo
-7. Diagnóstico: 19€, solo se cobra si no acepta la reparación
-8. Correo: contacto@santiferirepair.es (no info@)`,
+                code: `2. 不要修改报价工具返回的 URL (Meta 会报错)
+3. 仅使用一个 * 表示加粗 (WhatsApp)
+4. iPhone + 屏幕 → 始终提供高端选项 (12个月保修)
+5. 纯文本链接，不使用 Markdown (WhatsApp 不渲染)
+6. 仅在报价后调用预约工具
+7. 诊断费：19€，仅在不接受维修时收取
+8. 邮箱：contacto@xueyifanirepair.es`,
                 annotations: [
                   {
-                    label: 'Hard rules como guardrails de producción',
-                    detail: 'Las reglas del final no son estilo: son correcciones de errores reales. Cada una tiene una historia detrás (URL rota, cliente confundido, venta perdida). Son el equivalente a tests de regresión, pero en el prompt.',
+                    label: '硬性规则作为生产护栏',
+                    detail: '这些规则不是风格偏好，而是对真实错误的修正（URL损坏、客户困惑、订单流失）。它们就像提示词里的回归测试。',
                   },
                 ],
               },
               {
-                code: `9. No decir "agendar" cita → decir "tomar" cita
-10. No recomendar otras tiendas`,
+                code: `9. 使用地道的表达方式，不要使用生硬翻译
+10. 不要推荐其他店铺`,
                 annotations: [
                   {
-                    label: 'Negative prompting',
-                    detail: '"No recomendar otras tiendas", "no decir agendar", "no modificar URLs". Decirle al LLM qué NO hacer es tan importante como decirle qué hacer: los modelos tienden a ser "serviciales" de más.',
+                    label: '负向提示',
+                    detail: '告诉 LLM 不要做什么同样重要。',
                   },
                 ],
               },
             ],
           },
           voicePrompt: {
-            heading: 'System prompt del agente de voz (ElevenLabs)',
-            body: 'Versión simplificada del prompt de voz en producción. Mismo dominio, adaptado a conversación telefónica. Comparte las mismas tools webhook pero el flujo es más directo.',
+            heading: '语音代理系统提示词 (ElevenLabs)',
+            body: '生产环境语音提示词的简化版。相同领域，适配电话交谈。共享相同的 Webhook 工具，但流程更直接。',
             segments: [
               {
-                code: `## ROL
-Te llamas Jacobo y trabajas en Santifer iRepair, tienda de reparación
-de móviles, tablets, smartwatches en Sevilla. Sé conciso, amigable y
-resolutivo.`,
+                code: `## 角色
+你叫 Jacobo，在薛一凡 iRepair 工作。请保持简练、友好且能解决问题。`,
                 annotations: [
                   {
-                    label: 'Persona compacta para voz',
-                    detail: 'El prompt de WhatsApp tiene un ROL extenso con reglas de tono. En voz, la brevedad es clave: el LLM necesita menos contexto para generar respuestas cortas y naturales. Menos tokens de sistema = menor latencia en la primera respuesta.',
+                    label: '针对语音的精简人设',
+                    detail: '语音环境下，简短是关键。更少的系统 Token 意味着更低的首字延迟。',
                   },
                 ],
               },
               {
-                code: `## Objetivo
-Identificar modelo + avería → consultar stock → facilitar enlace.
-Solo dar detalles técnicos cuando el cliente no tenga clara la avería.
-Objetivo: que el cliente tome cita (si hay stock) o genere pedido.`,
+                code: `## 目标
+识别型号 + 故障 → 查库存 → 提供链接。引导客户预约或下单。`,
                 annotations: [
                   {
-                    label: 'Funnel de conversión en una línea',
-                    detail: 'El mismo embudo que WhatsApp condensado. En voz, el agente necesita decidir rápido: la conversación no espera. Una línea con el flujo completo (modelo → stock → enlace) es más efectiva que un párrafo.',
+                    label: '单行转化漏斗',
+                    detail: '语音代理需要快速决策，单行完整流程比一段话更有效。',
                   },
                 ],
               },
               {
-                code: `## Instrucciones
-1. Obtener modelo y avería
-2. Indicar que estás haciendo la consulta → llamar a "presupuestoModelo"
-3. Enviar "urlSantifer" vía "EnviarMensajeWati" (WhatsApp en paralelo)
-4. Si varias reparaciones → llamar a "Calculadora"
-5. Informar precio + disponibilidad + "te he mandado la info por WhatsApp"`,
+                code: `## 指令
+1. 获取型号和故障
+2. 表明正在查询 → 调用 "presupuestoModelo"
+3. 同步发送 "urlXueyifan" (通过 EnviarMensajeWati)
+4. 若多项维修 → 调用 "Calculadora"
+5. 告知价格及货况 + “已将信息发至您的 WhatsApp”`,
                 annotations: [
                   {
-                    label: 'Cross-channel UX',
-                    detail: 'El paso 3 es la magia: mientras el cliente sigue hablando por teléfono, Jacobo le envía el enlace por WhatsApp usando el caller_id. El cliente recibe la info en el móvil sin colgar. A los clientes les encantaba.',
+                    label: '跨渠道体验',
+                    detail: '第 3 步是精髓：通话的同时利用 Caller ID 发送 WhatsApp 链接。客户反响极好。',
                   },
                 ],
               },
               {
-                code: `## HARD RULES
-1. No modificar URLs de "presupuestoModelo"
-2. iPhone + Pantalla → ofrecer opción premium (12 meses garantía)
-3. No decir "agendar" → decir "tomar"
-4. Cierre 18-22 agosto: si necesitan recoger equipo → mensajería gratis
-
-Número del cliente: {{system__caller_id}}`,
+                code: `## 硬性规则
+1. 不要修改报价工具的 URL
+2. iPhone + 屏幕 → 提供高端选项
+3. 营业时间规则...
+号码：{{system__caller_id}}`,
                 annotations: [
                   {
-                    label: 'Variable dinámica: caller_id',
-                    detail: 'ElevenLabs inyecta {{system__caller_id}} con el número de teléfono de la llamada entrante. Es lo que permite el cross-channel: Jacobo usa ese número para enviar WhatsApp al mismo cliente que está hablando por teléfono.',
+                    label: '动态变量：Caller ID',
+                    detail: '这是实现跨渠道服务的关键，用于向通话中的客户发送文本。',
                   },
                 ],
               },
             ],
           },
           citasPrompt: {
-            heading: 'System prompt del sub-agente de citas (n8n)',
-            body: '15 reglas de parseo temporal que convierten frases coloquiales en rangos horarios JSON. Este prompt es la pieza clave del sub-agente más sofisticado del sistema: traduce lenguaje natural a timestamps compatibles con la API de YouCanBookMe.',
+            heading: '预约子代理系统提示词 (n8n)',
+            body: '15 条时间解析规则，将口语化的表达转换为 JSON 时间范围。它是系统中最复杂子代理的核心。',
             segments: [
               {
-                code: `Eres un micro-servicio que convierte frases de preferencia horaria fecha y hora (español de España)
-en un array JSON de rangos.`,
+                code: `你是一个微服务，负责将西班牙语的时间偏好转换为 JSON 范围数组。`,
                 annotations: [
                   {
-                    label: 'Micro-service framing',
-                    detail: 'Darle al LLM el rol de "micro-servicio" en vez de "asistente" acota radicalmente su comportamiento: no saluda, no explica, no pregunta. Solo parsea y devuelve JSON. Reduce alucinaciones al mínimo.',
+                    label: '微服务框架',
+                    detail: '将其定位为“微服务”而非“助手”，彻底限制了其行为：不打招呼、不解释、不提问，只返回 JSON。',
                   },
                 ],
               },
               {
-                code: `REGLAS DE NEGOCIO
-1. Rangos por defecto:
-   – mañana = 10:00-14:00
-   – tarde   = 17:00-21:00
-   – "todo el día" = 10:00-21:00
-2. exact será true solo si el usuario da una hora puntual que termine
-   en 00 o 30 (ej. "lunes a las 10" o "martes a las 17:30" pero no
-   "miércoles a las 10:15").
-   Si menciona un rango ("martes de 10 a 12") ⇒ exact:false.
-3. Horas con minutos ≠ 00 ó 30 se redondean:
-   - Redondea hacia abajo al múltiplo de 30 min anterior.
-   - Crea un rango de 1 hora a partir de esa hora redondeada
-     (ej. 10:15 ⇒ 10:00-11:00, exact:true porque era puntual).
-4. La fecha actual es {{ \$now.format('yyyy-MM-dd HH:mm') }} (Europe/Madrid).
-5. Acepta varias peticiones separadas por "y", comas o punto y coma.`,
+                code: `业务规则
+1. 默认范围：上午 10-14, 下午 17-21, 全天 10-21
+2. 只有精确到 00 或 30 分时 exact 为 true
+3. 其他分钟数进行舍入并创建 1 小时范围
+4. 当前日期是 {{ \$now.format('yyyy-MM-dd HH:mm') }}
+5. 支持以逗号等分隔的多项请求`,
                 annotations: [
                   {
-                    label: 'Domain constraints como reglas',
-                    detail: 'Los horarios del negocio, los slots de 30 minutos, el redondeo y la timezone se codifican como reglas explícitas. Sin esto, el LLM inventaba franjas horarias inexistentes o slots de 15 minutos.',
+                    label: '作为规则的领域约束',
+                    detail: '将营业时间、30分钟步长和时区硬编码为规则，防止 LLM 胡乱猜测。',
                   },
                 ],
               },
               {
-                code: `6. Devuelve EXCLUSIVAMENTE una llamada de función con esta forma:
-   {"name":"slots","arguments":{"slots":[
-     {"date":"AAAA-MM-DD","start":"HH:mm","end":"HH:mm","exact":true/false}
-   ]}}
-6.1 Si la frase incluye "mañana" sin especificar parte del día,
-    trátalo como «todo el día» de mañana (10:00–21:00).`,
+                code: `6. 严格按此格式返回函数调用：
+{"name":"slots","arguments":{"slots":[...]}}`,
                 annotations: [
                   {
-                    label: 'Structured output forzado',
-                    detail: 'Forzar un JSON schema específico garantiza que el output sea parseable por el siguiente nodo de n8n. "EXCLUSIVAMENTE" es clave: sin esa palabra, el LLM añadía texto conversacional antes del JSON.',
+                    label: '强制结构化输出',
+                    detail: '确保输出可被 n8n 节点解析。',
                   },
                 ],
               },
               {
-                code: `7. PLURAL ("mañanas", "tardes"): devuelve las próximas N=3 franjas.
-   Incluye hoy si la franja aún no ha terminado.
-8. Solo abre de lunes a viernes. Nunca sábado ni domingo.
-9. Conectores condicionales ("o", "o bien", "o si no"):
-   preferencias alternativas en el mismo orden.
-10. "A partir de [día]": todo el día (10:00-21:00) + N-1 laborables.
-11. N=5 por defecto.
-12. Día concreto: solo las horas de ese día.
-13. "Esta semana": todas las franjas laborables restantes (Lu-Vi).
-14. Plurales: próximas 3 franjas.
-15. Sin preferencia horaria: próximos 3 días laborables, todo el día.`,
+                code: `7-15. 各类边缘情况处理：复数形式、条件连接词、本周、工作日过滤等。`,
                 annotations: [
                   {
-                    label: 'Enumeración de edge cases',
-                    detail: 'Cada regla (7-15) cubre un caso real que falló en producción: plurales, conectores condicionales, "esta semana". Sin enumerar explícitamente cada edge case, el LLM interpretaba libremente y generaba slots incorrectos.',
+                    label: '边缘情况枚举',
+                    detail: '每一条规则都解决了一个生产中的失败案例。',
                   },
                 ],
               },
               {
-                code: `# EJEMPLOS
-Input: "mañana por la mañana"
-→ {"slots":[{"date":"[mañana]","start":"10:00","end":"14:00","exact":false}]}
-
-Input: "martes de 10 a 12 y viernes todo el día"
-→ {"slots":[
-  {"date":"[martes]","start":"10:00","end":"12:00","exact":false},
-  {"date":"[viernes]","start":"10:00","end":"21:00","exact":false}
-]}
-
-Input: "lunes a las 10"
-→ {"slots":[{"date":"[lunes]","start":"10:00","end":"11:00","exact":true}]}`,
+                code: `# 示例
+输入：“明天上午”
+→ {"slots":[{"date":"[明天]","start":"10:00","end":"14:00","exact":false}]}`,
                 annotations: [
                   {
-                    label: 'Few-shot prompting',
-                    detail: '3 ejemplos input→output que cubren los 3 escenarios clave: franja genérica (exact:false), multi-slot con "y", y hora exacta (exact:true). Suficientes para anclar el formato sin sobreajustar el comportamiento.',
+                    label: '少样本提示 (Few-shot)',
+                    detail: '通过示例锚定输出格式。',
                   },
                 ],
               },
             ],
           },
           iterationExamples: {
-            heading: 'Ejemplos de iteraciones reales',
+            heading: '真实迭代案例',
             items: [
               {
-                rule: 'No modificar URLs',
-                origin: 'Meta rechazaba mensajes con URLs concatenadas. Un cliente no recibió su enlace de cita porque Jacobo juntó dos URLs en una.',
+                rule: '不要修改 URL',
+                origin: 'Meta 拒绝包含拼接 URL 的消息。客户曾因 Jacobo 合并了两个 URL 而收不到链接。',
               },
               {
-                rule: 'Un solo * para negrita',
-                origin: 'WhatsApp usa *texto* para negrita. Jacobo usaba **texto** (estilo markdown) y el cliente veía los asteriscos literales.',
+                rule: '仅使用单个 * 加粗',
+                origin: 'Jacobo 曾使用 ** (Markdown 风格) 导致 WhatsApp 客户看到的是原始星号。',
               },
               {
-                rule: 'Siempre ofrecer pantalla premium en iPhone',
-                origin: 'Los clientes preguntaban después de colgar si había una opción mejor. Se perdían ventas de margen alto.',
+                rule: '始终提供 iPhone 高端屏',
+                origin: '曾因未主动告知有更好的选择而错失高利润订单。',
               },
               {
-                rule: 'No decir "agendar"',
-                origin: 'En España nadie dice "agendar una cita". Es un anglicismo que los LLMs usan constantemente. Los clientes lo notaban.',
+                rule: '地道表达',
+                origin: '修正了 LLM 常用的生硬机翻。',
               },
               {
-                rule: 'Enlaces planos sin markdown',
-                origin: 'Meta/WhatsApp no renderiza [texto](url). El cliente veía texto roto en vez de un enlace clickeable.',
-              },
-              {
-                rule: 'No recomendar otras tiendas',
-                origin: 'Jacobo recomendó una competencia cuando un cliente preguntó por un servicio que no ofrecíamos. Aprendizaje rápido.',
-              },
-              {
-                rule: 'Atribución del creador como lead gen',
-                origin: 'Un reclutador preguntó a Jacobo "¿quién te ha diseñado?" y no supo responder. Ahora el prompt de producción incluye reglas que mencionan a Santiago como creador con enlace a LinkedIn. El agente se convierte en un canal pasivo de generación de leads.',
+                rule: '创建者归属作为线索生成',
+                origin: '招聘人员问“谁设计了你”时 Jacobo 曾答不上来。现在它会提及一凡并链接至 LinkedIn。',
               },
             ],
           },
         },
         mainRouter: {
-          heading: 'Los Dos Cerebros',
-          body: 'Jacobo tiene dos routers independientes que comparten los mismos tools y sub-agentes. Uno orquesta WhatsApp, el otro gestiona las llamadas de voz. Misma lógica de negocio, dos interfaces completamente distintas.',
+          heading: '两个“大脑”',
+          body: 'Jacobo 拥有两个独立的路由器，它们共享相同的工具和子代理。一个编排 WhatsApp，另一个管理语音。',
           whatsappRouter: {
-            heading: 'Router WhatsApp (n8n)',
-            body: 'El cerebro de texto: un workflow de n8n con 37 nodos que clasifica cada mensaje, decide qué sub-agente invocar y orquesta la respuesta. Aquí viven el tool calling, el prompt engineering y toda la lógica de enrutamiento.',
+            heading: 'WhatsApp 路由器 (n8n)',
+            body: '文本大脑：包含 37 个节点的 n8n 工作流，负责分类、调度及编排回复。所有的工具调用和路由逻辑都在这里。',
           },
           voiceRouter: {
-            heading: 'Router Voz (ElevenLabs)',
-            body: 'El cerebro de voz: un agente conversacional en ElevenLabs con Gemini 2.5 Flash, knowledge bases con la documentación del negocio, y los mismos tools expuestos como webhooks. El cliente habla por teléfono y Jacobo responde en tiempo real, consultando precios, disponibilidad y gestionando citas, exactamente igual que por WhatsApp.',
+            heading: '语音路由器 (ElevenLabs)',
+            body: '语音大脑：ElevenLabs 上的对话代理，搭载 Gemini 2.5 Flash 及业务知识库，并以 Webhook 形式暴露相同工具。',
           },
         },
         deepDiveQuotes: {
-          heading: 'Deep Dive: Sub-agente de Presupuestos',
-          body: 'El sub-agente de presupuestos es el más crítico del sistema: cada consulta de precio pasa por aquí. Usa GPT-4.1 mini vía OpenRouter por su precisión en structured output. Su respuesta determina el siguiente paso del flujo completo.',
+          heading: '深度探索：报价子代理',
+          body: '它是系统中最关键的部分：所有询价都经过这里。使用 GPT-4.1 mini 确保结构化输出的精准性。',
           challenge: {
-            heading: 'El reto: del texto libre al presupuesto estructurado',
-            body: 'El cliente escribe "cuánto cuesta cambiar la pantalla de un iPhone 15 Pro Max". El router necesita un JSON con precio, stock, URLs de cita y pieza. El sub-agente conecta lenguaje natural con la base de datos de Airtable en tiempo real.',
+            heading: '挑战：从自由文本到结构化报价',
+            body: '客户输入很随意。子代理必须实时将自然语言连接到 Airtable 数据库。',
           },
           cleanModel: {
-            heading: 'CleanModel: Codificar conocimiento tácito',
-            body: 'Los clientes no escriben modelos como una base de datos. Escriben "iphone 15", "iPhone15 pro max", "ip 15 pro", "I-Phone 15Pro Max". Un técnico humano resolvía esto con experiencia: sabía que "el grande negro" probablemente era un Pro Max. Ese conocimiento tácito se pierde si no se diseña para ello.',
-            detail: 'CleanModel normaliza el input: elimina espacios, paréntesis, guiones y pasa a minúsculas. "iPhone 15 Pro Max" → "iphone15promax". Esto alimenta una búsqueda con SEARCH() en Airtable por campo modeloLimpio (también normalizado), permitiendo fuzzy matching sin depender de escritura exacta.',
-            insight: 'Este nodo codifica conocimiento tácito de negocio. Sin él, el agente fallaría con la mayoría de inputs reales, porque los clientes no hablan como bases de datos. Es un ejemplo de por qué construir agentes requiere entender el dominio, no solo conectar APIs.',
+            heading: 'CleanModel：编码隐性知识',
+            body: '客户不会按数据库格式输入型号。技术员能凭经验识别，但系统需要专门设计。CleanModel 负责规范化输入以支持模糊匹配。',
+            insight: '这体现了构建代理需要理解业务领域，而不仅仅是连接 API。',
           },
           aiAgent: {
-            heading: 'AI Agent: GPT-4.1 mini vía OpenRouter',
-            body: 'El cerebro del sub-agente. System prompt con ROL ultra-scoped: "agente especializado en buscar precios". Incluye Think tool para razonamiento explícito antes de cada tool call y Simple Memory (buffer window) con sessionKey estática.',
+            heading: 'AI 代理 —— GPT-4.1 mini',
+            body: '核心大脑。系统提示词设定了极窄的服务范围。包含 Think 工具用于显式推理。',
             tools: [
               {
-                label: 'BuscarModelo',
-                detail: 'Busca por campo modeloLimpio en tabla Modelos → devuelve RECORD_ID, Name, URLSantiferNueva, Cita diagnóstico.',
+                label: '查找型号',
+                detail: '在 Airtable 型号表中查找 → 返回 ID、名称、URL。',
               },
               {
-                label: 'BuscarReparacionesModelo',
-                detail: 'Busca por RECORD_ID → devuelve 20 tipos de reparación con "Precio, stock y cita" (pantalla original, compatible, batería, micrófono, altavoz, puerto carga, cámara trasera/delantera, etc.).',
+                label: '查找维修项',
+                detail: '根据型号 ID 查找 → 返回价格、库存及约时间信息。',
               },
               {
-                label: 'Structured Output Parser',
-                detail: 'Formatea a JSON con schema: modelo, reparación, precio, stock, urlSantifer, urlCita, urlPresupuesto, urlDiagnostico, idPiezaAirtable, idModeloAirtable.',
+                label: '结构化输出解析器',
+                detail: '将结果格式化为预定义的 JSON Schema。',
               },
             ],
-            fallback: 'Si no encuentra coincidencia, el system prompt instruye: "tienes que ir acotando el modelo para obtener más resultados, hasta que te quedes con el que corresponda", replicando el razonamiento de un humano experimentado.',
+            fallback: '未找到匹配时，模仿资深技术员的逻辑进行引导。',
           },
           filtrarRespuesta: {
-            heading: 'FiltrarRespuesta: Post-procesado determinista',
-            body: 'Nodo Code que valida y limpia la respuesta del AI Agent antes de devolverla al router. Valida que urlSantifer apunte al dominio correcto (si no contiene "santiferirepair.es" → "NO DISPONIBLE EN WEB AUN"). Después aplica 3 paths de eliminación de campos según estado:',
-            rules: [
-              {
-                condition: 'stock === true',
-                action: 'Elimina urlPresupuesto, idPieza, idModelo: el cliente puede reservar cita directamente.',
-              },
-              {
-                condition: 'stock === false',
-                action: 'Elimina urlCita y urlPresupuesto: necesita pedir pieza antes de reparar.',
-              },
-              {
-                condition: 'precio === "PRESUPUESTO"',
-                action: 'Elimina urlCita e idPieza: la reparación no está catalogada, requiere valoración manual.',
-              },
-            ],
+            heading: '过滤响应：确定性后处理',
+            body: '代码节点负责校验及清理 AI 代理的回答。根据库存状态应用三条删除字段的路径，确保 router 收到的是最精准的数据。',
           },
-          punchline: 'El resultado: un cliente pregunta "cuánto cuesta arreglar la pantalla de mi iPhone" y en 4 segundos tiene precio real, disponibilidad de stock y un enlace directo para reservar cita o hacer pedido. Sin formularios, sin "le paso con un compañero". El sub-agente consulta justo los campos imprescindibles de Airtable y devuelve exactamente lo que el router necesita para cerrar la conversión.',
+          punchline: '结果：客户咨询维修价格，4 秒内即可获得真实价格、库存状态及直接预约链接。',
           presupuestoPrompt: {
-            heading: 'System prompt del sub-agente de presupuestos (n8n)',
-            body: 'El prompt define tres herramientas (BuscarModelo, BuscarReparacionesModelo, Structured Output Parser) y un flujo de 4 pasos para devolver presupuestos estructurados con estado de stock.',
+            heading: '报价子代理系统提示词',
+            body: '定义了三项工具及一个 4 步走的流程，用于返回带库存状态的结构化报价。',
             segments: [
               {
-                code: `## ROL
-Eres un sub-agente de presupuestos para Santifer iRepair.
-Tu trabajo: recibir un modelo y una reparación, buscarlos en Airtable
-y devolver un presupuesto estructurado.`,
+                code: `## 角色
+你是 Xueyifan iRepair 的报价子代理。你的工作是：接收型号及维修项，在 Airtable 中查找并返回结构化报价。`,
                 annotations: [
                   {
-                    label: 'Scoped sub-agent role',
-                    detail: 'No es un asistente general: es un sub-agente con una única responsabilidad. El scope ultra-estrecho elimina tentaciones del LLM de conversar, sugerir alternativas o añadir contexto no solicitado.',
+                    label: '限定责任',
+                    detail: '消除 LLM 闲聊或提供非请求上下文的倾向。',
                   },
                 ],
               },
               {
-                code: `## OBJETIVO
-Buscar el modelo exacto y la reparación solicitada en la base de datos.
-Devolver precio, disponibilidad de stock y siguiente paso recomendado.`,
+                code: `## 目标
+在数据库中查找型号。返回价格、货况及建议的后续步骤。`,
                 annotations: [
                   {
-                    label: 'Single-responsibility objective',
-                    detail: 'Una sola tarea: buscar + devolver presupuesto. El "siguiente paso recomendado" (cita, pedido, presupuesto manual) permite al router principal decidir sin necesidad de otra llamada al LLM.',
-                  },
-                ],
-              },
-              {
-                code: `## HERRAMIENTAS
-- "BuscarModelo": busca el modelo del dispositivo en Airtable
-- "BuscarReparacionesModelo": busca reparaciones disponibles para ese modelo
-- "Structured Output Parser": formatea la respuesta en JSON estructurado`,
-                annotations: [
-                  {
-                    label: 'Tool chain pipeline',
-                    detail: 'Las 3 tools forman un pipeline secuencial: buscar modelo → buscar reparaciones → formatear. El Structured Output Parser al final garantiza que el JSON sea consumible por el router sin post-procesado.',
-                  },
-                ],
-              },
-              {
-                code: `## PASOS
-1. Recibir modeloInput y reparacionInput del router
-2. Llamar a BuscarModelo con modeloLimpio
-3. Si encuentra el modelo → llamar a BuscarReparacionesModelo
-4. Devolver JSON: precio, stock, tiempo estimado, urlCita, urlPresupuesto`,
-                annotations: [
-                  {
-                    label: 'Explicit step sequencing',
-                    detail: 'Orden determinista paso a paso. Sin esto, el LLM a veces saltaba BuscarModelo e intentaba adivinar el precio. Cada paso condiciona al siguiente: no hay ambigüedad sobre qué hacer.',
-                  },
-                ],
-              },
-              {
-                code: `// User message template (n8n inyecta las variables)
-Modelo: {{ \$json.modeloInput }}
-Modelo limpio: {{ \$json.modeloLimpio }}
-Reparación: {{ \$json.reparacionInput }}`,
-                annotations: [
-                  {
-                    label: 'Variable injection via template',
-                    detail: 'n8n inyecta modeloInput (lo que dijo el cliente), modeloLimpio (normalizado por el router) y reparacionInput. La separación input/limpio permite al sub-agente buscar con el nombre normalizado sin perder el contexto original del cliente.',
+                    label: '单一职责目标',
+                    detail: '让主路由器能根据“建议步骤”直接决策。',
                   },
                 ],
               },
@@ -1251,198 +1143,128 @@ Reparación: {{ \$json.reparacionInput }}`,
           },
         },
         deepDiveOthers: {
-          heading: 'Deep Dive: Tools',
-          body: 'No todas las piezas del sistema necesitan un LLM. Estas tres tools son workflows ligeros que ejecutan una sola operación cada uno, simples por diseño: la lógica de decisión vive en el router.',
+          heading: '深度探索：辅助工具',
+          body: '并非所有部分都需要 LLM。这三个工具是轻量级的工作流，设计简单。',
           orders: {
-            heading: 'hacerPedido: Pedidos Urgentes',
-            body: 'Cuando el sub-agente de presupuestos detecta que no hay stock de la pieza, el router invoca hacerPedido. El workflow crea un registro en la tabla "Pedidos" de Airtable con todos los datos necesarios para que el equipo gestione el pedido al proveedor.',
-            nodes: 'Webhook → Airtable Create (tabla Pedidos) → Respond to Webhook',
+            heading: '紧急订购 (hacerPedido)',
+            body: '缺货时，router 调用此工具在 Airtable “订单表”中创建记录，以便团队处理。',
+            nodes: 'Webhook → Airtable 创建 → 响应',
             details: [
-              'Marca automáticamente "¿Tiene prisa? = SI" porque el cliente está esperando',
-              'Vincula idPieza e idModelo para trazabilidad completa en el Business OS',
-              'Añade nota "Pedido automatizado por Jacobo" + comentario del cliente',
-              'El equipo recibe el pedido en su vista de Airtable sin intervención manual',
+              '自动标记为“紧急”，因为客户正在等待',
+              '关联零件和型号 ID 以实现完整可追溯性',
+              '团队在 Airtable 视图中即可收到，无需人工干预',
             ],
           },
           calculator: {
-            heading: 'Calculadora de Descuentos',
-            body: 'Lógica pura de negocio, cero LLM. Cuando el cliente necesita varias reparaciones (ej: pantalla + batería + cámara), el router envía un array de precios y la calculadora aplica descuentos escalonados automáticamente.',
-            nodes: 'Webhook → Code (lógica de descuentos) → Response',
+            heading: '折扣计算器',
+            body: '纯业务逻辑。客户需要多项维修时，计算器自动应用阶梯折扣。',
+            nodes: 'Webhook → 代码 (折扣逻辑) → 响应',
             details: [
-              'Ordena precios de mayor a menor: la reparación más cara no tiene descuento',
-              'Descuento por posición: ≤50€ → 15€ off, ≤100€ → 20€ off, >100€ → 25€ off',
-              'Devuelve resumen formateado: precio sin descuento, descuento aplicado, precio final',
-              'El cliente ve inmediatamente cuánto ahorra por agrupar reparaciones en una sola visita',
+              '价格从高到低排序：最贵的一项不打折',
+              '阶梯折扣：≤50€ 减 15€, ≤100€ 减 20€, >100€ 减 25€',
+              '客户能立即看到打包维修省了多少钱',
             ],
             segments: [
               {
-                code: `const precios = item.json.body.precios;
-
-// Validaciones básicas
-if (!Array.isArray(precios) || precios.length < 2) {
-    throw new Error('Debes enviar un array "precios" con al menos 2 números.');
-}`,
-                annotations: [
-                  {
-                    label: 'Validación defensiva',
-                    detail: 'El sub-agente no confía en el router: valida que el array exista y tenga al menos 2 precios. Si el LLM envió datos malformados, falla rápido con error descriptivo en vez de devolver NaN.',
-                  },
-                ],
-              },
-              {
-                code: `// 1) Ordenamos de mayor a menor
-const ordenados = [...precios].sort((a, b) => b - a);
-
-// 2) Calculamos descuento por posición (el primero no tiene)
+                code: `// 折扣规则作为代码而非提示词
 const descuentos = ordenados.map((precio, idx) => {
-    if (idx === 0) return 0;        // sin descuento para el más caro
+    if (idx === 0) return 0;
     if (precio <= 50)  return 15;
     if (precio <= 100) return 20;
-    return 25;                      // >100 €
+    return 25;
 });`,
                 annotations: [
                   {
-                    label: 'Reglas de negocio como código, no como prompt',
-                    detail: 'Los descuentos viven en un nodo Code, no en un prompt. Esto garantiza determinismo: una pantalla de 189€ + batería de 45€ siempre da exactamente el mismo descuento. Cero alucinaciones posibles.',
-                  },
-                ],
-              },
-              {
-                code: `// 3) Totales
-const totalSinDescuento = ordenados.reduce((s, p) => s + p, 0);
-const descuentoTotal    = descuentos.reduce((s, d) => s + d, 0);
-const totalConDescuento = totalSinDescuento - descuentoTotal;
-
-// 4) Preparar respuesta
-const resumen =
-    \`Presupuesto total sin descuento: \${totalSinDescuento.toFixed(2)} €
-Descuento aplicado: \${descuentoTotal.toFixed(2)} €
-Presupuesto reparándolo todo junto: \${totalConDescuento.toFixed(2)} €\`;`,
-                annotations: [
-                  {
-                    label: 'Respuesta formateada para el router',
-                    detail: 'El resumen en texto plano lo recibe el router y lo pasa directamente al cliente. El LLM no reformula: copia el texto tal cual. Así el precio que ve el cliente es exactamente el que calculó el código.',
+                    label: '确定性保障',
+                    detail: '这确保了价格计算 100% 准确，无幻觉。',
                   },
                 ],
               },
             ],
           },
           hitl: {
-            heading: 'HITL Handoff: Escalada a Humano',
-            body: 'La válvula de escape del sistema. Cuando Jacobo detecta que no puede resolver (cliente frustrado, caso complejo, petición fuera de scope), escala a un humano vía Slack con contexto completo.',
-            nodes: 'Webhook → Slack (#chat) → Respond to Webhook',
+            heading: '转接人工 (HITL Handoff)',
+            body: '系统的安全阀。无法解决时，带着完整上下文通过 Slack 呼叫人工。',
+            nodes: 'Webhook → Slack → 响应',
             details: [
-              'Publica en el canal #chat con emoji 🤖 como avatar',
-              'El mensaje incluye: resumen de la conversación, intent detectado e historial del cliente',
-              'Deep-link directo a la conversación en WATI: el humano abre y ya tiene todo el contexto',
-              'Jacobo confirma al cliente que un humano le contactará, sin cortar la conversación',
+              '在 Slack #chat 频道发送带摘要的消息',
+              '包含 WATI 深度链接，人工点击即达对话现场',
+              'Jacobo 告知客户将由同事跟进',
             ],
           },
           whatsapp: {
-            heading: 'EnviarMensajeWati: Cross-Channel',
-            body: 'El puente entre canales. Cuando el cliente habla por teléfono con Jacobo (ElevenLabs), este workflow envía enlaces y confirmaciones por WhatsApp en paralelo. El cliente recibe la info por escrito mientras sigue hablando.',
-            nodes: 'Webhook → HTTP Request (API WATI) → Respond to Webhook',
+            heading: '跨渠道发送信息 (EnviarMensajeWati)',
+            body: '连接不同渠道。当客户在打电话时，此工作流并行发送 WhatsApp 链接。',
+            nodes: 'Webhook → WATI API → 响应',
             details: [
-              'Envía template "urlreparacion2" con la URL de cita personalizada',
-              'Permite que el agente de voz diga "te acabo de enviar el enlace por WhatsApp"',
-              'El cliente no necesita apuntar nada: cuando cuelga, la info ya está en su móvil',
+              '发送带个性化预约 URL 的模板',
+              '通话结束时，信息已静静躺在客户手机里',
             ],
           },
         },
       },
       cta: {
-        heading: '¿Buscas a alguien que construya esto para tu empresa?',
-        body: 'Jacobo gestiona citas, consulta inventario real y escala con contexto, todo en menos de 30 segundos. La arquitectura de sub-agentes, tool calling y patrones HITL se aplica directamente a travel, fintech, salud o e-commerce.',
+        heading: '在寻找能为贵公司构建此类系统的人才？',
+        body: 'Jacobo 能在 30 秒内处理预约、查询库存并完成背景转接。其模式可广泛应用于旅游、金融、医疗或电商领域。',
         label: 'LinkedIn',
-        labelSecondary: 'Email',
+        labelSecondary: '邮箱',
       },
       ctaAfterEnterprise: {
-        heading: 'Estos patrones están listos para escalar. Yo también.',
+        heading: '这些模式已做好规模化准备。我也是。',
       },
       ctaAfterDownloads: {
-        heading: 'Te han gustado los workflows. Imagina lo que puedo hacer con los tuyos.',
+        heading: '如果您喜欢这些工作流，想象一下我能为您做些什么。',
       },
       faq: {
-        heading: 'Preguntas Frecuentes',
+        heading: '常见问题',
         items: [
           {
-            q: '¿Cuánto cuesta construir un agente IA para WhatsApp?',
-            a: 'Las herramientas (n8n cloud, WATI, Aircall, LLMs vía OpenRouter) cuestan en total menos de 200€/mes. El coste principal es el tiempo de diseño y desarrollo de la arquitectura. Para un negocio de este tamaño, es una fracción del coste de un empleado a tiempo parcial dedicado a atención al cliente.',
+            q: '构建 WhatsApp AI 代理需要多少钱？',
+            a: '工具总成本每月不到 200 欧元。主要成本在于架构设计和开发时间。相比兼职客服，其成本仅为一小部分。',
           },
           {
-            q: '¿Qué pasa si la IA se equivoca con un precio?',
-            a: 'Los precios no vienen del LLM: vienen de Airtable. Jacobo consulta el inventario en tiempo real. Si el precio cambia en Airtable, Jacobo da el precio correcto automáticamente. No hay alucinación posible en datos estructurados.',
+            q: '如果 AI 报错价格怎么办？',
+            a: '价格源自 Airtable 而非 LLM。它是实时同步的，结构化数据不存在幻觉可能。',
           },
           {
-            q: '¿Cómo funciona el agente de voz por teléfono?',
-            a: 'Jacobo está integrado en la centralita Aircall como un "compañero" más. Entra cuando nadie puede atender o fuera de horario. El cliente llama a un teléfono fijo y habla con Jacobo con voz natural (ElevenLabs). Usa los mismos sub-agentes webhook que WhatsApp: misma lógica, diferente interfaz.',
+            q: '语音代理是如何工作的？',
+            a: '它集成在 Aircall 总机中。客户拨打固话即可与 Jacobo 交谈，它复用了 WhatsApp 相同的 Webhook 子代理。',
           },
           {
-            q: '¿Por qué n8n y no LangChain/LangGraph directamente?',
-            a: 'n8n permite que cada sub-agente sea un workflow visual con webhook propio, testeable con una llamada HTTP. La barrera de mantenimiento es menor que un repo de Python. Para la complejidad de este sistema (7 workflows, ~80 nodos), la visualización de n8n es una ventaja, no una limitación.',
+            q: '为什么用 n8n 而非直接写 Python 脚本？',
+            a: 'n8n 提供了可视化和低维护门槛。对于复杂的 7 个工作流系统，可视化是一种优势。',
           },
           {
-            q: '¿Cuánto tiempo llevó construir Jacobo?',
-            a: 'Menos de un mes desde el diseño hasta producción. Y era mi primer agente IA, construido en paralelo a las demás responsabilidades del negocio. La velocidad se debe a que el Business OS ya existía: datos limpios y accesibles en Airtable, inventario en tiempo real, CRM con historial. Sin esa base de 5 años, habría sido mucho más lento. Jacobo fue la consecuencia inevitable de un sistema operativo de negocio robusto.',
-          },
-          {
-            q: '¿Puedes construir algo así para mi empresa?',
-            a: 'Sí. Los patrones de Jacobo (sub-agentes, tool calling, HITL, cross-channel) son agnósticos de industria. Lo que cambia son los datos y las integraciones, no la arquitectura. Si tu negocio tiene datos estructurados y procesos repetitivos, puedo diseñar un sistema similar.',
-          },
-          {
-            q: '¿Jacobo sigue funcionando?',
-            a: 'Sí. Vendí el negocio en 2025 y Jacobo se vendió con él. Sigue en producción atendiendo clientes hoy. Es la mejor validación posible: el comprador mantuvo el sistema porque funciona.',
-          },
-          {
-            q: '¿Cómo pasaste de negocio propio a buscar rol en enterprise?',
-            a: 'Construí un negocio de 16 años con sistemas que escalan: ERP custom, agente IA, SEO programático, CRM con gamificación. Ahora quiero aplicar ese mismo pensamiento de sistemas a problemas más grandes: como FDE, Solutions Architect o AI Production Manager.',
+            q: 'Jacobo 还在运行吗？',
+            a: '是的。它已随业务一同售出，目前仍在为新房主服务。这是对系统稳定性的最好验证。',
           },
         ],
       },
       resources: {
-        heading: 'Recursos',
+        heading: '资源',
         items: [
-          {
-            label: 'n8n · Workflow Automation',
-            url: 'https://n8n.io',
-          },
-          {
-            label: 'OpenRouter · Model Gateway',
-            url: 'https://openrouter.ai',
-          },
-          {
-            label: 'ElevenLabs · Conversational AI',
-            url: 'https://elevenlabs.io',
-          },
-          {
-            label: 'WATI · WhatsApp Business API',
-            url: 'https://www.wati.io',
-          },
-          {
-            label: 'Aircall · Cloud PBX',
-            url: 'https://aircall.io',
-          },
-          {
-            label: 'Airtable · Database Platform',
-            url: 'https://airtable.com',
-          },
+          { label: 'n8n · 工作流自动化', url: 'https://n8n.io' },
+          { label: 'OpenRouter · 模型网关', url: 'https://openrouter.ai' },
+          { label: 'ElevenLabs · 对话式 AI', url: 'https://elevenlabs.io' },
+          { label: 'WATI · WhatsApp API', url: 'https://www.wati.io' },
+          { label: 'Airtable · 数据平台', url: 'https://airtable.com' },
         ],
       },
       downloads: {
-        badge: '7 workflows de producción descargables. Open source by default',
-        inlineLabel: 'Ver en GitHub',
-        inlineHint: 'Importa en n8n en 1 click',
+        badge: '7 个生产环境工作流可供下载。默认开源',
+        inlineLabel: '在 GitHub 查看',
+        inlineHint: '一键导入 n8n',
         section: {
-          heading: 'Pruébalo Tú Mismo',
-          intro: 'Estos son los workflows reales que corren en producción desde hace 2 años. Sanitizados, documentados, listos para importar en n8n. Si construyes algo con ellos, me encantaría verlo.',
-          downloadAllLabel: 'Descargar todo (ZIP)',
+          heading: '亲自动手试一试',
+          intro: '这些是运行了两年的真实生产工作流。已脱敏、带注释，准备好导入 n8n。',
+          downloadAllLabel: '全部下载 (ZIP)',
           downloadAllSize: '~37 KB',
-          importHeading: 'Cómo importar en n8n',
+          importHeading: '如何导入 n8n',
           importSteps: [
-            'Abre tu instancia de n8n y ve a Workflows',
-            'Click en "..." → "Import from file"',
-            'Selecciona cualquier archivo .json de la descarga',
-            'Actualiza las credenciales (API keys, webhooks) con tus propios valores',
+            '打开 n8n 实例并转至 Workflows',
+            '点击 "..." → "Import from file"',
+            '选择下载的 JSON 文件',
+            '更新您自己的 API Key 和 Webhook 等凭据',
           ],
         },
         workflows: [
@@ -1450,85 +1272,34 @@ Presupuesto reparándolo todo junto: \${totalConDescuento.toFixed(2)} €\`;`,
             id: 'jacobo-chatbot-v2',
             icon: '🧭',
             name: 'Jacobo Chatbot V2',
-            subtitle: 'Central Router',
-            description: 'El cerebro del canal WhatsApp. Clasifica intent, elige sub-agente, mantiene ventana de memoria de 20 mensajes.',
-            href: 'https://github.com/santifer/jacobo-workflows/blob/main/jacobo-chatbot-v2.json',
+            subtitle: '核心路由器',
+            description: 'WhatsApp 渠道的大脑。意图分类、选择子代理并维护记忆窗口。',
+            href: 'https://github.com/xueyifan/jacobo-workflows/blob/main/jacobo-chatbot-v2.json',
             fileSize: '~66 KB',
-            nodes: '37 nodos',
+            nodes: '37 个节点',
             llm: 'GPT-4.1',
           },
           {
             id: 'subagente-citas',
             icon: '📅',
             name: 'subagenteCitas',
-            subtitle: 'Appointment Booking',
-            description: 'Convierte "mañana por la mañana" en una cita confirmada. Parsea preferencias temporales en lenguaje natural.',
-            href: 'https://github.com/santifer/jacobo-workflows/blob/main/subagente-citas.json',
+            subtitle: '预约子代理',
+            description: '解析自然语言时间偏好并确认预约。',
+            href: 'https://github.com/xueyifan/jacobo-workflows/blob/main/subagente-citas.json',
             fileSize: '~24 KB',
-            nodes: '18 nodos',
+            nodes: '18 个节点',
             llm: 'MiniMax M2.5',
           },
-          {
-            id: 'presupuesto-modelo',
-            icon: '💰',
-            name: 'Presupuesto Modelo',
-            subtitle: 'Quote Agent',
-            description: 'Busca modelo y reparación en Airtable, devuelve precio real con estado de stock.',
-            href: 'https://github.com/santifer/jacobo-workflows/blob/main/presupuesto-modelo.json',
-            fileSize: '~15 KB',
-            nodes: '11 nodos',
-            llm: 'GPT-4.1 mini',
-          },
-          {
-            id: 'hacer-pedido',
-            icon: '📦',
-            name: 'hacerPedido',
-            subtitle: 'Order Creation',
-            description: 'Crea órdenes de reparación en Airtable cuando la pieza no tiene stock.',
-            href: 'https://github.com/santifer/jacobo-workflows/blob/main/hacer-pedido.json',
-            fileSize: '~79 KB',
-            nodes: '3 nodos',
-          },
-          {
-            id: 'calculadora-santifer',
-            icon: '🧮',
-            name: 'CalculadoraSantifer',
-            subtitle: 'Discount Calculator',
-            description: 'Lógica pura de negocio. Calcula descuentos combo cuando el cliente agrupa varias reparaciones.',
-            href: 'https://github.com/santifer/jacobo-workflows/blob/main/calculadora-santifer.json',
-            fileSize: '~2.7 KB',
-            nodes: '3 nodos',
-          },
-          {
-            id: 'contactar-agente-humano',
-            icon: '🙋',
-            name: 'contactarAgenteHumano',
-            subtitle: 'HITL Handoff',
-            description: 'La válvula de escape. Escala a humano vía Slack con deep-link directo a la conversación.',
-            href: 'https://github.com/santifer/jacobo-workflows/blob/main/contactar-agente-humano.json',
-            fileSize: '~2.3 KB',
-            nodes: '5 nodos',
-          },
-          {
-            id: 'enviar-mensaje-wati',
-            icon: '📱',
-            name: 'EnviarMensajeWati',
-            subtitle: 'WhatsApp Sender',
-            description: 'Puente cross-channel: el agente de voz envía mensajes por WhatsApp vía la API de WATI.',
-            href: 'https://github.com/santifer/jacobo-workflows/blob/main/enviar-mensaje-wati.json',
-            fileSize: '~2.5 KB',
-            nodes: '3 nodos',
-          },
         ],
-        githubNote: 'Todos los workflows están en GitHub: haz fork, dale star, o descarga directamente.',
-        githubCta: 'Ver repo en GitHub',
+        githubNote: '所有工作流都在 GitHub 上：欢迎 Fork、Star 或直接下载。',
+        githubCta: '在 GitHub 查看仓库',
       },
       footer: {
-        role: 'AI Product Manager · Solutions Architect',
-        bio: 'Construyó y vendió un negocio de 16 años en 2025. Ahora aplica el mismo pensamiento de sistemas a AI enterprise: como FDE, Solutions Architect o AI Production Manager.',
-        fellowAt: 'Teaching Fellow en',
-        fellowLink: 'AI Product Academy',
-        copyright: 'Todos los derechos reservados.',
+        role: 'AI 产品经理 · 解决方案架构师',
+        bio: '2025 年售出了一家 16 年历史的业务。现在将系统思维应用于企业级 AI。',
+        fellowAt: '助教于',
+        fellowLink: 'AI 产品学院',
+        copyright: '版权所有。',
       },
     },
     en: {
@@ -1536,7 +1307,7 @@ Presupuesto reparándolo todo junto: \${totalConDescuento.toFixed(2)} €\`;`,
       altSlug: 'agente-ia-jacobo',
       readingTime: '35 min read',
       seo: {
-        title: 'Jacobo: Multi-Agent AI with Tool Calling & Voice AI — Production Case Study | santifer.io',
+        title: 'Jacobo: Multi-Agent AI with Tool Calling & Voice AI — Production Case Study | xueyifan.io',
         description: 'Case study: how an FDE built an omnichannel AI agent with sub-agents, tool calling, HITL, and Voice AI (n8n + ElevenLabs) achieving 90% self-service. Downloadable workflows.',
       },
       nav: {
@@ -1544,7 +1315,7 @@ Presupuesto reparándolo todo junto: \${totalConDescuento.toFixed(2)} €\`;`,
         breadcrumbCurrent: 'AI Agent Jacobo',
       },
       header: {
-        kicker: 'Case Study: Santifer iRepair (Google it — still operating today)',
+        kicker: 'Case Study: Xueyifan iRepair (Google it — still operating today)',
         h1: 'Jacobo: Multi-Agent AI with Sub-Agent Orchestration & Tool Calling',
         subtitle: 'How I built an AI agent that handles WhatsApp and landline calls, orchestrates specialized sub-agents via webhooks, and achieves ~90% self-service at a phone repair business.',
         badge: 'Sold with the business in 2025 — still running in production today',
@@ -1872,7 +1643,7 @@ Presupuesto reparándolo todo junto: \${totalConDescuento.toFixed(2)} €\`;`,
           },
           parseUrl: {
             heading: 'ParseURL',
-            body: 'A Code node that extracts the subdomain from the YouCanBookMe URL to determine which booking profile to use. Parses the query string for dynamic form fields (repair type, customer data). Different calendars for different services: santifer-citav2-componentes for component repairs, santifer-citav2-diagnostico for diagnostics. The subdomain determines the entire booking flow downstream.',
+            body: 'A Code node that extracts the subdomain from the YouCanBookMe URL to determine which booking profile to use. Parses the query string for dynamic form fields (repair type, customer data). Different calendars for different services: xueyifan-citav2-componentes for component repairs, xueyifan-citav2-diagnostico for diagnostics. The subdomain determines the entire booking flow downstream.',
           },
           analizarDisponibilidad: {
             heading: 'AnalizarDisponibilidad (LLM)',
@@ -1998,7 +1769,7 @@ Presupuesto reparándolo todo junto: \${totalConDescuento.toFixed(2)} €\`;`,
               'High-quality ASR (provider: ElevenLabs, PCM 16kHz) + 7s turn_timeout + 20s silence_end_call to handle natural conversational pauses',
               'LLM: GPT-4.1 (temp 0.0) for maximum precision in voice tool calling. Optimized latency (optimize_streaming_latency: 4)',
               'Voice model: eleven_flash_v2_5, speed 1.2x, stability 0.6, similarity 0.8. Conversations up to 5 minutes (300s)',
-              'Knowledge base with 3 sources (Google Maps, Santifer iRepair website, business summary) leveraging ElevenLabs\' native RAG (e5_mistral_7b_instruct). Didn\'t build custom RAG: the platform offered it and it was high impact with zero effort. Pure RICE prioritization. n8n didn\'t need it: the WhatsApp agent already accessed business context via direct tool calling to Airtable',
+              'Knowledge base with 3 sources (Google Maps, Xueyifan iRepair website, business summary) leveraging ElevenLabs\' native RAG (e5_mistral_7b_instruct). Didn\'t build custom RAG: the platform offered it and it was high impact with zero effort. Pure RICE prioritization. n8n didn\'t need it: the WhatsApp agent already accessed business context via direct tool calling to Airtable',
               '5 shared webhook tools with n8n: presupuestoModelo, subagenteCitas, Calculadora, contactarAgenteHumano, and enviarMensajeWati. 20s timeout per tool, immediate execution',
               'enviarMensajeWati was the cross-channel magic: while talking on the phone, Jacobo sent links and quotes via WhatsApp in parallel using the caller_id as a dynamic variable. Customers loved getting the info on their phone while still on the call',
             ],
@@ -2033,14 +1804,14 @@ Presupuesto reparándolo todo junto: \${totalConDescuento.toFixed(2)} €\`;`,
               {
                 src: '/jacobo/pbx-welcome.mp3',
                 label: 'Welcome',
-                transcript: '"We\'ll be right with you. Thank you for calling Santifer iRepair. For quality assurance, your call may be recorded."',
-                transcriptOriginal: '"A continuación, atenderemos tu llamada. Gracias por llamar a Santifer iRepair. Para asegurar la calidad del servicio, tu llamada puede ser grabada."',
+                transcript: '"We\'ll be right with you. Thank you for calling Xueyifan iRepair. For quality assurance, your call may be recorded."',
+                transcriptOriginal: '"A continuación, atenderemos tu llamada. Gracias por llamar a Xueyifan iRepair. Para asegurar la calidad del servicio, tu llamada puede ser grabada."',
               },
               {
                 src: '/jacobo/pbx-ivr.mp3',
                 label: 'IVR Menu',
-                transcript: '"Press 1 for a new repair. Press 2 to check your repair status. Press 3 to talk to me, Jacobo. Your 24/7 virtual assistant at Santifer iRepair. Get a quote and book an appointment instantly."',
-                transcriptOriginal: '"Marca 1 para solicitar una nueva reparación. Marca 2 para consultar el estado de tu reparación. Marca 3 para hablar conmigo, Jacobo. Tu asistente virtual 24/7 en Santifer iRepair. Obtendrás presupuesto y cita al instante."',
+                transcript: '"Press 1 for a new repair. Press 2 to check your repair status. Press 3 to talk to me, Jacobo. Your 24/7 virtual assistant at Xueyifan iRepair. Get a quote and book an appointment instantly."',
+                transcriptOriginal: '"Marca 1 para solicitar una nueva reparación. Marca 2 para consultar el estado de tu reparación. Marca 3 para hablar conmigo, Jacobo. Tu asistente virtual 24/7 en Xueyifan iRepair. Obtendrás presupuesto y cita al instante."',
                 highlight: 'Press 3 to talk to me, Jacobo',
               },
             ],
@@ -2364,7 +2135,7 @@ return [{ json: { isBH } }];`,
             segments: [
               {
                 code: `## ROL
-Te llamas Jacobo y trabajas en Santifer iRepair, tienda de reparación
+Te llamas Jacobo y trabajas en Xueyifan iRepair, tienda de reparación
 de móviles, tablets, smartwatches en Sevilla. Eres un experto comercial
 y en electrónica, que sabe diagnosticar los problemas que tienen los
 usuarios en sus dispositivos móviles.`,
@@ -2449,7 +2220,7 @@ smartwatch, dar ayuda general pero no invitar a dejarlo en tienda.`,
 5. Enlaces planos, sin markdown (Meta rechaza [text](url))
 6. Solo llamar a subagenteCitas TRAS presupuestoModelo
 7. Diagnóstico: 19€, solo se cobra si no acepta la reparación
-8. Correo: contacto@santiferirepair.es (no info@)`,
+8. Correo: contacto@xueyifanirepair.es (no info@)`,
                 annotations: [
                   {
                     label: 'Hard rules as production guardrails',
@@ -2475,7 +2246,7 @@ smartwatch, dar ayuda general pero no invitar a dejarlo en tienda.`,
             segments: [
               {
                 code: `## ROL
-Te llamas Jacobo y trabajas en Santifer iRepair, tienda de reparación
+Te llamas Jacobo y trabajas en Xueyifan iRepair, tienda de reparación
 de móviles, tablets, smartwatches en Sevilla. Sé conciso, amigable y
 resolutivo.`,
                 annotations: [
@@ -2501,7 +2272,7 @@ Objetivo: que el cliente tome cita (si hay stock) o genere pedido.`,
                 code: `## Instrucciones
 1. Obtener modelo y avería
 2. Indicar que estás haciendo la consulta → llamar a "presupuestoModelo"
-3. Enviar "urlSantifer" vía "EnviarMensajeWati" (WhatsApp en paralelo)
+3. Enviar "urlXueyifan" vía "EnviarMensajeWati" (WhatsApp en paralelo)
 4. Si varias reparaciones → llamar a "Calculadora"
 5. Informar precio + disponibilidad + "te he mandado la info por WhatsApp"`,
                 annotations: [
@@ -2590,7 +2361,7 @@ en un array JSON de rangos.`,
 12. Día concreto: solo las horas de ese día.
 13. "Esta semana": todas las franjas laborables restantes (Lu-Vi).
 14. Plurales: próximas 3 franjas.
-15. Sin preferencia horaria: próximos 3 días laborables, todo el día.`,
+15. Sin preferencia horaria: próximos 3 days laborables, todo el día.`,
                 annotations: [
                   {
                     label: 'Edge case enumeration',
@@ -2649,7 +2420,7 @@ Input: "lunes a las 10"
               },
               {
                 rule: 'Creator attribution as lead gen',
-                origin: 'A recruiter asked Jacobo "who designed you?" and it didn\'t know. Now the production prompt includes rules mentioning Santiago as creator with a LinkedIn link. The agent becomes a passive lead generation channel.',
+                origin: 'A recruiter asked Jacobo "who designed you?" and it didn\'t know. Now the production prompt includes rules mentioning Yifan as creator with a LinkedIn link. The agent becomes a passive lead generation channel.',
               },
             ],
           },
@@ -2685,7 +2456,7 @@ Input: "lunes a las 10"
             tools: [
               {
                 label: 'BuscarModelo',
-                detail: 'Searches by modeloLimpio field in the Models table → returns RECORD_ID, Name, URLSantiferNueva, Cita diagnóstico.',
+                detail: 'Searches by modeloLimpio field in the Models table → returns RECORD_ID, Name, URLXueyifanNueva, Cita diagnóstico.',
               },
               {
                 label: 'BuscarReparacionesModelo',
@@ -2693,14 +2464,14 @@ Input: "lunes a las 10"
               },
               {
                 label: 'Structured Output Parser',
-                detail: 'Formats to JSON with schema: modelo, reparación, precio, stock, urlSantifer, urlCita, urlPresupuesto, urlDiagnostico, idPiezaAirtable, idModeloAirtable.',
+                detail: 'Formats to JSON with schema: modelo, reparación, precio, stock, urlXueyifan, urlCita, urlPresupuesto, urlDiagnostico, idPiezaAirtable, idModeloAirtable.',
               },
             ],
             fallback: 'If no match is found, the system prompt instructs: "you must keep narrowing the model to get more results, until you find the right one" — replicating a seasoned technician\'s reasoning.',
           },
           filtrarRespuesta: {
             heading: 'FiltrarRespuesta — Deterministic post-processing',
-            body: 'Code node that validates and cleans the AI Agent\'s response before returning it to the router. Validates that urlSantifer points to the correct domain (if it doesn\'t contain "santiferirepair.es" → "NOT AVAILABLE ON WEB YET"). Then applies 3 field-stripping paths based on state:',
+            body: 'Code node that validates and cleans the AI Agent\'s response before returning it to the router. Validates that urlXueyifan points to the correct domain (if it doesn\'t contain "xueyifanirepair.es" → "NOT AVAILABLE ON WEB YET"). Then applies 3 field-stripping paths based on state:',
             rules: [
               {
                 condition: 'stock === true',
@@ -2723,7 +2494,7 @@ Input: "lunes a las 10"
             segments: [
               {
                 code: `## ROL
-Eres un sub-agente de presupuestos para Santifer iRepair.
+Eres un sub-agente de presupuestos para Xueyifan iRepair.
 Tu trabajo: recibir un modelo y una reparación, buscarlos en Airtable
 y devolver un presupuesto estructurado.`,
                 annotations: [
@@ -2814,7 +2585,7 @@ Reparación: {{ \$json.reparacionInput }}`,
 
 // Validaciones básicas
 if (!Array.isArray(precios) || precios.length < 2) {
-    throw new Error('Debes enviar un array "precios" con al menos 2 números.');
+    throw new Error('Debes enviar un array "precios" with at least 2 numbers.');
 }`,
                 annotations: [
                   {
@@ -2904,10 +2675,6 @@ Presupuesto reparándolo todo junto: \${totalConDescuento.toFixed(2)} €\`;`,
             a: 'The tools (n8n cloud, WATI, Aircall, LLMs via OpenRouter) cost less than €200/month total. The main cost is the time to design and develop the architecture. For a business this size, it\'s a fraction of the cost of a part-time customer service employee.',
           },
           {
-            q: 'What happens if the AI gets a price wrong?',
-            a: 'Prices don\'t come from the LLM: they come from Airtable. Jacobo queries inventory in real time. If a price changes in Airtable, Jacobo gives the correct price automatically. No hallucination possible on structured data.',
-          },
-          {
             q: 'How does the voice agent on a landline work?',
             a: 'Jacobo is integrated into the Aircall PBX as another "teammate". It picks up when no one else can or after hours. The customer calls a landline and talks to Jacobo with natural voice (ElevenLabs). It uses the same sub-agent webhooks as WhatsApp: same logic, different interface.',
           },
@@ -2986,7 +2753,7 @@ Presupuesto reparándolo todo junto: \${totalConDescuento.toFixed(2)} €\`;`,
             name: 'Jacobo Chatbot V2',
             subtitle: 'Central Router',
             description: 'The brain of the WhatsApp channel. Classifies intent, picks the right sub-agent, maintains a 20-message memory window.',
-            href: 'https://github.com/santifer/jacobo-workflows/blob/main/jacobo-chatbot-v2.json',
+            href: 'https://github.com/xueyifan/jacobo-workflows/blob/main/jacobo-chatbot-v2.json',
             fileSize: '~66 KB',
             nodes: '37 nodes',
             llm: 'GPT-4.1',
@@ -2997,7 +2764,7 @@ Presupuesto reparándolo todo junto: \${totalConDescuento.toFixed(2)} €\`;`,
             name: 'subagenteCitas',
             subtitle: 'Appointment Booking',
             description: 'Turns "tomorrow morning" into a confirmed appointment. Parses natural language time preferences.',
-            href: 'https://github.com/santifer/jacobo-workflows/blob/main/subagente-citas.json',
+            href: 'https://github.com/xueyifan/jacobo-workflows/blob/main/subagente-citas.json',
             fileSize: '~24 KB',
             nodes: '18 nodes',
             llm: 'MiniMax M2.5',
@@ -3008,7 +2775,7 @@ Presupuesto reparándolo todo junto: \${totalConDescuento.toFixed(2)} €\`;`,
             name: 'Presupuesto Modelo',
             subtitle: 'Quote Agent',
             description: 'Looks up exact model + repair in Airtable, returns real price with stock status.',
-            href: 'https://github.com/santifer/jacobo-workflows/blob/main/presupuesto-modelo.json',
+            href: 'https://github.com/xueyifan/jacobo-workflows/blob/main/presupuesto-modelo.json',
             fileSize: '~15 KB',
             nodes: '11 nodes',
             llm: 'GPT-4.1 mini',
@@ -3019,17 +2786,17 @@ Presupuesto reparándolo todo junto: \${totalConDescuento.toFixed(2)} €\`;`,
             name: 'hacerPedido',
             subtitle: 'Order Creation',
             description: 'Creates repair orders in Airtable when parts are out of stock.',
-            href: 'https://github.com/santifer/jacobo-workflows/blob/main/hacer-pedido.json',
+            href: 'https://github.com/xueyifan/jacobo-workflows/blob/main/hacer-pedido.json',
             fileSize: '~79 KB',
             nodes: '3 nodes',
           },
           {
-            id: 'calculadora-santifer',
+            id: 'calculadora-xueyifan',
             icon: '🧮',
-            name: 'CalculadoraSantifer',
+            name: 'CalculadoraXueyifan',
             subtitle: 'Discount Calculator',
             description: 'Pure business logic. Calculates combo discounts when customers bundle multiple repairs.',
-            href: 'https://github.com/santifer/jacobo-workflows/blob/main/calculadora-santifer.json',
+            href: 'https://github.com/xueyifan/jacobo-workflows/blob/main/calculadora-xueyifan.json',
             fileSize: '~2.7 KB',
             nodes: '3 nodes',
           },
@@ -3039,7 +2806,7 @@ Presupuesto reparándolo todo junto: \${totalConDescuento.toFixed(2)} €\`;`,
             name: 'contactarAgenteHumano',
             subtitle: 'HITL Handoff',
             description: 'The escape valve. Escalates to human via Slack with a deep-link to the conversation.',
-            href: 'https://github.com/santifer/jacobo-workflows/blob/main/contactar-agente-humano.json',
+            href: 'https://github.com/xueyifan/jacobo-workflows/blob/main/contactar-agente-humano.json',
             fileSize: '~2.3 KB',
             nodes: '5 nodes',
           },
@@ -3049,7 +2816,7 @@ Presupuesto reparándolo todo junto: \${totalConDescuento.toFixed(2)} €\`;`,
             name: 'EnviarMensajeWati',
             subtitle: 'WhatsApp Sender',
             description: 'Cross-channel bridge: the voice agent sends WhatsApp messages via the WATI API.',
-            href: 'https://github.com/santifer/jacobo-workflows/blob/main/enviar-mensaje-wati.json',
+            href: 'https://github.com/xueyifan/jacobo-workflows/blob/main/enviar-mensaje-wati.json',
             fileSize: '~2.5 KB',
             nodes: '3 nodes',
           },

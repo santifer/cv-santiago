@@ -6,7 +6,7 @@
 
 ## The System
 
-Jacobo is an omnichannel AI agent (WhatsApp + phone) built with n8n, orchestrating specialized sub-agents via tool calling. These workflows ran in production for 2 years at [Santifer iRepair](https://santifer.io/ai-agent-jacobo).
+Jacobo is an omnichannel AI agent (WhatsApp + phone) built with n8n, orchestrating specialized sub-agents via tool calling. These workflows ran in production for 2 years at [Xueyifan iRepair](https://xueyifan.io/ai-agent-jacobo).
 
 ## Workflows
 
@@ -16,7 +16,7 @@ Jacobo is an omnichannel AI agent (WhatsApp + phone) built with n8n, orchestrati
 | `subagente-citas.json` | subagenteCitas | Appointment booking — parses natural language time preferences into calendar slots via YouCanBookMe | 18 | MiniMax M2.5 |
 | `presupuesto-modelo.json` | Presupuesto Modelo | Quote agent — looks up exact model + repair in Airtable, returns real price with stock status | 11 | GPT-4.1 mini |
 | `hacer-pedido.json` | hacerPedido | Order creation — creates repair orders in Airtable when parts are out of stock | 3 | No LLM |
-| `calculadora-santifer.json` | CalculadoraSantifer | Discount calculator — pure business logic for combo repair pricing | 3 | No LLM |
+| `calculadora-xueyifan.json` | CalculadoraXueyifan | Discount calculator — pure business logic for combo repair pricing | 3 | No LLM |
 | `contactar-agente-humano.json` | contactarAgenteHumano | HITL handoff — escalates to human via Slack with conversation summary and deep-link | 5 | No LLM |
 | `enviar-mensaje-wati.json` | EnviarMensajeWati | WhatsApp sender — cross-channel bridge so the voice agent can send WhatsApp messages | 3 | No LLM |
 
@@ -40,8 +40,8 @@ Jacobo is an omnichannel AI agent (WhatsApp + phone) built with n8n, orchestrati
 
 Read the complete architecture breakdown, prompt engineering techniques, and production learnings:
 
-- [Jacobo AI Agent — Case Study (EN)](https://santifer.io/ai-agent-jacobo)
-- [Agente IA Jacobo — Case Study (ES)](https://santifer.io/agente-ia-jacobo)
+- [Jacobo AI Agent — Case Study (EN)](https://xueyifan.io/ai-agent-jacobo)
+- [Agente IA Jacobo — Case Study (ES)](https://xueyifan.io/agente-ia-jacobo)
 
 ---
 
@@ -51,7 +51,7 @@ Read the complete architecture breakdown, prompt engineering techniques, and pro
 
 ## El Sistema
 
-Jacobo es un agente IA omnicanal (WhatsApp + teléfono) construido con n8n, que orquesta sub-agentes especializados vía tool calling. Estos workflows corrieron en producción durante 2 años en [Santifer iRepair](https://santifer.io/agente-ia-jacobo).
+Jacobo es un agente IA omnicanal (WhatsApp + teléfono) construido con n8n, que orquesta sub-agentes especializados vía tool calling. Estos workflows corrieron en producción durante 2 años en [Xueyifan iRepair](https://xueyifan.io/agente-ia-jacobo).
 
 ## Workflows
 
@@ -61,7 +61,7 @@ Jacobo es un agente IA omnicanal (WhatsApp + teléfono) construido con n8n, que 
 | `subagente-citas.json` | subagenteCitas | Reserva de citas — parsea preferencias temporales en lenguaje natural a slots de calendario vía YouCanBookMe | 18 | MiniMax M2.5 |
 | `presupuesto-modelo.json` | Presupuesto Modelo | Agente de presupuestos — busca modelo + reparación en Airtable, devuelve precio real con estado de stock | 11 | GPT-4.1 mini |
 | `hacer-pedido.json` | hacerPedido | Creación de pedidos — crea órdenes de reparación en Airtable cuando no hay stock | 3 | Sin LLM |
-| `calculadora-santifer.json` | CalculadoraSantifer | Calculadora de descuentos — lógica de negocio pura para precios combo de multi-reparación | 3 | Sin LLM |
+| `calculadora-xueyifan.json` | CalculadoraXueyifan | Calculadora de descuentos — lógica de negocio pura para precios combo de multi-reparación | 3 | Sin LLM |
 | `contactar-agente-humano.json` | contactarAgenteHumano | HITL handoff — escala a humano vía Slack con resumen de conversación y deep-link | 5 | Sin LLM |
 | `enviar-mensaje-wati.json` | EnviarMensajeWati | Envío WhatsApp — puente cross-channel para que el agente de voz envíe mensajes por WhatsApp | 3 | Sin LLM |
 
@@ -85,13 +85,13 @@ Jacobo es un agente IA omnicanal (WhatsApp + teléfono) construido con n8n, que 
 
 Lee el desglose completo de arquitectura, técnicas de prompt engineering y aprendizajes de producción:
 
-- [Agente IA Jacobo — Case Study (ES)](https://santifer.io/agente-ia-jacobo)
-- [Jacobo AI Agent — Case Study (EN)](https://santifer.io/ai-agent-jacobo)
+- [Agente IA Jacobo — Case Study (ES)](https://xueyifan.io/agente-ia-jacobo)
+- [Jacobo AI Agent — Case Study (EN)](https://xueyifan.io/ai-agent-jacobo)
 
 ---
 
 ## Let's Connect
 
-[![Website](https://img.shields.io/badge/santifer.io-000?style=for-the-badge&logo=safari&logoColor=white)](https://santifer.io)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/santifer)
-[![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:hola@santifer.io)
+[![Website](https://img.shields.io/badge/xueyifan.io-000?style=for-the-badge&logo=safari&logoColor=white)](https://xueyifan.io)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/xueyifan)
+[![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:yifanxue.sde@gmail.com)

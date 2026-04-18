@@ -115,7 +115,7 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
     altSlug: t.altSlug,
     title: t.seo.title,
     description: t.seo.description,
-    image: 'https://santifer.io/jacobo/og-jacobo-agent.webp',
+    image: 'https://xueyifan.io/jacobo/og-jacobo-agent.webp',
     publishedTime: '2026-02-25',
     modifiedTime: '2026-03-07',
     articleTags: 'AI agent,multi-agent,n8n,ElevenLabs,HITL,tool calling,WhatsApp,voice AI',
@@ -135,7 +135,7 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
 
       <MetricsGrid editorId="hero-metrics" items={t.heroMetrics} columns={5} compact />
 
-      <GitHubRepoBadge repo="santifer/jacobo-workflows" stars="120" forks="38" lang={lang} />
+      <GitHubRepoBadge repo="xueyifan/jacobo-workflows" stars="120" forks="38" lang={lang} />
 
       {/* TL;DR */}
       <Callout editorId="tldr-callout" className="-mx-2 sm:mx-0">{t.tldr}</Callout>
@@ -148,9 +148,9 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
 
       {/* Hero images */}
       <Photo2 editorId="hero-photos" items={[
-        { src: '/jacobo/santiago-headphones-thinking.webp', alt: 'Santiago Fernández de Valderrama', loading: 'eager', width: 360, height: 480 },
-        { src: '/jacobo/shop-microsoldering-station.webp', alt: lang === 'es' ? 'Estación de microsoldadura en Santifer iRepair' : 'Microsoldering station at Santifer iRepair', loading: 'eager', width: 540, height: 720 },
-      ]} caption={lang === 'es' ? 'Cada llamada interrumpe una reparación en curso: el técnico deja la microsoldadura para atender al teléfono' : 'Every call interrupts a repair in progress: the technician leaves the microsoldering station to answer the phone'} />
+        { src: '/jacobo/Yifan-headphones-thinking.webp', alt: 'Yifan Fernández de Valderrama', loading: 'eager', width: 360, height: 480 },
+        { src: '/jacobo/shop-microsoldering-station.webp', alt: lang === 'zh' ? '薛一凡 iRepair 的微焊台' : 'Microsoldering station at Xueyifan iRepair', loading: 'eager', width: 540, height: 720 },
+      ]} caption={lang === 'zh' ? 'Cada llamada interrumpe una reparación en curso: el técnico deja la microsoldadura para atender al teléfono' : 'Every call interrupts a repair in progress: the technician leaves the microsoldering station to answer the phone'} />
 
       <article className="prose-custom">
         {/* ---- Intro ---- */}
@@ -170,9 +170,9 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
 
         {/* Counter + Diagnostic screen */}
         <Photo2 editorId="problem-shop-counter" items={[
-          { src: '/jacobo/shop-counter-smart-displays.webp', alt: lang === 'es' ? 'Mostrador de Santifer iRepair con smart displays' : 'Santifer iRepair counter with smart displays', width: 1024, height: 768 },
-          { src: '/jacobo/shop-diagnostic-screen.webp', alt: lang === 'es' ? 'Pantalla de diagnóstico en la tienda' : 'Diagnostic screen in the shop', width: 1024, height: 768 },
-        ]} caption={lang === 'es' ? 'El mostrador con smart displays y la pantalla de diagnóstico: el negocio que necesitaba un agente IA' : 'The counter with smart displays and the diagnostic screen: the business that needed an AI agent'} />
+          { src: '/jacobo/shop-counter-smart-displays.webp', alt: lang === 'zh' ? 'Mostrador de Xueyifan iRepair con smart displays' : 'Xueyifan iRepair counter with smart displays', width: 1024, height: 768 },
+          { src: '/jacobo/shop-diagnostic-screen.webp', alt: lang === 'zh' ? 'Pantalla de diagnóstico en la tienda' : 'Diagnostic screen in the shop', width: 1024, height: 768 },
+        ]} caption={lang === 'zh' ? 'El mostrador con smart displays y la pantalla de diagnóstico: el negocio que necesitaba un agente IA' : 'The counter with smart displays and the diagnostic screen: the business that needed an AI agent'} />
 
         {/* Alternatives */}
         <Prose editorId="problem-alternatives-body">{t.sections.theProblem.alternatives.body}</Prose>
@@ -180,16 +180,16 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
         <Callout editorId="problem-alternatives-punchline">{t.sections.theProblem.alternatives.punchline}</Callout>
 
         {/* POS photo + Business OS cross-link */}
-        <Photo1 editorId="problem-pos-legacy" src="/jacobo/before-checkout-pos.webp" alt={lang === 'es' ? 'POS legacy antes de la transformación' : 'Legacy POS before transformation'} width={1200} height={676} caption={lang === 'es' ? 'El viejo POS: facturación, stock y precios de piezas en un software que no se integraba con nada' : 'The old POS system: invoicing, stock and part prices in software that integrated with nothing'} />
+        <Photo1 editorId="problem-pos-legacy" src="/jacobo/before-checkout-pos.webp" alt={lang === 'zh' ? '转型前的旧 POS 系统' : 'Legacy POS before transformation'} width={1200} height={676} caption={lang === 'zh' ? 'El viejo POS: facturación, stock y precios de piezas en un software que no se integraba con nada' : 'The old POS system: invoicing, stock and part prices in software that integrated with nothing'} />
 
         <CaseStudyCta
           editorId="problem-business-os-cta"
-          heading={lang === 'es' ? 'Este POS fue el primer problema que resolví' : 'This POS was the first problem I solved'}
-          body={lang === 'es'
+          heading={lang === 'zh' ? '这个 POS 系统是我解决的第一个问题' : 'This POS was the first problem I solved'}
+          body={lang === 'zh'
             ? 'Antes de construir Jacobo, reemplacé este sistema legacy por un ERP custom sobre Airtable. Esa base de datos es la que Jacobo consulta hoy.'
             : 'Before building Jacobo, I replaced this legacy system with a custom ERP on Airtable. That database is what Jacobo queries today.'}
           ctaLabel={t.internalLinks.businessOs.text}
-          ctaHref={lang === 'es' ? '/business-os-para-airtable' : '/business-os-for-airtable'}
+          ctaHref={lang === 'zh' ? '/business-os-para-airtable' : '/business-os-for-airtable'}
         />
 
         {/* ================================================================ */}
@@ -199,7 +199,7 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
         <Prose editorId="architecture-body">{t.sections.architecture.body}</Prose>
 
         {/* Architecture diagram */}
-        <Photo1 editorId="architecture-diagram" src={`/jacobo/architecture-${lang === 'es' ? 'es' : 'en'}.webp`} alt={lang === 'es' ? 'Diagrama de arquitectura de Jacobo' : 'Jacobo architecture diagram'} width={5504} height={3072} />
+        <Photo1 editorId="architecture-diagram" src={`/jacobo/architecture-${lang === 'zh' ? 'es' : 'en'}.webp`} alt={lang === 'zh' ? 'Diagrama de arquitectura de Jacobo' : 'Jacobo architecture diagram'} width={5504} height={3072} />
 
         {/* Stack */}
         <H3 id="stack">Stack</H3>
@@ -251,7 +251,7 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
         {/* Memory */}
         <H3 id="memory">{t.sections.architecture.memory.heading}</H3>
         <Prose editorId="memory-body">{t.sections.architecture.memory.body}</Prose>
-        <DiagramZoom editorId="memory-n8n-workflow" src="/jacobo/n8n-jacobo-memoria.webp" hdSrc="/jacobo/memory-n8n-workflow-2x.webp" alt={lang === 'es' ? 'Workflow de memoria conversacional de Jacobo en n8n' : 'Jacobo conversational memory workflow in n8n'} width={1392} height={912} hdWidth={2512} hdHeight={1312} />
+        <DiagramZoom editorId="memory-n8n-workflow" src="/jacobo/n8n-jacobo-memoria.webp" hdSrc="/jacobo/memory-n8n-workflow-2x.webp" alt={lang === 'zh' ? 'Workflow de memoria conversacional de Jacobo en n8n' : 'Jacobo conversational memory workflow in n8n'} width={1392} height={912} hdWidth={2512} hdHeight={1312} />
         <StepList editorId="memory-steps" items={t.sections.architecture.memory.steps} />
         <Callout editorId="memory-punchline">{t.sections.architecture.memory.punchline}</Callout>
 
@@ -281,7 +281,7 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
         {/* Pseudo-streaming */}
         <H4>{t.sections.architecture.pseudoStreaming.heading}</H4>
         <Prose editorId="pseudo-streaming-body">{t.sections.architecture.pseudoStreaming.body}</Prose>
-        <DiagramZoom editorId="pseudo-streaming-workflow" src="/jacobo/n8n-pseudo-splitter.webp" hdSrc="/jacobo/pseudo-streaming-workflow-2x.webp" alt={lang === 'es' ? 'Workflow de pseudo-streaming en n8n: splitter de mensajes largos para WhatsApp' : 'Pseudo-streaming workflow in n8n: long message splitter for WhatsApp'} width={1392} height={912} hdWidth={2512} hdHeight={1312} />
+        <DiagramZoom editorId="pseudo-streaming-workflow" src="/jacobo/n8n-pseudo-splitter.webp" hdSrc="/jacobo/pseudo-streaming-workflow-2x.webp" alt={lang === 'zh' ? 'Workflow de pseudo-streaming en n8n: splitter de mensajes largos para WhatsApp' : 'Pseudo-streaming workflow in n8n: long message splitter for WhatsApp'} width={1392} height={912} hdWidth={2512} hdHeight={1312} />
 
         {/* Channels (H3 under Architecture) */}
         <H3 id="channels">{t.sections.channels.heading}</H3>
@@ -306,7 +306,7 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
         <Prose editorId="voice-body">{t.sections.channels.voice.detail}</Prose>
 
         {/* Aircall routing diagram */}
-        <Photo1 editorId="aircall-routing-diagram" src={`/jacobo/aircall-routing-${lang === 'es' ? 'es' : 'en'}.webp`} alt={lang === 'es' ? 'Diagrama de routing Aircall' : 'Aircall routing diagram'} width={5504} height={3072} />
+        <Photo1 editorId="aircall-routing-diagram" src={`/jacobo/aircall-routing-${lang === 'zh' ? 'es' : 'en'}.webp`} alt={lang === 'zh' ? 'Diagrama de routing Aircall' : 'Aircall routing diagram'} width={5504} height={3072} />
 
         <BulletList editorId="voice-highlights" items={t.sections.channels.voice.highlights} className="mb-8" />
 
@@ -326,7 +326,7 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
         <H4 id="missed-call-recovery" icon={<PhoneMissed className="w-5 h-5 text-primary" />}>{t.sections.channels.missedCallRecovery.heading}</H4>
         <Prose editorId="missed-call-body">{t.sections.channels.missedCallRecovery.body}</Prose>
 
-        <DiagramZoom editorId="aircall-dashboard" src="/jacobo/aircall-dashboard.webp" hdSrc="/jacobo/aircall-dashboard-2x.webp" alt={lang === 'es' ? 'Dashboard de Aircall — árbol de distribución de llamadas con Jacobo como nodo de la centralita' : 'Aircall dashboard — call distribution tree with Jacobo as a PBX node'} caption={lang === 'es' ? 'Árbol de distribución real en Aircall — Jacobo integrado como un nodo más de la centralita' : 'Actual call distribution tree in Aircall — Jacobo plugged in as another PBX node'} width={1348} height={868} hdWidth={2512} hdHeight={1312} className="mb-4" />
+        <DiagramZoom editorId="aircall-dashboard" src="/jacobo/aircall-dashboard.webp" hdSrc="/jacobo/aircall-dashboard-2x.webp" alt={lang === 'zh' ? 'Dashboard de Aircall — árbol de distribución de llamadas con Jacobo como nodo de la centralita' : 'Aircall dashboard — call distribution tree with Jacobo as a PBX node'} caption={lang === 'zh' ? 'Árbol de distribución real en Aircall — Jacobo integrado como un nodo más de la centralita' : 'Actual call distribution tree in Aircall — Jacobo plugged in as another PBX node'} width={1348} height={868} hdWidth={2512} hdHeight={1312} className="mb-4" />
 
         <ScreenshotGrid editorId="missed-call-flow" lang={lang} items={[
           { src: 'missed-call-template.webp', altEs: 'Template de WhatsApp tras llamada perdida: botones Pedir presupuesto, Tomar cita', altEn: 'WhatsApp template after missed call: buttons Get a quote, Book appointment', width: 1170, height: 2532 },
@@ -340,12 +340,12 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
         <Callout editorId="unified-voice-punchline">{(t.sections.channels.unifiedVoiceUx as any).punchline}</Callout>
         <Prose editorId="unified-voice-audio-intro">{(t.sections.channels.unifiedVoiceUx as any).audioIntro}</Prose>
         <AudioPlayer editorId="pbx-audio" items={(t.sections.channels.unifiedVoiceUx as any).audios} lang={lang} />
-        <DiagramZoom editorId="aircall-dashboard-detail" src="/jacobo/aircall-dashboard-detail.webp" hdSrc="/jacobo/aircall-dashboard-detail-2x.webp" alt={lang === 'es' ? 'Detalle de Aircall: audios de bienvenida e IVR generados con ElevenLabs con la voz de Jacobo' : 'Aircall detail: welcome and IVR audio generated with ElevenLabs using Jacobo\'s voice'} caption={lang === 'es' ? 'Los nodos "ElevenLabs" son audios pregrabados con la misma voz de Jacobo: bienvenida, IVR y buzón. Cuando salta el agente real, la voz es idéntica' : 'The "ElevenLabs" nodes are pre-recorded audio using Jacobo\'s same voice: welcome, IVR and voicemail. When the live agent picks up, the voice is identical'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
+        <DiagramZoom editorId="aircall-dashboard-detail" src="/jacobo/aircall-dashboard-detail.webp" hdSrc="/jacobo/aircall-dashboard-detail-2x.webp" alt={lang === 'zh' ? 'Detalle de Aircall: audios de bienvenida e IVR generados con ElevenLabs con la voz de Jacobo' : 'Aircall detail: welcome and IVR audio generated with ElevenLabs using Jacobo\'s voice'} caption={lang === 'zh' ? 'Los nodos "ElevenLabs" son audios pregrabados con la misma voz de Jacobo: bienvenida, IVR y buzón. Cuando salta el agente real, la voz es idéntica' : 'The "ElevenLabs" nodes are pre-recorded audio using Jacobo\'s same voice: welcome, IVR and voicemail. When the live agent picks up, the voice is identical'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
 
         {/* Event routing / Pre-filtering */}
         <H4 id="pre-filtering">{t.sections.channels.eventRouting.heading}</H4>
         <Prose editorId="event-routing-body">{t.sections.channels.eventRouting.body}</Prose>
-        <DiagramZoom editorId="prefiltrado-n8n" src="/jacobo/n8n-prefiltrado.webp" hdSrc="/jacobo/prefiltrado-n8n-2x.webp" alt={lang === 'es' ? 'Pre-filtrado de eventos en n8n' : 'Event pre-filtering in n8n'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
+        <DiagramZoom editorId="prefiltrado-n8n" src="/jacobo/n8n-prefiltrado.webp" hdSrc="/jacobo/prefiltrado-n8n-2x.webp" alt={lang === 'zh' ? 'Pre-filtrado de eventos en n8n' : 'Event pre-filtering in n8n'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
         <StepList editorId="event-routing-steps" items={t.sections.channels.eventRouting.steps} />
         <Callout editorId="event-routing-punchline" className="mb-8">{t.sections.channels.eventRouting.punchline}</Callout>
 
@@ -376,18 +376,18 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
         {/* WhatsApp Router (n8n) */}
         <H3 id="whatsapp-router">{t.sections.mainRouter.whatsappRouter.heading}</H3>
         <Prose editorId="whatsapp-router-body">{t.sections.mainRouter.whatsappRouter.body}</Prose>
-        <DiagramZoom editorId="main-router-workflow" src="/jacobo/n8n-router-principal.webp" hdSrc="/jacobo/main-router-workflow-2x.webp" alt={lang === 'es' ? 'Workflow del Router Principal en n8n: 37 nodos' : 'Main Router workflow in n8n: 37 nodes'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
+        <DiagramZoom editorId="main-router-workflow" src="/jacobo/n8n-router-principal.webp" hdSrc="/jacobo/main-router-workflow-2x.webp" alt={lang === 'zh' ? 'Workflow del Router Principal en n8n: 37 nodos' : 'Main Router workflow in n8n: 37 nodes'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
         <InlineWorkflowDownload href={wfById['jacobo-chatbot-v2'].href} label={t.downloads.inlineLabel} fileSize={wfById['jacobo-chatbot-v2'].fileSize} />
 
         {/* Voice Router (ElevenLabs) */}
         <H3 id="voice-router">{t.sections.mainRouter.voiceRouter.heading}</H3>
         <Prose editorId="voice-router-body">{t.sections.mainRouter.voiceRouter.body}</Prose>
-        <Photo1 editorId="voice-router-elevenlabs" src="/jacobo/elevenlabs-agent-config.webp" alt={lang === 'es' ? 'Configuración del agente de voz en ElevenLabs: system prompt, modelo y tools' : 'Voice agent configuration in ElevenLabs: system prompt, model and tools'} width={1348} height={868} className="mb-4" />
+        <Photo1 editorId="voice-router-elevenlabs" src="/jacobo/elevenlabs-agent-config.webp" alt={lang === 'zh' ? 'Configuración del agente de voz en ElevenLabs: system prompt, modelo y tools' : 'Voice agent configuration in ElevenLabs: system prompt, model and tools'} width={1348} height={868} className="mb-4" />
 
         {/* Tool Calling */}
         <H3 id="tool-calling">{t.sections.toolCalling.heading}</H3>
         <Prose editorId="tool-calling-body">{t.sections.toolCalling.body}</Prose>
-        <DiagramZoom editorId="tool-calling-n8n" src="/jacobo/n8n-tool-calling.webp" hdSrc="/jacobo/tool-calling-n8n-2x.webp" alt={lang === 'es' ? 'Tool calling en n8n: 7 herramientas definidas como HTTP endpoints' : 'Tool calling in n8n: 7 tools defined as HTTP endpoints'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
+        <DiagramZoom editorId="tool-calling-n8n" src="/jacobo/n8n-tool-calling.webp" hdSrc="/jacobo/tool-calling-n8n-2x.webp" alt={lang === 'zh' ? 'Tool calling en n8n: 7 herramientas definidas como HTTP endpoints' : 'Tool calling in n8n: 7 tools defined as HTTP endpoints'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
         <ToolList editorId="tool-calling-tools" items={t.sections.toolCalling.tools} />
 
         {/* Wait message */}
@@ -396,7 +396,7 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
         <ScreenshotGrid editorId="email-formal-flow" lang={lang} items={[
           { src: 'email-formal-1.webp', altEs: 'Jacobo responde como email formal: asunto, saludo, presupuesto Huawei P20 Pro', altEn: 'Jacobo responds as formal email: subject line, greeting, Huawei P20 Pro quote', width: 1170, height: 2532 },
           { src: 'email-formal-2.webp', altEs: 'Email: desglose batería + puerto carga = 85,80€ → descuento combo 70,80€', altEn: 'Email: battery + charging port = €85.80 → combo discount €70.80', width: 1170, height: 2532 },
-          { src: 'email-formal-3.webp', altEs: 'Firma: "Un saludo, Jacobo — Santifer iRepair — dirección + teléfono + email"', altEn: 'Signature: "Best regards, Jacobo — Santifer iRepair — address + phone + email"', width: 1170, height: 2532 },
+          { src: 'email-formal-3.webp', altEs: 'Firma: "Un saludo, Jacobo — Xueyifan iRepair — dirección + teléfono + email"', altEn: 'Signature: "Best regards, Jacobo — Xueyifan iRepair — address + phone + email"', width: 1170, height: 2532 },
         ]} />
         <ScreenshotCaption editorId="email-formal-flow-caption" lang={lang} es="Adaptabilidad: el cliente pide formato email y Jacobo responde con asunto, presupuesto desglosado, descuento combo y firma corporativa" en="Adaptability: customer asks for email format and Jacobo responds with subject line, itemized quote, combo discount and corporate signature" />
 
@@ -415,9 +415,9 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
 
         {/* Detail photos */}
         <Photo2 editorId="prompt-engineering-detail-photos" items={[
-          { src: '/jacobo/microscope-pcb-view.webp', alt: lang === 'es' ? 'Vista de PCB bajo microscopio' : 'PCB view under microscope', width: 768, height: 1024 },
-          { src: '/jacobo/chip-bga-fingertip.webp', alt: lang === 'es' ? 'Chip BGA en la punta del dedo' : 'BGA chip on fingertip', width: 360, height: 480 },
-        ]} caption={lang === 'es' ? 'La misma precisión que exige la microsoldadura se aplica al diseño de tool calls. Y como el dedo sujetando el chip, siempre hay un humano en el loop.' : 'The same precision microsoldering demands applies to tool call design. And like the finger holding the chip, there\'s always a human in the loop.'} />
+          { src: '/jacobo/microscope-pcb-view.webp', alt: lang === 'zh' ? 'Vista de PCB bajo microscopio' : 'PCB view under microscope', width: 768, height: 1024 },
+          { src: '/jacobo/chip-bga-fingertip.webp', alt: lang === 'zh' ? 'Chip BGA en la punta del dedo' : 'BGA chip on fingertip', width: 360, height: 480 },
+        ]} caption={lang === 'zh' ? 'La misma precisión que exige la microsoldadura se aplica al diseño de tool calls. Y como el dedo sujetando el chip, siempre hay un humano en el loop.' : 'The same precision microsoldering demands applies to tool call design. And like the finger holding the chip, there\'s always a human in the loop.'} />
 
         {/* Why not fine-tuning */}
         <H4>{t.sections.promptEngineering.whyNotFineTuning.heading}</H4>
@@ -426,7 +426,7 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
         {/* Business hours */}
         <H4 id="business-hours">{t.sections.promptEngineering.businessHours.heading}</H4>
         <Prose editorId="business-hours-body" className="mb-3">{t.sections.promptEngineering.businessHours.body}</Prose>
-        <DiagramZoom editorId="business-hours-n8n" src="/jacobo/n8n-business-hours-check.webp" hdSrc="/jacobo/business-hours-n8n-2x.webp" alt={lang === 'es' ? 'Nodo isBusinessHours en n8n: lógica de horario comercial' : 'isBusinessHours node in n8n: business hours logic'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
+        <DiagramZoom editorId="business-hours-n8n" src="/jacobo/n8n-business-hours-check.webp" hdSrc="/jacobo/business-hours-n8n-2x.webp" alt={lang === 'zh' ? 'Nodo isBusinessHours en n8n: lógica de horario comercial' : 'isBusinessHours node in n8n: business hours logic'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
         <CodeBlock editorId="business-hours-code">{t.sections.promptEngineering.businessHours.code}</CodeBlock>
 
         {/* Business hours screenshots */}
@@ -440,7 +440,7 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
         <H4 id="main-prompt">{t.sections.promptEngineering.mainPrompt.heading}</H4>
         <Prose editorId="main-prompt-body">{t.sections.promptEngineering.mainPrompt.body}</Prose>
 
-        <DiagramZoom editorId="main-prompt-n8n" src="/jacobo/n8n-prompt-principal.webp" hdSrc="/jacobo/main-prompt-n8n-2x.webp" alt={lang === 'es' ? 'System prompt del router principal en n8n' : 'Main router system prompt in n8n'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
+        <DiagramZoom editorId="main-prompt-n8n" src="/jacobo/n8n-prompt-principal.webp" hdSrc="/jacobo/main-prompt-n8n-2x.webp" alt={lang === 'zh' ? 'System prompt del router principal en n8n' : 'Main router system prompt in n8n'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
 
         <CodeBlock editorId="main-prompt-code" segments={t.sections.promptEngineering.mainPrompt.segments} />
 
@@ -465,42 +465,42 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
         {/* ================================================================ */}
         <H2 id="natural-language-booking">{t.sections.deepDiveBooking.heading}</H2>
         <Prose editorId="booking-body">{t.sections.deepDiveBooking.body}</Prose>
-        <Photo1 editorId="booking-nl-to-calendar" src={`/jacobo/nl-to-calendar-${lang === 'es' ? 'es' : 'en'}.webp`} alt={lang === 'es' ? 'De lenguaje natural a slots de calendario' : 'From natural language to calendar slots'} width={5504} height={3072} />
+        <Photo1 editorId="booking-nl-to-calendar" src={`/jacobo/nl-to-calendar-${lang === 'zh' ? 'es' : 'en'}.webp`} alt={lang === 'zh' ? 'De lenguaje natural a slots de calendario' : 'From natural language to calendar slots'} width={5504} height={3072} />
 
         {/* Challenge */}
         <H3>{t.sections.deepDiveBooking.challenge.heading}</H3>
         <Prose editorId="booking-challenge-body" className="mb-6">{t.sections.deepDiveBooking.challenge.body}</Prose>
 
         {/* Workflow screenshot */}
-        <DiagramZoom editorId="booking-n8n-workflow" src="/jacobo/n8n-subagente-citas.webp" hdSrc="/jacobo/booking-n8n-workflow-2x.webp" alt={lang === 'es' ? 'Workflow del sub-agente de citas en n8n: 18 nodos' : 'Appointments sub-agent workflow in n8n: 18 nodes'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
+        <DiagramZoom editorId="booking-n8n-workflow" src="/jacobo/n8n-subagente-citas.webp" hdSrc="/jacobo/booking-n8n-workflow-2x.webp" alt={lang === 'zh' ? 'Workflow del sub-agente de citas en n8n: 18 nodos' : 'Appointments sub-agent workflow in n8n: 18 nodes'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
         <InlineWorkflowDownload href={wfById['subagente-citas'].href} label={t.downloads.inlineLabel} fileSize={wfById['subagente-citas'].fileSize} />
 
 
         {/* Step 1: ParseURL */}
         <H3 id="parseurl">{t.sections.deepDiveBooking.parseUrl.heading}</H3>
-        <DiagramZoom editorId="booking-parseurl-n8n" src="/jacobo/n8n-parseurl.webp" hdSrc="/jacobo/booking-parseurl-n8n-2x.webp" alt={lang === 'es' ? 'Nodo ParseURL en n8n: extrae subdomain y query params' : 'ParseURL node in n8n: extracts subdomain and query params'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
+        <DiagramZoom editorId="booking-parseurl-n8n" src="/jacobo/n8n-parseurl.webp" hdSrc="/jacobo/booking-parseurl-n8n-2x.webp" alt={lang === 'zh' ? 'Nodo ParseURL en n8n: extrae subdomain y query params' : 'ParseURL node in n8n: extracts subdomain and query params'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
         <Prose editorId="booking-parseurl-body">{t.sections.deepDiveBooking.parseUrl.body}</Prose>
 
         {/* Step 2: AnalizarDisponibilidad */}
         <H3 id="analizar-disponibilidad">{t.sections.deepDiveBooking.analizarDisponibilidad.heading}</H3>
-        <DiagramZoom editorId="booking-analizar-n8n" src="/jacobo/n8n-analizar-disponibilidad.webp" hdSrc="/jacobo/booking-analizar-n8n-2x.webp" alt={lang === 'es' ? 'Nodo AnalizarDisponibilidad en n8n: agente LLM con reglas temporales' : 'AnalizarDisponibilidad node in n8n: LLM agent with temporal rules'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
+        <DiagramZoom editorId="booking-analizar-n8n" src="/jacobo/n8n-analizar-disponibilidad.webp" hdSrc="/jacobo/booking-analizar-n8n-2x.webp" alt={lang === 'zh' ? 'Nodo AnalizarDisponibilidad en n8n: agente LLM con reglas temporales' : 'AnalizarDisponibilidad node in n8n: LLM agent with temporal rules'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
         <Prose editorId="booking-analizar-body">{t.sections.deepDiveBooking.analizarDisponibilidad.body}</Prose>
         <BulletList editorId="booking-analizar-rules" items={t.sections.deepDiveBooking.analizarDisponibilidad.rules} />
 
         {/* Step 3: YCBM API */}
         <H3 id="ycbm-api">{t.sections.deepDiveBooking.ycbmApi.heading}</H3>
-        <DiagramZoom editorId="booking-ycbm-n8n" src="/jacobo/n8n-ycbm-api.webp" hdSrc="/jacobo/booking-ycbm-n8n-2x.webp" alt={lang === 'es' ? 'Pipeline YCBM API en n8n: 3 llamadas HTTP secuenciales' : 'YCBM API pipeline in n8n: 3 sequential HTTP requests'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
+        <DiagramZoom editorId="booking-ycbm-n8n" src="/jacobo/n8n-ycbm-api.webp" hdSrc="/jacobo/booking-ycbm-n8n-2x.webp" alt={lang === 'zh' ? 'Pipeline YCBM API en n8n: 3 llamadas HTTP secuenciales' : 'YCBM API pipeline in n8n: 3 sequential HTTP requests'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
         <Prose editorId="booking-ycbm-body">{t.sections.deepDiveBooking.ycbmApi.body}</Prose>
         <StepList editorId="booking-ycbm-steps" items={t.sections.deepDiveBooking.ycbmApi.steps} />
 
         {/* Step 4: FilterSlots */}
         <H3 id="filter-slots">{t.sections.deepDiveBooking.filterSlots.heading}</H3>
-        <DiagramZoom editorId="booking-filter-n8n" src="/jacobo/n8n-filter-slots.webp" hdSrc="/jacobo/booking-filter-n8n-2x.webp" alt={lang === 'es' ? 'Nodo FilterSlots en n8n: intersección de rangos LLM y slots YCBM' : 'FilterSlots node in n8n: intersection of LLM ranges and YCBM slots'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
+        <DiagramZoom editorId="booking-filter-n8n" src="/jacobo/n8n-filter-slots.webp" hdSrc="/jacobo/booking-filter-n8n-2x.webp" alt={lang === 'zh' ? 'Nodo FilterSlots en n8n: intersección de rangos LLM y slots YCBM' : 'FilterSlots node in n8n: intersection of LLM ranges and YCBM slots'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
         <Prose editorId="booking-filter-body">{t.sections.deepDiveBooking.filterSlots.body}</Prose>
 
         {/* Step 5: Auto-booking */}
         <H3 id="auto-booking">{t.sections.deepDiveBooking.autoBooking.heading}</H3>
-        <DiagramZoom editorId="booking-auto-n8n" src="/jacobo/n8n-auto-booking.webp" hdSrc="/jacobo/booking-auto-n8n-2x.webp" alt={lang === 'es' ? 'Auto-booking condicional en n8n: 3 caminos según número de slots' : 'Conditional auto-booking in n8n: 3 paths based on slot count'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
+        <DiagramZoom editorId="booking-auto-n8n" src="/jacobo/n8n-auto-booking.webp" hdSrc="/jacobo/booking-auto-n8n-2x.webp" alt={lang === 'zh' ? 'Auto-booking condicional en n8n: 3 caminos según número de slots' : 'Conditional auto-booking in n8n: 3 paths based on slot count'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
         <Prose editorId="booking-auto-body">{t.sections.deepDiveBooking.autoBooking.body}</Prose>
         <ConditionList editorId="booking-auto-paths" items={t.sections.deepDiveBooking.autoBooking.paths} />
 
@@ -520,7 +520,7 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
         <H3 id="appointments-prompt">{t.sections.promptEngineering.citasPrompt.heading}</H3>
         <Prose editorId="appointments-prompt-body">{t.sections.promptEngineering.citasPrompt.body}</Prose>
 
-        <DiagramZoom editorId="appointments-prompt-n8n" src="/jacobo/n8n-prompt-citas.webp" hdSrc="/jacobo/appointments-prompt-n8n-2x.webp" alt={lang === 'es' ? 'System prompt del sub-agente de citas' : 'Appointments sub-agent system prompt'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
+        <DiagramZoom editorId="appointments-prompt-n8n" src="/jacobo/n8n-prompt-citas.webp" hdSrc="/jacobo/appointments-prompt-n8n-2x.webp" alt={lang === 'zh' ? 'System prompt del sub-agente de citas' : 'Appointments sub-agent system prompt'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
 
         <CodeBlock editorId="appointments-prompt-code" segments={t.sections.promptEngineering.citasPrompt.segments} />
 
@@ -535,27 +535,27 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
         <Prose editorId="quotes-challenge-body" className="mb-6">{t.sections.deepDiveQuotes.challenge.body}</Prose>
 
         {/* Workflow screenshot */}
-        <DiagramZoom editorId="quotes-n8n-workflow" src="/jacobo/n8n-subagente-presupuestos.webp" hdSrc="/jacobo/quotes-n8n-workflow-2x.webp" alt={lang === 'es' ? 'Workflow del sub-agente de presupuestos en n8n: 11 nodos' : 'Quotes sub-agent workflow in n8n: 11 nodes'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
+        <DiagramZoom editorId="quotes-n8n-workflow" src="/jacobo/n8n-subagente-presupuestos.webp" hdSrc="/jacobo/quotes-n8n-workflow-2x.webp" alt={lang === 'zh' ? 'Workflow del sub-agente de presupuestos en n8n: 11 nodos' : 'Quotes sub-agent workflow in n8n: 11 nodes'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
         <InlineWorkflowDownload href={wfById['presupuesto-modelo'].href} label={t.downloads.inlineLabel} fileSize={wfById['presupuesto-modelo'].fileSize} />
 
 
         {/* CleanModel */}
         <H3 id="clean-model">{t.sections.deepDiveQuotes.cleanModel.heading}</H3>
-        <DiagramZoom editorId="clean-model-n8n" src="/jacobo/n8n-presupuesto-clean-model.webp" hdSrc="/jacobo/clean-model-n8n-2x.webp" alt={lang === 'es' ? 'Nodo CleanModel en n8n: normalización de input' : 'CleanModel node in n8n: input normalization'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
+        <DiagramZoom editorId="clean-model-n8n" src="/jacobo/n8n-presupuesto-clean-model.webp" hdSrc="/jacobo/clean-model-n8n-2x.webp" alt={lang === 'zh' ? 'Nodo CleanModel en n8n: normalización de input' : 'CleanModel node in n8n: input normalization'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
         <Prose editorId="clean-model-body">{t.sections.deepDiveQuotes.cleanModel.body}</Prose>
         <Prose editorId="clean-model-detail">{t.sections.deepDiveQuotes.cleanModel.detail}</Prose>
         <Callout editorId="clean-model-insight">{t.sections.deepDiveQuotes.cleanModel.insight}</Callout>
 
         {/* AI Agent */}
         <H3 id="ai-agent-quotes">{t.sections.deepDiveQuotes.aiAgent.heading}</H3>
-        <DiagramZoom editorId="ai-agent-quotes-n8n" src="/jacobo/n8n-presupuesto-ai-agent.webp" hdSrc="/jacobo/ai-agent-quotes-n8n-2x.webp" alt={lang === 'es' ? 'Nodo AI Agent del sub-agente de presupuestos en n8n' : 'AI Agent node in quotes sub-agent in n8n'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
+        <DiagramZoom editorId="ai-agent-quotes-n8n" src="/jacobo/n8n-presupuesto-ai-agent.webp" hdSrc="/jacobo/ai-agent-quotes-n8n-2x.webp" alt={lang === 'zh' ? 'Nodo AI Agent del sub-agente de presupuestos en n8n' : 'AI Agent node in quotes sub-agent in n8n'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
         <Prose editorId="ai-agent-quotes-body">{t.sections.deepDiveQuotes.aiAgent.body}</Prose>
         <StepList editorId="ai-agent-quotes-tools" items={t.sections.deepDiveQuotes.aiAgent.tools} />
         <Prose editorId="ai-agent-quotes-fallback">{t.sections.deepDiveQuotes.aiAgent.fallback}</Prose>
 
         {/* FiltrarRespuesta */}
         <H3 id="filtrar-respuesta">{t.sections.deepDiveQuotes.filtrarRespuesta.heading}</H3>
-        <DiagramZoom editorId="filtrar-respuesta-n8n" src="/jacobo/n8n-presupuesto-filtrar-respuesta.webp" hdSrc="/jacobo/filtrar-respuesta-n8n-2x.webp" alt={lang === 'es' ? 'Nodo FiltrarRespuesta en n8n: post-procesado determinista' : 'FiltrarRespuesta node in n8n: deterministic post-processing'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
+        <DiagramZoom editorId="filtrar-respuesta-n8n" src="/jacobo/n8n-presupuesto-filtrar-respuesta.webp" hdSrc="/jacobo/filtrar-respuesta-n8n-2x.webp" alt={lang === 'zh' ? 'Nodo FiltrarRespuesta en n8n: post-procesado determinista' : 'FiltrarRespuesta node in n8n: deterministic post-processing'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
         <Prose editorId="filtrar-respuesta-body">{t.sections.deepDiveQuotes.filtrarRespuesta.body}</Prose>
         <ConditionList editorId="filtrar-respuesta-rules" items={t.sections.deepDiveQuotes.filtrarRespuesta.rules} />
 
@@ -565,7 +565,7 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
         <H3 id="quotes-prompt">{t.sections.deepDiveQuotes.presupuestoPrompt.heading}</H3>
         <Prose editorId="quotes-prompt-body">{t.sections.deepDiveQuotes.presupuestoPrompt.body}</Prose>
 
-        <DiagramZoom editorId="quotes-prompt-n8n" src="/jacobo/n8n-prompt-presupuestos.webp" hdSrc="/jacobo/quotes-prompt-n8n-2x.webp" alt={lang === 'es' ? 'System prompt del sub-agente de presupuestos' : 'Quotes sub-agent system prompt'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
+        <DiagramZoom editorId="quotes-prompt-n8n" src="/jacobo/n8n-prompt-presupuestos.webp" hdSrc="/jacobo/quotes-prompt-n8n-2x.webp" alt={lang === 'zh' ? 'System prompt del sub-agente de presupuestos' : 'Quotes sub-agent system prompt'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
 
         <CodeBlock editorId="quotes-prompt-code" segments={t.sections.deepDiveQuotes.presupuestoPrompt.segments} />
 
@@ -587,7 +587,7 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
         <H3 id="orders-agent">{t.sections.deepDiveOthers.orders.heading}</H3>
         <Prose editorId="orders-body" className="mb-2">{t.sections.deepDiveOthers.orders.body}</Prose>
         <NodeLabel editorId="orders-nodes">{t.sections.deepDiveOthers.orders.nodes}</NodeLabel>
-        <DiagramZoom editorId="orders-n8n-workflow" src="/jacobo/n8n-hacer-pedido.webp" hdSrc="/jacobo/orders-n8n-workflow-2x.webp" alt={lang === 'es' ? 'Workflow de Pedidos en n8n' : 'Orders workflow in n8n'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
+        <DiagramZoom editorId="orders-n8n-workflow" src="/jacobo/n8n-hacer-pedido.webp" hdSrc="/jacobo/orders-n8n-workflow-2x.webp" alt={lang === 'zh' ? 'Workflow de Pedidos en n8n' : 'Orders workflow in n8n'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
         <InlineWorkflowDownload href={wfById['hacer-pedido'].href} label={t.downloads.inlineLabel} fileSize={wfById['hacer-pedido'].fileSize} />
 
         <BulletList editorId="orders-details" items={t.sections.deepDiveOthers.orders.details} className="mb-8" />
@@ -596,8 +596,8 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
         <H3 id="calculator-agent">{t.sections.deepDiveOthers.calculator.heading}</H3>
         <Prose editorId="calculator-body" className="mb-2">{t.sections.deepDiveOthers.calculator.body}</Prose>
         <NodeLabel editorId="calculator-nodes">{t.sections.deepDiveOthers.calculator.nodes}</NodeLabel>
-        <DiagramZoom editorId="calculator-n8n-workflow" src="/jacobo/n8n-calculadora.webp" hdSrc="/jacobo/calculator-n8n-workflow-2x.webp" alt={lang === 'es' ? 'Workflow de la Calculadora de Descuentos en n8n: Webhook → Code (lógica de descuentos) → Response' : 'Discount Calculator workflow in n8n: Webhook → Code (discount logic) → Response'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
-        <InlineWorkflowDownload href={wfById['calculadora-santifer'].href} label={t.downloads.inlineLabel} fileSize={wfById['calculadora-santifer'].fileSize} />
+        <DiagramZoom editorId="calculator-n8n-workflow" src="/jacobo/n8n-calculadora.webp" hdSrc="/jacobo/calculator-n8n-workflow-2x.webp" alt={lang === 'zh' ? 'Workflow de la Calculadora de Descuentos en n8n: Webhook → Code (lógica de descuentos) → Response' : 'Discount Calculator workflow in n8n: Webhook → Code (discount logic) → Response'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
+        <InlineWorkflowDownload href={wfById['calculadora-xueyifan'].href} label={t.downloads.inlineLabel} fileSize={wfById['calculadora-xueyifan'].fileSize} />
 
         <BulletList editorId="calculator-details" items={t.sections.deepDiveOthers.calculator.details} className="mb-4" />
         <CodeBlock editorId="calculator-code" segments={t.sections.deepDiveOthers.calculator.segments} />
@@ -606,7 +606,7 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
         <H3 id="hitl-agent">{t.sections.deepDiveOthers.hitl.heading}</H3>
         <Prose editorId="hitl-body" className="mb-2">{t.sections.deepDiveOthers.hitl.body}</Prose>
         <NodeLabel editorId="hitl-nodes">{t.sections.deepDiveOthers.hitl.nodes}</NodeLabel>
-        <DiagramZoom editorId="hitl-n8n-workflow" src="/jacobo/n8n-hitl-slack.webp" hdSrc="/jacobo/hitl-n8n-workflow-2x.webp" alt={lang === 'es' ? 'Workflow de HITL Handoff en n8n' : 'HITL Handoff workflow in n8n'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
+        <DiagramZoom editorId="hitl-n8n-workflow" src="/jacobo/n8n-hitl-slack.webp" hdSrc="/jacobo/hitl-n8n-workflow-2x.webp" alt={lang === 'zh' ? 'Workflow de HITL Handoff en n8n' : 'HITL Handoff workflow in n8n'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
         <InlineWorkflowDownload href={wfById['contactar-agente-humano'].href} label={t.downloads.inlineLabel} fileSize={wfById['contactar-agente-humano'].fileSize} />
 
         <BulletList editorId="hitl-details" items={t.sections.deepDiveOthers.hitl.details} />
@@ -629,7 +629,7 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
         <H3 id="whatsapp-agent">{t.sections.deepDiveOthers.whatsapp.heading}</H3>
         <Prose editorId="whatsapp-cross-channel-body" className="mb-2">{t.sections.deepDiveOthers.whatsapp.body}</Prose>
         <NodeLabel editorId="whatsapp-nodes">{t.sections.deepDiveOthers.whatsapp.nodes}</NodeLabel>
-        <DiagramZoom editorId="whatsapp-n8n-workflow" src="/jacobo/n8n-enviar-whatsapp.webp" hdSrc="/jacobo/whatsapp-n8n-workflow-2x.webp" alt={lang === 'es' ? 'Workflow de EnviarMensajeWati en n8n' : 'EnviarMensajeWati workflow in n8n'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
+        <DiagramZoom editorId="whatsapp-n8n-workflow" src="/jacobo/n8n-enviar-whatsapp.webp" hdSrc="/jacobo/whatsapp-n8n-workflow-2x.webp" alt={lang === 'zh' ? 'Workflow de EnviarMensajeWati en n8n' : 'EnviarMensajeWati workflow in n8n'} width={1392} height={912} hdWidth={2512} hdHeight={1312} className="mb-4" />
         <InlineWorkflowDownload href={wfById['enviar-mensaje-wati'].href} label={t.downloads.inlineLabel} fileSize={wfById['enviar-mensaje-wati'].fileSize} />
 
         <BulletList editorId="whatsapp-cross-channel-details" items={t.sections.deepDiveOthers.whatsapp.details} className="mb-8" />
@@ -642,8 +642,8 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
 
         {/* Before-after photos */}
         <Photo2 editorId="results-before-after-photos" items={[
-          { src: '/jacobo/before-chaos-desktop.webp', alt: lang === 'es' ? 'Antes: escritorio caótico' : 'Before: chaotic desktop', width: 1200, height: 900 },
-          { src: '/jacobo/after-digital-counter.webp', alt: lang === 'es' ? 'Después: mostrador digital organizado' : 'After: organized digital counter', width: 1024, height: 768 },
+          { src: '/jacobo/before-chaos-desktop.webp', alt: lang === 'zh' ? 'Antes: escritorio caótico' : 'Before: chaotic desktop', width: 1200, height: 900 },
+          { src: '/jacobo/after-digital-counter.webp', alt: lang === 'zh' ? 'Después: mostrador digital organizado' : 'After: organized digital counter', width: 1024, height: 768 },
         ]} />
 
         <MetricsGrid items={t.sections.results.metrics} />
@@ -652,7 +652,7 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
         <H3 id="before-after">{t.sections.results.beforeAfter.heading}</H3>
         <DataTable
           editorId="results-before-after-table"
-          headers={[lang === 'es' ? 'Área' : 'Area', lang === 'es' ? 'Antes' : 'Before', lang === 'es' ? 'Después' : 'After']}
+          headers={[lang === 'zh' ? 'Área' : 'Area', lang === 'zh' ? 'Antes' : 'Before', lang === 'zh' ? 'Después' : 'After']}
           rows={t.sections.results.beforeAfter.items.map(item => [item.area, item.before, item.after])}
           highlightColumn={2}
         />
@@ -671,12 +671,12 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
         {/* Cross-link: pSEO used the same Airtable data */}
         <CaseStudyCta
           editorId="results-pseo-crosslink"
-          heading={lang === 'es' ? 'Los mismos datos de Airtable generaron 4.700+ páginas SEO' : 'The same Airtable data generated 4,700+ SEO pages'}
-          body={lang === 'es'
+          heading={lang === 'zh' ? 'Los mismos datos de Airtable generaron 4.700+ páginas SEO' : 'The same Airtable data generated 4,700+ SEO pages'}
+          body={lang === 'zh'
             ? 'El inventario que Jacobo consulta en tiempo real también alimenta un sistema de SEO programático: 4.730 landing pages con precios reales, fotos de reparaciones y reseñas verificadas.'
             : 'The inventory Jacobo queries in real time also feeds a programmatic SEO system: 4,730 landing pages with real prices, repair photos, and verified reviews.'}
-          ctaLabel={lang === 'es' ? 'Ver SEO Programático →' : 'Read Programmatic SEO →'}
-          ctaHref={lang === 'es' ? '/seo-programatico' : '/programmatic-seo'}
+          ctaLabel={lang === 'zh' ? 'Ver SEO Programático →' : 'Read Programmatic SEO →'}
+          ctaHref={lang === 'zh' ? '/seo-programatico' : '/programmatic-seo'}
         />
 
         {/* CTA #1 — After Results */}
@@ -685,10 +685,10 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
           heading={t.cta.heading}
           body={t.cta.body}
           ctaLabel={`${t.cta.label} →`}
-          ctaHref="https://linkedin.com/in/santifer"
+          ctaHref="https://linkedin.com/in/xueyifan"
           external
           secondaryLabel={`${(t.cta as any).labelSecondary} →`}
-          secondaryHref="mailto:hola@santifer.io"
+          secondaryHref="mailto:yifanxue.sde@gmail.com"
         />
 
         {/* ================================================================ */}
@@ -705,7 +705,7 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
         <Prose editorId="evolution-tagline" className="italic mb-6">{t.sections.platformEvolution.tagline}</Prose>
 
         {/* Timeline evolution image */}
-        <Photo1 editorId="evolution-timeline-diagram" src={`/jacobo/timeline-evolution-${lang === 'es' ? 'es' : 'en'}.webp`} alt={lang === 'es' ? 'Línea de tiempo de la evolución de Jacobo' : 'Jacobo evolution timeline'} width={6336} height={2688} />
+        <Photo1 editorId="evolution-timeline-diagram" src={`/jacobo/timeline-evolution-${lang === 'zh' ? 'es' : 'en'}.webp`} alt={lang === 'zh' ? 'Línea de tiempo de la evolución de Jacobo' : 'Jacobo evolution timeline'} width={6336} height={2688} />
 
         {/* Timeline */}
         <Timeline editorId="evolution-timeline" items={t.sections.platformEvolution.steps} />
@@ -715,9 +715,9 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
         {/* Cross-link to Business OS */}
         <CaseStudyCta
           editorId="evolution-business-os-cta"
-          heading={lang === 'es' ? 'Business OS — El sistema detrás de Jacobo' : 'Business OS — The System Behind Jacobo'}
+          heading={lang === 'zh' ? 'Business OS — El sistema detrás de Jacobo' : 'Business OS — The System Behind Jacobo'}
           body={t.sections.platformEvolution.crossLink.text}
-          ctaLabel={lang === 'es' ? 'Leer case study →' : 'Read case study →'}
+          ctaLabel={lang === 'zh' ? 'Leer case study →' : 'Read case study →'}
           ctaHref={t.sections.platformEvolution.crossLink.href}
         />
 
@@ -754,7 +754,7 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
         {/* Built vs Enterprise table */}
         <DataTable
           editorId="enterprise-comparison"
-          headers={[lang === 'es' ? 'Patrón' : 'Pattern', lang === 'es' ? 'Lo que construí' : 'What I built', 'Enterprise']}
+          headers={[lang === 'zh' ? 'Patrón' : 'Pattern', lang === 'zh' ? 'Lo que construí' : 'What I built', 'Enterprise']}
           rows={t.sections.enterprisePatterns.builtVsEnterprise.map(row => [row.pattern, row.built, row.enterprise])}
           highlightColumn={2}
         />
@@ -777,10 +777,10 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
           heading={(t as any).ctaAfterEnterprise.heading}
           body={t.cta.body}
           ctaLabel={`${t.cta.label} →`}
-          ctaHref="https://linkedin.com/in/santifer"
+          ctaHref="https://linkedin.com/in/xueyifan"
           external
           secondaryLabel={`${(t.cta as any).labelSecondary} →`}
-          secondaryHref="mailto:hola@santifer.io"
+          secondaryHref="mailto:yifanxue.sde@gmail.com"
         />
 
         {/* ================================================================ */}
@@ -801,7 +801,7 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
         {/* GitHub repo link */}
         <div className="flex justify-center mb-4">
           <a
-            href="https://github.com/santifer/jacobo-workflows"
+            href="https://github.com/xueyifan/jacobo-workflows"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors text-sm"
@@ -829,10 +829,10 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
           heading={(t as any).ctaAfterDownloads.heading}
           body=""
           ctaLabel={`${t.cta.label} →`}
-          ctaHref="https://linkedin.com/in/santifer"
+          ctaHref="https://linkedin.com/in/xueyifan"
           external
           secondaryLabel={`${(t.cta as any).labelSecondary} →`}
-          secondaryHref="mailto:hola@santifer.io"
+          secondaryHref="mailto:yifanxue.sde@gmail.com"
         />
 
         {/* ================================================================ */}

@@ -1,6 +1,6 @@
 {
   "name": "persona_adherence",
-  "description": "Verifica que habla como Santiago, no como un asistente genérico",
+  "description": "Verifica que habla como Yifan, no como un asistente genérico",
   "tests": [
     {
       "id": "first-person",
@@ -8,9 +8,9 @@
       "input": "Háblame de ti",
       "lang": "es",
       "assertions": [
-        { "type": "not_contains", "value": "Santiago es" },
+        { "type": "not_contains", "value": "Yifan es" },
         { "type": "not_contains", "value": "El usuario" },
-        { "type": "not_contains", "value": "Santiago tiene" }
+        { "type": "not_contains", "value": "Yifan tiene" }
       ]
     },
     {

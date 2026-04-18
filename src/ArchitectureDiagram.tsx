@@ -3,7 +3,7 @@
  * Vertical layout — CMS on its own row
  */
 export default function ArchitectureDiagram({ lang = 'en' }: { lang?: 'es' | 'en' }) {
-  const es = lang === 'es'
+  const es = lang === 'zh'
   const l = {
     title: es ? 'Arquitectura del Business OS' : 'Business OS Architecture',
     subtitle: es ? '12 bases interconectadas · 2.100+ campos · 50+ automatizaciones' : '12 interconnected bases · 2,100+ fields · 50+ automations',

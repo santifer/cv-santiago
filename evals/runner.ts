@@ -1,7 +1,7 @@
 #!/usr/bin/env npx tsx
 
 /**
- * Runner principal para la suite de evals del chatbot Santi
+ * Runner principal para la suite de evals del chatbot Yifan
  *
  * Uso: npm run evals
  */
@@ -364,7 +364,7 @@ function generateReport(datasetResults: DatasetResult[]): string {
 async function main() {
   console.log(`${colors.bold}`)
   console.log(`╔═══════════════════════════════════════════╗`)
-  console.log(`║     Santi Chatbot Evals Suite             ║`)
+  console.log(`║     Yifan Chatbot Evals Suite             ║`)
   console.log(`╚═══════════════════════════════════════════╝`)
   console.log(`${colors.reset}`)
 
@@ -389,7 +389,7 @@ async function main() {
     )
     console.log(`${colors.dim}   Options:${colors.reset}`)
     console.log(`${colors.dim}   1. Run 'vercel dev' (serves edge functions on port 3000)${colors.reset}`)
-    console.log(`${colors.dim}   2. Test against production: CHAT_API_URL=https://santifer.io/api/chat npm run evals${colors.reset}`)
+    console.log(`${colors.dim}   2. Test against production: CHAT_API_URL=https://xueyifan.io/api/chat npm run evals${colors.reset}`)
     process.exit(1)
   }
 

@@ -1,11 +1,11 @@
 /* TEAM */
-Builder: Santiago Fernandez de Valderrama Aparicio
+Builder: Yifan Fernandez de Valderrama Aparicio
 Role: Head of Applied AI · AI Product Manager · Solutions Architect
-Contact: hi@santifer.io
-Site: https://santifer.io
+Contact: yifanxue.sde@gmail.com
+Site: https://xueyifan.io
 Location: Seville, Spain
-LinkedIn: https://linkedin.com/in/santifer
-GitHub: https://github.com/santifer
+LinkedIn: https://linkedin.com/in/xueyifan
+GitHub: https://github.com/xueyifan
 
 /* THANKS */
 AI Pair: Claude Code (Anthropic)

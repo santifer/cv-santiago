@@ -43,39 +43,25 @@ interface JsonLdOptions {
 
 const PERSON = {
   '@type': 'Person',
-  '@id': 'https://santifer.io/#person',
-  name: 'Santiago Fernández de Valderrama Aparicio',
-  url: 'https://santifer.io',
-  jobTitle: 'Head of Applied AI',
+  '@id': 'https://xueyifan.io/#person',
+  name: 'Yifan Xue',
+  url: 'https://xueyifan.io',
+  jobTitle: 'Full-Stack Software Engineer',
   sameAs: [
-    'https://www.linkedin.com/in/santifer',
-    'https://github.com/santifer',
-    'https://x.com/santifer',
-    'https://dev.to/santifer',
-    'https://santifer.substack.com',
-    'https://contentdigest.santifer.io',
-    'https://www.youtube.com/@santifer_io',
-    'https://stackoverflow.com/users/32541743',
-    'https://orcid.org/0009-0006-2192-7210',
-    'https://www.crunchbase.com/person/santiago-fernandez-de-valderrama',
-    'https://huggingface.co/santifer',
-    'https://www.wikidata.org/wiki/Q138710224',
-    'https://santiferirepair.es',
-    'https://www.facebook.com/santifer.io/',
-    'https://www.producthunt.com/@santifer',
-    'https://app.daily.dev/santifer',
+    'https://www.linkedin.com/in/xueyifan',
+    'https://github.com/xueyifan',
   ],
 }
 
 const WEBSITE = {
   '@type': 'WebSite',
-  '@id': 'https://santifer.io/#website',
-  name: 'santifer.io',
-  url: 'https://santifer.io',
+  '@id': 'https://xueyifan.io/#website',
+  name: 'xueyifan.io',
+  url: 'https://xueyifan.io',
 }
 
 export function buildArticleJsonLd(opts: JsonLdOptions) {
-  const inLanguage = opts.lang === 'es' ? 'es' : 'en'
+  const inLanguage = opts.lang === 'zh' ? 'es' : 'en'
 
   const graph: Record<string, unknown>[] = [
     {
@@ -84,7 +70,7 @@ export function buildArticleJsonLd(opts: JsonLdOptions) {
       headline: opts.headline,
       alternativeHeadline: opts.alternativeHeadline,
       description: opts.description,
-      author: { '@id': 'https://santifer.io/#person' },
+      author: { '@id': 'https://xueyifan.io/#person' },
       ...(opts.publisher ? {
         publisher: {
           '@type': 'Organization',
@@ -99,7 +85,7 @@ export function buildArticleJsonLd(opts: JsonLdOptions) {
       mainEntityOfPage: opts.url,
       image: opts.images,
       inLanguage,
-      isPartOf: { '@id': 'https://santifer.io/#website' },
+      isPartOf: { '@id': 'https://xueyifan.io/#website' },
       ...(opts.about ? { about: opts.about } : {}),
       ...(opts.extra || {}),
       ...(opts.citation ? { citation: opts.citation } : {}),
@@ -116,7 +102,7 @@ export function buildArticleJsonLd(opts: JsonLdOptions) {
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: opts.breadcrumbHome, item: 'https://santifer.io' },
+        { '@type': 'ListItem', position: 1, name: opts.breadcrumbHome, item: 'https://xueyifan.io' },
         { '@type': 'ListItem', position: 2, name: opts.breadcrumbCurrent, item: opts.url },
       ],
     },
@@ -165,8 +151,8 @@ export function buildJsonLdFromRegistry(
   const meta = config.seoMeta
   return buildArticleJsonLd({
     lang,
-    url: `https://santifer.io/${i18n.slug}`,
-    altUrl: `https://santifer.io/${i18n.altSlug}`,
+    url: `https://xueyifan.io/${i18n.slug}`,
+    altUrl: `https://xueyifan.io/${i18n.altSlug}`,
     headline: i18n.header.h1,
     alternativeHeadline: i18n.seo.title,
     description: i18n.seo.description,
