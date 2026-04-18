@@ -2052,17 +2052,15 @@ function App() {
 
             // Separar proyectos
             const allProjects = t.projects.items as readonly Project[]
-            const contentDigest = allProjects.find(p => p.title === 'Content Digest')!
-            const lifeOS = allProjects.find(p => p.title === 'Life OS')!
-            const careerOps = allProjects.find(p => p.title === 'Career Ops')!
-            const santiferIo = allProjects.find(p => p.title === 'santifer.io')!
-            const selfHealingChatbot = allProjects.find(p => p.title === 'Self-Healing Chatbot')!
-            // Tools que dependen de santifer.io
-            const claudeEye = allProjects.find(p => p.title === 'Claude Eye')!
-            const claudeable = allProjects.find(p => p.title === 'Claudeable')!
-            // Fila 4: Claude Pulse + ProjectOS Predict
-            const claudePulse = allProjects.find(p => p.title === 'Claude Pulse')!
-            const projectOSPredict = allProjects.find(p => p.title === 'ProjectOS Predict')!
+            const localRAG = allProjects.find(p => p.title === 'Local RAG System')!
+            const portfolioSite = allProjects.find(p => p.title === 'vijaypanwar.io')!
+            const createShopCrave = allProjects.find(p => p.title === 'Create, Shop & Crave')!
+            const upiSwitch = allProjects.find(p => p.title === 'UPI Payment Switch')!
+            const dataDashboard = allProjects.find(p => p.title === 'Data Dashboard On-the-Go')!
+            const aiCopilot = allProjects.find(p => p.title === 'AI Copilot')!
+            const aifrm = allProjects.find(p => p.title === 'AI FRM Engine')!
+            const bhimUpiLite = allProjects.find(p => p.title === 'BHIM UPI Lite')!
+            const aiPlaybook = allProjects.find(p => p.title === 'AI Product Playbook')!
 
             // Helper para parsear **bold** a elementos con estilo
             const parseBold = (text: string): React.ReactNode[] => {
@@ -2074,15 +2072,15 @@ function App() {
             // Refs para cada tarjeta (para calcular posiciones de conexiones)
             const containerRef = useRef<HTMLDivElement>(null)
             const cardRefs = {
-              contentDigest: useRef<HTMLDivElement>(null),
-              lifeOS: useRef<HTMLDivElement>(null),
-              careerOps: useRef<HTMLDivElement>(null),
-              santiferIo: useRef<HTMLDivElement>(null),
-              selfHealingChatbot: useRef<HTMLDivElement>(null),
-              claudeEye: useRef<HTMLDivElement>(null),
-              claudeable: useRef<HTMLDivElement>(null),
-              claudePulse: useRef<HTMLDivElement>(null),
-              projectOSPredict: useRef<HTMLDivElement>(null),
+              localRAG: useRef<HTMLDivElement>(null),
+              portfolioSite: useRef<HTMLDivElement>(null),
+              createShopCrave: useRef<HTMLDivElement>(null),
+              upiSwitch: useRef<HTMLDivElement>(null),
+              dataDashboard: useRef<HTMLDivElement>(null),
+              aiCopilot: useRef<HTMLDivElement>(null),
+              aifrm: useRef<HTMLDivElement>(null),
+              bhimUpiLite: useRef<HTMLDivElement>(null),
+              aiPlaybook: useRef<HTMLDivElement>(null),
             }
 
             // Hook para calcular líneas de conexión SVG
@@ -2124,32 +2122,32 @@ function App() {
                 // En desktop: grafo complejo con conexiones horizontales y diagonales
                 const connections: Connection[] = isMobile ? [
                   // Móvil: flujo vertical simple
-                  { from: cardRefs.lifeOS, fromEdge: 'bottom', to: cardRefs.careerOps, toEdge: 'top' },
-                  { from: cardRefs.careerOps, fromEdge: 'bottom', to: cardRefs.santiferIo, toEdge: 'top' },
-                  { from: cardRefs.santiferIo, fromEdge: 'bottom', to: cardRefs.selfHealingChatbot, toEdge: 'top' },
-                  { from: cardRefs.selfHealingChatbot, fromEdge: 'bottom', to: cardRefs.claudeEye, toEdge: 'top' },
-                  { from: cardRefs.claudeEye, fromEdge: 'bottom', to: cardRefs.claudeable, toEdge: 'top' },
-                  { from: cardRefs.claudeable, fromEdge: 'bottom', to: cardRefs.claudePulse, toEdge: 'top' },
-                  { from: cardRefs.claudePulse, fromEdge: 'bottom', to: cardRefs.contentDigest, toEdge: 'top' },
-                  { from: cardRefs.contentDigest, fromEdge: 'bottom', to: cardRefs.projectOSPredict, toEdge: 'top' },
+                  { from: cardRefs.localRAG, fromEdge: 'bottom', to: cardRefs.portfolioSite, toEdge: 'top' },
+                  { from: cardRefs.portfolioSite, fromEdge: 'bottom', to: cardRefs.createShopCrave, toEdge: 'top' },
+                  { from: cardRefs.createShopCrave, fromEdge: 'bottom', to: cardRefs.upiSwitch, toEdge: 'top' },
+                  { from: cardRefs.upiSwitch, fromEdge: 'bottom', to: cardRefs.dataDashboard, toEdge: 'top' },
+                  { from: cardRefs.dataDashboard, fromEdge: 'bottom', to: cardRefs.aiCopilot, toEdge: 'top' },
+                  { from: cardRefs.aiCopilot, fromEdge: 'bottom', to: cardRefs.aifrm, toEdge: 'top' },
+                  { from: cardRefs.aifrm, fromEdge: 'bottom', to: cardRefs.bhimUpiLite, toEdge: 'top' },
+                  { from: cardRefs.bhimUpiLite, fromEdge: 'bottom', to: cardRefs.aiPlaybook, toEdge: 'top' },
                 ] : [
                   // Desktop: grafo complejo
-                  // Fila 1: Life OS ↔ Career Ops (horizontal)
-                  { from: cardRefs.lifeOS, fromEdge: 'right', to: cardRefs.careerOps, toEdge: 'left' },
-                  // Fila 1 → Fila 2: diagonales hacia santifer.io + chatbot
-                  { from: cardRefs.lifeOS, fromEdge: 'bottom', to: cardRefs.santiferIo, toEdge: 'top' },
-                  { from: cardRefs.careerOps, fromEdge: 'bottom', to: cardRefs.selfHealingChatbot, toEdge: 'top' },
-                  // Fila 2: santifer.io ↔ chatbot (horizontal)
-                  { from: cardRefs.santiferIo, fromEdge: 'right', to: cardRefs.selfHealingChatbot, toEdge: 'left' },
-                  // Fila 2 → Fila 3: hacia tools
-                  { from: cardRefs.santiferIo, fromEdge: 'bottom', to: cardRefs.claudeEye, toEdge: 'top' },
-                  { from: cardRefs.selfHealingChatbot, fromEdge: 'bottom', to: cardRefs.claudeable, toEdge: 'top' },
+                  // Fila 1: Local RAG ↔ Portfolio (horizontal)
+                  { from: cardRefs.localRAG, fromEdge: 'right', to: cardRefs.portfolioSite, toEdge: 'left' },
+                  // Fila 1 → Fila 2
+                  { from: cardRefs.localRAG, fromEdge: 'bottom', to: cardRefs.createShopCrave, toEdge: 'top' },
+                  { from: cardRefs.portfolioSite, fromEdge: 'bottom', to: cardRefs.upiSwitch, toEdge: 'top' },
+                  // Fila 2: Create Shop Crave ↔ UPI Switch (horizontal)
+                  { from: cardRefs.createShopCrave, fromEdge: 'right', to: cardRefs.upiSwitch, toEdge: 'left' },
+                  // Fila 2 → Fila 3
+                  { from: cardRefs.createShopCrave, fromEdge: 'bottom', to: cardRefs.dataDashboard, toEdge: 'top' },
+                  { from: cardRefs.upiSwitch, fromEdge: 'bottom', to: cardRefs.aiCopilot, toEdge: 'top' },
                   // Fila 3 → Fila 4
-                  { from: cardRefs.claudeEye, fromEdge: 'bottom', to: cardRefs.claudePulse, toEdge: 'top' },
-                  { from: cardRefs.claudeable, fromEdge: 'bottom', to: cardRefs.contentDigest, toEdge: 'top' },
-                  // Fila 4 → Fila 5: diagonales hacia ProjectOS
-                  { from: cardRefs.claudePulse, fromEdge: 'bottom', to: cardRefs.projectOSPredict, toEdge: 'top', toRatio: 0.25 },
-                  { from: cardRefs.contentDigest, fromEdge: 'bottom', to: cardRefs.projectOSPredict, toEdge: 'top', toRatio: 0.75 },
+                  { from: cardRefs.dataDashboard, fromEdge: 'bottom', to: cardRefs.aifrm, toEdge: 'top' },
+                  { from: cardRefs.aiCopilot, fromEdge: 'bottom', to: cardRefs.bhimUpiLite, toEdge: 'top' },
+                  // Fila 4 → Fila 5
+                  { from: cardRefs.aifrm, fromEdge: 'bottom', to: cardRefs.aiPlaybook, toEdge: 'top', toRatio: 0.25 },
+                  { from: cardRefs.bhimUpiLite, fromEdge: 'bottom', to: cardRefs.aiPlaybook, toEdge: 'top', toRatio: 0.75 },
                 ]
 
                 const paths = connections.map(conn => {
@@ -2324,50 +2322,50 @@ function App() {
                   ))}
                 </svg>
 
-                {/* Fila 1: Life OS + Career Ops */}
+                {/* Fila 1: Local RAG + Portfolio */}
                 <div className="grid md:grid-cols-2 gap-6 mb-6 relative z-10">
                   <AnimatedSection delay={0.1}>
-                    <ProjectCard project={lifeOS} cardRef={cardRefs.lifeOS} />
+                    <ProjectCard project={localRAG} cardRef={cardRefs.localRAG} />
                   </AnimatedSection>
                   <AnimatedSection delay={0.15}>
-                    <ProjectCard project={careerOps} cardRef={cardRefs.careerOps} />
+                    <ProjectCard project={portfolioSite} cardRef={cardRefs.portfolioSite} />
                   </AnimatedSection>
                 </div>
 
-                {/* Fila 2: santifer.io + Self-Healing Chatbot (highlight) */}
+                {/* Fila 2: Create Shop Crave + UPI Switch (highlight) */}
                 <div className="grid md:grid-cols-2 gap-6 mb-6 relative z-10">
                   <AnimatedSection delay={0.2}>
-                    <ProjectCard project={santiferIo} variant="highlight" cardRef={cardRefs.santiferIo} />
+                    <ProjectCard project={createShopCrave} variant="highlight" cardRef={cardRefs.createShopCrave} />
                   </AnimatedSection>
                   <AnimatedSection delay={0.25}>
-                    <ProjectCard project={selfHealingChatbot} variant="highlight" cardRef={cardRefs.selfHealingChatbot} />
+                    <ProjectCard project={upiSwitch} variant="highlight" cardRef={cardRefs.upiSwitch} />
                   </AnimatedSection>
                 </div>
 
-                {/* Fila 3: Claude Eye + Claudeable — tools */}
+                {/* Fila 3: Data Dashboard + AI Copilot — tools */}
                 <div className="grid md:grid-cols-2 gap-6 mb-6 relative z-10">
                   <AnimatedSection delay={0.25}>
-                    <ProjectCard project={claudeEye} variant="tool-static" cardRef={cardRefs.claudeEye} />
+                    <ProjectCard project={dataDashboard} variant="tool-static" cardRef={cardRefs.dataDashboard} />
                   </AnimatedSection>
                   <AnimatedSection delay={0.3}>
-                    <ProjectCard project={claudeable} variant="tool-static" cardRef={cardRefs.claudeable} />
+                    <ProjectCard project={aiCopilot} variant="tool-static" cardRef={cardRefs.aiCopilot} />
                   </AnimatedSection>
                 </div>
 
-                {/* Fila 4: Claude Pulse + Content Digest */}
+                {/* Fila 4: AI FRM Engine + BHIM UPI Lite */}
                 <div className="grid md:grid-cols-2 gap-6 mb-6 relative z-10">
                   <AnimatedSection delay={0.35}>
-                    <ProjectCard project={claudePulse} variant="tool-static" cardRef={cardRefs.claudePulse} />
+                    <ProjectCard project={aifrm} variant="tool-static" cardRef={cardRefs.aifrm} />
                   </AnimatedSection>
                   <AnimatedSection delay={0.4}>
-                    <ProjectCard project={contentDigest} cardRef={cardRefs.contentDigest} />
+                    <ProjectCard project={bhimUpiLite} cardRef={cardRefs.bhimUpiLite} />
                   </AnimatedSection>
                 </div>
 
-                {/* Fila 5: ProjectOS Predict (full width) */}
+                {/* Fila 5: AI Product Playbook (full width) */}
                 <div className="relative z-10">
                   <AnimatedSection delay={0.45}>
-                    <ProjectCard project={projectOSPredict} cardRef={cardRefs.projectOSPredict} />
+                    <ProjectCard project={aiPlaybook} cardRef={cardRefs.aiPlaybook} />
                   </AnimatedSection>
                 </div>
               </div>
