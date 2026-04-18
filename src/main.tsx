@@ -5,7 +5,7 @@ import { Analytics } from '@vercel/analytics/react'
 import './index.css'
 import App from './App.tsx'
 import GlobalNav from './GlobalNav.tsx'
-import { articleRegistry, getEsSlugs } from './articles/registry'
+import { articleRegistry } from './articles/registry'
 
 const FloatingChat = lazy(() => import('./FloatingChat'))
 const MusicToggle = lazy(() => import('./MusicToggle'))
@@ -74,13 +74,10 @@ function GlobalChat() {
 
   if (!hydrated || pathname.startsWith('/ops')) return null
 
-  const esSlugs = getEsSlugs()
-  const lang = esSlugs.has(pathname) ? 'es' : 'en'
-
   return (
     <ChatErrorBoundary>
       <Suspense fallback={null}>
-        <FloatingChat lang={lang} />
+        <FloatingChat lang="en" />
       </Suspense>
     </ChatErrorBoundary>
   )
@@ -128,14 +125,11 @@ Object.defineProperty(window, '__santifer', {
 })
 
 function NotFound() {
-  const { pathname } = useLocation()
-  const isEn = pathname.startsWith('/en') || /^\/[a-z]+-[a-z]+-[a-z]+/.test(pathname)
-
   useEffect(() => {
     let robots = document.querySelector('meta[name="robots"]') as HTMLMetaElement
     if (!robots) { robots = document.createElement('meta'); robots.name = 'robots'; document.head.appendChild(robots) }
     robots.content = 'noindex, nofollow'
-    document.title = '404 — Page not found | santifer.io'
+    document.title = '404 — Page not found | vijaypanwar.io'
     return () => { robots.content = 'index, follow' }
   }, [])
 
@@ -143,18 +137,16 @@ function NotFound() {
     <div className="min-h-[80vh] flex flex-col items-center justify-center text-center px-6">
       <p className="text-8xl font-display font-bold text-primary mb-4">404</p>
       <h1 className="text-2xl font-display font-semibold text-foreground mb-2">
-        {isEn ? 'Page not found' : 'Página no encontrada'}
+        Page not found
       </h1>
       <p className="text-muted-foreground mb-8 max-w-md">
-        {isEn
-          ? "The page you're looking for doesn't exist or has been moved."
-          : 'La página que buscas no existe o ha sido movida.'}
+        The page you're looking for doesn't exist or has been moved.
       </p>
       <Link
-        to={isEn ? '/en' : '/'}
+        to="/"
         className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
       >
-        {isEn ? '← Back to home' : '← Volver al inicio'}
+        ← Back to home
       </Link>
     </div>
   )
@@ -169,18 +161,14 @@ const app = (
         <Suspense fallback={null}>
           <Routes>
             <Route path="/" element={<App />} />
-            <Route path="/en" element={<App />} />
             <Route path="/ops" element={<OpsDashboard />} />
-            <Route path="/sobre-mi" element={<AboutPage lang="es" />} />
             <Route path="/about" element={<AboutPage lang="en" />} />
-            <Route path="/privacidad" element={<PrivacyPolicy lang="es" />} />
             <Route path="/privacy" element={<PrivacyPolicy lang="en" />} />
             {articleRegistry.map((article) => {
               const ArticleComponent = articleComponents[article.id]
-              return [
-                <Route key={`${article.id}-es`} path={`/${article.slugs.es}`} element={<ArticleComponent lang="es" />} />,
-                <Route key={`${article.id}-en`} path={`/${article.slugs.en}`} element={<ArticleComponent lang="en" />} />,
-              ]
+              return (
+                <Route key={article.id} path={`/${article.slugs.en}`} element={<ArticleComponent lang="en" />} />
+              )
             })}
             <Route path="*" element={<NotFound />} />
           </Routes>

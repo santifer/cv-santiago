@@ -1,8 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { Sun, Moon, House, X, ChevronRight } from 'lucide-react'
-import { translations, type Lang } from './i18n'
-import { getAltPaths, getPageTitles, getSectionLabels, getEsSlugs } from './articles/registry'
+import { Link, useLocation } from 'react-router-dom'
+import { Sun, Moon, House, ChevronRight } from 'lucide-react'
+import { getPageTitles, getSectionLabels } from './articles/registry'
 
 /**
  * GlobalNav — unified navigation across all pages.
@@ -17,12 +16,8 @@ import { getAltPaths, getPageTitles, getSectionLabels, getEsSlugs } from './arti
  * when there's no bar (home, no banner), controls float fixed at top-6 right-6.
  */
 
-const ALT_PATH = getAltPaths()
-const BANNER_DISMISSED_KEY = 'lang-banner-dismissed'
 const PAGE_TITLE = getPageTitles()
 const SECTION_LABELS = getSectionLabels()
-const ES_SLUGS = getEsSlugs()
-
 /** Observes h2[id] elements and returns the currently visible section ID */
 function useActiveSection(pathname: string, enabled: boolean) {
   const [activeId, setActiveId] = useState<string | null>(null)
@@ -80,10 +75,9 @@ function useActiveSection(pathname: string, enabled: boolean) {
 
 function useLang() {
   const { pathname } = useLocation()
-  const isHome = pathname === '/' || pathname === '/en'
-  const lang: 'es' | 'en' = ES_SLUGS.has(pathname) ? 'es' : 'en'
+  const isHome = pathname === '/'
   const pageTitle = PAGE_TITLE[pathname] ?? null
-  return { pathname, isHome, lang, pageTitle }
+  return { pathname, isHome, pageTitle }
 }
 
 function useTheme() {
@@ -132,95 +126,12 @@ function useTheme() {
   return { isDark, toggleTheme }
 }
 
-/**
- * Detects browser/page language mismatch.
- * Uses sessionStorage to survive re-mounts across navigations:
- * - null: not shown yet → show after 2s delay
- * - 'shown': already visible → show immediately, no animation
- * - 'dismissed': user closed it → never show again
- */
-function useLanguageBanner(lang: Lang) {
-  const stored = typeof sessionStorage !== 'undefined' ? sessionStorage.getItem(BANNER_DISMISSED_KEY) : null
-  const [visible, setVisible] = useState(stored === 'shown')
-  const isFirstAppearance = useRef(stored !== 'shown')
-
-  // Show after delay on first visit (no sessionStorage entry yet)
-  useEffect(() => {
-    if (typeof navigator === 'undefined') return
-    if (stored) return // already 'shown' or 'dismissed'
-
-    const browserPrefersEn = !navigator.language.toLowerCase().startsWith('es')
-    const mismatch = (lang === 'es' && browserPrefersEn) || (lang === 'en' && !browserPrefersEn)
-    if (!mismatch) return
-
-    const timer = setTimeout(() => {
-      sessionStorage.setItem(BANNER_DISMISSED_KEY, 'shown')
-      setVisible(true)
-    }, 2000)
-    return () => clearTimeout(timer)
-  }, [lang, stored])
-
-  // Auto-dismiss if user switches language via toggle
-  useEffect(() => {
-    if (!visible) return
-    const browserPrefersEn = !navigator.language.toLowerCase().startsWith('es')
-    const mismatch = (lang === 'es' && browserPrefersEn) || (lang === 'en' && !browserPrefersEn)
-    if (!mismatch) {
-      sessionStorage.setItem(BANNER_DISMISSED_KEY, 'dismissed')
-      setVisible(false)
-    }
-  }, [lang, visible])
-
-  const dismiss = useCallback(() => {
-    sessionStorage.setItem(BANNER_DISMISSED_KEY, 'dismissed')
-    setVisible(false)
-  }, [])
-
-  return { showBanner: visible, dismiss, animateBanner: visible && isFirstAppearance.current }
-}
-
-/** Circular flag icons — Spain (red-yellow-red) and UK (Union Jack simplified) */
-function FlagES({ className = "w-4 h-4" }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 16 16" aria-hidden="true">
-      <clipPath id="flagCircleES"><circle cx="8" cy="8" r="8" /></clipPath>
-      <g clipPath="url(#flagCircleES)">
-        <rect y="0" width="16" height="4" fill="#c60b1e" />
-        <rect y="4" width="16" height="8" fill="#ffc400" />
-        <rect y="12" width="16" height="4" fill="#c60b1e" />
-      </g>
-    </svg>
-  )
-}
-
-function FlagEN({ className = "w-4 h-4" }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 16 16" aria-hidden="true">
-      <clipPath id="flagCircleEN"><circle cx="8" cy="8" r="8" /></clipPath>
-      <g clipPath="url(#flagCircleEN)">
-        <rect width="16" height="16" fill="#012169" />
-        <path d="M0 0L16 16M16 0L0 16" stroke="#fff" strokeWidth="2.5" />
-        <path d="M0 0L16 16M16 0L0 16" stroke="#c8102e" strokeWidth="1.5" />
-        <path d="M8 0V16M0 8H16" stroke="#fff" strokeWidth="4" />
-        <path d="M8 0V16M0 8H16" stroke="#c8102e" strokeWidth="2.5" />
-      </g>
-    </svg>
-  )
-}
-
-/** Shared controls: flag lang pill + theme circle */
-function NavControls({ altPath, altLabel, lang, isDark, toggleTheme }: {
-  altPath: string; altLabel: string; lang: Lang; isDark: boolean; toggleTheme: () => void
+/** Shared controls: theme toggle */
+function NavControls({ isDark, toggleTheme }: {
+  isDark: boolean; toggleTheme: () => void
 }) {
   return (
     <div className="flex items-center gap-2">
-      <Link
-        to={altPath}
-        className="inline-flex items-center justify-center gap-1.5 w-[4.5rem] h-10 rounded-full bg-card border border-border text-sm font-medium text-muted-foreground hover:text-foreground hover:border-primary/50 transition-colors"
-      >
-        {lang === 'es' ? <FlagES className="w-3.5 h-3.5" /> : <FlagEN className="w-3.5 h-3.5" />}
-        {altLabel}
-      </Link>
       <button
         onClick={toggleTheme}
         className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center shadow-lg hover:border-primary/50 hover:shadow-primary/20 hover:shadow-xl transition-colors"
@@ -233,22 +144,15 @@ function NavControls({ altPath, altLabel, lang, isDark, toggleTheme }: {
 }
 
 export default function GlobalNav() {
-  const { pathname, isHome, lang, pageTitle } = useLang()
+  const { pathname, isHome, pageTitle } = useLang()
   const { isDark, toggleTheme } = useTheme()
-  const { showBanner, dismiss, animateBanner } = useLanguageBanner(lang)
-  const navigate = useNavigate()
   const activeSection = useActiveSection(pathname, !isHome)
 
-  const altPath = ALT_PATH[pathname] || (lang === 'es' ? '/en' : '/')
-  const altLabel = lang === 'es' ? 'ES' : 'EN'
-
-  const t = translations[lang]
   const hasBar = !isHome
 
   // Breadcrumb: show active section label or fall back to page title
   const sectionLabels = SECTION_LABELS[pathname]
   const activeSectionLabel = activeSection && sectionLabels?.[activeSection]
-
 
   const [hydrated, setHydrated] = useState(false)
   useEffect(() => setHydrated(true), [])
@@ -262,39 +166,11 @@ export default function GlobalNav() {
   const animateBackLink = !isHome && !backLinkShown.current
   if (!isHome) backLinkShown.current = true
 
-  const switchLang = () => {
-    dismiss()
-    navigate(altPath)
-  }
-
-  const controls = <NavControls altPath={altPath} altLabel={altLabel} lang={lang} isDark={isDark} toggleTheme={toggleTheme} />
+  const controls = <NavControls isDark={isDark} toggleTheme={toggleTheme} />
 
   const fade = (duration: string) => ({ animation: `nav-fade-in ${duration} ease-out` })
 
-  // Banner message (right-aligned, near lang pill)
-  const bannerMessage = showBanner ? (
-    <div
-      className="flex items-center gap-2.5 text-sm"
-      style={animateBanner ? fade('0.4s') : undefined}
-    >
-      <span className="text-muted-foreground hidden lg:inline">{t.ui.languageBanner}</span>
-      <button
-        onClick={switchLang}
-        className="inline-flex items-center gap-1 font-medium text-primary hover:text-primary/80 transition-colors"
-      >
-        {t.ui.languageBannerSwitchPrefix}{lang === 'es' ? <FlagEN className="w-3.5 h-3.5 mx-0.5" /> : <FlagES className="w-3.5 h-3.5 mx-0.5" />}{t.ui.languageBannerSwitchLang}
-      </button>
-      <button
-        onClick={dismiss}
-        className="text-muted-foreground hover:text-foreground transition-colors"
-        aria-label="Dismiss"
-      >
-        <X className="w-3.5 h-3.5" />
-      </button>
-    </div>
-  ) : null
-
-  // Bar visible: controls (+ optional banner) inside it
+  // Bar visible: controls inside it
   if (hasBar) {
     return (
       <nav className="sticky top-0 z-50 relative">
@@ -303,7 +179,7 @@ export default function GlobalNav() {
           style={animateBar ? fade('0.35s') : undefined}
         />
         <div className="relative pt-4 pb-3 px-6 pl-14 xl:pl-6 flex items-center justify-between">
-          {/* Left: back link on inner pages, empty on home (pl-14 leaves room for ToC hamburger on mobile) */}
+          {/* Left: back link on inner pages (pl-14 leaves room for ToC hamburger on mobile) */}
           <div className="min-w-0 flex items-center">
             {!isHome && (
               <nav
@@ -312,11 +188,11 @@ export default function GlobalNav() {
                 style={animateBackLink ? fade('0.4s') : undefined}
               >
                 <Link
-                  to={lang === 'en' ? '/en' : '/'}
+                  to="/"
                   className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors shrink-0"
                 >
                   <House className="w-4 h-4" />
-                  <span className="hidden sm:inline">santifer.io</span>
+                  <span className="hidden sm:inline">vijaypanwar.io</span>
                 </Link>
                 {pageTitle && (
                   <>
@@ -340,9 +216,8 @@ export default function GlobalNav() {
               </nav>
             )}
           </div>
-          {/* Right: banner + controls on same line */}
+          {/* Right: controls */}
           <div className="flex items-center gap-3 shrink-0">
-            {bannerMessage}
             {controls}
           </div>
         </div>
@@ -350,23 +225,12 @@ export default function GlobalNav() {
     )
   }
 
-  // Home: controls always fixed at same position, banner bar grows behind them
+  // Home: controls fixed top-right
   if (!hydrated) return null
 
   return (
-    <>
-      {/* Translucent bar — appears/disappears without moving controls */}
-      {showBanner && (
-        <div
-          className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-md border-b border-border"
-          style={{ height: 'calc(1rem + 2.5rem + 0.75rem)', ...(animateBanner ? fade('0.35s') : {}) }}
-        />
-      )}
-      {/* Controls + banner — always at same fixed position */}
-      <div className="fixed top-4 right-6 z-50 flex items-center gap-3">
-        {bannerMessage}
-        {controls}
-      </div>
-    </>
+    <div className="fixed top-4 right-6 z-50 flex items-center gap-3">
+      {controls}
+    </div>
   )
 }

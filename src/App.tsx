@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useMemo, useReducer, useRef } from 'react'
-import { useLocation, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'motion/react'
 import { Mail, ExternalLink, Briefcase, GraduationCap, Award, Code, Users, Globe, Bot, Zap, Database, Layout, BadgeCheck, FolderGit2, Sparkles, Download, Github, Package, MessageSquare, Receipt, CalendarCheck, Shield, FileText, GitBranch, GitFork, Star, Terminal, Lock, Network, Calendar, Percent, UserCheck, Image, TrendingUp, Timer, SkipForward, ThumbsUp, MessageCircle, Share2, ChevronRight, List, ArrowUp } from 'lucide-react'
 import { translations, seo, type Lang } from './i18n'
@@ -1412,8 +1412,7 @@ function CertLogo({ logo }: { logo: string }) {
 }
 
 function App() {
-  const location = useLocation()
-  const lang: Lang = location.pathname === '/en' ? 'en' : 'es'
+  const lang: Lang = 'en'
   const t = translations[lang]
   const hydrated = useHydrated()
   useHeroStyles()
@@ -1431,7 +1430,7 @@ function App() {
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-primary focus:text-primary-foreground focus:font-medium focus:shadow-lg"
       >
-        {lang === 'en' ? 'Skip to content' : 'Saltar al contenido'}
+        Skip to content
       </a>
 
       <HomeToc lang={lang} />
@@ -1481,25 +1480,15 @@ function App() {
               className="text-center md:text-left"
             >
               <p className="text-lg text-muted-foreground mb-2">
-                {lang === 'es' ? 'Hola, soy' : "Hi, I'm"} <Link to={lang === 'es' ? '/sobre-mi' : '/about'} className="text-gradient-theme font-semibold hover:opacity-80 transition-opacity">@santifer</Link>,
+                Hi, I'm <Link to="/about" className="text-gradient-theme font-semibold hover:opacity-80 transition-opacity">@vijaypanwar</Link>,
               </p>
               <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 leading-tight">
                 <span className="text-gradient-theme">{hydrated ? roleText : t.greetingRoles[0]}</span>
                 {hydrated && <span className="inline-block w-[3px] h-[0.85em] bg-primary ml-1 rounded-sm translate-y-[2px]" style={{ animation: 'blink 1s step-end infinite' }} />}
                 <br />
-                {lang === 'es' ? (
-                  <>
-                    {t.greeting}
-                    <br />
-                    de IA con <BeamPill>HITL <span className="opacity-60">+</span> MCP <span className="opacity-60">+</span> RAG</BeamPill>
-                  </>
-                ) : (
-                  <>
-                    {t.greeting} {t.role}
-                    <br />
-                    with <BeamPill>HITL <span className="opacity-60">+</span> MCP <span className="opacity-60">+</span> RAG</BeamPill>
-                  </>
-                )}
+                {t.greeting} {t.role}
+                <br />
+                with <BeamPill>HITL <span className="opacity-60">+</span> MCP <span className="opacity-60">+</span> RAG</BeamPill>
               </h1>
 
               <div className="flex flex-wrap justify-center md:justify-start gap-3">
@@ -1516,7 +1505,7 @@ function App() {
                   </span>
                 ))}
                 <Link
-                  to={lang === 'es' ? '/career-ops' : '/career-ops-system'}
+                  to="/career-ops-system"
                   className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 backdrop-blur-sm ${
                     hydrated && roleIndex === 2
                       ? 'border border-[#20d6ee] bg-[#20d6ee]/15 text-foreground scale-105'
@@ -1526,7 +1515,7 @@ function App() {
                   <Github className="w-3.5 h-3.5" />
                   <span>career-ops</span>
                   <Star className="w-3 h-3 text-yellow-500" />
-                  {/* hero-stats:career-ops:stars */}<span className="font-medium">35.8K</span>
+                  {/* hero-stats:career-ops:stars */}<span className="font-medium">36.0K</span>
                   <GitFork className="w-3 h-3" />
                   {/* hero-stats:career-ops:forks */}<span>7.2K</span>
                 </Link>
@@ -1605,7 +1594,7 @@ function App() {
                   </div>
                   <h3 className="font-display text-2xl font-bold">{t.experience.santifer.company}</h3>
                 </div>
-                <Link to={lang === 'en' ? '/santifer-irepair-founder' : '/santifer-irepair'} className="text-sm text-primary hover:underline flex items-center gap-1">
+                <Link to="/santifer-irepair-founder" className="text-sm text-primary hover:underline flex items-center gap-1">
                   santifer irepair
                 </Link>
                 <span className="text-sm text-muted-foreground">{t.experience.santifer.location}</span>
@@ -2941,8 +2930,8 @@ function App() {
           <p className="mt-12 text-xs text-muted-foreground">
             &copy; {new Date().getFullYear()} Santiago Fernández de Valderrama
             <span className="mx-2 text-border">|</span>
-            <Link to={lang === 'es' ? '/privacidad' : '/privacy'} className="hover:text-primary transition-colors">
-              {lang === 'es' ? 'Privacidad' : 'Privacy'}
+            <Link to="/privacy" className="hover:text-primary transition-colors">
+              Privacy
             </Link>
           </p>
         </div>
