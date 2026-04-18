@@ -107,7 +107,7 @@ export default function CareerOps({ lang = 'en' }: { lang?: Lang }) {
       <StatusBadge text={t.header.badge} />
       <MetricsGrid items={t.heroMetrics} columns={5} compact />
 
-      <GitHubRepoBadge repo="santifer/career-ops" stars="31.0K" forks="6.1K" lang={lang} />
+      <GitHubRepoBadge repo="santifer/career-ops" stars="35.8K" forks="7.2K" lang={lang} />
 
       <Callout className="bg-accent/10 border-accent/40">{t.tldr}</Callout>
       <Callout>{t.metaCallout}</Callout>

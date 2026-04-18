@@ -11,8 +11,6 @@ const SOCIAL_LINKS = [
 
 export default function AboutPage({ lang = 'es' }: { lang?: AboutLang }) {
   const t = aboutContent[lang]
-  const altSlug = t.altSlug
-
   useEffect(() => {
     document.documentElement.lang = lang
     document.title = t.seo.title

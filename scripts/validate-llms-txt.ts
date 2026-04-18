@@ -32,90 +32,56 @@ interface ProofPoint {
 const PROOF_POINTS: ProofPoint[] = [
   // -- Projects (i18n.ts → projects) --
   {
-    source: 'i18n.ts → projects → AI Solutions Playbook',
-    terms: ['AI Solutions Playbook', 'context switching', 'SESSION_BRIEF'],
+    source: 'i18n.ts → projects → Local RAG System',
+    terms: ['Local RAG System', 'vector embeddings', 'semantic search'],
   },
   {
-    source: 'i18n.ts → projects → Content Digest',
-    terms: ['Content Digest'],
+    source: 'i18n.ts → projects → Data Dashboard',
+    terms: ['Data Dashboard'],
   },
   {
-    source: 'i18n.ts → projects → Life OS',
-    terms: ['Life OS'],
-  },
-  {
-    source: 'i18n.ts → projects → Career Ops',
-    terms: ['Career Ops'],
-  },
-  {
-    source: 'i18n.ts → projects → Claude Pulse',
-    terms: ['Claude Pulse'],
-  },
-  {
-    source: 'i18n.ts → projects → Claude Eye',
-    terms: ['Claude Eye'],
-  },
-  {
-    source: 'i18n.ts → projects → Claudeable',
-    terms: ['Claudeable'],
-  },
-  {
-    source: 'i18n.ts → projects → ProjectOS Predict',
-    terms: ['ProjectOS Predict'],
+    source: 'i18n.ts → projects → Create Shop Crave',
+    terms: ['Create, Shop & Crave'],
   },
 
-  // -- Claude Code Power User (i18n.ts → claudeCode) --
+  // -- Experience (i18n.ts → experience) --
+  {
+    source: 'i18n.ts → experience → Zrika',
+    terms: ['Zrika', 'payment infrastructure'],
+  },
+  {
+    source: 'i18n.ts → experience → NPCI',
+    terms: ['NPCI', 'UPI Lite', '350M'],
+  },
+  {
+    source: 'i18n.ts → experience → Rapipay',
+    terms: ['Rapipay', 'merchant'],
+  },
+  {
+    source: 'i18n.ts → experience → ICICI',
+    terms: ['ICICI'],
+  },
+
+  // -- AI/ML Skills --
   {
     source: 'i18n.ts → claudeCode',
-    terms: ['multi-agent', 'IPC', 'memory persistence', 'custom', 'skills'],
+    terms: ['RAG', 'multi-agent', 'LangSmith'],
   },
 
-  // -- Speaking & Teaching (i18n.ts → speaking) --
+  // -- Education --
   {
-    source: 'i18n.ts → speaking → AI Fluency Educator',
-    terms: ['AI Fluency Educator', '4D', 'Delegation', 'Discernment'],
-  },
-  {
-    source: 'i18n.ts → speaking → Teaching Fellow',
-    terms: ['Teaching Fellow'],
-  },
-  {
-    source: 'i18n.ts → speaking → Hiperautomatiza',
-    terms: ['Hiperautomatiza'],
+    source: 'i18n.ts → education → Purdue',
+    terms: ['Purdue'],
   },
 
-  // -- Self-Healing Chatbot (chatbot-i18n.ts) --
+  // -- Certifications --
   {
-    source: 'chatbot-i18n.ts → defense',
-    terms: ['6-layer', 'canary token', 'fingerprint'],
+    source: 'i18n.ts → certifications → Product School',
+    terms: ['Product School'],
   },
   {
-    source: 'chatbot-i18n.ts → evals',
-    terms: ['71', 'CI gate', 'trace-to-eval'],
-  },
-  {
-    source: 'chatbot-i18n.ts → cost',
-    terms: ['$0.005', '$0 infrastructure'],
-  },
-  {
-    source: 'chatbot-i18n.ts → batch eval',
-    terms: ['Sonnet', 'intent', 'quality', 'safety', 'jailbreak', 'Resend'],
-  },
-
-  // -- Articles published (registry.ts) --
-  {
-    source: 'articles/registry.ts',
-    terms: ['n8n for Product Managers', 'Jacobo', 'Programmatic'],
-  },
-
-  // -- Key experience points --
-  {
-    source: 'i18n.ts → experience → Jacobo',
-    terms: ['Jacobo', '90%', 'self-service'],
-  },
-  {
-    source: 'i18n.ts → experience → pSEO',
-    terms: ['Programmatic', 'Airtable', 'DataForSEO'],
+    source: 'i18n.ts → certifications → Anthropic',
+    terms: ['Claude Code in Action'],
   },
 ]
 

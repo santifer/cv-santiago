@@ -256,7 +256,7 @@ const t = {
           { name: 'NPCI', icon: '<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>' },
           { name: 'BHIM', icon: '<path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/>' },
           { name: 'Banks', icon: '<path d="M11.5 2L2 7v2h19V7L11.5 2zm7.5 7H3v11h2v-9h13v9h2V9zm-8 4H9v7h2v-7zm4 0h-2v7h2v-7zm4 0h-2v7h2v-7z"/>' },
-          { name: 'PSPs', icon: '<path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/>' },
+          { name: 'PSPs', src: '/logos/santander.png' },
         ],
       },
       businessOS: {
@@ -554,12 +554,21 @@ const t = {
         org: 'Purdue University',
         title: 'Post Graduate Program in AI & Machine Learning',
         desc: 'Deep learning, NLP, computer vision, and applied AI for business.',
+        projectLink: '',
+        projectLabel: '',
       },
       {
         year: '2014–15',
         org: 'Manipal University',
         title: 'Post Graduate Diploma in Banking',
         desc: 'GPA: 7.28 / 10.0 — Banking operations, financial systems, regulatory frameworks.',
+        testimonial: {
+          quote: 'Vijay demonstrated exceptional analytical abilities and a deep understanding of financial systems throughout his studies.',
+          author: 'Manipal University',
+          role: 'Post Graduate Diploma in Banking',
+          photo: '/foto-avatar-sm.webp',
+          linkedin: 'https://www.linkedin.com/in/vijay-panwar-835bb13a',
+        },
       },
       {
         year: '2008–12',
