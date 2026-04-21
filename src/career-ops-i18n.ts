@@ -289,7 +289,7 @@ export const careerOpsContent = {
         },
         {
           q: 'Es replicable?',
-          a: 'Sí — el código es open source en GitHub (github.com/santifer/career-ops). Requiere Claude Code con acceso a Playwright. Los skill files definen la lógica de cada modo. 35K+ personas ya lo han visto, forkeado o adaptado.',
+          a: 'Sí — es open source. La landing oficial es career-ops.org (docs, AI chat y guías) y el código vive en github.com/santifer/career-ops. Requiere Claude Code con acceso a Playwright. Los skill files definen la lógica de cada modo. 37K+ personas ya lo han visto, forkeado o adaptado.',
         },
         {
           q: 'Cómo se usa Career-Ops?',
@@ -598,7 +598,7 @@ export const careerOpsContent = {
         },
         {
           q: 'Is it replicable?',
-          a: 'Yes — the code is open source on GitHub (github.com/santifer/career-ops). Requires Claude Code with Playwright access. Skill files define the logic for each mode. 35K+ people have already seen, forked, or adapted it.',
+          a: 'Yes — it is open source. The official landing is career-ops.org (docs, AI chat and guides) and the code lives at github.com/santifer/career-ops. Requires Claude Code with Playwright access. Skill files define the logic for each mode. 37K+ people have already seen, forked, or adapted it.',
         },
         {
           q: 'How do I use Career-Ops?',
