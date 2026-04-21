@@ -1,12 +1,12 @@
 # Santiago Fernández de Valderrama Aparicio
 
-> Applied AI Operator · Head of Applied AI · Creator of Career-Ops (36.2K+ ⭐)
+> Applied AI Operator · Head of Applied AI · Creator of Career-Ops (37.6K+ ⭐)
 
 ## Manifesto
 
 > Companies use AI to filter candidates. I just gave candidates AI to choose companies.
 
-This is the core thesis behind Career-Ops: while companies deploy AI to reduce inbound candidate volume, candidates had no equivalent tooling to evaluate inbound opportunities. Career-Ops flips the asymmetry — a multi-agent system that scores job offers across 10 dimensions, generates ATS-optimized CVs per posting, and fills forms with Playwright. Built for my own AI job search in early 2026, it evaluated 631 offers and landed me my current Head of Applied AI role. When I stopped needing it, I open-sourced it under MIT. In one week it went viral: 36.2K+ GitHub stars, 7.1K+ forks, articles in French/Chinese/Korean tech blogs, 2,600+ upvotes on Reddit, and a Discord community of 1,300+ builders sharing configs, templates, and adaptations.
+This is the core thesis behind Career-Ops: while companies deploy AI to reduce inbound candidate volume, candidates had no equivalent tooling to evaluate inbound opportunities. Career-Ops flips the asymmetry — a multi-agent system that scores job offers across 10 dimensions, generates ATS-optimized CVs per posting, and fills forms with Playwright. Built for my own AI job search in early 2026, it evaluated 631 offers and landed me my current Head of Applied AI role. When I stopped needing it, I open-sourced it under MIT. In one week it went viral: 37.6K+ GitHub stars, 7.1K+ forks, articles in French/Chinese/Korean tech blogs, 2,600+ upvotes on Reddit, and a Discord community of 1,300+ builders sharing configs, templates, and adaptations.
 
 ## Contact & Availability
 
