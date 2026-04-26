@@ -1,4 +1,4 @@
-import { StrictMode, lazy, Suspense, useState, useEffect, useRef, Component, type ReactNode, type ComponentType } from 'react'
+import { StrictMode, lazy, Suspense, useState, useEffect, useRef, type ComponentType } from 'react'
 import { hydrateRoot, createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route, useLocation, Link } from 'react-router-dom'
 import { Analytics } from '@vercel/analytics/react'
@@ -7,7 +7,6 @@ import App from './App.tsx'
 import GlobalNav from './GlobalNav.tsx'
 import { articleRegistry } from './articles/registry'
 
-const FloatingChat = lazy(() => import('./FloatingChat'))
 const MusicToggle = lazy(() => import('./MusicToggle'))
 const OpsDashboard = lazy(() => import('./ops/OpsDashboard'))
 const PrivacyPolicy = lazy(() => import('./PrivacyPolicy'))
@@ -17,12 +16,6 @@ const AboutPage = lazy(() => import('./AboutPage'))
 const articleComponents: Record<string, React.LazyExoticComponent<ComponentType<{ lang: 'es' | 'en' }>>> = {}
 for (const article of articleRegistry) {
   articleComponents[article.id] = lazy(article.component)
-}
-
-class ChatErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean }> {
-  state = { hasError: false }
-  static getDerivedStateFromError() { return { hasError: true } }
-  render() { return this.state.hasError ? null : this.props.children }
 }
 
 /** Reset scroll + fade-in on route change (no animation on initial load to match prerender) */
@@ -67,22 +60,6 @@ function PageTransition({ children }: { children: ReactNode }) {
   )
 }
 
-function GlobalChat() {
-  const { pathname } = useLocation()
-  const [hydrated, setHydrated] = useState(false)
-  useEffect(() => setHydrated(true), [])
-
-  if (!hydrated || pathname.startsWith('/ops')) return null
-
-  return (
-    <ChatErrorBoundary>
-      <Suspense fallback={null}>
-        <FloatingChat lang="en" />
-      </Suspense>
-    </ChatErrorBoundary>
-  )
-}
-
 function GlobalMusic() {
   const { pathname } = useLocation()
   const [hydrated, setHydrated] = useState(false)
@@ -107,7 +84,7 @@ console.log(`%c${ASCII_ART}`, 'color: #f97316; font-size: 12px; font-family: mon
 console.log('%c Most people scroll. You inspect. I like that. ', 'background: #f97316; color: #1a1a1a; font-size: 14px; font-weight: bold; padding: 4px 8px; border-radius: 3px;')
 console.log('%cThe %cbest %cwork %cis %cinvisible.', 'color: #94a3b8; font-size: 13px;', 'color: #7e8d9d; font-size: 13px;', 'color: #687882; font-size: 13px;', 'color: #526268; font-size: 13px;', 'color: #3d4d52; font-size: 13px;')
 console.log('%cYou just found some of it.', 'color: #94a3b8; font-size: 13px;')
-console.log('%c I build the details. Let\'s solve something hard → hi@santifer.io ', 'background: #f97316; color: #1a1a1a; font-size: 13px; font-weight: bold; padding: 4px 8px; border-radius: 3px;')
+console.log('%c I build the details. Let\'s solve something hard → vijaypanwar333@gmail.com ', 'background: #f97316; color: #1a1a1a; font-size: 13px; font-weight: bold; padding: 4px 8px; border-radius: 3px;')
 
 // Debug API for technical recruiters — type window.__santifer in console
 Object.defineProperty(window, '__santifer', {
@@ -119,7 +96,7 @@ Object.defineProperty(window, '__santifer', {
     observability: 'Langfuse (traces, LLM-as-Judge, intent tags)',
     render: 'Pre-rendered HTML + critical CSS inlined + client hydration',
     perf: () => { const n = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming; console.table({ TTFB: `${Math.round(n.responseStart - n.requestStart)}ms`, DOMContentLoaded: `${Math.round(n.domContentLoadedEventEnd - n.startTime)}ms`, Load: `${Math.round(n.loadEventEnd - n.startTime)}ms` }); },
-    hire_me: 'hola@santifer.io',
+    hire_me: 'vijaypanwar333@gmail.com',
   }),
   configurable: false,
 })
@@ -174,7 +151,6 @@ const app = (
           </Routes>
         </Suspense>
       </PageTransition>
-      <GlobalChat />
       <GlobalMusic />
       <Analytics />
     </BrowserRouter>

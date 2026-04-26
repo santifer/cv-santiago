@@ -5,31 +5,24 @@ import { ArticleLayout } from './articles/components'
 const content = {
   es: {
     title: 'Politica de Privacidad',
-    lastUpdated: 'Ultima actualizacion: 15 de marzo de 2026',
-    intro: 'Esta politica describe como se recopilan y utilizan los datos cuando visitas santifer.io.',
+    lastUpdated: 'Ultima actualizacion: 21 de abril de 2026',
+    intro: 'Esta politica describe como se recopilan y utilizan los datos cuando visitas el portfolio de Vijay Panwar.',
     sections: [
       {
         heading: 'Que datos se recopilan',
         items: [
-          'Mensajes del chatbot: cuando interactuas con el chatbot "Santi", los mensajes se procesan para generar respuestas. No se solicita ni almacena informacion personal identificable.',
-          'Audio del modo voz: si activas el modo voz, el audio se procesa en tiempo real para la conversacion y no se almacena de forma permanente.',
           'Analiticas de uso: se recopilan datos anonimos de navegacion (paginas visitadas, duracion, dispositivo) para mejorar el sitio.',
         ],
       },
       {
         heading: 'Como se utilizan los datos',
         items: [
-          'Los mensajes del chatbot se utilizan exclusivamente para generar respuestas contextuales sobre la experiencia profesional de Santiago.',
-          'Las trazas de conversacion se almacenan de forma anonimizada para mejorar la calidad de las respuestas y detectar intentos de uso indebido.',
           'Los datos de analiticas se utilizan para entender patrones de uso y mejorar el rendimiento del sitio.',
         ],
       },
       {
         heading: 'Terceros',
         items: [
-          'Anthropic (Claude): procesa los mensajes del chatbot para generar respuestas.',
-          'OpenAI (Realtime API): procesa el audio del modo voz para la conversacion en tiempo real.',
-          'Langfuse: almacena trazas anonimizadas de conversaciones para observabilidad y mejora de calidad.',
           'Vercel: aloja el sitio web y recopila analiticas anonimas de uso.',
         ],
       },
@@ -44,38 +37,31 @@ const content = {
       {
         heading: 'Contacto',
         body: 'Para cualquier consulta sobre privacidad, puedes escribir a:',
-        email: 'hola@santifer.io',
+        email: 'vijaypanwar333@gmail.com',
       },
     ],
     backHome: 'Volver al inicio',
   },
   en: {
     title: 'Privacy Policy',
-    lastUpdated: 'Last updated: March 15, 2026',
-    intro: 'This policy describes how data is collected and used when you visit santifer.io.',
+    lastUpdated: 'Last updated: April 21, 2026',
+    intro: 'This policy describes how data is collected and used when you visit Vijay Panwar\'s portfolio.',
     sections: [
       {
         heading: 'What data is collected',
         items: [
-          'Chatbot messages: when you interact with the "Santi" chatbot, messages are processed to generate responses. No personally identifiable information is requested or stored.',
-          'Voice mode audio: if you activate voice mode, audio is processed in real time for conversation and is not permanently stored.',
           'Usage analytics: anonymous browsing data (pages visited, duration, device) is collected to improve the site.',
         ],
       },
       {
         heading: 'How data is used',
         items: [
-          "Chatbot messages are used exclusively to generate contextual responses about Santiago's professional experience.",
-          'Conversation traces are stored in anonymized form to improve response quality and detect misuse attempts.',
           'Analytics data is used to understand usage patterns and improve site performance.',
         ],
       },
       {
         heading: 'Third parties',
         items: [
-          'Anthropic (Claude): processes chatbot messages to generate responses.',
-          'OpenAI (Realtime API): processes voice mode audio for real-time conversation.',
-          'Langfuse: stores anonymized conversation traces for observability and quality improvement.',
           'Vercel: hosts the website and collects anonymous usage analytics.',
         ],
       },
@@ -90,7 +76,7 @@ const content = {
       {
         heading: 'Contact',
         body: 'For any privacy-related inquiries, you can write to:',
-        email: 'hola@santifer.io',
+        email: 'vijaypanwar333@gmail.com',
       },
     ],
     backHome: 'Back to home',
@@ -108,7 +94,7 @@ export default function PrivacyPolicy({ lang = 'es' }: { lang?: 'es' | 'en' }) {
   const t = content[lang]
 
   useEffect(() => {
-    document.title = `${t.title} | santifer.io`
+    document.title = `${t.title} | vijaypanwar.io`
 
     // noindex
     let robots = document.querySelector('meta[name="robots"]') as HTMLMetaElement
@@ -121,13 +107,13 @@ export default function PrivacyPolicy({ lang = 'es' }: { lang?: 'es' | 'en' }) {
 
     // Fix canonical (SPA fallback serves homepage canonical — override it)
     let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement
-    if (canonical) canonical.href = `https://santifer.io/${lang === 'es' ? 'privacidad' : 'privacy'}`
+    if (canonical) canonical.href = `https://vijaypanwar.io/${lang === 'es' ? 'privacidad' : 'privacy'}`
 
     // Fix meta description
     let desc = document.querySelector('meta[name="description"]') as HTMLMetaElement
     if (desc) desc.content = lang === 'es'
-      ? 'Politica de privacidad de santifer.io. Como se recopilan y utilizan los datos del chatbot y la web.'
-      : 'Privacy policy for santifer.io. How chatbot and website data is collected and used.'
+      ? 'Politica de privacidad del portfolio de Vijay Panwar. Como se recopilan y utilizan los datos de la web.'
+      : 'Privacy policy for Vijay Panwar\'s portfolio. How website data is collected and used.'
 
     return () => {
       robots.content = 'index, follow'
