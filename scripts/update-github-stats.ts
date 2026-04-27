@@ -27,13 +27,22 @@ const BADGE_REPOS: BadgeConfig[] = [
   { owner: 'santifer', repo: 'jacobo-workflows', file: 'src/JacoboAgent.tsx', label: 'jacobo-workflows (badge)' },
 ]
 
-// Repos with stars/forks in i18n.ts project cards
-const I18N_REPOS = [
-  { owner: 'santifer', repo: 'career-ops', label: 'career-ops (i18n)' },
+// Repos with stars/forks in i18n.ts project cards.
+// `extraLinks` allows matching cards that link to a custom domain (e.g. career-ops.org)
+// instead of github.com/owner/repo.
+interface I18nRepo {
+  owner: string
+  repo: string
+  label: string
+  extraLinks?: string[]
+}
+const I18N_REPOS: I18nRepo[] = [
+  { owner: 'santifer', repo: 'career-ops', label: 'career-ops (i18n)', extraLinks: ['career-ops.org'] },
   { owner: 'santifer', repo: 'cv-santiago', label: 'cv-santiago (i18n)' },
   { owner: 'santifer', repo: 'claude-pulse', label: 'claude-pulse (i18n)' },
   { owner: 'santifer', repo: 'claude-eye', label: 'claude-eye (i18n)' },
   { owner: 'santifer', repo: 'claudeable', label: 'claudeable (i18n)' },
+  { owner: 'santifer', repo: 'jacobo-workflows', label: 'jacobo-workflows (i18n)' },
   { owner: 'santifer', repo: 'santifer-irepair', label: 'santifer-irepair (i18n)' },
 ]
 
@@ -125,24 +134,38 @@ async function main() {
     const s = formatCount(stats.stars)
     const f = formatCount(stats.forks)
 
-    // Match blocks that contain the repo link/github and update stars/forks within
-    const linkPattern = `${repo.owner}/${repo.repo}`
-    if (!i18n.includes(linkPattern)) {
+    // Match blocks that contain the repo link/github and update stars/forks within.
+    // Build alternation of all valid link patterns: github.com/owner/repo, owner/repo, or any extraLinks.
+    const ghPattern = `${repo.owner}/${repo.repo}`
+    const allLinks = [ghPattern, ...(repo.extraLinks ?? [])]
+    if (!allLinks.some((l) => i18n.includes(l))) {
       console.log(`  ⏭ ${repo.label}: not found in i18n.ts`)
       continue
     }
 
-    // Find blocks with this repo (via link: or github: field) and update stars line
+    const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+    // For ghPattern, allow optional `github.com/` prefix; for extraLinks match literally.
+    const linkAlternation = [
+      `(?:github\\.com\\/)?${escape(ghPattern)}`,
+      ...(repo.extraLinks ?? []).map(escape),
+    ].join('|')
+
+    // Find blocks with this repo (via link: or github: field) and update the stars line.
+    // Allow up to 5 intermediate `key: value,` lines between link/github and stars
+    // (e.g. linkUrl, caseStudyUrl, badge, etc.).
+    const intermediate = `(?:\\s+\\w+: [^\\n]+,\\n){0,5}`
     const blockRegex = new RegExp(
-      `((?:link|github): '(?:github\\.com\\/)?${linkPattern.replace(/\//g, '\\/')}',\\n\\s+stars: ')[^']+(')`
-      , 'g')
+      `((?:link|github): '(?:${linkAlternation})',\\n${intermediate}\\s+stars: ')[^']+(')`,
+      'g',
+    )
     let newI18n = i18n.replace(blockRegex, `$1${s}$2`)
 
-    // Update forks if present
+    // Update forks if present (must come on the line right after stars)
     if (stats.forks > 0) {
       const forksRegex = new RegExp(
-        `((?:link|github): '(?:github\\.com\\/)?${linkPattern.replace(/\//g, '\\/')}',\\n\\s+stars: '[^']+',\\n\\s+forks: ')[^']+(')`
-        , 'g')
+        `((?:link|github): '(?:${linkAlternation})',\\n${intermediate}\\s+stars: '[^']+',\\n\\s+forks: ')[^']+(')`,
+        'g',
+      )
       newI18n = newI18n.replace(forksRegex, `$1${f}$2`)
     }
 
@@ -230,11 +253,14 @@ async function main() {
     }
   }
 
-  // 5. Universal sweep: update ANY career-ops star reference in all content files
-  // Patterns: "35K+ stars", "35K+ estrellas", "35K+ ⭐", "35K+ GitHub stars", "35K stars", "35K estrellas"
+  // 5. Universal sweep: update ANY career-ops star/fork reference in all content files
+  // Patterns: "35K+ stars", "35K+ estrellas", "35K+ ⭐", "35K+ GitHub stars", "35K stars", "35K estrellas",
+  //           "7.1K+ forks", "5K+ forks"
   if (careerOpsStats) {
     const starLabel = formatCount(careerOpsStats.stars)
     const starLabelPlus = starLabel + '+'
+    const forkLabel = formatCount(careerOpsStats.forks)
+    const forkLabelPlus = forkLabel + '+'
 
     // Files to sweep — all i18n content + about + career-ops-i18n
     const sweepFiles = [
@@ -253,6 +279,7 @@ async function main() {
       { re: /\b\d+[\d.]*K\+\s*GitHub stars/g, replace: `${starLabelPlus} GitHub stars` },
       { re: /\b\d+[\d.]*K\s+stars\b/gi, replace: `${starLabel} stars` },
       { re: /\b\d+[\d.]*K\s+estrellas\b/gi, replace: `${starLabel} estrellas` },
+      { re: /\b\d+[\d.]*K\+\s*forks/gi, replace: `${forkLabelPlus} forks` },
     ]
 
     for (const filePath of sweepFiles) {

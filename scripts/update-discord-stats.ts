@@ -35,6 +35,7 @@ interface Target {
 
 const CAREER_OPS_I18N = resolve(__dirname, '../src/career-ops-i18n.ts')
 const I18N = resolve(__dirname, '../src/i18n.ts')
+const LLMS_TXT = resolve(__dirname, '../public/llms.txt')
 
 const TARGETS: Target[] = [
   // ES — career-ops-i18n.ts
@@ -62,6 +63,10 @@ const TARGETS: Target[] = [
     pattern: /comunidad Discord \((\d[\d.,]*K?)\+\s*miembros\)/ },
   { file: I18N, locale: 'en', format: 'short', description: 'service card EN',
     pattern: /Discord community management \((\d[\d.,]*K?)\+\s*members\)/ },
+
+  // llms.txt — manifesto paragraph
+  { file: LLMS_TXT, locale: 'en', format: 'full', description: 'llms.txt manifesto',
+    pattern: /Discord community of (\d[\d.,]*)\+\s+builders/ },
 ]
 
 async function fetchMemberCount(): Promise<number | null> {
