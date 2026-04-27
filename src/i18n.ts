@@ -3,13 +3,13 @@ export const seo = {
     title:
       'santifer | Applied AI Operator · Builder of Career-Ops',
     description:
-      'Applied AI Operator que lleva IA a producción. Creador de Career-Ops (36.2K+ ⭐). De operar un negocio durante 16 años a herramientas open source usadas por miles.',
+      'Applied AI Operator que lleva IA a producción. Creador de Career-Ops (40.1K+ ⭐). De operar un negocio durante 16 años a herramientas open source usadas por miles.',
   },
   en: {
     title:
       'santifer | Applied AI Operator · Builder of Career-Ops',
     description:
-      'Applied AI Operator shipping AI at scale. Creator of Career-Ops (36.2K+ ⭐). From 16 years operating a business to open source tools used by thousands.',
+      'Applied AI Operator shipping AI at scale. Creator of Career-Ops (40.1K+ ⭐). From 16 years operating a business to open source tools used by thousands.',
   },
 };
 
@@ -529,7 +529,7 @@ export const translations = {
       ],
     },
     xPost: {
-      hook: 'Built this to find my own job. Open sourced it. 12K+ stars in two days.',
+      hook: 'Built this to find my own job. Open sourced it. 40.1K+ stars in two days.',
       hookLinkPrefix: 'Free: ',
       hookLinkUrl: 'career-ops.org',
       quoteAuthor: 'Garry Tan',
@@ -551,7 +551,7 @@ export const translations = {
     redditPosts: [
       {
         hook: 'Construí un sistema de búsqueda de empleo con Claude Code que puntuó 740+ ofertas y me consiguió trabajo. Acabo de hacerlo open source.',
-        upvotes: '2776',
+        upvotes: '2775',
         comments: '244',
         subreddit: 'r/ClaudeAI',
         cta: 'Leer en Reddit',
@@ -559,7 +559,7 @@ export const translations = {
       },
       {
         hook: 'Automaticé mi búsqueda de empleo con agentes IA — 516 evaluaciones, 66 aplicaciones, zero screening manual.',
-        upvotes: '567',
+        upvotes: '575',
         comments: '359',
         subreddit: 'r/SideProject',
         cta: 'Leer en Reddit',
@@ -567,7 +567,7 @@ export const translations = {
       },
       {
         hook: 'Construí un agente IA con WhatsApp + voz en n8n que gestiona el 90% de la atención al cliente. Vendí el negocio y el comprador lo mantuvo sin mí.',
-        upvotes: '313',
+        upvotes: '307',
         comments: '50',
         subreddit: 'r/n8n',
         cta: 'Leer en Reddit',
@@ -1350,7 +1350,7 @@ export const translations = {
       ],
     },
     xPost: {
-      hook: 'Built this to find my own job. Open sourced it. 12K+ stars in two days.',
+      hook: 'Built this to find my own job. Open sourced it. 40.1K+ stars in two days.',
       hookLinkPrefix: 'Free: ',
       hookLinkUrl: 'career-ops.org',
       quoteAuthor: 'Garry Tan',
@@ -1372,7 +1372,7 @@ export const translations = {
     redditPosts: [
       {
         hook: 'I built an AI job search system with Claude Code that scored 740+ offers and landed me a job. Just open sourced it.',
-        upvotes: '2776',
+        upvotes: '2775',
         comments: '244',
         subreddit: 'r/ClaudeAI',
         cta: 'Read on Reddit',
@@ -1380,7 +1380,7 @@ export const translations = {
       },
       {
         hook: 'I automated my job search with AI agents — 516 evaluations, 66 applications, zero manual screening.',
-        upvotes: '567',
+        upvotes: '575',
         comments: '359',
         subreddit: 'r/SideProject',
         cta: 'Read on Reddit',
@@ -1388,7 +1388,7 @@ export const translations = {
       },
       {
         hook: 'I built a WhatsApp + voice AI agent in n8n that handles 90% of customer service. Sold the business, the buyer kept it running without me.',
-        upvotes: '313',
+        upvotes: '307',
         comments: '50',
         subreddit: 'r/n8n',
         cta: 'Read on Reddit',

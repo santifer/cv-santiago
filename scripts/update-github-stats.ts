@@ -264,6 +264,7 @@ async function main() {
 
     // Files to sweep — all i18n content + about + career-ops-i18n
     const sweepFiles = [
+      resolve(__dirname, '../src/i18n.ts'),
       resolve(__dirname, '../src/about-i18n.ts'),
       resolve(__dirname, '../src/career-ops-i18n.ts'),
       resolve(__dirname, '../public/llms.txt'),
