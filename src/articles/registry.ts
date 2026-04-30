@@ -545,6 +545,8 @@ export const articleRegistry: ArticleConfig[] = [
       ],
       extra: { proficiencyLevel: 'Expert', dependencies: 'Claude Code, Playwright, Puppeteer, Node.js, tmux' },
       citation: [
+        { '@type': 'NewsArticle', name: 'I built a tool to filter 700 listings for my job search. It got me a position as head of AI. — Business Insider', url: 'https://www.businessinsider.com/how-i-built-tool-filter-job-listings-landed-head-ai-2026-4' },
+        { '@type': 'NewsArticle', name: 'Mein KI-Tool scannt 700 Job-Anzeigen — so half es mir, Karriere zu machen — Business Insider Deutschland', url: 'https://www.businessinsider.de/karriere/bewerbung/mein-ki-tool-scannt-700-job-anzeigen-so-half-es-mir-karriere-zu-machen/' },
         { '@type': 'WebPage', name: 'Anthropic Claude Code Documentation', url: 'https://docs.anthropic.com/en/docs/claude-code' },
         { '@type': 'WebPage', name: 'Playwright Browser Automation Documentation', url: 'https://playwright.dev/docs/intro' },
         { '@type': 'DiscussionForumPosting', name: 'I built an AI job search system with Claude Code — r/ClaudeAI (2600+ upvotes)', url: 'https://www.reddit.com/r/ClaudeAI/comments/1sd2f37/i_built_an_ai_job_search_system_with_claude_code/' },
