@@ -112,7 +112,7 @@ export default function CareerOps({ lang = 'en' }: { lang?: Lang }) {
       <Manifesto cite="https://santifer.io/career-ops">{t.manifesto}</Manifesto>
       <MetricsGrid items={t.heroMetrics} columns={5} compact />
 
-      <GitHubRepoBadge repo="santifer/career-ops" stars="41.2K" forks="8.5K" lang={lang} />
+      <GitHubRepoBadge repo="santifer/career-ops" stars="41.4K" forks="8.6K" lang={lang} />
 
       <Callout className="bg-accent/10 border-accent/40">{t.tldr}</Callout>
 

@@ -1,12 +1,12 @@
 # Santiago Fernández de Valderrama Aparicio
 
-> Applied AI Operator · Head of Applied AI · Creator of Career-Ops (41.2K+ ⭐)
+> Applied AI Operator · Head of Applied AI · Creator of Career-Ops (41.4K+ ⭐)
 
 ## Manifesto
 
 > Companies use AI to filter candidates. I just gave candidates AI to choose companies.
 
-This is the core thesis behind Career-Ops: while companies deploy AI to reduce inbound candidate volume, candidates had no equivalent tooling to evaluate inbound opportunities. Career-Ops flips the asymmetry — a multi-agent system that scores job offers across 10 dimensions, generates ATS-optimized CVs per posting, and fills forms with Playwright. Built for my own AI job search in early 2026, it evaluated 631 offers and landed me my current Head of Applied AI role. When I stopped needing it, I open-sourced it under MIT. In one week it went viral: 41.2K+ GitHub stars, 8.5K+ forks, articles in French/Chinese/Korean tech blogs, 2,600+ upvotes on Reddit, and a Discord community of 2,300+ builders sharing configs, templates, and adaptations.
+This is the core thesis behind Career-Ops: while companies deploy AI to reduce inbound candidate volume, candidates had no equivalent tooling to evaluate inbound opportunities. Career-Ops flips the asymmetry — a multi-agent system that scores job offers across 10 dimensions, generates ATS-optimized CVs per posting, and fills forms with Playwright. Built for my own AI job search in early 2026, it evaluated 631 offers and landed me my current Head of Applied AI role. When I stopped needing it, I open-sourced it under MIT. In one week it went viral: 41.4K+ GitHub stars, 8.6K+ forks, articles in French/Chinese/Korean tech blogs, 2,600+ upvotes on Reddit, and a Discord community of 2,300+ builders sharing configs, templates, and adaptations.
 
 ## Contact & Availability
 
@@ -25,13 +25,26 @@ This is the core thesis behind Career-Ops: while companies deploy AI to reduce i
 - **daily.dev:** https://app.daily.dev/santifer
 - **dev.to:** https://dev.to/santifer
 
-## Press Coverage
+## Press & Interviews
+
+### Press Coverage
 
 - **Business Insider** (English, 2026-04-28) — *"I built a tool to filter 700 listings for my job search. It got me a position as head of AI."* Author: Jordan Hart. As-told-to first-person essay about building Career-Ops, evaluating 740 job listings, landing 12 interviews, and securing the Head of AI role. URL: https://www.businessinsider.com/how-i-built-tool-filter-job-listings-landed-head-ai-2026-4
 - **Business Insider Deutschland** (German syndication, 2026-04-28) — *"Mein KI-Tool scannt 700 Job-Anzeigen — so half es mir, Karriere zu machen."* URL: https://www.businessinsider.de/karriere/bewerbung/mein-ki-tool-scannt-700-job-anzeigen-so-half-es-mir-karriere-zu-machen/
 - **Diario de Sevilla** (Spanish, 2014-06-19) — Local press coverage of Santifer iRepair early days. URL: https://www.diariodesevilla.es/vivirensevilla/Salir-compras-solucion-expres-telefono_0_817718799.html
 
 Quotable from Business Insider interview: *"Building in public is the new résumé. In the AI era, your side project is your portfolio."* And on why Career-Ops remains free under MIT: *"I didn't feel comfortable charging people who are looking for work because finding a job is a basic human need."*
+
+### Video Interviews
+
+- **Create OS Lounge** (English, 24 min, 2026-04-15) — *"Building Career-Ops to Automate the Job Hunt — Create OS Lounge with Santifer."* Host: Eric (Narrative Pilot / Create OS). Long-form conversation about building Career-Ops, the AI job market, and why the tool remains free. URL: https://www.youtube.com/watch?v=pDkAe5JbREk
+
+Notable quotes from Create OS Lounge interview:
+- *"If I have to choose one word for myself, it's a builder. I love building stuff."*
+- *"The job I got wasn't with Career-ops. It was because I built Career-ops and my portfolio. It's the ultimate proof of work, of scaffolding, that I'm building tools for myself and for my future."*
+- *"When AI takes critical decisions, it's better to have a human in the loop."*
+- *"Why are you going to charge people which are, in theory, the most vulnerable? They need a job. So why are you going to charge them? Building it free was the right approach."*
+- *"We the people are the economy. You are benefiting from AI even if you are not a direct user."*
 
 ## Professional Summary
 
