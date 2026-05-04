@@ -203,7 +203,7 @@ export const translations = {
           tech: ['React 19', 'TypeScript', 'Tailwind', 'Vite', 'Motion', 'Vercel'],
           link: 'github.com/santifer/cv-santiago',
           stars: '526',
-          forks: '201',
+          forks: '202',
         },
         {
           title: 'Self-Healing Chatbot',
@@ -529,7 +529,8 @@ export const translations = {
       ],
     },
     xPost: {
-      hook: 'Built this to find my own job. Open sourced it. 42.3K+ stars in two days.',
+      // HISTORIC: tweet snapshot from viral moment when Garry Tan quoted — 12K stars at that time. Do not auto-update.
+      hook: 'Built this to find my own job. Open sourced it. 12K+ stars in two days.',
       hookLinkPrefix: 'Free: ',
       hookLinkUrl: 'career-ops.org',
       quoteAuthor: 'Garry Tan',
@@ -551,7 +552,7 @@ export const translations = {
     redditPosts: [
       {
         hook: 'Construí un sistema de búsqueda de empleo con Claude Code que puntuó 740+ ofertas y me consiguió trabajo. Acabo de hacerlo open source.',
-        upvotes: '2793',
+        upvotes: '2792',
         comments: '247',
         subreddit: 'r/ClaudeAI',
         cta: 'Leer en Reddit',
@@ -559,7 +560,7 @@ export const translations = {
       },
       {
         hook: 'Automaticé mi búsqueda de empleo con agentes IA — 516 evaluaciones, 66 aplicaciones, zero screening manual.',
-        upvotes: '575',
+        upvotes: '569',
         comments: '359',
         subreddit: 'r/SideProject',
         cta: 'Leer en Reddit',
@@ -567,7 +568,7 @@ export const translations = {
       },
       {
         hook: 'Construí un agente IA con WhatsApp + voz en n8n que gestiona el 90% de la atención al cliente. Vendí el negocio y el comprador lo mantuvo sin mí.',
-        upvotes: '317',
+        upvotes: '322',
         comments: '63',
         subreddit: 'r/n8n',
         cta: 'Leer en Reddit',
@@ -1028,7 +1029,7 @@ export const translations = {
           tech: ['React 19', 'TypeScript', 'Tailwind', 'Vite', 'Motion', 'Vercel'],
           link: 'github.com/santifer/cv-santiago',
           stars: '526',
-          forks: '201',
+          forks: '202',
         },
         {
           title: 'Self-Healing Chatbot',
@@ -1350,7 +1351,8 @@ export const translations = {
       ],
     },
     xPost: {
-      hook: 'Built this to find my own job. Open sourced it. 42.3K+ stars in two days.',
+      // HISTORIC: tweet snapshot from viral moment when Garry Tan quoted — 12K stars at that time. Do not auto-update.
+      hook: 'Built this to find my own job. Open sourced it. 12K+ stars in two days.',
       hookLinkPrefix: 'Free: ',
       hookLinkUrl: 'career-ops.org',
       quoteAuthor: 'Garry Tan',
@@ -1372,7 +1374,7 @@ export const translations = {
     redditPosts: [
       {
         hook: 'I built an AI job search system with Claude Code that scored 740+ offers and landed me a job. Just open sourced it.',
-        upvotes: '2793',
+        upvotes: '2792',
         comments: '247',
         subreddit: 'r/ClaudeAI',
         cta: 'Read on Reddit',
@@ -1380,7 +1382,7 @@ export const translations = {
       },
       {
         hook: 'I automated my job search with AI agents — 516 evaluations, 66 applications, zero manual screening.',
-        upvotes: '575',
+        upvotes: '569',
         comments: '359',
         subreddit: 'r/SideProject',
         cta: 'Read on Reddit',
@@ -1388,7 +1390,7 @@ export const translations = {
       },
       {
         hook: 'I built a WhatsApp + voice AI agent in n8n that handles 90% of customer service. Sold the business, the buyer kept it running without me.',
-        upvotes: '317',
+        upvotes: '322',
         comments: '63',
         subreddit: 'r/n8n',
         cta: 'Read on Reddit',
