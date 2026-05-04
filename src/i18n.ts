@@ -3,13 +3,13 @@ export const seo = {
     title:
       'santifer | Applied AI Operator · Builder of Career-Ops',
     description:
-      'Multi-agent systems builder. Applied AI Operator con 2 case studies en producción. Creador de Career-Ops (42.1K+ ⭐). 16 años llevando IA a producción.',
+      'Multi-agent systems builder. Applied AI Operator con 2 case studies en producción. Creador de Career-Ops (42.3K+ ⭐). 16 años llevando IA a producción.',
   },
   en: {
     title:
       'santifer | Applied AI Operator · Builder of Career-Ops',
     description:
-      'Multi-agent systems builder. Applied AI Operator with 2 production case studies live. Creator of Career-Ops (42.1K+ ⭐). 16 years shipping AI at scale.',
+      'Multi-agent systems builder. Applied AI Operator with 2 production case studies live. Creator of Career-Ops (42.3K+ ⭐). 16 years shipping AI at scale.',
   },
 };
 
@@ -190,7 +190,7 @@ export const translations = {
           tech: ['Claude Code', 'Batch Architecture', 'WebSearch', 'HITL Design'],
           link: 'career-ops.org',
           linkUrl: 'https://career-ops.org?utm_source=santifer.io&utm_medium=projects-grid&utm_campaign=home',
-          stars: '42.1K',
+          stars: '42.3K',
           forks: '8.8K',
           caseStudyUrl: '/career-ops',
           caseStudyLabel: 'Leer: AI Job Search multi-agente',
@@ -202,7 +202,7 @@ export const translations = {
           desc: 'CV interactivo con SDLC aumentado con IA. Construido con **Claudeable**, monitorizado con **Claude Pulse**, animaciones debuggeadas con **Claude Eye**. Prerender SSR, i18n bilingüe y SEO automatizado.',
           tech: ['React 19', 'TypeScript', 'Tailwind', 'Vite', 'Motion', 'Vercel'],
           link: 'github.com/santifer/cv-santiago',
-          stars: '525',
+          stars: '526',
           forks: '201',
         },
         {
@@ -381,7 +381,7 @@ export const translations = {
           badge: '~90% autoservicio',
           github: 'santifer/jacobo-workflows',
           stars: '133',
-          forks: '41',
+          forks: '42',
           desc: 'Voz (ElevenLabs) + WhatsApp (n8n / WATI) + Aircall cloud PBX. Orquestación de sub-agentes especializados vía tool calling.',
           items: [
             {
@@ -529,7 +529,7 @@ export const translations = {
       ],
     },
     xPost: {
-      hook: 'Built this to find my own job. Open sourced it. 42.1K+ stars in two days.',
+      hook: 'Built this to find my own job. Open sourced it. 42.3K+ stars in two days.',
       hookLinkPrefix: 'Free: ',
       hookLinkUrl: 'career-ops.org',
       quoteAuthor: 'Garry Tan',
@@ -544,7 +544,7 @@ export const translations = {
       replies: '101',
       retweets: '493',
       likes: '3.9K',
-      views: '540.8K',
+      views: '541.0K',
       cta: 'Ver en X',
       url: 'https://x.com/santifer/status/2041403685696053741',
     },
@@ -552,14 +552,14 @@ export const translations = {
       {
         hook: 'Construí un sistema de búsqueda de empleo con Claude Code que puntuó 740+ ofertas y me consiguió trabajo. Acabo de hacerlo open source.',
         upvotes: '2793',
-        comments: '246',
+        comments: '247',
         subreddit: 'r/ClaudeAI',
         cta: 'Leer en Reddit',
         url: 'https://www.reddit.com/r/ClaudeAI/comments/1sd2f37/i_built_an_ai_job_search_system_with_claude_code/',
       },
       {
         hook: 'Automaticé mi búsqueda de empleo con agentes IA — 516 evaluaciones, 66 aplicaciones, zero screening manual.',
-        upvotes: '565',
+        upvotes: '575',
         comments: '359',
         subreddit: 'r/SideProject',
         cta: 'Leer en Reddit',
@@ -567,8 +567,8 @@ export const translations = {
       },
       {
         hook: 'Construí un agente IA con WhatsApp + voz en n8n que gestiona el 90% de la atención al cliente. Vendí el negocio y el comprador lo mantuvo sin mí.',
-        upvotes: '321',
-        comments: '62',
+        upvotes: '317',
+        comments: '63',
         subreddit: 'r/n8n',
         cta: 'Leer en Reddit',
         url: 'https://www.reddit.com/r/n8n/comments/1sc3i30/i_built_a_whatsapp_voice_ai_agent_in_n8n_that/',
@@ -779,7 +779,7 @@ export const translations = {
     },
     cta: {
       title: '¿Hablamos?',
-      desc: 'Busco un rol remoto (EU / USA) donde pueda liderar producto, desbloquear equipos con automatización y entregar resultados que se puedan medir.',
+      desc: 'Construyo sistemas multi-agente en producción. Si tienes un problema interesante donde la IA aporta — escríbeme.',
       contact: 'Contactar',
     },
     ui: {
@@ -1015,7 +1015,7 @@ export const translations = {
           tech: ['Claude Code', 'Batch Architecture', 'WebSearch', 'HITL Design'],
           link: 'career-ops.org',
           linkUrl: 'https://career-ops.org?utm_source=santifer.io&utm_medium=projects-grid&utm_campaign=home',
-          stars: '42.1K',
+          stars: '42.3K',
           forks: '8.8K',
           caseStudyUrl: '/career-ops-system',
           caseStudyLabel: 'Case Study: AI Job Search',
@@ -1027,7 +1027,7 @@ export const translations = {
           desc: 'Interactive CV with AI-augmented SDLC. Built with **Claudeable**, monitored with **Claude Pulse**, animations debugged with **Claude Eye**. SSR prerender, bilingual i18n, and automated SEO.',
           tech: ['React 19', 'TypeScript', 'Tailwind', 'Vite', 'Motion', 'Vercel'],
           link: 'github.com/santifer/cv-santiago',
-          stars: '525',
+          stars: '526',
           forks: '201',
         },
         {
@@ -1202,7 +1202,7 @@ export const translations = {
           badge: '~90% self-service',
           github: 'santifer/jacobo-workflows',
           stars: '133',
-          forks: '41',
+          forks: '42',
           desc: 'Voice (ElevenLabs) + WhatsApp (n8n / WATI) + Aircall cloud PBX. Sub-agent orchestration via tool calling.',
           items: [
             {
@@ -1350,7 +1350,7 @@ export const translations = {
       ],
     },
     xPost: {
-      hook: 'Built this to find my own job. Open sourced it. 42.1K+ stars in two days.',
+      hook: 'Built this to find my own job. Open sourced it. 42.3K+ stars in two days.',
       hookLinkPrefix: 'Free: ',
       hookLinkUrl: 'career-ops.org',
       quoteAuthor: 'Garry Tan',
@@ -1365,7 +1365,7 @@ export const translations = {
       replies: '101',
       retweets: '493',
       likes: '3.9K',
-      views: '540.8K',
+      views: '541.0K',
       cta: 'View on X',
       url: 'https://x.com/santifer/status/2041403685696053741',
     },
@@ -1373,14 +1373,14 @@ export const translations = {
       {
         hook: 'I built an AI job search system with Claude Code that scored 740+ offers and landed me a job. Just open sourced it.',
         upvotes: '2793',
-        comments: '246',
+        comments: '247',
         subreddit: 'r/ClaudeAI',
         cta: 'Read on Reddit',
         url: 'https://www.reddit.com/r/ClaudeAI/comments/1sd2f37/i_built_an_ai_job_search_system_with_claude_code/',
       },
       {
         hook: 'I automated my job search with AI agents — 516 evaluations, 66 applications, zero manual screening.',
-        upvotes: '565',
+        upvotes: '575',
         comments: '359',
         subreddit: 'r/SideProject',
         cta: 'Read on Reddit',
@@ -1388,8 +1388,8 @@ export const translations = {
       },
       {
         hook: 'I built a WhatsApp + voice AI agent in n8n that handles 90% of customer service. Sold the business, the buyer kept it running without me.',
-        upvotes: '321',
-        comments: '62',
+        upvotes: '317',
+        comments: '63',
         subreddit: 'r/n8n',
         cta: 'Read on Reddit',
         url: 'https://www.reddit.com/r/n8n/comments/1sc3i30/i_built_a_whatsapp_voice_ai_agent_in_n8n_that/',
@@ -1600,7 +1600,7 @@ export const translations = {
     },
     cta: {
       title: "Let's talk",
-      desc: 'Looking for a remote role (EU / USA) where I can own product delivery, unblock teams through automation, and ship results you can measure.',
+      desc: 'I build production multi-agent systems. If you have an interesting problem where AI is the right tool — let us talk.',
       contact: 'Contact',
     },
     ui: {
