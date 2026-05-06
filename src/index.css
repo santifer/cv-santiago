@@ -666,3 +666,22 @@ section[id], footer[id] {
   font-family: "SF Mono", "Fira Code", "JetBrains Mono", monospace;
   letter-spacing: 0.03em;
 }
+
+/* Press logos — monochrome theme-aware
+   Light mode: forced dark via brightness(0).
+   Dark mode: also inverted to white. */
+.press-logo {
+  filter: brightness(0);
+}
+.dark .press-logo {
+  filter: brightness(0) invert(1);
+}
+
+/* Press features caption — clearly subordinate to brand logos.
+   Logos use opacity 0.55; caption uses opacity 0.18 → ~3x less prominent. */
+.press-caption {
+  color: rgba(0, 0, 0, 0.32);
+}
+.dark .press-caption {
+  color: rgba(255, 255, 255, 0.32);
+}

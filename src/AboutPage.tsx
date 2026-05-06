@@ -203,7 +203,7 @@ export default function AboutPage({ lang = 'es' }: { lang?: AboutLang }) {
               key={item.href}
               href={item.href}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer nofollow"
               className="flex items-center gap-3 p-3 rounded-lg bg-card border border-border hover:border-primary/30 transition-all group"
             >
               <div>

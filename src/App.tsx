@@ -5,6 +5,7 @@ import { Mail, ExternalLink, Briefcase, GraduationCap, Award, Code, Users, Globe
 import { translations, seo, type Lang } from './i18n'
 import { useHomeSeo } from './articles/use-article-seo'
 import { getTechIcon } from './tech-icons'
+import { PressFeatures } from './PressFeatures'
 
 
 function LinkedInLogo({ className = "w-4 h-4" }: { className?: string }) {
@@ -1461,7 +1462,7 @@ function App() {
         <div className="absolute top-0 right-[max(0px,calc(50%-40rem))] w-[600px] h-[600px] rounded-full blur-3xl -translate-y-1/3 translate-x-1/3 hidden sm:block animate-[hero-glow_8s_ease-in-out_infinite]" style={{ backgroundColor: 'hsl(var(--hero-orb-primary))' }} />
         <div className="absolute bottom-0 left-[max(0px,calc(50%-40rem))] w-[550px] h-[550px] rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 hidden sm:block animate-[hero-glow_11s_ease-in-out_infinite_reverse]" style={{ backgroundColor: 'hsl(var(--hero-orb-accent))' }} />
 
-        <div className="relative max-w-5xl mx-auto px-6 py-20 md:py-32">
+        <div className="relative max-w-5xl mx-auto px-6 pt-20 pb-12 md:pt-32 md:pb-16">
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
             {/* Photo */}
             <motion.div
@@ -1539,14 +1540,16 @@ function App() {
                   <Github className="w-3.5 h-3.5" />
                   <span>career-ops</span>
                   <Star className="w-3 h-3 text-yellow-500" />
-                  {/* hero-stats:career-ops:stars */}<span className="font-medium">42.3K</span>
+                  {/* hero-stats:career-ops:stars */}<span className="font-medium">42.9K</span>
                   <GitFork className="w-3 h-3" />
-                  {/* hero-stats:career-ops:forks */}<span>8.8K</span>
+                  {/* hero-stats:career-ops:forks */}<span>9.0K</span>
                 </Link>
               </div>
 
             </motion.div>
           </div>
+
+          <PressFeatures lang={lang} />
 
         </div>
       </header>
