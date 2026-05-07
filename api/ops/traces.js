@@ -1,4 +1,4 @@
-import { validateOpsAuth, langfuseAuth, langfuseBaseUrl } from '../_shared/ops-auth.js'
+import { validateOpsAuth, langfuseAuth, langfuseBaseUrl, corsHeaders } from '../_shared/ops-auth.js'
 
 export const config = { runtime: 'edge' }
 
@@ -141,6 +141,6 @@ function summarizeInput(input) {
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
-    headers: { 'Content-Type': 'application/json' },
+    headers: { ...corsHeaders(), 'Content-Type': 'application/json' },
   })
 }

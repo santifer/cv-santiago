@@ -1,4 +1,4 @@
-import { validateOpsAuth, langfuseAuth, langfuseBaseUrl } from '../_shared/ops-auth.js'
+import { validateOpsAuth, langfuseAuth, langfuseBaseUrl, corsHeaders } from '../_shared/ops-auth.js'
 import evalResults from './_eval-results.js'
 
 export const config = { runtime: 'edge' }
@@ -183,7 +183,7 @@ export default async function handler(req) {
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
-    headers: { 'Content-Type': 'application/json' },
+    headers: { ...corsHeaders(), 'Content-Type': 'application/json' },
   })
 }
 

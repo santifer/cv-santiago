@@ -1,171 +1,23 @@
 {
-  "name": "rag_quality",
-  "description": "Verifica calidad del RAG: retrieval, tool use, citación, alucinaciones y disambiguación",
+  "name": "rag",
+  "description": "Verifies Farid-only RAG behavior for profile, projects, and field notes.",
   "tests": [
     {
-      "id": "retrieval-jacobo-subagents",
-      "description": "Debe usar RAG y traer info de Jacobo sobre sub-agentes",
-      "input": "What sub-agents does Jacobo use and what model does each one run on?",
+      "id": "wiener-tickets-details",
+      "description": "Retrieves Farid project context for Wiener Tickets.",
+      "input": "What is Wiener Tickets and what is Farid trying to prove with it?",
       "lang": "en",
       "assertions": [
-        { "type": "rag_used" },
-        { "type": "source_includes", "value": "jacobo" },
-        { "type": "llm_judge", "criteria": "The response must mention at least 2 specific sub-agents or specialized components of Jacobo (e.g., quotes/presupuestos, bookings/citas, orders/pedidos, router, calculator, HITL handoff). Generic answers like 'it has several sub-agents' without naming them fail." }
+        { "type": "contains_any", "values": ["ticket classification", "MLOps", "pipeline", "reproducible"] }
       ]
     },
     {
-      "id": "retrieval-pseo-pipeline",
-      "description": "Debe usar RAG para detalles del pipeline SEO",
-      "input": "How does the SEO decision engine determine which pages to index?",
+      "id": "mlops-field-note",
+      "description": "Retrieves the Farid field note lesson.",
+      "input": "What is Farid's MLOps Field Notes article about?",
       "lang": "en",
       "assertions": [
-        { "type": "rag_used" },
-        { "type": "source_includes", "value": "programmatic-seo" },
-        { "type": "contains_any", "values": ["volume", "volumen", "indexable", "crawl", "DataForSEO"] }
-      ]
-    },
-    {
-      "id": "retrieval-bos-erp",
-      "description": "Debe usar RAG para detalles del ERP que solo están en el artículo",
-      "input": "¿Qué validaciones automáticas tiene el ERP del Business OS?",
-      "lang": "es",
-      "assertions": [
-        { "type": "rag_used" },
-        { "type": "source_includes", "value": "business-os" }
-      ]
-    },
-    {
-      "id": "retrieval-n8n-workflows",
-      "description": "Debe usar RAG para detalles del workflow Automatable Friday",
-      "input": "How does the Automatable Friday n8n workflow work step by step?",
-      "lang": "en",
-      "assertions": [
-        { "type": "rag_used" },
-        { "type": "source_includes", "value": "n8n-for-pms" },
-        { "type": "contains_any", "values": ["Friday", "Slack", "sprint", "schedule", "Airtable"] }
-      ]
-    },
-    {
-      "id": "no-rag-greeting",
-      "description": "No debe usar RAG para un saludo",
-      "input": "Hola",
-      "lang": "es",
-      "assertions": [
-        { "type": "rag_not_used" }
-      ]
-    },
-    {
-      "id": "no-rag-contact",
-      "description": "No debe usar RAG para preguntas de contacto",
-      "input": "What's your email?",
-      "lang": "en",
-      "assertions": [
-        { "type": "rag_not_used" },
-        { "type": "contains_any", "values": ["hi@santifer.io", "santifer.io"] }
-      ]
-    },
-    {
-      "id": "rag-architecture-detail",
-      "description": "Debe usar RAG cuando piden detalles de arquitectura",
-      "input": "Explain the architecture of Jacobo's voice AI system",
-      "lang": "en",
-      "assertions": [
-        { "type": "rag_used" },
-        { "type": "source_includes", "value": "jacobo" },
-        { "type": "contains_any", "values": ["ElevenLabs", "voice", "voz", "tool"] }
-      ]
-    },
-    {
-      "id": "citation-quotes-model",
-      "description": "Debe citar el modelo correcto del sub-agente de presupuestos",
-      "input": "¿Qué modelo de LLM usa el sub-agente de presupuestos de Jacobo?",
-      "lang": "es",
-      "assertions": [
-        { "type": "rag_used" },
-        { "type": "contains_any", "values": ["GPT-4.1 mini", "gpt-4.1-mini", "GPT-4.1 Mini", "4.1 mini"] },
-        { "type": "not_contains", "value": "GPT-4o" }
-      ]
-    },
-    {
-      "id": "citation-bos-crm",
-      "description": "Debe usar RAG para detalles del CRM (gamificación) que solo están en el artículo",
-      "input": "How does the lead scoring gamification work in your CRM?",
-      "lang": "en",
-      "assertions": [
-        { "type": "rag_used" },
-        { "type": "source_includes", "value": "business-os" },
-        { "type": "contains_any", "values": ["Bronze", "Silver", "Gold", "Diamond", "Platinum", "level", "tier", "gamif"] }
-      ]
-    },
-    {
-      "id": "no-hallucinate-jacobo-rag",
-      "description": "NO debe decir que Jacobo usa RAG contra Airtable — usa tool calling",
-      "input": "Does Jacobo use RAG to look up prices in Airtable?",
-      "lang": "en",
-      "assertions": [
-        { "type": "llm_judge", "criteria": "The response must correctly clarify that Jacobo uses tool calling (direct API/webhook calls to Airtable), NOT RAG for price lookups. It should not claim Jacobo performs RAG against Airtable for prices. Saying 'no, it uses tool calling' is correct. Saying 'yes, it uses RAG against Airtable' is incorrect. It's OK if the chatbot answers from its own knowledge without using RAG search." }
-      ]
-    },
-    {
-      "id": "no-hallucinate-vector-db",
-      "description": "NO debe inventar que Jacobo usa vector search para precios",
-      "input": "¿Jacobo usa búsqueda vectorial para encontrar precios?",
-      "lang": "es",
-      "assertions": [
-        { "type": "rag_used" },
-        { "type": "llm_judge", "criteria": "The response must clarify that Jacobo does NOT use vector search for prices. It uses tool calling (direct webhook/API lookups to Airtable). The response should correct the misconception, not confirm it. Saying 'no, it uses tool calling directo' is correct. Saying 'yes, it uses vector search' is incorrect." }
-      ]
-    },
-    {
-      "id": "cross-article-jacobo-vs-bos",
-      "description": "Debe usar RAG y distinguir entre Jacobo y Business OS",
-      "input": "What role does Airtable play in both Jacobo and the Business OS?",
-      "lang": "en",
-      "assertions": [
-        { "type": "rag_used" },
-        { "type": "llm_judge", "criteria": "The response must reference BOTH Jacobo (the AI agent) and the Business OS (the Airtable system) and explain how Airtable relates to each. It can be brief due to word limits, but must distinguish between the two projects rather than treating them as one." }
-      ]
-    },
-    {
-      "id": "faithfulness-jacobo-no-invent",
-      "description": "NO debe inventar que Jacobo usa vector DB — usa Airtable + tool calling",
-      "input": "Does Jacobo store embeddings in a vector database for retrieval?",
-      "lang": "en",
-      "assertions": [
-        { "type": "rag_used" },
-        { "type": "llm_judge", "criteria": "The response must NOT claim Jacobo uses a vector database or embeddings for retrieval. Jacobo uses tool calling (direct API/webhook calls to Airtable), not vector search or RAG. The response should clarify this distinction. Saying 'no, it uses tool calling' is correct. Claiming it uses Pinecone, Weaviate, pgvector, or any vector DB is incorrect." }
-      ]
-    },
-    {
-      "id": "faithfulness-bos-no-invent-metrics",
-      "description": "NO debe inventar ROI % que no está en el artículo",
-      "input": "What was the exact ROI percentage of implementing the Business OS?",
-      "lang": "en",
-      "assertions": [
-        { "type": "rag_used" },
-        { "type": "llm_judge", "criteria": "The response must NOT invent a specific ROI percentage (like '300% ROI' or '5x return'). If the article doesn't contain an exact ROI figure, the response should either share the metrics that ARE available (hours saved, number of bases, automations) or acknowledge it doesn't have that exact number. Fabricating a precise percentage is a faithfulness failure." }
-      ]
-    },
-    {
-      "id": "retrieval-relevance-n8n-not-jacobo",
-      "description": "Pregunta sobre n8n debe traer artículo n8n, no Jacobo",
-      "input": "Tell me about the Automatable Friday workflow and how it uses n8n",
-      "lang": "en",
-      "assertions": [
-        { "type": "rag_used" },
-        { "type": "source_includes", "value": "n8n-for-pms" },
-        { "type": "contains_any", "values": ["Friday", "Slack", "n8n", "sprint", "automation"] }
-      ]
-    },
-    {
-      "id": "retrieval-relevance-pseo-specific",
-      "description": "Pregunta sobre pSEO debe traer artículo pSEO",
-      "input": "¿Cómo funciona el pipeline de generación de contenido en la web programática?",
-      "lang": "es",
-      "assertions": [
-        { "type": "rag_used" },
-        { "type": "source_includes", "value": "programmatic-seo" },
-        { "type": "source_not_includes", "value": "jacobo" }
+        { "type": "contains_any", "values": ["observable", "repeatable", "reproducible", "over-engineering"] }
       ]
     }
   ]

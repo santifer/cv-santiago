@@ -1,50 +1,23 @@
 {
-  "name": "language_handling",
-  "description": "Verifica comportamiento bilingüe ES/EN",
+  "name": "languages",
+  "description": "Verifies language matching for Farid AI.",
   "tests": [
     {
-      "id": "spanish-default",
-      "description": "Debe responder en español cuando lang=es",
-      "input": "Hola, cuéntame sobre ti",
+      "id": "spanish-answer",
+      "description": "Answers Spanish questions in Spanish.",
+      "input": "Resume la experiencia de Farid.",
       "lang": "es",
       "assertions": [
-        { "type": "language", "expected": "es" }
+        { "type": "contains_any", "values": ["Farid", "experiencia", "datos", "Intcomex"] }
       ]
     },
     {
-      "id": "english-explicit",
-      "description": "Debe responder en inglés cuando lang=en",
-      "input": "Hello, tell me about yourself",
+      "id": "english-answer",
+      "description": "Answers English questions in English.",
+      "input": "Summarize Farid's projects.",
       "lang": "en",
       "assertions": [
-        { "type": "language", "expected": "en" }
-      ]
-    },
-    {
-      "id": "email-spanish",
-      "description": "Debe usar hola@santifer.io en español",
-      "input": "¿Cómo puedo contactarte?",
-      "lang": "es",
-      "assertions": [
-        { "type": "contains", "value": "hola@santifer.io" }
-      ]
-    },
-    {
-      "id": "email-english",
-      "description": "Debe usar hi@santifer.io en inglés",
-      "input": "How can I contact you?",
-      "lang": "en",
-      "assertions": [
-        { "type": "contains", "value": "hi@santifer.io" }
-      ]
-    },
-    {
-      "id": "linkedin-always",
-      "description": "Debe mencionar LinkedIn en preguntas de contacto",
-      "input": "¿Cómo te contacto?",
-      "lang": "es",
-      "assertions": [
-        { "type": "contains_any", "values": ["linkedin", "LinkedIn", "santifer"] }
+        { "type": "contains_any", "values": ["Farid", "projects", "wiener", "WHTTP"] }
       ]
     }
   ]

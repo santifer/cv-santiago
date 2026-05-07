@@ -14,6 +14,14 @@ const client = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 })
 
+function corsHeaders() {
+  return {
+    'Access-Control-Allow-Origin': process.env.CORS_ORIGIN || 'https://sayagos.tech',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+  }
+}
+
 let langfuseClient = null
 function getLangfuse() {
   if (!langfuseClient && process.env.LANGFUSE_SECRET_KEY) {
@@ -30,7 +38,7 @@ function getLangfuse() {
 // Claude reasoning layer — turns raw RAG chunks into a verified answer
 // ---------------------------------------------------------------------------
 
-const VOICE_OVERRIDE = `Respuesta para conversación hablada. Max 2-3 frases. Sin markdown ni links. Lenguaje natural hablado. Sé preciso con datos del contexto — nunca inventes. SIEMPRE habla en PRIMERA PERSONA como Santiago — nunca en tercera persona ("Santiago hizo..."), sino "Yo hice...", "Construí...", "Mi proyecto...".`
+const VOICE_OVERRIDE = `Respuesta para conversación hablada. Max 2-3 frases. Sin markdown ni links. Lenguaje natural hablado. Sé preciso con datos del contexto — nunca inventes. SIEMPRE habla en PRIMERA PERSONA como Farid — nunca en tercera persona ("Farid hizo..."), sino "Yo hice...", "Construí...", "Mi proyecto...".`
 
 async function reasonWithClaude(query, formattedChunks, span, langfuse) {
   const t0 = Date.now()
@@ -98,8 +106,12 @@ async function reasonWithClaude(query, formattedChunks, span, langfuse) {
 // ---------------------------------------------------------------------------
 
 export default async function handler(req) {
+  if (req.method === 'OPTIONS') {
+    return new Response(null, { status: 204, headers: corsHeaders() })
+  }
+
   if (req.method !== 'POST') {
-    return new Response('Method not allowed', { status: 405 })
+    return new Response('Method not allowed', { status: 405, headers: corsHeaders() })
   }
 
   try {
@@ -108,14 +120,14 @@ export default async function handler(req) {
     if (!traceId) {
       return new Response(JSON.stringify({ error: 'Missing traceId' }), {
         status: 401,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { ...corsHeaders(), 'Content-Type': 'application/json' },
       })
     }
 
     if (!query) {
       return new Response(JSON.stringify({ error: 'Missing query' }), {
         status: 400,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { ...corsHeaders(), 'Content-Type': 'application/json' },
       })
     }
 
@@ -180,7 +192,7 @@ export default async function handler(req) {
       if (langfuse) await langfuse.flushAsync()
 
       return new Response(JSON.stringify({ context, sources: filteredSources, currentPage }), {
-        headers: { 'Content-Type': 'application/json' },
+        headers: { ...corsHeaders(), 'Content-Type': 'application/json' },
       })
     } catch (err) {
       ragSpan?.end({ metadata: { error: err.message } })
@@ -191,14 +203,14 @@ export default async function handler(req) {
         context: 'Search unavailable — answer from your general knowledge.',
         sources: [],
       }), {
-        headers: { 'Content-Type': 'application/json' },
+        headers: { ...corsHeaders(), 'Content-Type': 'application/json' },
       })
     }
   } catch (error) {
     console.error('RAG search error:', error)
     return new Response(JSON.stringify({ error: 'Internal server error' }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { ...corsHeaders(), 'Content-Type': 'application/json' },
     })
   }
 }

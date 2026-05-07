@@ -1,0 +1,221 @@
+/* Brand Theme Module — Farid Sayago visual system and mobile primitives. */
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+.farid-shell {
+  isolation: isolate;
+}
+
+.farid-navbar {
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+}
+
+.farid-navbar-inner {
+  position: relative;
+}
+
+.farid-menu-toggle {
+  display: none;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  place-items: center;
+  border: 1px solid var(--farid-line);
+  border-radius: 999px;
+  background: rgba(9, 13, 21, 0.92);
+  color: var(--farid-ink);
+  font-family: var(--farid-mono);
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.farid-mobile-menu {
+  position: fixed;
+  top: calc(4.5rem + env(safe-area-inset-top, 0px));
+  left: 1rem;
+  right: 1rem;
+  z-index: 45;
+  transform: translateY(-150%);
+  transition: transform 260ms cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid var(--farid-line);
+  border-radius: 1.25rem;
+  background: rgba(9, 13, 21, 0.96);
+  box-shadow: 0 32px 100px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  padding: 1rem;
+}
+
+.farid-mobile-menu.open {
+  transform: translateY(0);
+}
+
+.farid-mobile-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.farid-mobile-menu li + li {
+  border-top: 1px solid var(--farid-line);
+}
+
+.farid-mobile-menu a {
+  display: block;
+  padding: 1rem;
+  color: var(--farid-muted-strong);
+  text-decoration: none;
+}
+
+.farid-mobile-menu a:hover,
+.farid-mobile-menu a:focus-visible {
+  color: var(--farid-ink);
+}
+
+.farid-mobile-contact {
+  margin-top: 1rem;
+  border: 1px solid rgba(63, 124, 255, 0.5);
+  border-radius: 0.9rem;
+  background: var(--farid-blue-soft);
+  color: var(--farid-blue) !important;
+  font-family: var(--farid-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.farid-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 44;
+  border: 0;
+  background: rgba(0, 0, 0, 0.45);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.farid-button-primary:hover,
+.farid-button-secondary:hover,
+.farid-project-card:hover,
+.farid-skill-card:hover,
+.farid-experience-card:hover,
+.farid-note-card:hover {
+  border-color: var(--farid-line-strong);
+  transform: translateY(-2px);
+}
+
+.farid-contact-form input:focus-visible,
+.farid-contact-form textarea:focus-visible,
+.farid-button-primary:focus-visible,
+.farid-button-secondary:focus-visible,
+.terminal-link:focus-visible,
+.farid-navbar a:focus-visible,
+.farid-menu-toggle:focus-visible {
+  outline: 2px solid var(--farid-blue);
+  outline-offset: 3px;
+}
+
+.farid-contact-form input,
+.farid-contact-form textarea {
+  outline: none;
+}
+
+.farid-article-hero-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 2rem 0 0;
+  border: 1px solid var(--farid-line);
+  border-radius: 1.25rem;
+  background: rgba(9, 13, 21, 0.72);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
+}
+
+@supports (min-height: 100svh) {
+  .farid-hero {
+    min-height: 100svh;
+  }
+}
+
+@media (max-width: 980px) {
+  .farid-navbar-inner {
+    grid-template-columns: 1fr auto;
+  }
+
+  .farid-desktop-nav,
+  .farid-nav-meta {
+    display: none !important;
+  }
+
+  .farid-menu-toggle {
+    display: grid;
+  }
+
+  .farid-hero {
+    min-height: auto;
+    padding-top: calc(7rem + env(safe-area-inset-top, 0px));
+  }
+
+  .farid-hero-description {
+    border-left: 1px solid var(--farid-line);
+    padding-left: 1rem;
+  }
+
+  .terminal-bar,
+  .terminal-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .farid-actions {
+    flex-direction: column;
+  }
+
+  .farid-button-primary,
+  .farid-button-secondary {
+    width: 100%;
+    min-height: 3.5rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .farid-hero-title {
+    font-size: clamp(3.25rem, 17vw, 4.75rem);
+  }
+
+  .farid-section {
+    padding-block: 4.5rem;
+  }
+
+  .farid-orb {
+    min-height: 240px;
+  }
+
+  .farid-orb span {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .farid-card-meta,
+  .farid-tags span,
+  .terminal-link {
+    letter-spacing: 0.08em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

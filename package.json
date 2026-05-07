@@ -1,5 +1,5 @@
 {
-  "name": "cv-santiago",
+  "name": "farid-portfolio",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -8,7 +8,8 @@
     "rag:export": "npx tsx --tsconfig tsconfig.app.json scripts/export-chunks.ts",
     "rag:ingest": "npx tsx --tsconfig tsconfig.app.json scripts/ingest-rag.ts",
     "rag:sync": "npm run rag:export && npm run rag:ingest",
-    "build": "npm run rag:sync && npm run prompt:sync && npx tsx --tsconfig tsconfig.app.json scripts/embed-evals.ts && npx tsx --tsconfig tsconfig.app.json scripts/update-reddit-stats.ts && npx tsx --tsconfig tsconfig.app.json scripts/update-github-stats.ts && npx tsx --tsconfig tsconfig.app.json scripts/update-twitter-stats.ts && tsc -b && vite build && npx tsx --tsconfig tsconfig.app.json scripts/generate-sitemap.ts && npx tsx --tsconfig tsconfig.app.json scripts/validate-articles.ts && npx tsx --tsconfig tsconfig.app.json scripts/validate-llms-txt.ts && npx tsx --tsconfig tsconfig.app.json scripts/prerender.tsx && npx tsx --tsconfig tsconfig.app.json scripts/validate-prerender.ts && npx tsx --tsconfig tsconfig.app.json scripts/indexnow-ping.ts",
+    "build": "tsc -b && vite build",
+    "build:full": "npm run rag:sync && npm run prompt:sync && npx tsx --tsconfig tsconfig.app.json scripts/embed-evals.ts && tsc -b && vite build && npx tsx --tsconfig tsconfig.app.json scripts/generate-sitemap.ts && npx tsx --tsconfig tsconfig.app.json scripts/validate-llms-txt.ts && npx tsx --tsconfig tsconfig.app.json scripts/prerender.tsx && npx tsx --tsconfig tsconfig.app.json scripts/validate-prerender.ts",
     "validate-llms-txt": "npx tsx --tsconfig tsconfig.app.json scripts/validate-llms-txt.ts",
     "validate-articles": "npx tsx --tsconfig tsconfig.app.json scripts/validate-articles.ts",
     "validate-articles:fix": "npx tsx --tsconfig tsconfig.app.json scripts/validate-articles.ts --fix",
@@ -27,6 +28,7 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.71.2",
+    "@emailjs/browser": "^4.4.1",
     "@supabase/supabase-js": "^2.99.1",
     "@vercel/analytics": "^1.6.1",
     "@vercel/functions": "^3.3.6",

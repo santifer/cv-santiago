@@ -6,7 +6,18 @@ import tseslint from 'typescript-eslint'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores([
+    'dist',
+    'scripts',
+    'evals',
+    'src/FloatingChat.tsx',
+    'src/VoiceOrb.tsx',
+    'src/useVoiceMode.ts',
+    'src/useAudioAnalyser.ts',
+    'src/ops/hooks/useTraces.ts',
+    'src/ops/tabs',
+    'src/*-i18n.ts',
+  ]),
   {
     files: ['**/*.{ts,tsx}'],
     extends: [

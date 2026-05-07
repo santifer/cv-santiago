@@ -3,19 +3,13 @@
     {
       "source": "/assets/(.*)",
       "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
     },
     {
       "source": "/fonts/(.*)",
       "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
     },
     {
@@ -23,73 +17,27 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; media-src 'self' data:; script-src 'self' 'unsafe-inline' https://vercel.live; style-src 'self' 'unsafe-inline' https://vercel.live; font-src 'self' https://vercel.live; img-src 'self' data: https:; connect-src 'self' https://vercel.live https://*.pusher.com wss://*.pusher.com https://va.vercel-scripts.com https://vitals.vercel-insights.com wss://api.openai.com https://api.openai.com; frame-src 'self' https://vercel.live https://player.mux.com https://www.youtube.com; frame-ancestors 'self'; form-action 'self'; base-uri 'self'; object-src 'none'"
+          "value": "default-src 'self'; media-src 'self' data:; script-src 'self' 'unsafe-inline' https://vercel.live; style-src 'self' 'unsafe-inline' https://vercel.live; font-src 'self' https://vercel.live; img-src 'self' data: https:; connect-src 'self' https://vercel.live https://*.pusher.com wss://*.pusher.com https://va.vercel-scripts.com https://vitals.vercel-insights.com https://api.sayagos.tech wss://api.openai.com https://api.openai.com; frame-src 'self' https://vercel.live; frame-ancestors 'self'; form-action 'self'; base-uri 'self'; object-src 'none'"
         },
-        {
-          "key": "Strict-Transport-Security",
-          "value": "max-age=63072000; includeSubDomains; preload"
-        },
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "Referrer-Policy",
-          "value": "strict-origin-when-cross-origin"
-        },
-        {
-          "key": "Permissions-Policy",
-          "value": "camera=(), microphone=(self), geolocation=()"
-        },
-        {
-          "key": "X-Open-To",
-          "value": "interesting-problems"
-        },
-        {
-          "key": "X-Built-With",
-          "value": "Claude Code"
-        },
-        {
-          "key": "X-Evals",
-          "value": "71"
-        },
-        {
-          "key": "X-Resume",
-          "value": "/llms.txt"
-        }
+        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(self), geolocation=()" },
+        { "key": "X-Open-To", "value": "interesting-problems" },
+        { "key": "X-Resume", "value": "/llms.txt" }
       ]
     }
   ],
   "redirects": [
-    { "source": "/jacobo", "destination": "/agente-ia-jacobo", "permanent": true },
     { "source": "/en/", "destination": "/en", "permanent": true },
     { "source": "/:path+/", "destination": "/:path+", "permanent": true }
   ],
   "rewrites": [
     { "source": "/en", "destination": "/en/index.html" },
-    { "source": "/n8n-para-pms", "destination": "/n8n-para-pms/index.html" },
-    { "source": "/n8n-for-pms", "destination": "/n8n-for-pms/index.html" },
-    { "source": "/agente-ia-jacobo", "destination": "/agente-ia-jacobo/index.html" },
-    { "source": "/ai-agent-jacobo", "destination": "/ai-agent-jacobo/index.html" },
-    { "source": "/business-os-para-airtable", "destination": "/business-os-para-airtable/index.html" },
-    { "source": "/business-os-for-airtable", "destination": "/business-os-for-airtable/index.html" },
-    { "source": "/seo-programatico", "destination": "/seo-programatico/index.html" },
-    { "source": "/programmatic-seo", "destination": "/programmatic-seo/index.html" },
-    { "source": "/santifer-irepair", "destination": "/santifer-irepair/index.html" },
-    { "source": "/santifer-irepair-founder", "destination": "/santifer-irepair-founder/index.html" },
-    { "source": "/chatbot-que-se-cura-solo", "destination": "/chatbot-que-se-cura-solo/index.html" },
-    { "source": "/self-healing-chatbot", "destination": "/self-healing-chatbot/index.html" },
-    { "source": "/career-ops", "destination": "/career-ops/index.html" },
-    { "source": "/career-ops-system", "destination": "/career-ops-system/index.html" },
-    { "source": "/sobre-mi", "destination": "/index.html" },
-    { "source": "/about", "destination": "/index.html" },
-    { "source": "/privacidad", "destination": "/index.html" },
-    { "source": "/privacy", "destination": "/index.html" }
+    { "source": "/blog/mlops-field-notes", "destination": "/blog/mlops-field-notes/index.html" },
+    { "source": "/ops", "destination": "/index.html" }
   ],
   "crons": [
-    {
-      "path": "/api/cron/evaluate",
-      "schedule": "0 8 * * *"
-    }
+    { "path": "/api/cron/evaluate", "schedule": "0 8 * * *" }
   ]
 }

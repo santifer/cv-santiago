@@ -1,24 +1,8 @@
 /* TEAM */
-Builder: Santiago Fernandez de Valderrama Aparicio
-Role: AI Product Manager · Solutions Architect · Forward Deployed Engineer
-Contact: hi@santifer.io
-Site: https://santifer.io
-Location: Seville, Spain
-LinkedIn: https://linkedin.com/in/santifer
-GitHub: https://github.com/santifer
-
-/* THANKS */
-AI Pair: Claude Code (Anthropic)
+Owner: Farid Sayago Villamizar
+Site: https://sayagos.tech
+GitHub: https://github.com/faridsz0605
+LinkedIn: https://www.linkedin.com/in/faridsayago/
 
 /* SITE */
-Stack: React 19, TypeScript, Vite, Tailwind CSS, Motion
-AI: Claude API (claude-sonnet-4-6), streaming via Vercel Edge
-Quality: 55+ evals, 6-layer security, Langfuse observability, closed-loop quality
-Hosting: Vercel
-Standards: llms.txt, security.txt, JSON-LD, Open Graph
-
-/* CRAFT */
-Performance: Lighthouse 100, pre-rendered SSR, critical CSS inlining
-Security: CSP, input sanitization, prompt injection defense, rate limiting
-Accessibility: Semantic HTML, ARIA labels, keyboard navigation
-SEO: Programmatic meta tags, structured data, sitemap, hreflang
+Stack: React, TypeScript, Vite, Tailwind, Claude, OpenAI Realtime, Supabase, Langfuse

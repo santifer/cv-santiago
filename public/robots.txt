@@ -1,14 +1,6 @@
-# Most bots crawl. The best ones read llms.txt → /llms.txt
-#
-# Built by Santiago Fernández — hi@santifer.io
-# Stack: React 19 · Claude API · Vercel Edge · 71 evals · 6-layer defense · voice mode
-
 User-agent: *
 Allow: /
-Disallow: /api/
-Disallow: /ops
 
-# Crawlers IA (GEO)
 User-agent: GPTBot
 Allow: /
 
@@ -24,7 +16,4 @@ Allow: /
 User-agent: OAI-SearchBot
 Allow: /
 
-User-agent: Google-Extended
-Allow: /
-
-Sitemap: https://santifer.io/sitemap.xml
+Sitemap: https://sayagos.tech/sitemap.xml

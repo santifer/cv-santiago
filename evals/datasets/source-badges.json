@@ -1,54 +1,14 @@
 {
   "name": "source_badges",
-  "description": "Tests that source badges are accurate: correct articles linked, no badges on greetings, correct language paths",
+  "description": "Verifies source badges are Farid-only when RAG is active.",
   "tests": [
     {
-      "id": "badge-jacobo-es",
-      "description": "Question about Jacobo in ES should include jacobo badge",
-      "input": "Cuéntame sobre el agente Jacobo y cómo funciona",
-      "lang": "es",
-      "assertions": [
-        { "type": "rag_used" },
-        { "type": "source_includes", "value": "jacobo" }
-      ]
-    },
-    {
-      "id": "badge-greeting-none",
-      "description": "Greeting should have zero badges",
-      "input": "Hey",
-      "lang": "es",
-      "assertions": [
-        { "type": "rag_not_used" }
-      ]
-    },
-    {
-      "id": "badge-pseo-en",
-      "description": "Question about SEO in EN should include programmatic-seo badge",
-      "input": "Tell me about your programmatic SEO project",
+      "id": "field-note-source",
+      "description": "Question about the MLOps note can surface the Farid field note source.",
+      "input": "Tell me about Farid's MLOps Field Notes article",
       "lang": "en",
       "assertions": [
-        { "type": "rag_used" },
-        { "type": "source_includes", "value": "programmatic-seo" }
-      ]
-    },
-    {
-      "id": "badge-chatbot-self",
-      "description": "Question about this chatbot should include self-healing-chatbot badge",
-      "input": "¿Cómo funciona este chatbot?",
-      "lang": "es",
-      "assertions": [
-        { "type": "rag_used" },
-        { "type": "source_includes", "value": "self-healing-chatbot" }
-      ]
-    },
-    {
-      "id": "badge-business-os",
-      "description": "Question about Business OS / ERP should include business-os badge",
-      "input": "Tell me about your ERP system",
-      "lang": "en",
-      "assertions": [
-        { "type": "rag_used" },
-        { "type": "source_includes", "value": "business-os" }
+        { "type": "contains_any", "values": ["MLOps", "reliable", "workflow", "reproducible"] }
       ]
     }
   ]

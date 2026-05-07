@@ -1,5 +1,6 @@
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react'
 import type { UseOpsApiOptions, UseOpsApiResult } from '../types'
+import { apiUrl } from '../../lib/api-base'
 
 const OPS_TOKEN_KEY = 'ops_token'
 
@@ -38,13 +39,7 @@ export function useOpsApi<T>(options: UseOpsApiOptions): UseOpsApiResult<T> {
   const [error, setError] = useState<string | null>(null)
   const abortRef = useRef<AbortController | null>(null)
 
-  // Stabilize params reference — inline objects cause infinite re-render loops
-  const paramsKey = params ? JSON.stringify(params, Object.keys(params).sort()) : ''
-  const paramsRef = useRef(params)
-  if (paramsKey !== JSON.stringify(paramsRef.current, paramsRef.current ? Object.keys(paramsRef.current).sort() : undefined)) {
-    paramsRef.current = params
-  }
-  const stableParams = paramsRef.current
+  const stableParams = useMemo(() => params, [params])
 
   const fetchData = useCallback(async () => {
     const token = sessionStorage.getItem(OPS_TOKEN_KEY)
@@ -65,7 +60,7 @@ export function useOpsApi<T>(options: UseOpsApiOptions): UseOpsApiResult<T> {
     setError(null)
 
     try {
-      const url = new URL(`/api/ops/${endpoint}`, window.location.origin)
+      const url = new URL(apiUrl(`/api/ops/${endpoint}`), window.location.origin)
       if (stableParams) {
         Object.entries(stableParams).forEach(([k, v]) => url.searchParams.set(k, v))
       }
@@ -94,12 +89,17 @@ export function useOpsApi<T>(options: UseOpsApiOptions): UseOpsApiResult<T> {
     } finally {
       setLoading(false)
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [endpoint, paramsKey, cacheTtlMs])
+  }, [endpoint, stableParams, cacheTtlMs])
 
   useEffect(() => {
-    if (enabled) fetchData()
-    return () => abortRef.current?.abort()
+    if (!enabled) return () => abortRef.current?.abort()
+    const timer = window.setTimeout(() => {
+      void fetchData()
+    }, 0)
+    return () => {
+      window.clearTimeout(timer)
+      abortRef.current?.abort()
+    }
   }, [enabled, fetchData])
 
   return { data, loading, error, refetch: fetchData }

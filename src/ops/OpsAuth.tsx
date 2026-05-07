@@ -1,4 +1,5 @@
 import { useState, useEffect, type FormEvent } from 'react'
+import { apiUrl } from '../lib/api-base'
 
 interface OpsAuthProps {
   onAuth: () => void
@@ -46,7 +47,7 @@ export default function OpsAuth({ onAuth }: OpsAuthProps) {
     setLoading(true)
 
     try {
-      const res = await fetch('/api/ops/auth', {
+      const res = await fetch(apiUrl('/api/ops/auth'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ password }),
@@ -71,7 +72,7 @@ export default function OpsAuth({ onAuth }: OpsAuthProps) {
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="bg-card border border-white/5 rounded-xl p-8 w-full max-w-sm">
         <h1 className="text-xl font-display font-bold text-foreground mb-1">LLMOps Dashboard</h1>
-        <p className="text-sm text-muted-foreground mb-6">santifer.io</p>
+        <p className="text-sm text-muted-foreground mb-6">sayagos.tech</p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>

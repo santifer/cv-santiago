@@ -1,10 +1,16 @@
+import { corsHeaders } from '../_shared/ops-auth.js'
+
 export const config = { runtime: 'edge' }
 
 export default async function handler(req) {
+  if (req.method === 'OPTIONS') {
+    return new Response(null, { status: 204, headers: corsHeaders() })
+  }
+
   if (req.method !== 'POST') {
     return new Response(JSON.stringify({ error: 'Method not allowed' }), {
       status: 405,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { ...corsHeaders(), 'Content-Type': 'application/json' },
     })
   }
 
@@ -15,24 +21,24 @@ export default async function handler(req) {
     if (!secret) {
       return new Response(JSON.stringify({ error: 'Dashboard not configured' }), {
         status: 503,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { ...corsHeaders(), 'Content-Type': 'application/json' },
       })
     }
 
     if (!password || password !== secret) {
       return new Response(JSON.stringify({ error: 'Invalid password' }), {
         status: 401,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { ...corsHeaders(), 'Content-Type': 'application/json' },
       })
     }
 
     return new Response(JSON.stringify({ ok: true, token: password }), {
-      headers: { 'Content-Type': 'application/json' },
+      headers: { ...corsHeaders(), 'Content-Type': 'application/json' },
     })
   } catch {
     return new Response(JSON.stringify({ error: 'Invalid request body' }), {
       status: 400,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { ...corsHeaders(), 'Content-Type': 'application/json' },
     })
   }
 }

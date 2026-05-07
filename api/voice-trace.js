@@ -6,6 +6,14 @@ export const config = {
   runtime: 'edge',
 }
 
+function corsHeaders() {
+  return {
+    'Access-Control-Allow-Origin': process.env.CORS_ORIGIN || 'https://sayagos.tech',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+  }
+}
+
 let langfuseClient = null
 function getLangfuse() {
   if (!langfuseClient && process.env.LANGFUSE_SECRET_KEY) {
@@ -19,8 +27,12 @@ function getLangfuse() {
 }
 
 export default async function handler(req) {
+  if (req.method === 'OPTIONS') {
+    return new Response(null, { status: 204, headers: corsHeaders() })
+  }
+
   if (req.method !== 'POST') {
-    return new Response('Method not allowed', { status: 405 })
+    return new Response('Method not allowed', { status: 405, headers: corsHeaders() })
   }
 
   try {
@@ -29,14 +41,14 @@ export default async function handler(req) {
     if (!traceId) {
       return new Response(JSON.stringify({ error: 'Missing traceId' }), {
         status: 400,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { ...corsHeaders(), 'Content-Type': 'application/json' },
       })
     }
 
     const langfuse = getLangfuse()
     if (!langfuse) {
       return new Response(JSON.stringify({ ok: true }), {
-        headers: { 'Content-Type': 'application/json' },
+        headers: { ...corsHeaders(), 'Content-Type': 'application/json' },
       })
     }
 
@@ -112,13 +124,13 @@ export default async function handler(req) {
     await langfuse.flushAsync()
 
     return new Response(JSON.stringify({ ok: true }), {
-      headers: { 'Content-Type': 'application/json' },
+      headers: { ...corsHeaders(), 'Content-Type': 'application/json' },
     })
   } catch (error) {
     console.error('Voice trace error:', error)
     return new Response(JSON.stringify({ error: 'Internal server error' }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { ...corsHeaders(), 'Content-Type': 'application/json' },
     })
   }
 }

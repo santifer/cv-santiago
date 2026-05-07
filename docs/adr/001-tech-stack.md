@@ -2,7 +2,7 @@
 
 **Date:** 2025-01-15
 **Status:** Accepted
-**Decision makers:** Santiago Fernández
+**Decision makers:** Inherited from the original Dynamic-CV implementation; revalidated for Farid Sayago portfolio
 
 ## Context
 

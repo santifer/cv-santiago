@@ -46,7 +46,7 @@ function urlBlock(u: SitemapUrl): string {
 // Build URLs
 // ---------------------------------------------------------------------------
 
-const base = 'https://santifer.io'
+const base = 'https://sayagos.tech'
 const urls: SitemapUrl[] = []
 
 // Home ES + EN
@@ -63,24 +63,6 @@ urls.push({
   hreflangEs: `${base}/`,
   hreflangEn: `${base}/en`,
   xDefault: `${base}/`,
-  lastmod: today,
-  priority: '0.9',
-})
-
-// About / Entity Home — ES + EN
-urls.push({
-  loc: `${base}/sobre-mi`,
-  hreflangEs: `${base}/sobre-mi`,
-  hreflangEn: `${base}/about`,
-  xDefault: `${base}/sobre-mi`,
-  lastmod: today,
-  priority: '0.9',
-})
-urls.push({
-  loc: `${base}/about`,
-  hreflangEs: `${base}/sobre-mi`,
-  hreflangEn: `${base}/about`,
-  xDefault: `${base}/sobre-mi`,
   lastmod: today,
   priority: '0.9',
 })

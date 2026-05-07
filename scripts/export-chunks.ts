@@ -394,6 +394,15 @@ async function main() {
     totalChunks += chunks.length
   }
 
+  // Farid profile seed for RAG: public-safe llms.txt
+  const profileChunks = parsePlaintext('public/llms.txt', 'farid-profile')
+  if (profileChunks.length > 0) {
+    const outPath = resolve(CHUNKS_DIR, 'farid-profile.json')
+    writeFileSync(outPath, JSON.stringify(profileChunks, null, 2))
+    console.log(`  ✓ farid-profile → ${profileChunks.length} chunks`)
+    totalChunks += profileChunks.length
+  }
+
   console.log(`\n✅ Total: ${totalChunks} chunks exported to scripts/chunks/`)
 }
 

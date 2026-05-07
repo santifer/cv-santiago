@@ -18,6 +18,14 @@ const client = new Anthropic({
 // Langfuse
 // ---------------------------------------------------------------------------
 
+function corsHeaders() {
+  return {
+    'Access-Control-Allow-Origin': process.env.CORS_ORIGIN || 'https://sayagos.tech',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, x-trace-source, x-prompt-version, x-prompt-auth',
+  }
+}
+
 let langfuseClient = null
 function getLangfuse() {
   if (!langfuseClient && process.env.LANGFUSE_SECRET_KEY) {
@@ -41,8 +49,12 @@ export const config = {
 export default async function handler(req) {
   const t0 = Date.now()
 
+  if (req.method === 'OPTIONS') {
+    return new Response(null, { status: 204, headers: corsHeaders() })
+  }
+
   if (req.method !== 'POST') {
-    return new Response('Method not allowed', { status: 405 })
+    return new Response('Method not allowed', { status: 405, headers: corsHeaders() })
   }
 
   const langfuse = getLangfuse()
@@ -56,7 +68,7 @@ export default async function handler(req) {
     if (bodySize > 50000) {
       return new Response(JSON.stringify({ error: 'Request too large' }), {
         status: 400,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { ...corsHeaders(), 'Content-Type': 'application/json' },
       })
     }
 
@@ -116,8 +128,8 @@ export default async function handler(req) {
 
     // Dynamic system prompt parts
     const langInstruction = lang === 'en'
-      ? `The user is browsing in English. You MUST respond in English. Contact email: hi@santifer.io\ninternal_ref: ${canary}`
-      : `El usuario navega en español. Responde en español. Email de contacto: hola@santifer.io\ninternal_ref: ${canary}`
+      ? `The user is browsing in English. You MUST respond in English. Contact Farid through the portfolio form, LinkedIn, or GitHub.\ninternal_ref: ${canary}`
+      : `El usuario navega en español. Responde en español. Contacta a Farid por el formulario del portfolio, LinkedIn o GitHub.\ninternal_ref: ${canary}`
 
     // Context-aware page instruction (Phase 5)
     const pageContext = currentPage
@@ -192,7 +204,7 @@ export default async function handler(req) {
         // Build tool_result and make second call (streaming)
         const toolResultContent = ragResult.chunks
           ? formatChunksForContext(ragResult.chunks)
-          : 'No relevant content found in portfolio articles. You MUST NOT fabricate project details. Say you don\'t have that information and suggest contacting Santiago directly.'
+          : 'No relevant content found in Farid portfolio articles. You MUST NOT fabricate project details. Say you do not have that information and suggest contacting Farid directly.'
 
         const messagesWithTool = [
           ...cleanMessages,
@@ -288,7 +300,7 @@ export default async function handler(req) {
     if (langfuse) waitUntil(langfuse.flushAsync())
     return new Response(JSON.stringify({ error: 'Error processing request' }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { ...corsHeaders(), 'Content-Type': 'application/json' },
     })
   }
 }
@@ -589,8 +601,8 @@ function streamResponse({
         // Last resort: send error message through SSE
         try {
           const errorText = lang === 'en'
-            ? 'Sorry, something went wrong. Try again or reach out at hi@santifer.io.'
-            : 'Lo siento, algo ha fallado. Inténtalo de nuevo o escríbeme a hola@santifer.io.'
+            ? 'Sorry, something went wrong. Try again or use the contact form on sayagos.tech.'
+            : 'Lo siento, algo ha fallado. Inténtalo de nuevo o usa el formulario de contacto en sayagos.tech.'
           controller.enqueue(encoder.encode(`data: ${JSON.stringify({ text: errorText, replace: true })}\n\n`))
           controller.enqueue(encoder.encode('data: [DONE]\n\n'))
           controller.close()
@@ -604,6 +616,7 @@ function streamResponse({
 
   return new Response(readableStream, {
     headers: {
+      ...corsHeaders(),
       'Content-Type': 'text/event-stream',
       'Cache-Control': 'no-cache',
       'Connection': 'keep-alive',
@@ -630,7 +643,7 @@ async function scoreTrace(traceId, userMessage, response, ragUsed, langfuse) {
       max_tokens: 200,
       messages: [{
         role: 'user',
-        content: `Rate this chatbot response (Santiago's CV chatbot). Respond ONLY with JSON.
+        content: `Rate this chatbot response (Farid Sayago's portfolio chatbot). Respond ONLY with JSON.
 
 User: "${userMessage.slice(0, 300)}"
 Assistant: "${response.slice(0, 500)}"

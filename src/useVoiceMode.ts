@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { useAudioAnalyser } from './useAudioAnalyser';
+import { apiUrl } from './lib/api-base';
 
 export type VoiceStatus = 'idle' | 'connecting' | 'listening' | 'thinking' | 'speaking' | 'error';
 
@@ -233,7 +234,7 @@ export function useVoiceMode() {
   const sendTrace = useCallback(async (transcriptData: TranscriptEntry[], lang: string, sessionId: string) => {
     if (!traceIdRef.current) return;
     try {
-      await fetch('/api/voice-trace', {
+      await fetch(apiUrl('/api/voice-trace'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -261,7 +262,7 @@ export function useVoiceMode() {
         durationMs: Date.now() - sessionStartRef.current,
         lang: langRef.current,
       })], { type: 'application/json' });
-      navigator.sendBeacon('/api/voice-trace', blob);
+      navigator.sendBeacon(apiUrl('/api/voice-trace'), blob);
       traceIdRef.current = null; // Prevent duplicate sends
     };
 
@@ -302,7 +303,7 @@ export function useVoiceMode() {
 
     try {
       // 1. Get ephemeral token
-      const tokenRes = await fetch('/api/voice-token', {
+      const tokenRes = await fetch(apiUrl('/api/voice-token'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ lang, sessionId }),
@@ -392,7 +393,7 @@ export function useVoiceMode() {
         if (history.length > 0) {
           const historyText = history
             .filter(m => m.content && m.content.trim())
-            .map(m => `${m.role === 'user' ? 'User' : 'Santiago'}: ${m.content}`)
+            .map(m => `${m.role === 'user' ? 'User' : 'Farid AI'}: ${m.content}`)
             .join('\n');
 
           if (historyText) {
@@ -438,7 +439,7 @@ export function useVoiceMode() {
           }, 1000);
         }
 
-        handleRealtimeEvent(data, ws, lang, sessionId);
+        handleRealtimeEvent(data, ws);
       };
 
       ws.onerror = (e) => {
@@ -548,7 +549,7 @@ export function useVoiceMode() {
   }
 
   // Handle events from OpenAI Realtime API
-  const handleRealtimeEvent = useCallback((data: Record<string, unknown>, ws: WebSocket, lang: string, sessionId: string) => {
+  const handleRealtimeEvent = useCallback((data: Record<string, unknown>, ws: WebSocket) => {
     // Log all events for debugging (remove in production)
     if (data.type !== 'response.audio.delta' && data.type !== 'input_audio_buffer.speech_started') {
       console.log('[Voice]', data.type, data.type === 'error' ? data.error : '');
@@ -659,7 +660,7 @@ export function useVoiceMode() {
           setIsSearching(true);
           startThinkingSound();
           const args = JSON.parse((data.arguments as string) || '{}');
-          handleFunctionCall(callId, args.query, ws, lang, sessionId);
+          handleFunctionCall(callId, args.query, ws);
         }
         break;
       }
@@ -680,9 +681,9 @@ export function useVoiceMode() {
   }, []);
 
   // Handle function calling (RAG search)
-  async function handleFunctionCall(callId: string, query: string, ws: WebSocket, _lang: string, _sessionId: string) {
+  async function handleFunctionCall(callId: string, query: string, ws: WebSocket) {
     try {
-      const res = await fetch('/api/rag-search', {
+      const res = await fetch(apiUrl('/api/rag-search'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query, traceId: traceIdRef.current, currentPage: currentPageRef.current }),

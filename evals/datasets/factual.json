@@ -1,92 +1,34 @@
 {
   "name": "factual_accuracy",
-  "description": "Verifica que Santi responde con datos correctos del CV",
+  "description": "Verifies Farid AI answers with approved Farid facts only.",
   "tests": [
     {
-      "id": "exp-years",
-      "description": "Debe mencionar años de experiencia significativos o fecha de inicio",
-      "input": "¿Cuántos años de experiencia tienes?",
-      "lang": "es",
+      "id": "location-colombia",
+      "description": "Farid is based in Colombia.",
+      "input": "Where is Farid based?",
+      "lang": "en",
       "assertions": [
-        { "type": "contains_any", "values": ["16", "15", "2009", "2007"] },
-        { "type": "not_contains", "value": "no sé" }
+        { "type": "contains", "value": "Colombia" }
       ]
     },
     {
-      "id": "agent-name",
-      "description": "Debe mencionar el nombre del agente AI: Jacobo",
-      "input": "¿Cómo se llama tu agente de IA?",
-      "lang": "es",
+      "id": "intcomex-role",
+      "description": "Mentions verified Intcomex role and dates.",
+      "input": "What did Farid do at Intcomex?",
+      "lang": "en",
       "assertions": [
-        { "type": "contains", "value": "Jacobo" }
+        { "type": "contains_any", "values": ["Data Analyst", "data analyst"] },
+        { "type": "contains", "value": "Intcomex" },
+        { "type": "contains_any", "values": ["July 2025", "February 2026", "2025", "2026"] }
       ]
     },
     {
-      "id": "location",
-      "description": "Debe mencionar Sevilla",
-      "input": "¿Dónde estás basado?",
-      "lang": "es",
+      "id": "projects-farid-only",
+      "description": "Mentions Farid projects.",
+      "input": "What projects has Farid built?",
+      "lang": "en",
       "assertions": [
-        { "type": "contains", "value": "Sevilla" }
-      ]
-    },
-    {
-      "id": "exit-2025",
-      "description": "Debe mencionar la venta en 2025",
-      "input": "¿Vendiste tu empresa?",
-      "lang": "es",
-      "assertions": [
-        { "type": "contains", "value": "2025" },
-        { "type": "contains_any", "values": ["vendí", "venta", "going concern", "funcionamiento"] }
-      ]
-    },
-    {
-      "id": "repairs-count",
-      "description": "Debe mencionar +30,000 reparaciones",
-      "input": "¿Cuántas reparaciones hicisteis en total?",
-      "lang": "es",
-      "assertions": [
-        { "type": "contains_any", "values": ["30.000", "30,000", "30000", "treinta mil"] }
-      ]
-    },
-    {
-      "id": "automation-hours",
-      "description": "Debe mencionar 170+ horas automatizadas/mes",
-      "input": "¿Cuántas horas automatizaste al mes?",
-      "lang": "es",
-      "assertions": [
-        { "type": "contains_any", "values": ["170", "ciento setenta"] }
-      ]
-    },
-    {
-      "id": "target-roles",
-      "description": "Debe mencionar roles de interés",
-      "input": "¿Qué roles te interesan?",
-      "lang": "es",
-      "assertions": [
-        { "type": "contains_any", "values": ["Product Manager", "Solutions Architect", "Forward Deployed", "FDE"] }
-      ]
-    },
-    {
-      "id": "repo-public",
-      "description": "Debe confirmar que el repo de santifer.io es público en GitHub",
-      "input": "¿El código de santifer.io está en GitHub?",
-      "lang": "es",
-      "assertions": [
-        { "type": "contains_any", "values": ["público", "publica", "open", "GitHub"] },
-        { "type": "contains_any", "values": ["santifer", "cv-santiago"] },
-        { "type": "not_contains", "value": "privado" }
-      ]
-    },
-    {
-      "id": "model-version",
-      "description": "Debe decir Claude Sonnet 4.5, no 3.5 Sonnet",
-      "input": "¿Qué modelo de IA usas?",
-      "lang": "es",
-      "assertions": [
-        { "type": "contains_any", "values": ["Sonnet 4.5", "sonnet-4-5", "Claude Sonnet 4"] },
-        { "type": "not_contains", "value": "3.5 Sonnet" },
-        { "type": "not_contains", "value": "Sonnet 3.5" }
+        { "type": "contains_any", "values": ["wiener-git", "WHTTP", "Wiener Tickets"] }
       ]
     }
   ]

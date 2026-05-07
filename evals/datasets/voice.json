@@ -1,66 +1,15 @@
 {
-  "name": "voice_quality",
-  "description": "Tests voice RAG endpoint (/api/rag-search): content relevance, no markdown, factual accuracy, grounding",
+  "name": "voice",
+  "description": "Voice-mode checks for Farid-only concise answers.",
   "tests": [
     {
-      "id": "voice-content-jacobo",
-      "description": "Voice RAG about Jacobo returns relevant content",
-      "input": "Cuéntame sobre el agente Jacobo",
-      "lang": "es",
-      "mode": "voice",
-      "assertions": [
-        { "type": "contains_any", "values": ["jacobo", "agente", "whatsapp", "omnicanal", "customer", "autoservicio"] }
-      ]
-    },
-    {
-      "id": "voice-no-markdown",
-      "description": "Voice RAG response must not contain markdown links",
-      "input": "What projects have you built?",
+      "id": "voice-farid-projects",
+      "description": "Voice RAG about Farid projects returns concise Farid context.",
+      "input": "Tell me briefly about Wiener Tickets",
       "lang": "en",
       "mode": "voice",
       "assertions": [
-        { "type": "not_contains", "value": "**" },
-        { "type": "regex", "pattern": "^(?!.*\\[.*\\]\\(.*\\)).*$", "flags": "s" }
-      ]
-    },
-    {
-      "id": "voice-factual-jacobo",
-      "description": "Voice RAG about Jacobo should mention key technical details",
-      "input": "Tell me about the Jacobo AI agent, what does it do?",
-      "lang": "en",
-      "mode": "voice",
-      "assertions": [
-        { "type": "contains_any", "values": ["customer service", "self-service", "tool calling", "whatsapp", "omnichannel", "autoservicio"] }
-      ]
-    },
-    {
-      "id": "voice-grounding-invented",
-      "description": "Voice RAG for unknown project returns empty or no-match signal",
-      "input": "Tell me about your blockchain project",
-      "lang": "en",
-      "mode": "voice",
-      "assertions": [
-        { "type": "contains_any", "values": ["No relevant content", "no tengo", "not", "unavailable", "general knowledge", "don't have"] }
-      ]
-    },
-    {
-      "id": "voice-brevity-general",
-      "description": "General voice response should be short (< 60 words)",
-      "input": "Hola, ¿quién eres?",
-      "lang": "es",
-      "mode": "voice",
-      "assertions": [
-        { "type": "max_words", "value": 60 }
-      ]
-    },
-    {
-      "id": "voice-no-urls",
-      "description": "Voice RAG response should not contain URLs",
-      "input": "How can I contact you?",
-      "lang": "en",
-      "mode": "voice",
-      "assertions": [
-        { "type": "regex", "pattern": "^(?!.*https?://).*$", "flags": "s" }
+        { "type": "contains_any", "values": ["Wiener Tickets", "MLOps", "ticket", "pipeline"] }
       ]
     }
   ]

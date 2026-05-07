@@ -29,7 +29,7 @@ interface Issue { severity: Severity; msg: string; skill?: string }
 // Per-article HTML checks
 // ---------------------------------------------------------------------------
 
-function validatePrerenderHtml(id: string, slug: string, lang: 'es' | 'en'): Issue[] {
+function validatePrerenderHtml(config: ArticleConfig, slug: string, lang: 'es' | 'en'): Issue[] {
   const issues: Issue[] = []
   const htmlPath = resolve(dist, slug, 'index.html')
 
@@ -207,10 +207,11 @@ function validatePrerenderHtml(id: string, slug: string, lang: 'es' | 'en'): Iss
   // 14. Word count minimum
   const fullStripped = html.replace(/<script[\s\S]*?<\/script>/gi, '').replace(/<style[\s\S]*?<\/style>/gi, '').replace(/<[^>]+>/g, ' ')
   const wordCount = fullStripped.split(/\s+/).filter(w => w.length > 0).length
-  if (wordCount < 1500) {
+  const minimumWordCount = config.contentStage === 'seed' ? 250 : 1500
+  if (wordCount < minimumWordCount) {
     issues.push({
       severity: 'warn',
-      msg: `Low word count: ${wordCount} words (min 1500 for articles).`,
+      msg: `Low word count: ${wordCount} words (min ${minimumWordCount} for ${config.contentStage || 'complete'} articles).`,
       skill: '/seo content',
     })
   }
@@ -401,6 +402,30 @@ function validateGlobalFiles(): Issue[] {
 // Helpers for cross-article checks
 // ---------------------------------------------------------------------------
 
+function getUniqueSlugEntries(article: ArticleConfig): Array<['es' | 'en', string]> {
+  const seen = new Set<string>()
+  const entries: Array<['es' | 'en', string]> = []
+  const preferredOrder: Array<['es' | 'en', string]> = [
+    ['en', article.slugs.en],
+    ['es', article.slugs.es],
+  ]
+  for (const entry of preferredOrder) {
+    const [, slug] = entry
+    if (seen.has(slug)) continue
+    seen.add(slug)
+    entries.push(entry)
+  }
+  return entries
+}
+
+function getUniqueArticlePageCount(): number {
+  return new Set(
+    articleRegistry
+      .filter(article => article.type !== 'bridge')
+      .flatMap(article => Object.values(article.slugs)),
+  ).size
+}
+
 function extractMetaDescription(htmlPath: string): string | null {
   if (!existsSync(htmlPath)) return null
   const html = readFileSync(htmlPath, 'utf-8')
@@ -453,8 +478,8 @@ const wordCounts: Map<string, { es: number; en: number }> = new Map()
 
 for (const article of articleRegistry) {
   if (article.type === 'bridge') continue
-  for (const [lang, slug] of Object.entries(article.slugs) as ['es' | 'en', string][]) {
-    const issues = validatePrerenderHtml(article.id, slug, lang)
+  for (const [lang, slug] of getUniqueSlugEntries(article)) {
+    const issues = validatePrerenderHtml(article, slug, lang)
     if (issues.length > 0) {
       printIssues(issues, `${article.id} [${lang}]`)
     } else {
@@ -565,7 +590,7 @@ function validateStructural(): Issue[] {
   // S3. FAQ answers >= 100 words
   for (const article of articleRegistry) {
     if (article.type === 'bridge' || !article.seoMeta) continue
-    for (const [lang, slug] of Object.entries(article.slugs) as ['es' | 'en', string][]) {
+    for (const [lang, slug] of getUniqueSlugEntries(article)) {
       const htmlPath = resolve(dist, slug, 'index.html')
       if (!existsSync(htmlPath)) continue
       const html = readFileSync(htmlPath, 'utf-8')
@@ -651,7 +676,7 @@ if (globalIssues.length > 0) {
   console.log(`\n\x1b[32m✓\x1b[0m Global files — clean`)
 }
 
-console.log(`\nPages: ${articleRegistry.filter(a => a.type !== 'bridge').length * 2} | Errors: ${totalErrors} | Warnings: ${totalWarnings}\n`)
+console.log(`\nPages: ${getUniqueArticlePageCount()} | Errors: ${totalErrors} | Warnings: ${totalWarnings}\n`)
 
 if (totalErrors > 0) {
   console.error('\x1b[31m✗ Prerender validation failed. Fix errors before deploying.\x1b[0m\n')

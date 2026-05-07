@@ -20,6 +20,7 @@ import { translations } from './i18n';
 import { getSectionLabels, getPageTitles } from './articles/registry';
 import { useVoiceMode } from './useVoiceMode';
 import VoiceOrb from './VoiceOrb';
+import { apiUrl } from './lib/api-base';
 
 interface RagSource {
   article_id: string;
@@ -100,7 +101,7 @@ function linkifyUrls(text: string): string {
   return fixed;
 }
 
-const STORAGE_KEY = 'santi-chat';
+const STORAGE_KEY = 'farid-chat';
 
 function loadSession(fallbackGreeting: string): { messages: Message[]; sessionId: string; showPrompts: boolean } {
   try {
@@ -389,7 +390,7 @@ export default function FloatingChat({ lang }: FloatingChatProps) {
       const controller = new AbortController();
       abortRef.current = controller;
 
-      const response = await fetch('/api/chat', {
+      const response = await fetch(apiUrl('/api/chat'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         signal: controller.signal,
@@ -564,7 +565,7 @@ export default function FloatingChat({ lang }: FloatingChatProps) {
           bottom: 'max(1.5rem, env(safe-area-inset-bottom, 0px) + 0.5rem)',
           right: 'max(1.5rem, env(safe-area-inset-right, 0px) + 0.5rem)',
         }}
-        aria-label={lang === 'en' ? (isOpen ? 'Close chat with Santi' : 'Open chat with Santi') : (isOpen ? 'Cerrar chat con Santi' : 'Abrir chat con Santi')}
+        aria-label={lang === 'en' ? (isOpen ? 'Close chat with Farid AI' : 'Open chat with Farid AI') : (isOpen ? 'Cerrar chat con Farid AI' : 'Abrir chat con Farid AI')}
       >
         <AnimatePresence mode="wait">
           {isOpen ? (
@@ -589,10 +590,10 @@ export default function FloatingChat({ lang }: FloatingChatProps) {
             >
               {/* Avatar */}
               <picture>
-                <source srcSet="/foto-avatar-sm.webp" type="image/webp" />
+                <source srcSet="/images/person.png" type="image/png" />
                 <img
-                  src="/foto-avatar-sm.webp"
-                  alt={lang === 'en' ? 'Chat with Santi' : 'Chat con Santi'}
+                  src="/images/person.png"
+                  alt={lang === 'en' ? 'Chat with Farid AI' : 'Chat con Farid AI'}
                   className="w-full h-full rounded-full object-cover"
                   width={56}
                   height={56}
@@ -625,7 +626,7 @@ export default function FloatingChat({ lang }: FloatingChatProps) {
             ref={chatContainerRef}
             role="dialog"
             aria-modal="true"
-            aria-label={lang === 'en' ? 'Chat with Santi' : 'Chat con Santi'}
+            aria-label={lang === 'en' ? 'Chat with Farid AI' : 'Chat con Farid AI'}
             initial={isMobile ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.95 }}
             animate={isMobile ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
             exit={isMobile ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.95 }}
@@ -647,10 +648,10 @@ export default function FloatingChat({ lang }: FloatingChatProps) {
             >
               <div className="flex items-center gap-3">
                 <picture>
-                  <source srcSet="/foto-avatar-sm.webp" type="image/webp" />
+                  <source srcSet="/images/person.png" type="image/png" />
                   <img
-                    src="/foto-avatar-sm.webp"
-                    alt="santifer avatar"
+                    src="/images/person.png"
+                    alt="Farid AI avatar"
                     className="w-10 h-10 rounded-full object-cover ring-2 ring-primary/20"
                     width={40}
                     height={40}

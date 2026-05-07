@@ -27,7 +27,7 @@ export function isRagEnabled() {
 
 export const PORTFOLIO_TOOL = {
   name: 'search_portfolio',
-  description: "Search your own published case studies for project details. You wrote these articles — they are YOUR words about YOUR projects. The system prompt only has brief summaries; this tool has the FULL content you authored: architectures, sub-agents, workflows, Airtable structures, metrics, technical decisions, pipeline details, code patterns, and lessons learned. Use this whenever the user asks for specifics about any project. Remember: speak from this content as your own experience, never cite it as an external source.",
+  description: "Search Farid's published portfolio knowledge for project details. The system prompt only has brief summaries; this tool has fuller public-safe context about projects, workflows, technical decisions, pipeline details, code patterns, and lessons learned. Use this whenever the user asks for specifics about Farid's work. Do not fabricate missing details.",
   input_schema: {
     type: 'object',
     properties: {
@@ -228,12 +228,10 @@ export function extractSources(chunks) {
 
 // Keywords that signal the response actually references a given article
 export const ARTICLE_KEYWORDS = {
-  'n8n-for-pms':          ['n8n', 'nodemation'],
-  'jacobo':               ['jacobo', 'agente ia', 'ai agent', 'whatsapp', 'multi-agent', 'multiagent'],
-  'business-os':          ['business os', 'erp', 'airtable bases', 'crm', 'inventory'],
-  'programmatic-seo':     ['seo programático', 'programmatic seo', 'web programática', 'programmatic web', 'decision engine', 'indexable', 'dataforseo', 'seo pipeline', 'seo automatizado', 'automated seo'],
-  'self-healing-chatbot': ['chatbot', 'this chat', 'este chat', 'evals', 'self-healing', 'closed-loop', 'langfuse', 'rag'],
-  'santifer-irepair':     ['santifer irepair', 'irepair', 'repair business', 'taller de reparación'],
+  'mlops-field-notes': ['mlops', 'machine learning workflow', 'reproducible', 'observable', 'repeatable', 'field notes'],
+  'wiener-git': ['wiener-git', 'git internals', 'content-addressable', 'cli'],
+  'whttp': ['whttp', 'http server', 'sockets', 'c server'],
+  'wiener-tickets': ['wiener tickets', 'ticket classification', 'mlops pipeline', 'docker'],
 }
 
 /** Filter RAG sources to only articles actually mentioned in the response, max 3 */
@@ -249,12 +247,10 @@ export function filterSourcesByResponse(sources, responseText) {
 
 // Static article routes — used to generate badges from keywords regardless of RAG
 export const ARTICLE_ROUTES = {
-  'n8n-for-pms':          { page_path_es: '/n8n-para-pms', page_path_en: '/n8n-for-pms' },
-  'jacobo':               { page_path_es: '/agente-ia-jacobo', page_path_en: '/ai-agent-jacobo' },
-  'business-os':          { page_path_es: '/business-os-para-airtable', page_path_en: '/business-os-for-airtable' },
-  'programmatic-seo':     { page_path_es: '/seo-programatico', page_path_en: '/programmatic-seo' },
-  'self-healing-chatbot': { page_path_es: '/chatbot-que-se-cura-solo', page_path_en: '/self-healing-chatbot' },
-  'santifer-irepair':     { page_path_es: '/santifer-irepair', page_path_en: '/santifer-irepair-founder' },
+  'mlops-field-notes': { page_path_es: '/blog/mlops-field-notes', page_path_en: '/blog/mlops-field-notes' },
+  'wiener-git': { page_path_es: '/#work', page_path_en: '/#work' },
+  'whttp': { page_path_es: '/#work', page_path_en: '/#work' },
+  'wiener-tickets': { page_path_es: '/#work', page_path_en: '/#work' },
 }
 
 // Home fallback
@@ -262,9 +258,9 @@ export const HOME_SOURCE = {
   article_id: 'home',
   section_id: 'portfolio',
   section_anchor: '',
-  page_path_en: '/en',
+  page_path_en: '/',
   page_path_es: '/',
-  article_slug_en: 'en',
+  article_slug_en: '',
   article_slug_es: '',
 }
 
@@ -409,10 +405,10 @@ export function classifyIntent(text) {
     tags.push('jailbreak-attempt')
   }
 
-  if (/experiencia|experience|trabajo|work|career|carrera|santifer|irepair/.test(lower)) tags.push('topic:experience')
+  if (/experiencia|experience|trabajo|work|career|carrera|intcomex|universidad|santo tomas/.test(lower)) tags.push('topic:experience')
   if (/proyecto|project|portfolio|github|código|code/.test(lower)) tags.push('topic:projects')
   if (/contact|contacto|email|linkedin|hablar|talk|hire|contratar/.test(lower)) tags.push('topic:contact')
-  if (/stack|tech|tecnolog|python|react|airtable|claude|ai|ia|llm|agente|agent/.test(lower)) tags.push('topic:technical')
+  if (/stack|tech|tecnolog|python|sql|aws|docker|kubernetes|power bi|pytorch|ai|ia|mlops|agent/.test(lower)) tags.push('topic:technical')
   if (/salario|salary|money|dinero|rate|precio|cobr/.test(lower)) tags.push('topic:compensation')
   if (/hola|hello|hi|hey|buenos|good/.test(lower) && text.length < 20) tags.push('greeting')
 
@@ -433,9 +429,9 @@ export async function sendJailbreakAlert(userMessage) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      from: 'Santi Bot <onboarding@resend.dev>',
+      from: 'Farid AI <onboarding@resend.dev>',
       to: process.env.ALERT_EMAIL,
-      subject: '🚨 JAILBREAK ATTEMPT - santifer.io',
+      subject: '🚨 JAILBREAK ATTEMPT - sayagos.tech',
       html: `
         <h2>🚨 Jailbreak Attempt Detected</h2>
         <p><strong>Time:</strong> ${new Date().toISOString()}</p>
