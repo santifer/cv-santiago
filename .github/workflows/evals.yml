@@ -13,14 +13,14 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
       - run: npm ci
       - name: Wait for Vercel deploy
         run: sleep 90
       - name: Run evals
         env:
-          CHAT_API_URL: https://santifer.io/api/chat
+          CHAT_API_URL: https://api.sayagos.tech/api/chat
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: npm run evals
       - name: Upload report

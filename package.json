@@ -11,6 +11,7 @@
     "build": "tsc -b && vite build",
     "build:full": "npm run rag:sync && npm run prompt:sync && npx tsx --tsconfig tsconfig.app.json scripts/embed-evals.ts && tsc -b && vite build && npx tsx --tsconfig tsconfig.app.json scripts/generate-sitemap.ts && npx tsx --tsconfig tsconfig.app.json scripts/validate-llms-txt.ts && npx tsx --tsconfig tsconfig.app.json scripts/prerender.tsx && npx tsx --tsconfig tsconfig.app.json scripts/validate-prerender.ts",
     "validate-llms-txt": "npx tsx --tsconfig tsconfig.app.json scripts/validate-llms-txt.ts",
+    "validate:hostinger": "npx tsx --tsconfig tsconfig.app.json scripts/validate-hostinger-build.ts",
     "validate-articles": "npx tsx --tsconfig tsconfig.app.json scripts/validate-articles.ts",
     "validate-articles:fix": "npx tsx --tsconfig tsconfig.app.json scripts/validate-articles.ts --fix",
     "lint": "eslint .",

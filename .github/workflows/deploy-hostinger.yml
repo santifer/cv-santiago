@@ -1,0 +1,77 @@
+name: Deploy Hostinger Frontend
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hostinger-frontend-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    name: Build, validate, deploy static frontend
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL || 'https://api.sayagos.tech' }}
+      VITE_APP_EMAILJS_SERVICE_ID: ${{ secrets.VITE_APP_EMAILJS_SERVICE_ID }}
+      VITE_APP_EMAILJS_TEMPLATE_ID: ${{ secrets.VITE_APP_EMAILJS_TEMPLATE_ID }}
+      VITE_APP_EMAILJS_PUBLIC_KEY: ${{ secrets.VITE_APP_EMAILJS_PUBLIC_KEY }}
+      REQUIRE_HOSTINGER_ENV: 'true'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm run lint
+
+      - name: Build static frontend
+        run: pnpm run build
+
+      - name: Generate sitemap
+        run: pnpm exec tsx --tsconfig tsconfig.app.json scripts/generate-sitemap.ts
+
+      - name: Validate public LLM facts
+        run: pnpm run validate-llms-txt
+
+      - name: Prerender public pages
+        run: pnpm exec tsx --tsconfig tsconfig.app.json scripts/prerender.tsx
+
+      - name: Validate prerendered SEO output
+        run: pnpm exec tsx --tsconfig tsconfig.app.json scripts/validate-prerender.ts
+
+      - name: Validate Hostinger static artifact
+        run: pnpm run validate:hostinger
+
+      - name: Deploy dist/ to Hostinger over FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.HOSTINGER_FTP_SERVER }}
+          username: ${{ secrets.HOSTINGER_FTP_USERNAME }}
+          password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: ${{ secrets.HOSTINGER_FTP_PATH }}
+          dangerous-clean-slate: true
+          exclude: |
+            **/.git*
+            **/.git*/**
+            .well-known/**

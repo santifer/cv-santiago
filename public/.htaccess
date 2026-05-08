@@ -1,0 +1,38 @@
+# Hostinger/Apache static frontend rules for sayagos.tech
+
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Canonical trailing-slash cleanup for public static routes.
+  RewriteRule ^en/$ /en [R=301,L]
+  RewriteRule ^blog/mlops-field-notes/$ /blog/mlops-field-notes [R=301,L]
+
+  # Prerendered public routes.
+  RewriteRule ^en$ /en/index.html [L]
+  RewriteRule ^blog/mlops-field-notes$ /blog/mlops-field-notes/index.html [L]
+
+  # Internal SPA route. API calls still go to https://api.sayagos.tech.
+  RewriteRule ^ops/?$ /index.html [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(self), geolocation=()"
+  Header always set X-Open-To "interesting-problems"
+  Header always set X-Resume "/llms.txt"
+  Header always set Content-Security-Policy "default-src 'self'; media-src 'self' data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://api.sayagos.tech https://api.emailjs.com wss://api.openai.com https://api.openai.com https://vitals.vercel-insights.com https://va.vercel-scripts.com; frame-ancestors 'self'; form-action 'self'; base-uri 'self'; object-src 'none'"
+
+  <FilesMatch "\.(?:js|css|woff2|glb|webp|png|jpg|jpeg|svg)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  <FilesMatch "^(?:index|404)\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
