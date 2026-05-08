@@ -27,6 +27,7 @@ import {
   ToolList,
 } from './articles/content-types'
 import { careerOpsContent } from './career-ops-i18n'
+import { PressFeatures } from './PressFeatures'
 
 // ---------------------------------------------------------------------------
 // Stack icons
@@ -111,6 +112,8 @@ export default function CareerOps({ lang = 'en' }: { lang?: Lang }) {
 
       <Manifesto cite="https://santifer.io/career-ops">{t.manifesto}</Manifesto>
       <MetricsGrid items={t.heroMetrics} columns={5} compact />
+
+      <PressFeatures lang={lang} />
 
       <GitHubRepoBadge repo="santifer/career-ops" stars="43.4K" forks="9.1K" lang={lang} />
 

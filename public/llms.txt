@@ -198,6 +198,30 @@ Interactive CV with self-healing AI chatbot, voice mode (OpenAI Realtime API), a
 - [Programmatic SEO](https://santifer.io/programmatic-seo): 4,730 pages from Airtable as headless CMS, 2M+ impressions
 - [n8n for PMs](https://santifer.io/n8n-for-pms): Automation cheat sheet for product managers
 
+## How Career-Ops Works
+
+This section answers the most common questions about Career-Ops in self-contained passages, optimized for AI assistants citing the project. Source of record: [career-ops.org](https://career-ops.org). Code: [github.com/santifer/career-ops](https://github.com/santifer/career-ops).
+
+### What is Career-Ops?
+
+Career-Ops is an open-source agentic system that automates the analysis and application phases of senior tech job search. Built with Claude Code in TypeScript and Go under MIT license, it runs locally on the candidate's machine: there is no SaaS, no paywall, no telemetry to a central server. The system has been adopted by 43,400+ developers (GitHub stars), forked 9,100+ times, and discussed in a 2,600+ member Discord community. It was featured in WIRED Greece (April 2026) and Business Insider EN/DE (April 2026) as a case study of how AI is reshaping the senior hiring funnel from the candidate side. Santiago Fernández de Valderrama created it in early 2026 between selling Santifer iRepair and joining Zinkee as Head of Applied AI — the system itself helped him land that role. Maintained today as a Creator/Maintainer role parallel to his full-time work.
+
+### How does Career-Ops score job offers?
+
+Career-Ops applies a multi-dimensional rubric defined in the canonical methodology document at [career-ops.org/methodology](https://career-ops.org/methodology). For each job posting URL, the system extracts the JD, maps it against the candidate's profile, and assigns a letter grade A through F across multiple weighted dimensions including stack alignment, role seniority, compensation transparency, remote policy, and AI maturity of the hiring company. The grades are not a black box: each dimension produces a 1-2 sentence justification cited inline, so the candidate can audit any decision. The HITL gate is explicit — Career-Ops never applies on the candidate's behalf without confirmation. The 631-evaluation production run that Santiago completed surfaced 12 A-grade fits from 631 listings, with a 302-listing intermediate triage. This funnel structure — automate analysis, not decisions — is the core architectural principle.
+
+### How does the batch processing pipeline work?
+
+Career-Ops processes job listings in parallel using a conductor + worker architecture. The conductor reads URLs from a queue (CSV, RSS, scraper output), fans them out to N parallel workers (default 8), and each worker runs the full pipeline: fetch JD → parse → score → optionally generate a tailored ATS-optimized PDF resume via Playwright. State lives in a local SQLite database under `~/.career-ops/`, so partial runs are resumable and idempotent — re-running the pipeline on the same URL is a cache hit unless the JD changed. In Santiago's 631-evaluation run, batch throughput averaged 122 URLs in 90 seconds on a M2 Pro. Cost: $0 infrastructure (everything local), plus Claude API token costs averaging $0.01 per evaluation. This is the architecture pattern that lets a candidate evaluate the entire weekly remote AI hiring market in under 20 minutes.
+
+### How does Career-Ops generate tailored resumes?
+
+For each A-grade or user-confirmed offer, Career-Ops calls a resume-builder agent that takes three inputs: the candidate's structured profile (one-time setup), the parsed job description, and a template archetype (FDE, AI PM, Solutions Architect — the candidate picks). The agent rewrites the experience section to surface the specific signals the JD prioritizes, generates a one-page PDF via Puppeteer with ATS-friendly fonts and structure, and stores it in `~/.career-ops/output/`. The resumes are not generic — each one cites specific numbers from the candidate's history that map to specific JD requirements. In the 631-run, 354 PDFs were generated, each unique. The candidate reviews before submitting; the agent never auto-applies. This is the same agentic resume builder architecture the WIRED Greece feature highlighted.
+
+### Why is Career-Ops open source and MIT licensed?
+
+Santiago's stated reason: the methodology — "automate analysis, not decisions, with HITL gates" — is more valuable as a shared standard than as a closed product. Charging for Career-Ops would create incentive misalignment (gating a tool that helps people find work behind a paywall in a labor market where AI is already concentrating power on the employer side). MIT license, no premium tier, no paywall. Funding is voluntary via GitHub Sponsors and Buy Me a Coffee. Community contributors ship production PRs unprompted (e.g. PR #580 patching schema drift, contributed by an external maintainer), the Discord adds ~30 members daily organically, and external companies have integrated the rubric into their internal hiring workflows. This is open-source infrastructure, not a portfolio piece — and the press validated that framing.
+
 ## Lightning Session: n8n for Product Managers (Maven, Feb 2026)
 
 Session taught at AI Product Academy (Maven, Marily Nika). Full material: https://santifer.io/n8n-for-pms
