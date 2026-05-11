@@ -34,10 +34,10 @@ for (const article of articleRegistry) {
   }
 }
 
-const fieldNotePath = resolve(root, 'src/FaridFieldNotes.tsx')
-if (!existsSync(fieldNotePath)) {
+const blogPostPath = resolve(root, 'src/BlogPostPage.tsx')
+if (!existsSync(blogPostPath)) {
   errors++
-  console.error('❌ src/FaridFieldNotes.tsx is missing')
+  console.error('❌ src/BlogPostPage.tsx is missing')
 }
 
 if (errors > 0) process.exit(1)

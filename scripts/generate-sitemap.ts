@@ -66,6 +66,14 @@ urls.push({
   lastmod: today,
   priority: '0.9',
 })
+urls.push({
+  loc: `${base}/blog`,
+  hreflangEs: `${base}/blog`,
+  hreflangEn: `${base}/blog`,
+  xDefault: `${base}/blog`,
+  lastmod: today,
+  priority: '0.7',
+})
 
 // Articles from registry
 for (const article of articleRegistry) {

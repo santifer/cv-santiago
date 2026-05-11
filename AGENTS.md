@@ -122,6 +122,43 @@ Keeps advanced functionality understandable and testable:
 - If a future agent changes architecture, update this file and the relevant Obsidian note.
 - If a decision rejects an obvious alternative for a durable reason, create an ADR in `docs/adr/`.
 
+## Agent execution rules
+
+These rules replace the old private `CLAUDE.md` guidance and apply to every coding agent in this repo.
+
+### Think before coding
+
+- State assumptions before changing code. If a requirement can mean two different things, ask or document the tradeoff.
+- Push back when a simpler approach solves the problem.
+- Do not hide uncertainty. Name the confusing part and stop before guessing.
+
+### Simplicity first
+
+- Write the minimum code that solves the requested problem.
+- Do not add speculative features, one-off abstractions, or configurability that was not requested.
+- If a solution can be much shorter without losing behavior, simplify it before shipping.
+
+### Surgical changes
+
+- Touch only files tied to the request.
+- Match the existing style unless the task is explicitly a style refactor.
+- Remove imports, variables, and files made unused by your own change.
+- Mention unrelated dead code instead of deleting it.
+
+### Goal-driven execution
+
+- Convert work into verifiable goals before editing.
+- For multi-step tasks, keep a short plan with a verification check for each step.
+- Loop until the requested behavior is verified by commands, tests, generated output, or direct file inspection.
+
+## Blog sync workflow
+
+- Public blog posts are written in `/home/faris/Documents/obsidian/portfolio/blog`.
+- `scripts/sync-obsidian-blog.ts` syncs only notes with `published: true` into `src/content/blog/generated.ts`.
+- The Blog Content Module is the seam for UI, routes, SEO, prerendering, sitemap generation, and RAG chunk export.
+- The GitHub workflow `.github/workflows/sync-obsidian-blog.yml` runs daily and on `repository_dispatch` from the Obsidian vault.
+- Supabase remains the RAG/vector and ops database for now. Do not introduce a blog database unless a later decision needs runtime CMS behavior.
+
 ## Skills used
 
 - `/humanizer` — every text written for humans to read must get a humanizer pass before it ships.
@@ -141,3 +178,4 @@ Keeps advanced functionality understandable and testable:
 8. Public contact form uses EmailJS only.
 9. Use fresh Farid-only Supabase and Langfuse projects.
 10. Simplification happens through deeper modules and clearer seams, not feature deletion.
+11. Blog post bodies and blog frontmatter come from the Obsidian `portfolio/blog` folder. Profile facts still come from `src/content/farid-profile.ts` unless Farid explicitly changes that source order.

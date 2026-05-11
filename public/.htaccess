@@ -9,11 +9,13 @@ ErrorDocument 404 /404.html
 
   # Canonical trailing-slash cleanup for public static routes.
   RewriteRule ^en/$ /en [R=301,L]
-  RewriteRule ^blog/mlops-field-notes/$ /blog/mlops-field-notes [R=301,L]
+  RewriteRule ^blog/$ /blog [R=301,L]
+  RewriteRule ^blog/([^/]+)/$ /blog/$1 [R=301,L]
 
   # Prerendered public routes.
   RewriteRule ^en$ /en/index.html [L]
-  RewriteRule ^blog/mlops-field-notes$ /blog/mlops-field-notes/index.html [L]
+  RewriteRule ^blog$ /blog/index.html [L]
+  RewriteRule ^blog/([^/]+)$ /blog/$1/index.html [L]
 
   # Internal SPA route. API calls still go to https://api.sayagos.tech.
   RewriteRule ^ops/?$ /index.html [L]

@@ -48,16 +48,16 @@ jobs:
         run: pnpm run build
 
       - name: Generate sitemap
-        run: pnpm exec tsx --tsconfig tsconfig.app.json scripts/generate-sitemap.ts
+        run: npx tsx --tsconfig tsconfig.app.json scripts/generate-sitemap.ts
 
       - name: Validate public LLM facts
         run: pnpm run validate-llms-txt
 
       - name: Prerender public pages
-        run: pnpm exec tsx --tsconfig tsconfig.app.json scripts/prerender.tsx
+        run: npx tsx --tsconfig tsconfig.app.json scripts/prerender.tsx
 
       - name: Validate prerendered SEO output
-        run: pnpm exec tsx --tsconfig tsconfig.app.json scripts/validate-prerender.ts
+        run: npx tsx --tsconfig tsconfig.app.json scripts/validate-prerender.ts
 
       - name: Validate Hostinger static artifact
         run: pnpm run validate:hostinger

@@ -17,6 +17,8 @@ import { readFileSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { articleRegistry } from '../src/articles/registry.ts'
+import { getBlogPosts } from '../src/content/blog/index.ts'
+import type { BlogPost } from '../src/content/blog/types.ts'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = resolve(__dirname, '..')
@@ -111,7 +113,7 @@ async function loadI18nSources(): Promise<I18nSource[]> {
     const modulePath = resolve(root, article.i18nFile)
     try {
       const mod = await import(modulePath)
-      // Find the *Content export that is an object (e.g. jacoboContent, chatbotContent)
+      // Find the *Content export that is an object.
       const contentKey = Object.keys(mod).find(k => k.endsWith('Content') && typeof mod[k] === 'object' && mod[k] !== null)
       if (!contentKey) {
         console.warn(`  ⚠ ${article.id}: no *Content export found in ${article.i18nFile}, skipping`)
@@ -354,6 +356,50 @@ function parseMarkdown(content: string, articleId: string, sourceFile: string): 
   return chunks
 }
 
+function parseBlogPostMarkdown(post: BlogPost): Chunk[] {
+  const sourceFile = `obsidian/portfolio/blog/${post.sourceFile}`
+  const pagePath = `/blog/${post.slug}`
+  const baseMetadata: Omit<ChunkMetadata, 'section_id' | 'section_anchor'> = {
+    article_id: post.slug,
+    article_slug_en: pagePath,
+    article_slug_es: pagePath,
+    page_path_en: pagePath,
+    page_path_es: pagePath,
+    source_file: sourceFile,
+    format: 'markdown',
+  }
+
+  const body = `# ${post.title}\n\n${post.description}\n\n${post.content}`
+  const chunks: Chunk[] = []
+  let currentSection = 'intro'
+  let currentText = ''
+
+  const flush = () => {
+    if (!currentText.trim()) return
+    chunks.push({
+      content: currentText.trim(),
+      metadata: {
+        ...baseMetadata,
+        section_id: currentSection,
+        section_anchor: '',
+      },
+    })
+    currentText = ''
+  }
+
+  for (const line of body.split('\n')) {
+    const heading = line.match(/^#{2,3}\s+(.+)/)
+    if (heading) {
+      flush()
+      currentSection = heading[1].toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'section'
+    }
+    currentText += line + '\n'
+  }
+
+  flush()
+  return chunks
+}
+
 // Expose for future use
 void parseMarkdown
 
@@ -391,6 +437,19 @@ async function main() {
     const outPath = resolve(CHUNKS_DIR, `${source.articleId}.json`)
     writeFileSync(outPath, JSON.stringify(chunks, null, 2))
     console.log(`  ✓ ${source.articleId} → ${chunks.length} chunks`)
+    totalChunks += chunks.length
+  }
+
+  // Published Obsidian blog posts for RAG.
+  for (const post of getBlogPosts()) {
+    if (!post.ragReady) continue
+
+    const chunks = parseBlogPostMarkdown(post)
+    if (chunks.length === 0) continue
+
+    const outPath = resolve(CHUNKS_DIR, `${post.slug}.json`)
+    writeFileSync(outPath, JSON.stringify(chunks, null, 2))
+    console.log(`  ✓ ${post.slug} → ${chunks.length} chunks`)
     totalChunks += chunks.length
   }
 

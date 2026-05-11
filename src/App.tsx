@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { faridProfile, getSeo } from "./content/farid-profile";
+import { getFeaturedBlogPosts } from "./content/blog";
 
 function SectionKicker({
   index,
@@ -297,22 +298,29 @@ function Skills() {
 }
 
 function FieldNotes() {
+  const posts = getFeaturedBlogPosts(3);
+
   return (
     <section id="field-notes" className="farid-section">
       <SectionKicker index="04">Field Notes</SectionKicker>
       <div className="farid-section-heading">
         <h2 className="farid-display">Workflows that write themselves.</h2>
+        <p>Notes synced from Obsidian, cleaned up when they are ready to be public.</p>
       </div>
-      <a href="/blog/mlops-field-notes" className="farid-note-card">
-        <span>{faridProfile.fieldNote.date}</span>
-        <h3>{faridProfile.fieldNote.title}</h3>
-        <p>{faridProfile.fieldNote.description}</p>
-        <div className="farid-tags">
-          {faridProfile.fieldNote.tags.map((tag) => (
-            <span key={tag}>{tag}</span>
-          ))}
-        </div>
-      </a>
+      <div className="farid-blog-grid">
+        {posts.map((post) => (
+          <a href={`/blog/${post.slug}`} className="farid-note-card" key={post.slug}>
+            <span>{post.displayDate} · {post.readingTime}</span>
+            <h3>{post.title}</h3>
+            <p>{post.description}</p>
+            <div className="farid-tags">
+              {post.tags.map((tag) => (
+                <span key={tag}>{tag}</span>
+              ))}
+            </div>
+          </a>
+        ))}
+      </div>
     </section>
   );
 }

@@ -34,7 +34,8 @@
   ],
   "rewrites": [
     { "source": "/en", "destination": "/en/index.html" },
-    { "source": "/blog/mlops-field-notes", "destination": "/blog/mlops-field-notes/index.html" },
+    { "source": "/blog", "destination": "/blog/index.html" },
+    { "source": "/blog/:slug", "destination": "/blog/:slug/index.html" },
     { "source": "/ops", "destination": "/index.html" }
   ],
   "crons": [

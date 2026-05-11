@@ -7,10 +7,11 @@ import './index.css'
 import './brand/farid-theme.css'
 import App from './App.tsx'
 import GlobalNav from './GlobalNav.tsx'
-import FaridFieldNotes from './FaridFieldNotes.tsx'
 import { blockedLegacyRoutes } from './public-surface/routes.ts'
 
 const FloatingChat = lazy(() => import('./FloatingChat'))
+const BlogIndexPage = lazy(() => import('./BlogIndexPage.tsx'))
+const BlogPostPage = lazy(() => import('./BlogPostPage.tsx'))
 const OpsDashboard = lazy(() => import('./ops/OpsDashboard'))
 
 class ChatErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean }> {
@@ -55,7 +56,8 @@ const app = (
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/en" element={<App />} />
-          <Route path="/blog/mlops-field-notes" element={<FaridFieldNotes />} />
+          <Route path="/blog" element={<BlogIndexPage />} />
+          <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="/ops" element={<OpsDashboard />} />
           {blockedLegacyRoutes.map(path => <Route key={path} path={path} element={<NotFound />} />)}
           <Route path="*" element={<NotFound />} />

@@ -19,6 +19,32 @@ export function getHomeSeo(path = '/') {
   }
 }
 
+export function getBlogIndexSeo() {
+  return {
+    title: 'Blog | Farid Sayago',
+    description: "Farid Sayago's field notes on data science, MLOps, Python, analytics, and AI workflows.",
+    url: absoluteUrl('/blog'),
+    image: `${SITE_URL}/images/og-preview.png`,
+    siteName: faridProfile.domain,
+    author: faridProfile.fullName,
+  }
+}
+
+export function getBlogIndexJsonLd() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    name: 'Farid Sayago Blog',
+    description: "Field notes from Farid Sayago's data science and MLOps work.",
+    url: absoluteUrl('/blog'),
+    author: {
+      '@type': 'Person',
+      name: faridProfile.fullName,
+      url: SITE_URL,
+    },
+  }
+}
+
 export function getHomeJsonLd(path = '/') {
   return {
     '@context': 'https://schema.org',

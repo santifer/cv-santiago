@@ -21,11 +21,11 @@ const AUTH = Buffer.from(`${LANGFUSE_PUBLIC_KEY}:${LANGFUSE_SECRET_KEY}`).toStri
 // Maps keywords to articles that SHOULD be found when those keywords appear.
 // This is the "ground truth" that the RAG should discover.
 const ARTICLE_KEYWORDS: Record<string, string[]> = {
-  'n8n-for-pms': ['n8n', 'workflow', 'automation', 'automatable friday', 'intelligent router', 'maven', 'marily'],
-  'jacobo': ['jacobo', 'agente', 'agent', 'omnicanal', 'whatsapp', 'sub-agent', 'tool calling', 'hitl', 'n8n', 'airtable', 'presupuest'],
-  'business-os': ['erp', 'business os', 'airtable', 'operaciones', 'operations', 'crm', 'inventario', 'inventory', 'n8n'],
-  'programmatic-seo': ['seo', 'programat', 'paginas', 'pages', 'dataforseo', 'indexa', 'impresiones', 'impressions'],
-  'self-healing-chatbot': ['chatbot', 'rag', 'langfuse', 'evals', 'jailbreak', 'prompt', 'defensa', 'defense', 'scoring'],
+  'farid-profile': ['farid', 'intcomex', 'kimberly-clark', 'universidad santo tomás', 'platzi', 'data analyst', 'bi analyst'],
+  'mlops-field-notes': ['mlops', 'field notes', 'machine learning workflow', 'reproducible', 'observable', 'obsidian'],
+  'wiener-git': ['wiener-git', 'git internals', 'content-addressable', 'cli'],
+  'whttp': ['whttp', 'http server', 'sockets', 'c server'],
+  'wiener-tickets': ['wiener tickets', 'ticket classification', 'mlops pipeline', 'docker'],
 }
 
 // Reverse map: keyword → articles

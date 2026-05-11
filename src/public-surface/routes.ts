@@ -1,4 +1,6 @@
-export type PublicRouteKind = 'home' | 'article' | 'internal'
+import { getBlogRoutes } from '../content/blog'
+
+export type PublicRouteKind = 'home' | 'article' | 'blog' | 'internal'
 
 export interface PublicRoute {
   path: string
@@ -7,10 +9,18 @@ export interface PublicRoute {
   sitemap: boolean
 }
 
+const blogRoutes: PublicRoute[] = getBlogRoutes().map((path) => ({
+  path,
+  kind: 'article' as const,
+  prerender: true,
+  sitemap: true,
+}))
+
 export const publicRoutes: PublicRoute[] = [
   { path: '/', kind: 'home', prerender: true, sitemap: true },
   { path: '/en', kind: 'home', prerender: true, sitemap: true },
-  { path: '/blog/mlops-field-notes', kind: 'article', prerender: true, sitemap: true },
+  { path: '/blog', kind: 'blog', prerender: true, sitemap: true },
+  ...blogRoutes,
 ]
 
 export const internalRoutes: PublicRoute[] = [

@@ -13,7 +13,22 @@ create table if not exists public.documents (
   fts tsvector generated always as (to_tsvector('english', content)) stored
 );
 
--- 3. Hybrid search function (vector similarity + BM25 keyword match)
+-- 3. RAG ingestion hashes (used to skip unchanged content in CI/Vercel)
+create table if not exists public.rag_hashes (
+  article_id text primary key,
+  hash text not null,
+  updated_at timestamptz default now()
+);
+
+-- 4. Voice session rate limits (best-effort abuse guard)
+create table if not exists public.voice_rate_limits (
+  ip text primary key,
+  count int not null default 0,
+  window_start timestamptz not null default now(),
+  last_used timestamptz not null default now()
+);
+
+-- 5. Hybrid search function (vector similarity + BM25 keyword match)
 create or replace function hybrid_search (
   query_text text,
   query_embedding vector(1536),
@@ -36,14 +51,14 @@ begin
   limit match_count;
 end; $$;
 
--- 4. Delete function for re-indexing
+-- 6. Delete function for re-indexing
 create or replace function delete_documents_by_slug(slug text)
 returns void language plpgsql as $$
 begin
   delete from documents where metadata->>'article_id' = slug;
 end; $$;
 
--- 5. Indices
+-- 7. Indices
 create index if not exists documents_embedding_idx on documents
   using ivfflat (embedding vector_cosine_ops) with (lists = 10);
 create index if not exists documents_fts_idx on documents using gin (fts);

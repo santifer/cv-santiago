@@ -82,6 +82,7 @@ Supporting positioning:
 - Hide/remove Santiago articles from public routing, navigation, RAG, SEO, sitemap, and eval expectations.
 - Replace Santiago articles with Farid articles over time.
 - First safe Farid article seed: `MLOps Field Notes: Start Small, Stay Reliable` from the 3D portfolio.
+- Blog posts are authored in `/home/faris/Documents/obsidian/portfolio/blog` and synced into `src/content/blog/generated.ts` by `scripts/sync-obsidian-blog.ts`; UI, SEO, prerender, sitemap, and RAG consume the Blog Content Module instead of hardcoded article content.
 - Contact backend decision: use EmailJS only, matching the existing 3D portfolio. Do not keep Resend for the public contact form unless a later decision changes this.
 - Deployment decision: deploy the public portfolio frontend on Hostinger, matching the existing 3D portfolio deployment target.
 - Advanced API/LLMOps deployment decision: use a hybrid architecture. Hostinger serves the static frontend; Vercel hosts API/LLMOps modules such as chat, voice token, RAG search, ops APIs, Langfuse/Supabase server calls, and any secret-bearing functionality.

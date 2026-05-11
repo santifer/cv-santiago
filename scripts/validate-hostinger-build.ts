@@ -8,6 +8,7 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { getBlogPosts } from '../src/content/blog/index.ts'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = resolve(__dirname, '..')
@@ -21,7 +22,8 @@ const requiredFiles = [
   'robots.txt',
   'sitemap.xml',
   'en/index.html',
-  'blog/mlops-field-notes/index.html',
+  'blog/index.html',
+  ...getBlogPosts().map((post) => `blog/${post.slug}/index.html`),
 ]
 
 let errors = 0
@@ -41,6 +43,7 @@ if (existsSync(htaccessPath)) {
   for (const requiredSnippet of [
     'ErrorDocument 404 /404.html',
     'RewriteRule ^ops/?$ /index.html [L]',
+    'RewriteRule ^blog/([^/]+)$ /blog/$1/index.html [L]',
     'Content-Security-Policy',
     'https://api.sayagos.tech',
     'https://api.emailjs.com',

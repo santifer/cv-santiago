@@ -760,7 +760,7 @@ body::after {
 .farid-project-media img { width: 100%; height: 100%; object-fit: cover; transition: .4s; }
 .farid-project-card:hover img { transform: scale(1.04); }
 .farid-project-content, .farid-skill-card, .farid-experience-card, .farid-note-card { padding: 1.5rem; }
-.farid-project-content h3, .farid-skill-card h3, .farid-experience-card h3, .glass-panel h3, .farid-note-card h3 { color: var(--farid-ink); font-size: 1.6rem; margin: .75rem 0; letter-spacing: -.04em; }
+.farid-project-content h3, .farid-skill-card h3, .farid-experience-card h3, .glass-panel h3, .farid-note-card h2, .farid-note-card h3 { color: var(--farid-ink); font-size: 1.6rem; margin: .75rem 0; letter-spacing: -.04em; }
 .farid-project-content p, .farid-skill-card p, .farid-experience-card p, .farid-note-card p { color: var(--farid-muted-strong); line-height: 1.75; }
 .farid-card-meta { display: flex; justify-content: space-between; gap: 1rem; color: var(--farid-muted); font-family: var(--farid-mono); font-size: .75rem; text-transform: uppercase; letter-spacing: .18em; }
 .farid-card-meta span:first-child { color: var(--farid-blue); }
@@ -773,6 +773,14 @@ body::after {
 .glass-panel { padding: 1.5rem; }
 .farid-note-card { display: block; max-width: 760px; }
 .farid-note-card > span { color: var(--farid-blue); font-family: var(--farid-mono); font-size: .8rem; }
+.farid-blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; align-items: stretch; }
+.farid-blog-grid .farid-note-card { max-width: none; }
+.farid-blog-index { max-width: 1120px; margin: 0 auto; display: grid; gap: 1.5rem; }
+.farid-blog-prose { margin-top: 2.5rem; }
+.farid-blog-prose h2:first-child { margin-top: 0; }
+.farid-blog-prose a { color: var(--farid-blue); }
+.farid-blog-prose code { color: var(--farid-ink); background: rgba(63,124,255,.12); border: 1px solid var(--farid-line); border-radius: .35rem; padding: .1rem .35rem; }
+.farid-blog-prose pre { overflow-x: auto; border: 1px solid var(--farid-line); border-radius: 1rem; padding: 1rem; background: rgba(6,9,15,.8); }
 .contact-grid { display: grid; grid-template-columns: .85fr 1fr; gap: 1.25rem; }
 .farid-contact-form { display: grid; gap: 1rem; }
 .farid-contact-form label { display: grid; gap: .5rem; color: var(--farid-muted-strong); }

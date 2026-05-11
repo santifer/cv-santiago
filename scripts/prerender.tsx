@@ -14,9 +14,10 @@ import { StaticRouter, Routes, Route, Link, useLocation } from 'react-router-dom
 import Critters from 'critters'
 import App from '../src/App.tsx'
 import GlobalNav from '../src/GlobalNav.tsx'
-import FaridFieldNotes from '../src/FaridFieldNotes.tsx'
+import BlogIndexPage from '../src/BlogIndexPage.tsx'
+import BlogPostPage from '../src/BlogPostPage.tsx'
 import { getPrerenderRoutes, blockedLegacyRoutes } from '../src/public-surface/routes.ts'
-import { getHomeSeo, getHomeJsonLd, getArticleSeo, getArticleJsonLd, absoluteUrl } from '../src/public-surface/seo.ts'
+import { getHomeSeo, getHomeJsonLd, getBlogIndexSeo, getBlogIndexJsonLd, getArticleSeo, getArticleJsonLd, absoluteUrl } from '../src/public-surface/seo.ts'
 import { findForbiddenPublicIdentityTerms } from '../src/public-surface/forbidden-identity.ts'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -55,7 +56,8 @@ function AppRoutes() {
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/en" element={<App />} />
-          <Route path="/blog/mlops-field-notes" element={<FaridFieldNotes />} />
+          <Route path="/blog" element={<BlogIndexPage />} />
+          <Route path="/blog/:slug" element={<BlogPostPage />} />
           {blockedLegacyRoutes.map(path => <Route key={path} path={path} element={<NotFound />} />)}
           <Route path="*" element={<NotFound />} />
         </Routes>
@@ -101,10 +103,11 @@ function injectArticleHreflang(html: string, articleSeo: NonNullable<ReturnType<
 }
 
 function applySeo(html: string, routePath: string): string {
+  const isBlogIndex = routePath === '/blog'
   const isArticle = routePath.startsWith('/blog/')
   const articleSeo = isArticle ? getArticleSeo(routePath) : null
-  const seo = articleSeo || getHomeSeo(routePath)
-  const jsonLd = articleSeo ? getArticleJsonLd(routePath) : getHomeJsonLd(routePath)
+  const seo = articleSeo || (isBlogIndex ? getBlogIndexSeo() : getHomeSeo(routePath))
+  const jsonLd = articleSeo ? getArticleJsonLd(routePath) : (isBlogIndex ? getBlogIndexJsonLd() : getHomeJsonLd(routePath))
   const title = seo.title
   const description = seo.description
   const url = seo.url
@@ -190,15 +193,11 @@ const notFoundHtml = replaceJsonLd(
 writeFileSync(resolve(distDir, '404.html'), notFoundHtml, 'utf-8')
 console.log('[prerender] 404.html created')
 
-for (const [route, label] of [
-  ['/', 'home'],
-  ['/en', 'home-en'],
-  ['/blog/mlops-field-notes', 'field-note'],
-] as const) {
-  const html = readFileSync(outputPathForRoute(route), 'utf-8')
+for (const route of getPrerenderRoutes()) {
+  const html = readFileSync(outputPathForRoute(route.path), 'utf-8')
   const terms = findForbiddenPublicIdentityTerms(html)
   if (terms.length > 0) {
-    console.error(`[prerender] Forbidden legacy identity in ${label}: ${terms.join(', ')}`)
+    console.error(`[prerender] Forbidden legacy identity in ${route.path}: ${terms.join(', ')}`)
     process.exit(1)
   }
 }

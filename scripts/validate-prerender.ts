@@ -645,9 +645,11 @@ function validateStructural(): Issue[] {
     // S6. All registry slugs have vercel.json rewrites
     const vjData = JSON.parse(vj)
     const rewriteSources = new Set((vjData.rewrites || []).map((r: { source: string }) => r.source))
+    const hasBlogPattern = rewriteSources.has('/blog/:slug')
     for (const article of articleRegistry) {
       for (const [lang, slug] of Object.entries(article.slugs) as ['es' | 'en', string][]) {
-        if (!rewriteSources.has(`/${slug}`)) {
+        const isBlogSlug = slug.startsWith('blog/')
+        if (!rewriteSources.has(`/${slug}`) && !(isBlogSlug && hasBlogPattern)) {
           issues.push({
             severity: 'warn',
             msg: `Registry slug "/${slug}" (${article.id} [${lang}]) missing rewrite in vercel.json`,

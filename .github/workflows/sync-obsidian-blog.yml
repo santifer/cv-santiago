@@ -1,0 +1,76 @@
+name: Sync Obsidian Blog
+
+on:
+  repository_dispatch:
+    types: [obsidian-blog-updated]
+  workflow_dispatch:
+  schedule:
+    - cron: '0 7 * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: obsidian-blog-sync-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    name: Sync published Markdown notes
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout portfolio
+        uses: actions/checkout@v4
+        with:
+          path: portfolio
+
+      - name: Checkout Obsidian vault
+        uses: actions/checkout@v4
+        with:
+          repository: Faridsz0605/obsidian
+          ref: main
+          path: obsidian
+          token: ${{ secrets.OBSIDIAN_REPO_TOKEN || github.token }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+          cache-dependency-path: portfolio/pnpm-lock.yaml
+
+      - name: Install dependencies
+        working-directory: portfolio
+        run: pnpm install --frozen-lockfile
+
+      - name: Sync blog posts
+        working-directory: portfolio
+        env:
+          OBSIDIAN_BLOG_DIR: ${{ github.workspace }}/obsidian/portfolio/blog
+        run: pnpm run sync-blog
+
+      - name: Validate synced content
+        working-directory: portfolio
+        run: |
+          pnpm run validate-articles
+          pnpm run lint
+          pnpm run build
+
+      - name: Commit synced blog content
+        working-directory: portfolio
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/content/blog/generated.ts
+          if git diff --cached --quiet; then
+            echo "No blog changes to commit."
+          else
+            git commit -m "content: sync Obsidian blog"
+            git push
+          fi
