@@ -3,13 +3,13 @@ export const seo = {
     title:
       'santifer | Applied AI Operator · Builder of Career-Ops',
     description:
-      'Multi-agent systems builder. Applied AI Operator con 2 case studies en producción. Creador de Career-Ops (48.1K+ ⭐). 16 años llevando IA a producción.',
+      'Multi-agent systems builder. Applied AI Operator con 2 case studies en producción. Creador de Career-Ops (48.2K+ ⭐). 16 años llevando IA a producción.',
   },
   en: {
     title:
       'santifer | Applied AI Operator · Builder of Career-Ops',
     description:
-      'Multi-agent systems builder. Applied AI Operator with 2 production case studies live. Creator of Career-Ops (48.1K+ ⭐). 16 years shipping AI at scale.',
+      'Multi-agent systems builder. Applied AI Operator with 2 production case studies live. Creator of Career-Ops (48.2K+ ⭐). 16 years shipping AI at scale.',
   },
 };
 
@@ -190,7 +190,7 @@ export const translations = {
           tech: ['Claude Code', 'Batch Architecture', 'WebSearch', 'HITL Design'],
           link: 'career-ops.org',
           linkUrl: 'https://career-ops.org?utm_source=santifer.io&utm_medium=projects-grid&utm_campaign=home',
-          stars: '48.1K',
+          stars: '48.2K',
           forks: '10.0K',
           caseStudyUrl: '/career-ops',
           caseStudyLabel: 'Leer: AI Job Search multi-agente',
@@ -202,7 +202,7 @@ export const translations = {
           desc: 'CV interactivo con SDLC aumentado con IA. Construido con **Claudeable**, monitorizado con **Claude Pulse**, animaciones debuggeadas con **Claude Eye**. Prerender SSR, i18n bilingüe y SEO automatizado.',
           tech: ['React 19', 'TypeScript', 'Tailwind', 'Vite', 'Motion', 'Vercel'],
           link: 'github.com/santifer/cv-santiago',
-          stars: '612',
+          stars: '614',
           forks: '235',
         },
         {
@@ -411,7 +411,7 @@ export const translations = {
           badge: '~90% autoservicio',
           github: 'santifer/jacobo-workflows',
           stars: '144',
-          forks: '48',
+          forks: '47',
           desc: 'Voz (ElevenLabs) + WhatsApp (n8n / WATI) + Aircall cloud PBX. Orquestación de sub-agentes especializados vía tool calling.',
           items: [
             {
@@ -575,7 +575,7 @@ export const translations = {
       replies: '105',
       retweets: '497',
       likes: '3.9K',
-      views: '547.2K',
+      views: '547.3K',
       cta: 'Ver en X',
       url: 'https://x.com/santifer/status/2041403685696053741',
     },
@@ -1046,7 +1046,7 @@ export const translations = {
           tech: ['Claude Code', 'Batch Architecture', 'WebSearch', 'HITL Design'],
           link: 'career-ops.org',
           linkUrl: 'https://career-ops.org?utm_source=santifer.io&utm_medium=projects-grid&utm_campaign=home',
-          stars: '48.1K',
+          stars: '48.2K',
           forks: '10.0K',
           caseStudyUrl: '/career-ops-system',
           caseStudyLabel: 'Case Study: AI Job Search',
@@ -1058,7 +1058,7 @@ export const translations = {
           desc: 'Interactive CV with AI-augmented SDLC. Built with **Claudeable**, monitored with **Claude Pulse**, animations debugged with **Claude Eye**. SSR prerender, bilingual i18n, and automated SEO.',
           tech: ['React 19', 'TypeScript', 'Tailwind', 'Vite', 'Motion', 'Vercel'],
           link: 'github.com/santifer/cv-santiago',
-          stars: '612',
+          stars: '614',
           forks: '235',
         },
         {
@@ -1263,7 +1263,7 @@ export const translations = {
           badge: '~90% self-service',
           github: 'santifer/jacobo-workflows',
           stars: '144',
-          forks: '48',
+          forks: '47',
           desc: 'Voice (ElevenLabs) + WhatsApp (n8n / WATI) + Aircall cloud PBX. Sub-agent orchestration via tool calling.',
           items: [
             {
@@ -1427,7 +1427,7 @@ export const translations = {
       replies: '105',
       retweets: '497',
       likes: '3.9K',
-      views: '547.2K',
+      views: '547.3K',
       cta: 'View on X',
       url: 'https://x.com/santifer/status/2041403685696053741',
     },

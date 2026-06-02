@@ -285,7 +285,12 @@ async function main() {
       { re: /\b\d+[\d.]*K\+\s*GitHub stars/g, replace: `${starLabelPlus} GitHub stars` },
       { re: /\b\d+[\d.]*K\s+stars\b/gi, replace: `${starLabel} stars` },
       { re: /\b\d+[\d.]*K\s+estrellas\b/gi, replace: `${starLabel} estrellas` },
+      // "X de estrellas" / "X de stars" (Spanish narrative with intermediate "de")
+      { re: /\b\d+[\d.]*K\s+de\s+estrellas\b/gi, replace: `${starLabel} de estrellas` },
       { re: /\b\d+[\d.]*K\+\s*forks/gi, replace: `${forkLabelPlus} forks` },
+      // Metric-card entries where value/label are separated by object syntax:
+      // `value: '40.1K+', label: 'GitHub stars'` — generic sweep can't bridge the `', label: '`.
+      { re: /(value: ')\d+[\d.]*K\+(', label: 'GitHub stars')/g, replace: `$1${starLabelPlus}$2` },
     ]
 
     // Lines that include `// HISTORIC` are protected (week-1 viral snapshot, do not auto-bump).
