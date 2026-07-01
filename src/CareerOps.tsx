@@ -71,7 +71,7 @@ export default function CareerOps({ lang = 'en' }: { lang?: Lang }) {
     description: t.seo.description,
     image: 'https://santifer.io/career-ops/og-career-ops.webp',
     publishedTime: '2026-03-17',
-    modifiedTime: '2026-06-26',
+    modifiedTime: '2026-06-30',
     articleTags: 'multi-agent,job search,Claude Code,ATS,batch processing,HITL,automation',
     jsonLd: buildJsonLd(lang),
     xDefaultSlug: 'career-ops',
@@ -93,7 +93,7 @@ export default function CareerOps({ lang = 'en' }: { lang?: Lang }) {
         subtitle={t.header.subtitle}
         date={t.header.date}
         dateISO="2026-03-17"
-        dateModifiedISO="2026-06-26"
+        dateModifiedISO="2026-06-30"
         readingTime={t.readingTime}
       />
 
@@ -117,7 +117,7 @@ export default function CareerOps({ lang = 'en' }: { lang?: Lang }) {
         <PressFeatures lang={lang} />
       </div>
 
-      <GitHubRepoBadge repo="santifer/career-ops" stars="56.7K" forks="11.2K" lang={lang} />
+      <GitHubRepoBadge repo="santifer/career-ops" stars="57.0K" forks="11.3K" lang={lang} />
 
       {/* The career-ops warp chart (Warpchart) — animated SVG served as plain <img>, prerender-safe (no iframe, no hydration guard needed).
           theme=dark FIXED on purpose: site is hardcoded dark; Warpchart's dynamic day/night mode (omitting theme) follows the visitor's OS
