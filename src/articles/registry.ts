@@ -199,7 +199,7 @@ export const articleRegistry: ArticleConfig[] = [
     component: () => import('../JacoboAgent.tsx'),
     seoMeta: {
       datePublished: '2026-02-25',
-      dateModified: '2026-07-01',
+      dateModified: '2026-07-02',
       keywords: ['multi-agent AI', 'multi agent orchestration', 'AI agent', 'sub-agent architecture', 'tool calling production', 'n8n workflows', 'n8n ai agent', 'ai agent case study', 'customer service AI', 'WhatsApp AI agent', 'ElevenLabs voice agent', 'voice AI', 'HITL', 'human in the loop', 'ia para pymes', 'agente ia whatsapp', 'multi-model orchestration', 'OpenRouter', 'FDE portfolio', 'solutions architect AI', 'AI production manager', 'enterprise AI patterns', 'voice AI platform', 'conversational AI case study', 'agentic workflows'],
       articleType: 'TechArticle',
       articleTags: 'AI agent,multi-agent,n8n,ElevenLabs,HITL,tool calling,WhatsApp,voice AI',
