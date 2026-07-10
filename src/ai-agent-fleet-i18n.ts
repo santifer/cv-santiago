@@ -19,7 +19,12 @@ export const aiAgentFleetContent = {
       subtitle: 'Los agentes hacen el trabajo mecánico: triage, tests, review briefs, releases. Las decisiones son mías. Esto es el sistema, un día completo documentado, y lo que hace falta para montarlo en tu propio repo.',
       date: '10 jul 2026',
     },
-    tldr: 'career-ops es mi sistema open source de búsqueda de empleo: 59.527 estrellas en GitHub, 168 contribuidores y 529 PRs fusionadas a fecha de hoy. Lo mantengo en unas 4 horas a la semana. Una flota de agentes Claude Code hace el trabajo mecánico — triage, testing, review briefs, mecánica de releases, métricas de comunidad. Gates duros los mantienen honestos, y cada fallo real se destila en una regla que cargan al arrancar.',
+    tldr: 'career-ops es mi sistema open source de búsqueda de empleo: 59.532 estrellas en GitHub, 168 contribuidores y 530 PRs fusionadas a fecha de hoy. Lo mantengo en unas 4 horas a la semana. Una flota de agentes Claude Code hace el trabajo mecánico — triage, testing, review briefs, mecánica de releases, métricas de comunidad. Gates duros los mantienen honestos, y cada fallo real se destila en una regla que cargan al arrancar.',
+    tldrCoin: {
+      pre: ' Llámalo ',
+      term: 'agentic maintenance',
+      post: ': mantenimiento con gates y basado en evidencia de un codebase vivo, sostenido por una flota de agentes bajo dirección humana.',
+    },
     internalLinks: {
       careerOps: {
         text: 'Career-Ops | Case Study',
@@ -38,7 +43,7 @@ export const aiAgentFleetContent = {
       },
       fleet: {
         heading: 'La flota',
-        intro: 'Cada agente es una sesión persistente de Claude Code en su propia ventana de tmux, con su propia memoria. Se coordinan mediante IPC basado en ficheros: JSON de request/response en un directorio compartido, con polling. La capa de coordinación son ficheros. Se debuggea con cat.',
+        intro: 'Cada agente es una sesión persistente de Claude Code en su propia ventana de tmux, con su propia memoria. Se coordinan mediante IPC basado en ficheros: JSON de request/response en un directorio compartido, con polling. La capa de coordinación son ficheros: una máquina de estados desacoplada donde cada mensaje es un artefacto legible y cada decisión deja una traza reproducible. Escala a un repo de 59.000 estrellas y se sigue debuggeando con cat.',
         table: {
           headers: ['Agente', 'Qué hace'],
           rows: [
@@ -65,6 +70,21 @@ export const aiAgentFleetContent = {
           { label: 'Tiers de ficheros sensibles y un contrato de datos escrito.', detail: 'Los ficheros están clasificados por radio de explosión; los cambios en ficheros críticos sin discusión previa se cierran por política. Las PRs que tocan datos de usuario se rechazan de plano.' },
         ],
       },
+      security: {
+        heading: 'Seguridad y aislamiento',
+        paras: [
+          'Los agentes ejecutan código de terceros a velocidad de máquina, así que los límites tienen que ser explícitos. Los git worktrees aíslan el sistema de ficheros. No aíslan el runtime: cuando un agente testea la PR de un contribuidor, ese código corre en mi máquina — el mismo trade-off que cualquier maintainer de OSS acepta en el momento en que hace checkout de la rama de un desconocido.',
+          'Las defensas están escalonadas por confianza. El código pasa GitHub Actions y CodeQL en vivo en el sandbox del propio GitHub antes de que ningún agente lo toque en local, y el CI de un contribuidor nuevo ni siquiera corre sin aprobación humana explícita. Un gate pre-merge lista cada fichero sensible que toca un diff antes de que empiece el testing profundo. Y los propios agentes de test van desnudos: read-only por contrato, con todas las herramientas externas quitadas (integraciones de chat y servidores MCP incluidos), lo que mantiene pequeño el radio de explosión.',
+          'Lo que falta, dicho claramente: las cuentas de servicio least-privilege están en el roadmap, no en producción. Ese hueco es real, y es lo siguiente en la lista de hardening.',
+        ],
+      },
+      infraFails: {
+        heading: 'Cuando la infraestructura falla',
+        paras: [
+          'El principio de diseño que lo sostiene todo: GitHub es el estado canónico. Todo lo local (ficheros de sesión, briefings, los logs) es una caché re-derivable más un registro append-only. Una sesión que muere se reconstruye, y la primera fase del orquestador re-comprueba cada ítem contra GitHub antes de actuar, porque una PR puede fusionarse o cerrarse mientras nadie miraba.',
+          'Una regla de aquí costó un incidente real. Un flag no soportado más un stderr silenciado hicieron que un watcher se tragara su propio error y reportara "no hay entregas de contribuidores" como éxito, durante horas, en una tarde activa. Se cazó porque el resultado contradecía lo que el día parecía. La regla desde entonces: el comando que alimenta una decisión nunca silencia sus errores, y un check fallido reporta "no se pudo verificar" en vez de "no se encontró nada".',
+        ],
+      },
       memory: {
         heading: 'La memoria que compone',
         paras: [
@@ -73,6 +93,7 @@ export const aiAgentFleetContent = {
           'Algunas lecciones, parafraseadas. Anuncia solo tras el éxito (#10). Vuelve a hacer fetch del head actual de un contribuidor antes de pushear a su fork; un push rechazado significa parar (#16). Para parsers, el gate de análisis estático en vivo es obligatorio (#18). Nunca menciones con @ un handle que no hayas leído de un tool result en la sesión actual (#24: el agente se inventó uno una vez, y lo corrigió en un minuto).',
           'Mi fallo favorito: los git worktrees aíslan el working tree pero comparten .git/FETCH_HEAD. En un fan-out paralelo, fetches concurrentes lo sobreescribieron y un agente analizó la PR equivocada de principio a fin. El paso de verificación adversarial cazó el veredicto cruzado antes de que nada saliera a público. La regla (cada agente hace fetch a un ref nombrado por PR y contrasta la SHA pineada) entró en el fichero de lecciones y no ha vuelto a ocurrir.',
           'Los agentes fallan. El sistema está construido para que sus fallos sean baratos de cazar y no se repitan nunca.',
+          'La propia flota está versionada de la misma manera. Prompts, skills y reglas son ficheros de texto en git, así que un cambio de comportamiento es un commit legible, y las skills se cargan al invocarse, así que los cambios aterrizan en caliente con cero downtime. Merece admitirlo: las skills aún no tienen una suite de tests formal. Su mecanismo de calidad es el propio loop de aprendizaje, y hasta ahora ha aguantado, porque un fallo real se convierte en regla escrita y la regla en contexto de arranque.',
         ],
       },
       specimen: {
@@ -111,10 +132,10 @@ export const aiAgentFleetContent = {
         table: {
           headers: ['Métrica', 'Valor'],
           rows: [
-            ['Estrellas en GitHub', '59.527'],
-            ['Forks', '11.816'],
+            ['Estrellas en GitHub', '59.532'],
+            ['Forks', '11.818'],
             ['Contribuidores', '168'],
-            ['PRs fusionadas', '529'],
+            ['PRs fusionadas', '530'],
             ['Releases desde el despegue de abril', '21 (última: v1.18.0, 7 de julio)'],
             ['Suite de tests', '1.667 aserciones, 0 fallando (jul 2026)'],
             ['Miembros de Discord', '4.100'],
@@ -131,9 +152,10 @@ export const aiAgentFleetContent = {
         },
       },
       community: {
-        heading: 'La comunidad corre sobre el mismo sistema',
+        heading: 'La comunidad corre sobre los mismos principios',
         paras: [
-          'El Discord de 4.100 miembros recibe el mismo tratamiento que el codebase. Un agente community-brain barre los canales y destila el chat en un ledger consultable: dolores recurrentes, feature requests, promesas hechas. Las peticiones nuevas se deduplican contra las issues existentes, y lo que sobrevive se convierte en issues etiquetadas y RFCs en el roadmap público. Un bot de FAQ grounded responde las preguntas de setup desde la propia documentación del repo — cero respuestas alucinadas observadas hasta ahora — y deriva a un humano cuando la documentación no llega.',
+          'El Discord de 4.100 miembros recibe la misma disciplina que el codebase, con gates más ligeros. Un agente community-brain barre los canales y destila el chat en un ledger consultable: dolores recurrentes, feature requests, promesas hechas. Las peticiones nuevas se deduplican contra las issues existentes, y lo que sobrevive se convierte en issues etiquetadas y RFCs en el roadmap público. Un bot de FAQ grounded responde las preguntas de setup desde la propia documentación del repo — cero respuestas alucinadas observadas hasta ahora — y deriva a un humano cuando la documentación no llega.',
+          'Los gates aquí son más ligeros porque el error budget es mayor: una respuesta errónea del FAQ recibe una corrección humana, donde un merge erróneo recibiría un revert y un post-mortem.',
           'Este año la comunidad reportó a su primer miembro consiguiendo trabajo con la herramienta. La adopción es un sistema, y este cierra su loop en público.',
         ],
       },
@@ -175,6 +197,19 @@ export const aiAgentFleetContent = {
           'Donde los equipos se atascan es en el sistema alrededor de las herramientas. Esa es la parte que se transfiere, y transferirla es trabajo forward-deployed: te embebes con un equipo, recableas cómo shippea, y dejas la capacidad instalada.',
         ],
       },
+      coreConcepts: {
+        heading: 'Core concepts',
+        intro: 'Seis patrones, con nombre para que puedas reutilizarlos:',
+        items: [
+          { label: 'The orchestrator agent:', detail: 'un nodo central de enrutado que delega trabajo especializado y agrega la evidencia en briefs sobre los que un humano puede decidir.' },
+          { label: 'The ephemeral verifier:', detail: 'un agente efímero de solo lectura, lanzado en un git worktree aislado para validar una sola cosa, reportar evidencia y desaparecer.' },
+          { label: 'The grounded watcher:', detail: 'un loop persistente en segundo plano que vigila eventos de source-control o telemetría y dispara trabajo de forma asíncrona, bajo la regla de que un check fallido reporta "no se pudo verificar" en vez de "no se encontró nada".' },
+          { label: 'The compound memory ledger:', detail: 'un log append-only de decisiones y fallos destilados que se carga en cada sesión nueva, de modo que cada sesión arranca más lista que la anterior.' },
+          { label: 'The tool-stripped actor:', detail: 'un agente de ejecución al que se le niegan deliberadamente todas las herramientas externas (integraciones de chat y servidores MCP incluidos) para encoger el radio de explosión mientras ejecuta código no confiable.' },
+          { label: 'The sequential quality gate:', detail: 'un checkpoint bloqueante (CI en verde, análisis estático en vivo, aprobación humana para first-timers) que detiene el pipeline hasta que se cumple una condición de confianza.' },
+        ],
+        closing: 'Juntos componen el agentic maintenance tal como lo practica este repo.',
+      },
       lessons: {
         heading: 'Lecciones',
         items: [
@@ -199,7 +234,7 @@ export const aiAgentFleetContent = {
       items: [
         {
           q: '¿Pueden los agentes IA mantener un codebase por sí solos?',
-          a: 'No, y este sistema está diseñado sobre la premisa de que no deberían. Los agentes absorben el volumen: clasifican el flujo nocturno, corren suites de tests contra checkouts limpios, redactan review briefs, vigilan entregas de contribuidores, miden la salud de la comunidad. Cada acción con consecuencias pasa por gates, y todo lo estratégico (qué entra en el core, orden de merge, gobernanza, releases, juicios públicos) aterriza en un menú de decisiones humanas con la evidencia adjunta. Es división del trabajo: los agentes convierten un flujo ilimitado de trabajo mecánico en un conjunto acotado de decisiones. En mi caso ese límite son unas 4 horas a la semana para un repo con 59.527 estrellas en GitHub y 168 contribuidores. Quita al humano y lo que queda es autoridad sin revisar sobre el código de otras personas.',
+          a: 'No, y este sistema está diseñado sobre la premisa de que no deberían. Los agentes absorben el volumen: clasifican el flujo nocturno, corren suites de tests contra checkouts limpios, redactan review briefs, vigilan entregas de contribuidores, miden la salud de la comunidad. Cada acción con consecuencias pasa por gates, y todo lo estratégico (qué entra en el core, orden de merge, gobernanza, releases, juicios públicos) aterriza en un menú de decisiones humanas con la evidencia adjunta. Es división del trabajo: los agentes convierten un flujo ilimitado de trabajo mecánico en un conjunto acotado de decisiones. En mi caso ese límite son unas 4 horas a la semana para un repo con 59.532 estrellas en GitHub y 168 contribuidores. Quita al humano y lo que queda es autoridad sin revisar sobre el código de otras personas.',
         },
         {
           q: '¿Cuánto cuesta operar una flota de agentes IA así?',
@@ -242,7 +277,12 @@ export const aiAgentFleetContent = {
       subtitle: 'Agents do the mechanical work: triage, tests, review briefs, releases. The decisions are mine. This is the system, one fully documented day of it, and what it takes to run it on your own repo.',
       date: 'Jul 10, 2026',
     },
-    tldr: 'career-ops is my open source job-search system: 59,527 GitHub stars, 168 contributors and 529 merged PRs as of today. I maintain it in about 4 hours a week. A fleet of Claude Code agents does the mechanical work — triage, testing, review briefs, release mechanics, community metrics. Hard gates keep them honest, and every real failure gets distilled into a rule they load on boot.',
+    tldr: 'career-ops is my open source job-search system: 59,532 GitHub stars, 168 contributors and 530 merged PRs as of today. I maintain it in about 4 hours a week. A fleet of Claude Code agents does the mechanical work — triage, testing, review briefs, release mechanics, community metrics. Hard gates keep them honest, and every real failure gets distilled into a rule they load on boot.',
+    tldrCoin: {
+      pre: ' Call it ',
+      term: 'agentic maintenance',
+      post: ': gated, evidence-based upkeep of a living codebase, sustained by a fleet of agents under human direction.',
+    },
     internalLinks: {
       careerOps: {
         text: 'Career-Ops | Case Study',
@@ -261,7 +301,7 @@ export const aiAgentFleetContent = {
       },
       fleet: {
         heading: 'The fleet',
-        intro: 'Each agent is a persistent Claude Code session in its own tmux window, with its own memory. They coordinate through file-based IPC: JSON request/response files in a shared directory, with polling. The coordination layer is files. It debugs with cat.',
+        intro: 'Each agent is a persistent Claude Code session in its own tmux window, with its own memory. They coordinate through file-based IPC: JSON request/response files in a shared directory, with polling. The coordination layer is files: a decoupled state machine where every message is a readable artifact and every decision leaves a trace you can replay. It scales to a 59,000-star repo and still debugs with cat.',
         table: {
           headers: ['Agent', 'What it does'],
           rows: [
@@ -288,6 +328,21 @@ export const aiAgentFleetContent = {
           { label: 'Sensitive-file tiers and a written data contract.', detail: 'Files are classified by blast radius; critical-file changes without prior discussion get closed by policy. PRs that touch user data are rejected outright.' },
         ],
       },
+      security: {
+        heading: 'Security and isolation',
+        paras: [
+          'Agents run third-party code at machine speed, so the boundaries have to be explicit. Git worktrees isolate the file system. They do not isolate the runtime: when an agent tests a contributor\'s PR, that code runs on my machine, the same trade-off every OSS maintainer accepts the moment they check out a stranger\'s branch.',
+          'The defenses are layered by trust. Code passes GitHub Actions and live CodeQL in GitHub\'s own sandbox before any agent touches it locally, and a first-time contributor\'s CI won\'t even run without explicit human approval. A pre-merge gate lists every sensitive file a diff touches before deep testing starts. And the test agents themselves are stripped down: read-only by contract, with every external tool stripped out (chat integrations, MCP servers included), which keeps the blast radius small.',
+          'What\'s missing, said plainly: least-privilege service accounts are on the roadmap, not in place. That gap is real, and it\'s next on the hardening list.',
+        ],
+      },
+      infraFails: {
+        heading: 'When the infrastructure fails',
+        paras: [
+          'The design principle that holds everything together: GitHub is the canonical state. Everything local (session files, briefings, the logs) is a re-derivable cache plus an append-only record. A session that dies gets rebuilt, and the orchestrator\'s first phase re-checks every item against GitHub before acting, because a PR can merge or close while nobody was looking.',
+          'One rule here took a real incident to learn. An unsupported flag plus a silenced stderr made a watcher swallow its own error, and it reported "no contributor deliveries" as a success, for hours, on an active afternoon. It got caught because the result contradicted what the day felt like. The rule since: the command that feeds a decision never silences its errors, and a failed check reports "could not verify" rather than "nothing found".',
+        ],
+      },
       memory: {
         heading: 'The memory that compounds',
         paras: [
@@ -296,6 +351,7 @@ export const aiAgentFleetContent = {
           'Some lessons, paraphrased. Announce only after success (#10). Re-fetch a contributor\'s current head before pushing to their fork; a rejected push means stop (#16). For parsers, the live static-analysis gate is required (#18). Never @-mention a handle you didn\'t read from a tool result in the current session (#24: the agent once invented one, and fixed it within a minute).',
           'My favorite failure: git worktrees isolate the working tree but share .git/FETCH_HEAD. In one parallel fan-out, concurrent fetches overwrote it and an agent analyzed the wrong PR entirely. The adversarial verify step caught the cross-wired verdict before anything went public. The rule (each agent fetches to an isolated, per-PR named ref and cross-checks the pinned SHA) went into the lessons file and hasn\'t recurred.',
           'Agents fail. The system is built so their failures are cheap to catch and never repeated.',
+          'The fleet itself is versioned the same way. Prompts, skills and rules are text files in git, so a behavior change is a readable commit, and skills load at invocation time, so changes land hot with zero downtime. Worth admitting: the skills have no formal test suite yet. Their quality mechanism is the learning loop itself, and so far it has held, because a real failure becomes a written rule and the rule becomes boot-time context.',
         ],
       },
       specimen: {
@@ -334,10 +390,10 @@ export const aiAgentFleetContent = {
         table: {
           headers: ['Metric', 'Value'],
           rows: [
-            ['GitHub stars', '59,527'],
-            ['Forks', '11,816'],
+            ['GitHub stars', '59,532'],
+            ['Forks', '11,818'],
             ['Contributors', '168'],
-            ['Merged PRs', '529'],
+            ['Merged PRs', '530'],
             ['Releases since the April launch', '21 (latest: v1.18.0, July 7)'],
             ['Test suite', '1,667 assertions, 0 failing (Jul 2026)'],
             ['Discord members', '4,100'],
@@ -354,9 +410,10 @@ export const aiAgentFleetContent = {
         },
       },
       community: {
-        heading: 'The community runs on the same system',
+        heading: 'The community runs on the same principles',
         paras: [
-          'The 4,100-member Discord gets the same treatment as the codebase. A community-brain agent sweeps the channels and distills chat into a queryable ledger: recurring pains, feature requests, promises made. New requests get deduped against existing issues, and what survives becomes labeled issues and RFCs on the public roadmap. A grounded FAQ bot answers setup questions from the repo\'s own docs, with zero hallucinated answers observed so far, and hands off to a human when the docs don\'t cover it.',
+          'The 4,100-member Discord gets the same discipline as the codebase, with lighter gates. A community-brain agent sweeps the channels and distills chat into a queryable ledger: recurring pains, feature requests, promises made. New requests get deduped against existing issues, and what survives becomes labeled issues and RFCs on the public roadmap. A grounded FAQ bot answers setup questions from the repo\'s own docs, with zero hallucinated answers observed so far, and hands off to a human when the docs don\'t cover it.',
+          'The gates are lighter here because the error budget is bigger: a wrong FAQ answer gets a human correction, where a wrong merge would get a revert and a post-mortem.',
           'This year the community reported its first member landing a job with the tool. Adoption is a system, and this one closes its loop in public.',
         ],
       },
@@ -398,6 +455,19 @@ export const aiAgentFleetContent = {
           'Where teams struggle is the system around the tools. That\'s the part that transfers, and transferring it is forward-deployed work: embed with a team, rewire how it ships, leave the capability behind.',
         ],
       },
+      coreConcepts: {
+        heading: 'Core concepts',
+        intro: 'Six patterns, named so you can reuse them:',
+        items: [
+          { label: 'The orchestrator agent:', detail: 'a central routing node that delegates specialized work and aggregates evidence into briefs a human can decide on.' },
+          { label: 'The ephemeral verifier:', detail: 'a short-lived, read-only agent spawned in an isolated git worktree to validate one thing, report evidence, and disappear.' },
+          { label: 'The grounded watcher:', detail: 'a persistent background loop that watches source-control or telemetry events and triggers work asynchronously, under the rule that a failed check reports "could not verify" rather than "nothing found".' },
+          { label: 'The compound memory ledger:', detail: 'an append-only log of decisions and distilled failures that loads into every new session, so each session starts smarter than the last.' },
+          { label: 'The tool-stripped actor:', detail: 'an execution agent deliberately denied every external tool (chat integrations, MCP servers included) to shrink the blast radius while it runs untrusted code.' },
+          { label: 'The sequential quality gate:', detail: 'a blocking checkpoint (CI green, live static analysis, human approval for first-timers) that halts the pipeline until a trust condition is met.' },
+        ],
+        closing: 'Together they make up agentic maintenance as this repo practices it.',
+      },
       lessons: {
         heading: 'Lessons',
         items: [
@@ -422,7 +492,7 @@ export const aiAgentFleetContent = {
       items: [
         {
           q: 'Can AI agents maintain a codebase by themselves?',
-          a: 'No, and this system is designed on the assumption that they shouldn\'t. The agents handle volume: classifying the overnight flow, running test suites against clean checkouts, drafting review briefs, watching for contributor deliveries, measuring community health. Every consequential action passes through gates, and anything strategic (what enters the core, merge order, governance, releases, public judgment calls) lands on a human decision menu with evidence attached. It\'s division of labor: agents convert an unbounded stream of mechanical work into a bounded set of decisions. In my case that bound is about 4 hours a week for a repo with 59,527 GitHub stars and 168 contributors. Remove the human and what\'s left is unreviewed authority over other people\'s code.',
+          a: 'No, and this system is designed on the assumption that they shouldn\'t. The agents handle volume: classifying the overnight flow, running test suites against clean checkouts, drafting review briefs, watching for contributor deliveries, measuring community health. Every consequential action passes through gates, and anything strategic (what enters the core, merge order, governance, releases, public judgment calls) lands on a human decision menu with evidence attached. It\'s division of labor: agents convert an unbounded stream of mechanical work into a bounded set of decisions. In my case that bound is about 4 hours a week for a repo with 59,532 GitHub stars and 168 contributors. Remove the human and what\'s left is unreviewed authority over other people\'s code.',
         },
         {
           q: 'How much does it cost to run an AI agent fleet like this?',

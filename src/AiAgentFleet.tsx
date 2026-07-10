@@ -70,7 +70,12 @@ export default function AiAgentFleet({ lang = 'en' }: { lang?: Lang }) {
         className="w-full rounded-2xl mb-8"
       />
 
-      <Callout className="bg-accent/10 border-accent/40">{t.tldr}</Callout>
+      <Callout className="bg-accent/10 border-accent/40">
+        {t.tldr}
+        {t.tldrCoin.pre}
+        <strong>{t.tldrCoin.term}</strong>
+        {t.tldrCoin.post}
+      </Callout>
 
       <article className="prose-custom">
         {/* ================================================================ */}
@@ -140,6 +145,22 @@ export default function AiAgentFleet({ lang = 'en' }: { lang?: Lang }) {
           className="w-full rounded-2xl my-8"
         />
         <BulletList items={s.gates.items} />
+
+        {/* ================================================================ */}
+        {/*  SECURITY AND ISOLATION                                          */}
+        {/* ================================================================ */}
+        <H2 id="security">{s.security.heading}</H2>
+        {s.security.paras.map((p, i) => (
+          <Prose key={i}>{p}</Prose>
+        ))}
+
+        {/* ================================================================ */}
+        {/*  WHEN THE INFRASTRUCTURE FAILS                                   */}
+        {/* ================================================================ */}
+        <H2 id="infra-fails">{s.infraFails.heading}</H2>
+        {s.infraFails.paras.map((p, i) => (
+          <Prose key={i}>{p}</Prose>
+        ))}
 
         {/* ================================================================ */}
         {/*  THE MEMORY THAT COMPOUNDS                                       */}
@@ -285,6 +306,14 @@ export default function AiAgentFleet({ lang = 'en' }: { lang?: Lang }) {
         {s.orgBridge.paras.map((p, i) => (
           <Prose key={i}>{p}</Prose>
         ))}
+
+        {/* ================================================================ */}
+        {/*  CORE CONCEPTS                                                   */}
+        {/* ================================================================ */}
+        <H2 id="core-concepts">{s.coreConcepts.heading}</H2>
+        <Prose>{s.coreConcepts.intro}</Prose>
+        <BulletList items={s.coreConcepts.items} />
+        <Prose>{s.coreConcepts.closing}</Prose>
 
         {/* ================================================================ */}
         {/*  LESSONS                                                         */}
