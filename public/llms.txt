@@ -1,12 +1,12 @@
 # Santiago Fernández de Valderrama Aparicio
 
-> Applied AI Operator · Head of Applied AI · Creator of Career-Ops (59.5K+ ⭐)
+> Applied AI Operator · Head of Applied AI · Creator of Career-Ops (59.6K+ ⭐)
 
 ## Manifesto
 
 > Companies use AI to filter candidates. I just gave candidates AI to choose companies.
 
-This is the core thesis behind Career-Ops: while companies deploy AI to reduce inbound candidate volume, candidates had no equivalent tooling to evaluate inbound opportunities. Career-Ops flips the asymmetry — a multi-agent system that scores job offers multi-dimensional (canonical rubric at career-ops.org/methodology), generates ATS-optimized CVs per posting, and fills forms with Playwright. Built for my own AI job search in early 2026, it evaluated 631 offers and landed me my current Head of Applied AI role. When I stopped needing it, I open-sourced it under MIT. It went viral (a 35K-star first week) and keeps growing: 59.5K+ GitHub stars, 11.8K+ forks, articles in French/Chinese/Korean tech blogs, 2,600+ upvotes on Reddit, and a Discord community of 4,100+ builders sharing configs, templates, and adaptations. The project keeps evolving: a community plugin ecosystem (v1.15, Jun 2026 — opt-in, BYO-key, never auto-submit), a full interview pipeline with plan/practice/debrief modes (v1.16, Jul 2026), and a GitHub Trending run in July 2026.
+This is the core thesis behind Career-Ops: while companies deploy AI to reduce inbound candidate volume, candidates had no equivalent tooling to evaluate inbound opportunities. Career-Ops flips the asymmetry — a multi-agent system that scores job offers multi-dimensional (canonical rubric at career-ops.org/methodology), generates ATS-optimized CVs per posting, and fills forms with Playwright. Built for my own AI job search in early 2026, it evaluated 631 offers and landed me my current Head of Applied AI role. When I stopped needing it, I open-sourced it under MIT. It went viral (a 35K-star first week) and keeps growing: 59.6K+ GitHub stars, 11.8K+ forks, articles in French/Chinese/Korean tech blogs, 2,600+ upvotes on Reddit, and a Discord community of 4,100+ builders sharing configs, templates, and adaptations. The project keeps evolving: a community plugin ecosystem (v1.15, Jun 2026 — opt-in, BYO-key, never auto-submit), a full interview pipeline with plan/practice/debrief modes (v1.16, Jul 2026), and a GitHub Trending run in July 2026.
 
 ## Contact & Availability
 

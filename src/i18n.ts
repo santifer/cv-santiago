@@ -3,13 +3,13 @@ export const seo = {
     title:
       'santifer | Applied AI Operator · Builder of Career-Ops',
     description:
-      'Multi-agent systems builder. Applied AI Operator con 2 case studies en producción. Creador de Career-Ops (59.5K+ ⭐). 16 años llevando IA a producción.',
+      'Multi-agent systems builder. Applied AI Operator con 2 case studies en producción. Creador de Career-Ops (59.6K+ ⭐). 16 años llevando IA a producción.',
   },
   en: {
     title:
       'santifer | Applied AI Operator · Builder of Career-Ops',
     description:
-      'Multi-agent systems builder. Applied AI Operator with 2 production case studies live. Creator of Career-Ops (59.5K+ ⭐). 16 years shipping AI at scale.',
+      'Multi-agent systems builder. Applied AI Operator with 2 production case studies live. Creator of Career-Ops (59.6K+ ⭐). 16 years shipping AI at scale.',
   },
 };
 
@@ -190,7 +190,7 @@ export const translations = {
           tech: ['Claude Code', 'Batch Architecture', 'WebSearch', 'HITL Design'],
           link: 'career-ops.org',
           linkUrl: 'https://career-ops.org?utm_source=santifer.io&utm_medium=projects-grid&utm_campaign=home',
-          stars: '59.5K',
+          stars: '59.6K',
           forks: '11.8K',
           caseStudyUrl: '/career-ops',
           caseStudyLabel: 'Leer: AI Job Search multi-agente',
@@ -316,11 +316,11 @@ export const translations = {
         desc: 'Construyendo la capa de IA horizontal de la empresa.\nImpulsando la nueva generación de software para PYMEs.',
         highlights: [
           'Primer ingeniero en el piloto forward-deployed (FDE) de la empresa: llevo sistemas multi-agente de IA directamente al cliente, convirtiendo necesidades reales de negocio en agentes en producción.',
-          'Construí un sistema de meeting-intelligence para Customer Success que sustituye a un SaaS comercial: transcribe y diariza las reuniones de onboarding y, con un extractor LLM de dos pasos, las convierte en tareas granulares asignadas a módulos y owners dentro de una checklist estándar, con trazabilidad a la frase de origen e idempotencia de extremo a extremo.',
-          'Diseño, implementación y mejora continua del knowledge engine de la empresa: la capa de memoria de IA en producción (a nivel de empresa, de cliente y de verticales) que acerca el contexto a los agentes para reducir el consumo de tokens y mantenerlo actualizado, con trazabilidad a nivel de frase y alucinación cercana a cero.',
+          'Encargado por el CEO de definir el perfil FDE replicable y asesorar a dirección en estrategia de IA: destilando el piloto en el playbook (scoping, delivery, tooling) que ejecutará cada forward-deployed engineer que venga después.',
+          'Diseño el tooling de apalancamiento FDE contra el objetivo de diseño del CEO de que un ingeniero lleve 10+ clientes en paralelo: la capa de memoria por cliente ya está viva en producción (un dossier de cliente auto-destilado a partir de reuniones y email, con provenance a nivel de frase y evals anti-alucinación), con provisioning componible por micro-plantillas diseñado sobre el asistente nativo de la plataforma.',
+          'Diseño, implementación y mejora continua del knowledge engine de la empresa: la capa de memoria de IA en producción (a nivel de empresa, de cliente y de verticales) que acerca el contexto a los agentes, reduciendo el consumo de tokens y manteniéndolo actualizado.',
+          'Construí el sistema de meeting-intelligence que sustituyó a un SaaS comercial y hoy lleva también la cadencia operativa: transcripción con diarización por hablante que mejora con el tiempo, un extractor LLM de dos pasos que convierte las llamadas en tareas granulares asignadas a módulos y owners, y actas automáticas que fluyen a la capa de memoria, de extremo a extremo e idempotente.',
           'Arquitecté la capa de integración event-driven entre CRM, plataforma propia, pagos y transcripción, con ingesta casi en tiempo real y operación desatendida.',
-          'Instrumenté la cadencia operativa (EOS) con IA: reuniones recurrentes transcritas con diarización por hablante que mejora con el tiempo, generando actas automáticas que se inyectan en la memoria. Más una capa de atención/triage con LLM sobre email, chat y calendario.',
-          'Lidero el AI enablement de la empresa: onboarding de equipos a IA, co-diseño de agentes a medida para funciones de marketing, CS y ventas, framework build-vs-buy y asesoría de IA a dirección.',
         ],
       },
       careerOps: {
@@ -461,7 +461,7 @@ export const translations = {
           badge: 'Única en el sector en España',
           github: 'santifer/santifer-irepair',
           stars: '34',
-          forks: '13',
+          forks: '14',
           desc: '100% custom-made (2024). Headless CMS en Airtable como fuente de verdad, integrado con ERP, generando web en Astro con SEO programático.',
           items: [
             {
@@ -593,7 +593,7 @@ export const translations = {
       replies: '107',
       retweets: '499',
       likes: '3.9K',
-      views: '553.0K',
+      views: '553.1K',
       cta: 'Ver en X',
       url: 'https://x.com/santifer/status/2041403685696053741',
     },
@@ -1064,7 +1064,7 @@ export const translations = {
           tech: ['Claude Code', 'Batch Architecture', 'WebSearch', 'HITL Design'],
           link: 'career-ops.org',
           linkUrl: 'https://career-ops.org?utm_source=santifer.io&utm_medium=projects-grid&utm_campaign=home',
-          stars: '59.5K',
+          stars: '59.6K',
           forks: '11.8K',
           caseStudyUrl: '/career-ops-system',
           caseStudyLabel: 'Case Study: AI Job Search',
@@ -1190,11 +1190,11 @@ export const translations = {
         desc: 'Building the horizontal AI layer across the company.\nPowering the next generation of software for SMBs.',
         highlights: [
           "First engineer on the company's forward-deployed (FDE) pilot: shipping multi-agent AI systems straight to customers, turning real business needs into production agents.",
-          'Built a meeting-intelligence system for Customer Success that replaced a commercial SaaS: it transcribes and diarizes onboarding calls, then a two-step LLM extractor turns them into granular tasks mapped to modules and owners against a standard checklist, with sentence-level traceability and end-to-end idempotency.',
-          "Own the company's knowledge engine end to end: the production AI memory layer (company, customer, and vertical scopes) that puts context next to the agents, cutting token spend and keeping it current, with sentence-level traceability and a near-zero hallucination rate.",
+          'Chartered by the CEO to define the replicable FDE profile and advise leadership on AI strategy: distilling the pilot into the playbook (scoping, delivery, tooling) that every forward-deployed engineer after me will run.',
+          "Designing the FDE leverage tooling against the CEO's design target of one engineer running 10+ customers in parallel: the per-customer memory layer is already live in production (a self-distilling customer dossier built from meetings and email, with sentence-level provenance and anti-hallucination evals), with composable micro-template provisioning designed on top of the platform's native assistant.",
+          "Own the company's knowledge engine end to end: the production AI memory layer across company, customer, and vertical scopes that puts context next to the agents, cutting token spend and keeping it current.",
+          'Built the meeting-intelligence system that replaced a commercial SaaS and now runs the operating cadence too: transcription with speaker diarization that sharpens over time, a two-step LLM extractor that turns calls into granular tasks mapped to modules and owners, and auto-generated minutes flowing into the memory layer, end to end and idempotent.',
           'Architected the event-driven integration layer that wires CRM, the in-house platform, payments, and transcription together, with near-real-time ingestion and unattended operation in production.',
-          'Wired AI into the operating cadence (EOS): recurring meetings transcribed with speaker diarization that sharpens over time, auto-generating minutes that flow into the memory layer. Plus an LLM-driven attention layer that triages email, chat, and calendar.',
-          'Drive AI enablement across the company: onboarding non-technical teams, co-designing bespoke agents for marketing, CS, and sales, owning the build-vs-buy framework, and advising leadership on AI strategy.',
         ],
       },
       careerOps: {
@@ -1331,7 +1331,7 @@ export const translations = {
           badge: 'Only one in sector in Spain',
           github: 'santifer/santifer-irepair',
           stars: '34',
-          forks: '13',
+          forks: '14',
           desc: '100% custom-made (2024). Headless CMS in Airtable as source of truth, integrated with ERP, generating Astro website with programmatic SEO.',
           items: [
             {
@@ -1463,7 +1463,7 @@ export const translations = {
       replies: '107',
       retweets: '499',
       likes: '3.9K',
-      views: '553.0K',
+      views: '553.1K',
       cta: 'View on X',
       url: 'https://x.com/santifer/status/2041403685696053741',
     },
