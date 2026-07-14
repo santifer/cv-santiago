@@ -3,13 +3,13 @@ export const seo = {
     title:
       'santifer | Applied AI Operator · Builder of Career-Ops',
     description:
-      'Multi-agent systems builder. Applied AI Operator con 2 case studies en producción. Creador de Career-Ops (60.0K+ ⭐). 16 años llevando IA a producción.',
+      'Multi-agent systems builder. Applied AI Operator con 2 case studies en producción. Creador de Career-Ops (60.1K+ ⭐). 16 años llevando IA a producción.',
   },
   en: {
     title:
       'santifer | Applied AI Operator · Builder of Career-Ops',
     description:
-      'Multi-agent systems builder. Applied AI Operator with 2 production case studies live. Creator of Career-Ops (60.0K+ ⭐). 16 years shipping AI at scale.',
+      'Multi-agent systems builder. Applied AI Operator with 2 production case studies live. Creator of Career-Ops (60.1K+ ⭐). 16 years shipping AI at scale.',
   },
 };
 
@@ -190,7 +190,7 @@ export const translations = {
           tech: ['Claude Code', 'Batch Architecture', 'WebSearch', 'HITL Design'],
           link: 'career-ops.org',
           linkUrl: 'https://career-ops.org?utm_source=santifer.io&utm_medium=projects-grid&utm_campaign=home',
-          stars: '60.0K',
+          stars: '60.1K',
           forks: '11.9K',
           caseStudyUrl: '/career-ops',
           caseStudyLabel: 'Leer: AI Job Search multi-agente',
@@ -593,7 +593,7 @@ export const translations = {
       replies: '107',
       retweets: '499',
       likes: '3.9K',
-      views: '553.4K',
+      views: '553.5K',
       cta: 'Ver en X',
       url: 'https://x.com/santifer/status/2041403685696053741',
     },
@@ -1064,7 +1064,7 @@ export const translations = {
           tech: ['Claude Code', 'Batch Architecture', 'WebSearch', 'HITL Design'],
           link: 'career-ops.org',
           linkUrl: 'https://career-ops.org?utm_source=santifer.io&utm_medium=projects-grid&utm_campaign=home',
-          stars: '60.0K',
+          stars: '60.1K',
           forks: '11.9K',
           caseStudyUrl: '/career-ops-system',
           caseStudyLabel: 'Case Study: AI Job Search',
@@ -1463,7 +1463,7 @@ export const translations = {
       replies: '107',
       retweets: '499',
       likes: '3.9K',
-      views: '553.4K',
+      views: '553.5K',
       cta: 'View on X',
       url: 'https://x.com/santifer/status/2041403685696053741',
     },

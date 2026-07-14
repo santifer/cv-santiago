@@ -117,7 +117,7 @@ export default function CareerOps({ lang = 'en' }: { lang?: Lang }) {
         <PressFeatures lang={lang} />
       </div>
 
-      <GitHubRepoBadge repo="santifer/career-ops" stars="60.0K" forks="11.9K" lang={lang} />
+      <GitHubRepoBadge repo="santifer/career-ops" stars="60.1K" forks="11.9K" lang={lang} />
 
       {/* The career-ops warp chart (Warpchart) — animated SVG served as plain <img>, prerender-safe (no iframe, no hydration guard needed).
           theme=dark FIXED on purpose: site is hardcoded dark; Warpchart's dynamic day/night mode (omitting theme) follows the visitor's OS
@@ -386,6 +386,25 @@ export default function CareerOps({ lang = 'en' }: { lang?: Lang }) {
             <Prose>{(s.results as any).aftermath.body}</Prose>
             <MetricsGrid items={(s.results as any).aftermath.highlights} columns={4} compact />
             {(s.results as any).aftermath.body2 && <Prose>{(s.results as any).aftermath.body2}</Prose>}
+            {(s.results as any).aftermath.manifestoLaunch && (
+              <Callout className="bg-accent/10 border-accent/40">
+                <Prose>{(s.results as any).aftermath.manifestoLaunch.intro}</Prose>
+                <p className="text-lg md:text-xl font-display font-medium text-foreground leading-snug my-3">
+                  {(s.results as any).aftermath.manifestoLaunch.definition}
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  {(s.results as any).aftermath.manifestoLaunch.attribution}{' '}
+                  <a
+                    href={(s.results as any).aftermath.manifestoLaunch.linkHref}
+                    target="_blank"
+                    rel="noopener"
+                    className="text-primary hover:underline"
+                  >
+                    {(s.results as any).aftermath.manifestoLaunch.linkLabel}
+                  </a>
+                </p>
+              </Callout>
+            )}
           </>
         )}
 
