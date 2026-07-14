@@ -532,7 +532,7 @@ export const articleRegistry: ArticleConfig[] = [
     component: () => import('../CareerOps.tsx'),
     seoMeta: {
       datePublished: '2026-03-17',
-      dateModified: '2026-07-13',
+      dateModified: '2026-07-14',
       keywords: ['ai job search', 'ai job search tool', 'ai powered job search', 'ai resume builder', 'ai resume', 'multi agent system', 'multi agent orchestration', 'automated job application', 'ATS-optimized resume', 'Claude Code', 'batch processing', 'HITL', 'job search automation', 'career-ops', 'ai auto apply', 'agente ia', 'crear cv con ia', 'automatizacion con ia', 'sistema multiagente', 'busqueda de empleo ia'],
       articleType: 'TechArticle',
       articleTags: 'multi-agent,job search,Claude Code,ATS,batch processing,HITL,automation,Playwright',
@@ -557,7 +557,7 @@ export const articleRegistry: ArticleConfig[] = [
         { '@type': 'BlogPosting', name: 'santifer/career-ops — Claude Code, Playwright, Chromium (CSDN)', url: 'https://blog.csdn.net/Dontla/article/details/159930707' },
         { '@type': 'WebPage', name: 'GitHub Trending Weekly 2026-04-08 — Shareuhack', url: 'https://www.shareuhack.com/en/posts/github-trending-weekly-2026-04-08' },
         { '@type': 'WebPage', name: 'Career-Ops — AI Job Search CLI Tool (EveryDev.ai)', url: 'https://www.everydev.ai/tools/career-ops' },
-        { '@type': 'TechArticle', name: 'Agentic maintenance: how I run a 59,000-star open source repo with a fleet of AI agents', url: 'https://santifer.io/ai-agent-fleet' },
+        { '@type': 'TechArticle', name: 'Agentic maintenance: how I run a 60,000-star open source repo with a fleet of AI agents', url: 'https://santifer.io/ai-agent-fleet' },
         { '@type': 'WebPage', name: 'HN Top Links — Popular Stories from Hacker News', url: 'http://hntoplinks.com/week?page=216&sort=upvotes' },
         { '@type': 'TechArticle', name: 'Anthropic Claude Code — Agentic Coding', url: 'https://www.anthropic.com/claude-code' },
         { '@type': 'WebPage', name: 'Multi-agent system (Wikipedia)', url: 'https://en.wikipedia.org/wiki/Multi-agent_system' },
@@ -581,11 +581,11 @@ export const articleRegistry: ArticleConfig[] = [
     titles: { es: 'Flota de Agentes IA', en: 'AI Agent Fleet' },
     seo: {
       es: {
-        title: 'Agentic maintenance: un repo de 59.000 estrellas con agentes IA',
+        title: 'Agentic maintenance: un repo de 60.000 estrellas con agentes IA',
         description: 'Una flota de agentes Claude Code mantiene career-ops: triage, tests, review briefs y releases en ~4h/semana. El sistema, un día documentado y cómo replicarlo.',
       },
       en: {
-        title: 'Agentic Maintenance: How I Run a 59,000-Star Repo with AI Agents',
+        title: 'Agentic Maintenance: How I Run a 60,000-Star Repo with AI Agents',
         description: 'A fleet of Claude Code agents maintains career-ops: triage, tests, review briefs and releases in ~4h/week. The system, one documented day, and the playbook.',
       },
     },
@@ -637,7 +637,7 @@ export const articleRegistry: ArticleConfig[] = [
     component: () => import('../AiAgentFleet.tsx'),
     seoMeta: {
       datePublished: '2026-07-10',
-      dateModified: '2026-07-13',
+      dateModified: '2026-07-14',
       keywords: ['agentic maintenance', 'ai agent fleet', 'maintain open source with ai agents', 'multi-agent code review', 'ai-native sdlc', 'context engineering', 'claude code agents', 'open source maintainer', 'ai agents software maintenance', 'multi-agent orchestration', 'orchestrator agent pattern', 'ephemeral verifier', 'flota de agentes ia', 'mantener open source con agentes ia', 'agentes claude code'],
       articleType: 'TechArticle',
       articleTags: 'ai agents,multi-agent,open source,maintainer,Claude Code,sdlc,context engineering',
