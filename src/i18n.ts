@@ -3,13 +3,13 @@ export const seo = {
     title:
       'santifer | Applied AI Operator · Builder of Career-Ops',
     description:
-      'Multi-agent systems builder. Applied AI Operator con 2 case studies en producción. Creador de Career-Ops (60.3K+ ⭐). 16 años llevando IA a producción.',
+      'Multi-agent systems builder. Applied AI Operator con 2 case studies en producción. Creador de Career-Ops (60.8K+ ⭐). 16 años llevando IA a producción.',
   },
   en: {
     title:
       'santifer | Applied AI Operator · Builder of Career-Ops',
     description:
-      'Multi-agent systems builder. Applied AI Operator with 2 production case studies live. Creator of Career-Ops (60.3K+ ⭐). 16 years shipping AI at scale.',
+      'Multi-agent systems builder. Applied AI Operator with 2 production case studies live. Creator of Career-Ops (60.8K+ ⭐). 16 years shipping AI at scale.',
   },
 };
 
@@ -160,7 +160,7 @@ export const translations = {
           { icon: 'inbox', name: 'brand-ops', desc: 'Triage social media cross-platform', tag: 'privado' },
           { icon: 'compass', name: 'venture-ops', desc: 'Gobernanza estratégica', tag: 'privado' },
           { icon: 'gitMerge', name: 'career-ops-maintainer', desc: 'PRs, issues, releases de career-ops', tag: 'privado' },
-          { icon: 'users', name: 'community-ops', desc: 'Gestión de comunidad Discord (4.1K+ miembros)', tag: 'privado' },
+          { icon: 'users', name: 'community-ops', desc: 'Gestión de comunidad Discord (4.2K+ miembros)', tag: 'privado' },
           { icon: 'layout', name: 'portfolio-ops', desc: 'Portfolio con chatbot LLMOps + auto-update', tag: 'privado' },
           { icon: 'briefcase', name: 'applied-ai-ops', desc: 'Onboarding, codebase navigation y specs con IA para mi rol', tag: 'privado' },
         ],
@@ -190,8 +190,8 @@ export const translations = {
           tech: ['Claude Code', 'Batch Architecture', 'WebSearch', 'HITL Design'],
           link: 'career-ops.org',
           linkUrl: 'https://career-ops.org?utm_source=santifer.io&utm_medium=projects-grid&utm_campaign=home',
-          stars: '60.3K',
-          forks: '11.9K',
+          stars: '60.8K',
+          forks: '12.0K',
           caseStudyUrl: '/career-ops',
           caseStudyLabel: 'Leer: AI Job Search multi-agente',
         },
@@ -212,8 +212,8 @@ export const translations = {
           desc: 'CV interactivo con SDLC aumentado con IA. Construido con **Claudeable**, monitorizado con **Claude Pulse**, animaciones debuggeadas con **Claude Eye**. Prerender SSR, i18n bilingüe y SEO automatizado.',
           tech: ['React 19', 'TypeScript', 'Tailwind', 'Vite', 'Motion', 'Vercel'],
           link: 'github.com/santifer/cv-santiago',
-          stars: '752',
-          forks: '261',
+          stars: '762',
+          forks: '263',
         },
         {
           title: 'Self-Healing Chatbot',
@@ -460,7 +460,7 @@ export const translations = {
           title: 'Web Programática + SEO Automatizado',
           badge: 'Única en el sector en España',
           github: 'santifer/santifer-irepair',
-          stars: '34',
+          stars: '35',
           forks: '14',
           desc: '100% custom-made (2024). Headless CMS en Airtable como fuente de verdad, integrado con ERP, generando web en Astro con SEO programático.',
           items: [
@@ -593,7 +593,7 @@ export const translations = {
       replies: '107',
       retweets: '499',
       likes: '3.9K',
-      views: '553.7K',
+      views: '554.0K',
       cta: 'Ver en X',
       url: 'https://x.com/santifer/status/2041403685696053741',
     },
@@ -1031,7 +1031,7 @@ export const translations = {
           { icon: 'inbox', name: 'brand-ops', desc: 'Cross-platform social media triage', tag: 'private' },
           { icon: 'compass', name: 'venture-ops', desc: 'Strategic governance', tag: 'private' },
           { icon: 'gitMerge', name: 'career-ops-maintainer', desc: 'PRs, issues, releases for career-ops', tag: 'private' },
-          { icon: 'users', name: 'community-ops', desc: 'Discord community management (4.1K+ members)', tag: 'private' },
+          { icon: 'users', name: 'community-ops', desc: 'Discord community management (4.2K+ members)', tag: 'private' },
           { icon: 'layout', name: 'portfolio-ops', desc: 'Portfolio with LLMOps chatbot + auto-update', tag: 'private' },
           { icon: 'briefcase', name: 'applied-ai-ops', desc: 'Onboarding, codebase navigation, specs with AI for my role', tag: 'private' },
         ],
@@ -1064,8 +1064,8 @@ export const translations = {
           tech: ['Claude Code', 'Batch Architecture', 'WebSearch', 'HITL Design'],
           link: 'career-ops.org',
           linkUrl: 'https://career-ops.org?utm_source=santifer.io&utm_medium=projects-grid&utm_campaign=home',
-          stars: '60.3K',
-          forks: '11.9K',
+          stars: '60.8K',
+          forks: '12.0K',
           caseStudyUrl: '/career-ops-system',
           caseStudyLabel: 'Case Study: AI Job Search',
         },
@@ -1086,8 +1086,8 @@ export const translations = {
           desc: 'Interactive CV with AI-augmented SDLC. Built with **Claudeable**, monitored with **Claude Pulse**, animations debugged with **Claude Eye**. SSR prerender, bilingual i18n, and automated SEO.',
           tech: ['React 19', 'TypeScript', 'Tailwind', 'Vite', 'Motion', 'Vercel'],
           link: 'github.com/santifer/cv-santiago',
-          stars: '752',
-          forks: '261',
+          stars: '762',
+          forks: '263',
         },
         {
           title: 'Self-Healing Chatbot',
@@ -1330,7 +1330,7 @@ export const translations = {
           title: 'Programmatic Web + Automated SEO',
           badge: 'Only one in sector in Spain',
           github: 'santifer/santifer-irepair',
-          stars: '34',
+          stars: '35',
           forks: '14',
           desc: '100% custom-made (2024). Headless CMS in Airtable as source of truth, integrated with ERP, generating Astro website with programmatic SEO.',
           items: [
@@ -1463,7 +1463,7 @@ export const translations = {
       replies: '107',
       retweets: '499',
       likes: '3.9K',
-      views: '553.7K',
+      views: '554.0K',
       cta: 'View on X',
       url: 'https://x.com/santifer/status/2041403685696053741',
     },

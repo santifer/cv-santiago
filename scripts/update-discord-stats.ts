@@ -79,6 +79,10 @@ const TARGETS: Target[] = [
   // llms.txt — manifesto paragraph
   { file: LLMS_TXT, locale: 'en', format: 'full', description: 'llms.txt manifesto',
     pattern: /Discord community of (\d[\d.,]*)\+\s+builders/ },
+  // llms.txt — FAQ "What is Career-Ops?" passage ("members" wording — the sweep patterns are
+  // first-match-only, so this passage needs its own target to never go stale again)
+  { file: LLMS_TXT, locale: 'en', format: 'full', description: 'llms.txt FAQ what-is',
+    pattern: /Discord community of (\d[\d.,]*)\+\s+members/ },
 
   // chatbot-prompt.txt — career-ops experience block
   { file: CHATBOT_PROMPT, locale: 'es', format: 'full', description: 'chatbot-prompt career-ops',

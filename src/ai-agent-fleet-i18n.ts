@@ -19,7 +19,7 @@ export const aiAgentFleetContent = {
       subtitle: 'Los agentes hacen el trabajo mecánico: triage, tests, review briefs, releases. Las decisiones son mías. Esto es el sistema, un día completo documentado, y lo que hace falta para montarlo en tu propio repo.',
       date: '10 jul 2026',
     },
-    tldr: 'career-ops es mi sistema open source de búsqueda de empleo: 60.332 estrellas en GitHub, 178 contribuidores y 589 PRs fusionadas a fecha de hoy. Lo mantengo en unas 4 horas a la semana. Una flota de agentes Claude Code hace el trabajo mecánico — triage, testing, review briefs, mecánica de releases, métricas de comunidad. Gates duros los mantienen honestos, y cada fallo real se destila en una regla que cargan al arrancar.',
+    tldr: 'career-ops es mi sistema open source de búsqueda de empleo: 60.797 estrellas en GitHub, 187 contribuidores y 625 PRs fusionadas a fecha de hoy. Lo mantengo en unas 4 horas a la semana. Una flota de agentes Claude Code hace el trabajo mecánico — triage, testing, review briefs, mecánica de releases, métricas de comunidad. Gates duros los mantienen honestos, y cada fallo real se destila en una regla que cargan al arrancar.',
     tldrCoin: {
       pre: ' ',
       term: 'Agentic maintenance',
@@ -134,17 +134,17 @@ export const aiAgentFleetContent = {
           caption: 'La telemetría en vivo de career-ops — por',
           linkLabel: 'Warpchart',
         },
-        asOf: 'A 17 de julio de 2026:',
+        asOf: 'A 21 de julio de 2026:',
         table: {
           headers: ['Métrica', 'Valor'],
           rows: [
-            ['Estrellas en GitHub', '60.332'],
-            ['Forks', '11.874'],
-            ['Contribuidores', '178'],
-            ['PRs fusionadas', '589'],
+            ['Estrellas en GitHub', '60.797'],
+            ['Forks', '11.983'],
+            ['Contribuidores', '187'],
+            ['PRs fusionadas', '625'],
             ['Releases desde el despegue de abril', '21 (última: v1.18.0, 7 de julio)'],
             ['Suite de tests', '1.667 aserciones, 0 fallando (jul 2026)'],
-            ['Miembros de Discord', '4.100'],
+            ['Miembros de Discord', '4.200'],
             ['Tráfico semanal', '26.831 visitantes únicos · 8.680 cloners únicos — 32% view→clone (jul 2026)'],
             ['Ranking mundial', 'uno de los ~350 repos con más estrellas de GitHub (warpchart, jul 2026)'],
             ['Presupuesto de atención humana', '~4 horas/semana'],
@@ -160,7 +160,7 @@ export const aiAgentFleetContent = {
       community: {
         heading: 'La comunidad corre sobre los mismos principios',
         paras: [
-          'El Discord de 4.100 miembros recibe la misma disciplina que el codebase, con gates más ligeros. Un agente community-brain barre los canales y destila el chat en un ledger consultable: dolores recurrentes, feature requests, promesas hechas. Las peticiones nuevas se deduplican contra las issues existentes, y lo que sobrevive se convierte en issues etiquetadas y RFCs en el roadmap público. Un bot de FAQ grounded responde las preguntas de setup desde la propia documentación del repo — cero respuestas alucinadas observadas hasta ahora — y deriva a un humano cuando la documentación no llega.',
+          'El Discord de 4.200 miembros recibe la misma disciplina que el codebase, con gates más ligeros. Un agente community-brain barre los canales y destila el chat en un ledger consultable: dolores recurrentes, feature requests, promesas hechas. Las peticiones nuevas se deduplican contra las issues existentes, y lo que sobrevive se convierte en issues etiquetadas y RFCs en el roadmap público. Un bot de FAQ grounded responde las preguntas de setup desde la propia documentación del repo — cero respuestas alucinadas observadas hasta ahora — y deriva a un humano cuando la documentación no llega.',
           'Los gates aquí son más ligeros porque el error budget es mayor: una respuesta errónea del FAQ recibe una corrección humana, donde un merge erróneo recibiría un revert y un post-mortem.',
           'Este año la comunidad reportó a su primer miembro consiguiendo trabajo con la herramienta. La adopción es un sistema, y este cierra su loop en público.',
         ],
@@ -251,7 +251,7 @@ export const aiAgentFleetContent = {
         },
         {
           q: '¿Pueden los agentes IA mantener un codebase por sí solos?',
-          a: 'No, y este sistema está diseñado sobre la premisa de que no deberían. Los agentes absorben el volumen: clasifican el flujo nocturno, corren suites de tests contra checkouts limpios, redactan review briefs, vigilan entregas de contribuidores, miden la salud de la comunidad. Cada acción con consecuencias pasa por gates, y todo lo estratégico (qué entra en el core, orden de merge, gobernanza, releases, juicios públicos) aterriza en un menú de decisiones humanas con la evidencia adjunta. Es división del trabajo: los agentes convierten un flujo ilimitado de trabajo mecánico en un conjunto acotado de decisiones. En mi caso ese límite son unas 4 horas a la semana para un repo con 60.332 estrellas en GitHub y 178 contribuidores. Quita al humano y lo que queda es autoridad sin revisar sobre el código de otras personas.',
+          a: 'No, y este sistema está diseñado sobre la premisa de que no deberían. Los agentes absorben el volumen: clasifican el flujo nocturno, corren suites de tests contra checkouts limpios, redactan review briefs, vigilan entregas de contribuidores, miden la salud de la comunidad. Cada acción con consecuencias pasa por gates, y todo lo estratégico (qué entra en el core, orden de merge, gobernanza, releases, juicios públicos) aterriza en un menú de decisiones humanas con la evidencia adjunta. Es división del trabajo: los agentes convierten un flujo ilimitado de trabajo mecánico en un conjunto acotado de decisiones. En mi caso ese límite son unas 4 horas a la semana para un repo con 60.797 estrellas en GitHub y 187 contribuidores. Quita al humano y lo que queda es autoridad sin revisar sobre el código de otras personas.',
         },
         {
           q: '¿Cuánto cuesta operar una flota de agentes IA así?',
@@ -294,7 +294,7 @@ export const aiAgentFleetContent = {
       subtitle: 'Agents do the mechanical work: triage, tests, review briefs, releases. The decisions are mine. This is the system, one fully documented day of it, and what it takes to run it on your own repo.',
       date: 'Jul 10, 2026',
     },
-    tldr: 'career-ops is my open source job-search system: 60,332 GitHub stars, 178 contributors and 589 merged PRs as of today. I maintain it in about 4 hours a week. A fleet of Claude Code agents does the mechanical work — triage, testing, review briefs, release mechanics, community metrics. Hard gates keep them honest, and every real failure gets distilled into a rule they load on boot.',
+    tldr: 'career-ops is my open source job-search system: 60,797 GitHub stars, 187 contributors and 625 merged PRs as of today. I maintain it in about 4 hours a week. A fleet of Claude Code agents does the mechanical work — triage, testing, review briefs, release mechanics, community metrics. Hard gates keep them honest, and every real failure gets distilled into a rule they load on boot.',
     tldrCoin: {
       pre: ' ',
       term: 'Agentic maintenance',
@@ -409,17 +409,17 @@ export const aiAgentFleetContent = {
           caption: 'Live career-ops telemetry — by',
           linkLabel: 'Warpchart',
         },
-        asOf: 'As of July 17, 2026:',
+        asOf: 'As of July 21, 2026:',
         table: {
           headers: ['Metric', 'Value'],
           rows: [
-            ['GitHub stars', '60,332'],
-            ['Forks', '11,874'],
-            ['Contributors', '178'],
-            ['Merged PRs', '589'],
+            ['GitHub stars', '60,797'],
+            ['Forks', '11,983'],
+            ['Contributors', '187'],
+            ['Merged PRs', '625'],
             ['Releases since the April launch', '21 (latest: v1.18.0, July 7)'],
             ['Test suite', '1,667 assertions, 0 failing (Jul 2026)'],
-            ['Discord members', '4,100'],
+            ['Discord members', '4,200'],
             ['Weekly traffic', '26,831 unique visitors · 8,680 unique cloners — 32% view→clone (Jul 2026)'],
             ['Worldwide rank', 'one of the ~350 most-starred repositories on GitHub (warpchart, Jul 2026)'],
             ['Human attention budget', '~4 hours/week'],
@@ -435,7 +435,7 @@ export const aiAgentFleetContent = {
       community: {
         heading: 'The community runs on the same principles',
         paras: [
-          'The 4,100-member Discord gets the same discipline as the codebase, with lighter gates. A community-brain agent sweeps the channels and distills chat into a queryable ledger: recurring pains, feature requests, promises made. New requests get deduped against existing issues, and what survives becomes labeled issues and RFCs on the public roadmap. A grounded FAQ bot answers setup questions from the repo\'s own docs, with zero hallucinated answers observed so far, and hands off to a human when the docs don\'t cover it.',
+          'The 4,200-member Discord gets the same discipline as the codebase, with lighter gates. A community-brain agent sweeps the channels and distills chat into a queryable ledger: recurring pains, feature requests, promises made. New requests get deduped against existing issues, and what survives becomes labeled issues and RFCs on the public roadmap. A grounded FAQ bot answers setup questions from the repo\'s own docs, with zero hallucinated answers observed so far, and hands off to a human when the docs don\'t cover it.',
           'The gates are lighter here because the error budget is bigger: a wrong FAQ answer gets a human correction, where a wrong merge would get a revert and a post-mortem.',
           'This year the community reported its first member landing a job with the tool. Adoption is a system, and this one closes its loop in public.',
         ],
@@ -526,7 +526,7 @@ export const aiAgentFleetContent = {
         },
         {
           q: 'Can AI agents maintain a codebase by themselves?',
-          a: 'No, and this system is designed on the assumption that they shouldn\'t. The agents handle volume: classifying the overnight flow, running test suites against clean checkouts, drafting review briefs, watching for contributor deliveries, measuring community health. Every consequential action passes through gates, and anything strategic (what enters the core, merge order, governance, releases, public judgment calls) lands on a human decision menu with evidence attached. It\'s division of labor: agents convert an unbounded stream of mechanical work into a bounded set of decisions. In my case that bound is about 4 hours a week for a repo with 60,332 GitHub stars and 178 contributors. Remove the human and what\'s left is unreviewed authority over other people\'s code.',
+          a: 'No, and this system is designed on the assumption that they shouldn\'t. The agents handle volume: classifying the overnight flow, running test suites against clean checkouts, drafting review briefs, watching for contributor deliveries, measuring community health. Every consequential action passes through gates, and anything strategic (what enters the core, merge order, governance, releases, public judgment calls) lands on a human decision menu with evidence attached. It\'s division of labor: agents convert an unbounded stream of mechanical work into a bounded set of decisions. In my case that bound is about 4 hours a week for a repo with 60,797 GitHub stars and 187 contributors. Remove the human and what\'s left is unreviewed authority over other people\'s code.',
         },
         {
           q: 'How much does it cost to run an AI agent fleet like this?',

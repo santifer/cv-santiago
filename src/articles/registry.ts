@@ -280,7 +280,7 @@ export const articleRegistry: ArticleConfig[] = [
     component: () => import('../BusinessOS.tsx'),
     seoMeta: {
       datePublished: '2026-02-25',
-      dateModified: '2026-05-10',
+      dateModified: '2026-07-17',
       keywords: ['Business OS', 'Airtable ERP', 'Airtable as ERP', 'no-code ERP', 'Airtable automation', 'CRM gamification', 'phone repair', 'inventory management', 'custom ERP case study', 'repair shop management', 'programmatic SEO', 'Airtable CRM', 'single source of truth', 'business operating system', 'multi-base architecture'],
       articleType: 'TechArticle',
       articleTags: 'Business OS,Airtable,n8n,ERP,CRM,automation,phone repair',
@@ -375,7 +375,7 @@ export const articleRegistry: ArticleConfig[] = [
     component: () => import('../ProgrammaticSeo.tsx'),
     seoMeta: {
       datePublished: '2026-02-25',
-      dateModified: '2026-05-10',
+      dateModified: '2026-07-17',
       keywords: ['programmatic SEO', 'Airtable', 'headless CMS', 'Astro', 'DataForSEO', 'crawl budget', 'phone repair', 'static site generation', 'local SEO', 'ERP'],
       articleType: 'TechArticle',
       articleTags: 'programmatic SEO,Airtable,Astro,DataForSEO,crawl budget,phone repair,ERP,local SEO',
@@ -454,7 +454,7 @@ export const articleRegistry: ArticleConfig[] = [
     component: () => import('../SelfHealingChatbot.tsx'),
     seoMeta: {
       datePublished: '2026-03-11',
-      dateModified: '2026-05-10',
+      dateModified: '2026-07-17',
       keywords: ['LLMOps', 'self-healing chatbot', 'agentic RAG', 'jailbreak defense', 'prompt injection', 'LLM evaluation', 'closed loop LLM', 'Langfuse', 'prompt versioning', 'adversarial testing', 'trace-to-eval', 'hybrid search pgvector', 'AI portfolio', 'chatbot evals', 'CI gate LLM', 'voice mode chatbot', 'OpenAI Realtime API', 'speech-to-speech AI', 'agentic observability', 'developer feedback loop', 'AI maintaining AI'],
       articleType: 'TechArticle',
       articleTags: 'LLMOps,self-healing chatbot,agentic RAG,jailbreak defense,Langfuse,evals,closed-loop,prompt injection',

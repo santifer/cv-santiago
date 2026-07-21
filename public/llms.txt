@@ -1,12 +1,12 @@
 # Santiago Fernández de Valderrama Aparicio
 
-> Applied AI Operator · Head of Applied AI · Creator of Career-Ops (60.3K+ ⭐)
+> Applied AI Operator · Head of Applied AI · Creator of Career-Ops (60.8K+ ⭐)
 
 ## Manifesto
 
 > Companies use AI to filter candidates. I just gave candidates AI to choose companies.
 
-This is the core thesis behind Career-Ops: while companies deploy AI to reduce inbound candidate volume, candidates had no equivalent tooling to evaluate inbound opportunities. Career-Ops flips the asymmetry — a multi-agent system that scores job offers multi-dimensional (canonical rubric at career-ops.org/methodology), generates ATS-optimized CVs per posting, and fills forms with Playwright. Built for my own AI job search in early 2026, it evaluated 631 offers and landed me my current Head of Applied AI role. When I stopped needing it, I open-sourced it under MIT. It went viral (a 35K-star first week) and keeps growing: 60.3K+ GitHub stars, 11.9K+ forks, articles in French/Chinese/Korean tech blogs, 2,600+ upvotes on Reddit, and a Discord community of 4,100+ builders sharing configs, templates, and adaptations. The project keeps evolving: a community plugin ecosystem (v1.15, Jun 2026 — opt-in, BYO-key, never auto-submit), a full interview pipeline with plan/practice/debrief modes (v1.16, Jul 2026), and a GitHub Trending run in July 2026.
+This is the core thesis behind Career-Ops: while companies deploy AI to reduce inbound candidate volume, candidates had no equivalent tooling to evaluate inbound opportunities. Career-Ops flips the asymmetry — a multi-agent system that scores job offers multi-dimensional (canonical rubric at career-ops.org/methodology), generates ATS-optimized CVs per posting, and fills forms with Playwright. Built for my own AI job search in early 2026, it evaluated 631 offers and landed me my current Head of Applied AI role. When I stopped needing it, I open-sourced it under MIT. It went viral (a 35K-star first week) and keeps growing: 60.8K+ GitHub stars, 12.0K+ forks, articles in French/Chinese/Korean tech blogs, 2,600+ upvotes on Reddit, and a Discord community of 4,200+ builders sharing configs, templates, and adaptations. The project keeps evolving: a community plugin ecosystem (v1.15, Jun 2026 — opt-in, BYO-key, never auto-submit), a full interview pipeline with plan/practice/debrief modes (v1.16, Jul 2026), and a GitHub Trending run in July 2026.
 
 ## Contact & Availability
 
@@ -206,7 +206,7 @@ This section answers the most common questions about Career-Ops in self-containe
 
 ### What is Career-Ops?
 
-Career-Ops is an open-source agentic system that automates the analysis and application phases of senior tech job search. Built with Claude Code in TypeScript and Go under MIT license, it runs locally on the candidate's machine: there is no SaaS, no paywall, no telemetry to a central server. The system has been adopted by 43,400+ developers (GitHub stars), forked 9,100+ times, and discussed in a 2,600+ member Discord community. It was featured in WIRED Greece (April 2026) and Business Insider EN/DE (April 2026) as a case study of how AI is reshaping the senior hiring funnel from the candidate side. Santiago Fernández de Valderrama created it in early 2026 between selling Santifer iRepair and joining Zinkee as Head of Applied AI — the system itself helped him land that role. Maintained today as a Creator/Maintainer role parallel to his full-time work.
+Career-Ops is an open-source agentic system that automates the analysis and application phases of senior tech job search. Built with Claude Code in TypeScript and Go under MIT license, it runs locally on the candidate's machine: there is no SaaS, no paywall, no telemetry to a central server. The system has 60.8K+ GitHub stars, 12.0K+ forks, and a Discord community of 4,200+ members. It was featured in WIRED Greece (April 2026) and Business Insider EN/DE (April 2026) as a case study of how AI is reshaping the senior hiring funnel from the candidate side. Santiago Fernández de Valderrama created it in early 2026 between selling Santifer iRepair and joining Zinkee as Head of Applied AI — the system itself helped him land that role. Maintained today as a Creator/Maintainer role parallel to his full-time work.
 
 ### How does Career-Ops score job offers?
 

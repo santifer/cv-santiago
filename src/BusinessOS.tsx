@@ -80,7 +80,7 @@ export default function BusinessOS({ lang = 'en' }: { lang?: Lang }) {
     description: t.seo.description,
     image: 'https://santifer.io/business-os/og-business-os.webp',
     publishedTime: '2026-02-25',
-    modifiedTime: '2026-05-10',
+    modifiedTime: '2026-07-17',
     articleTags: 'Business OS,Airtable,n8n,ERP,CRM,automation,phone repair',
     jsonLd: buildJsonLd(lang),
     xDefaultSlug: 'business-os-para-airtable',
@@ -99,7 +99,7 @@ export default function BusinessOS({ lang = 'en' }: { lang?: Lang }) {
         subtitle={t.header.subtitle}
         date={t.header.date}
         dateISO="2026-02-25"
-        dateModifiedISO="2026-05-10"
+        dateModifiedISO="2026-07-17"
         readingTime={t.readingTime}
       />
 
