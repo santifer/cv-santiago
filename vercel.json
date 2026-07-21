@@ -87,6 +87,8 @@
     { "source": "/career-ops", "destination": "/career-ops/index.html" },
     { "source": "/career-ops-system", "destination": "/career-ops-system/index.html" },
     { "source": "/flota-agentes-ia", "destination": "/flota-agentes-ia/index.html" },
+    { "source": "/historia", "destination": "/historia/index.html" },
+    { "source": "/story", "destination": "/story/index.html" },
     { "source": "/ai-agent-fleet", "destination": "/ai-agent-fleet/index.html" },
     { "source": "/sobre-mi", "destination": "/sobre-mi/index.html" },
     { "source": "/about", "destination": "/about/index.html" },

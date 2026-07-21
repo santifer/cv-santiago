@@ -701,7 +701,7 @@ export const articleRegistry: ArticleConfig[] = [
     type: 'case-study',
     ragReady: true,
     i18nFile: 'src/story-i18n.ts',
-    ogImage: 'https://santifer.io/story/og-story.png',
+    ogImage: 'https://santifer.io/story/og-story.webp',
     component: () => import('../Story.tsx'),
     xDefaultSlug: 'historia',
     seoMeta: {
@@ -710,7 +710,7 @@ export const articleRegistry: ArticleConfig[] = [
       keywords: ['santiago open source job hunt', 'career ops by santiago', 'santiago fernandez career ops', 'career-ops story', 'ai job search story', 'operated pipeline job search', 'building in public', 'open source job search', 'hired without applying', 'the reversal', 'historia career-ops', 'busqueda de empleo como pipeline'],
       articleType: 'Article',
       articleTags: 'career-ops,open source,job search,building in public,origin story',
-      images: ['https://santifer.io/story/og-story.png'],
+      images: ['https://santifer.io/story/og-story.webp'],
       about: [
         { '@type': 'Person', name: 'Santiago Fernández de Valderrama Aparicio', sameAs: 'https://www.wikidata.org/wiki/Q138710224', url: 'https://santifer.io/about' },
         { '@type': 'SoftwareSourceCode', name: 'career-ops', sameAs: 'https://www.wikidata.org/wiki/Q139007988', url: 'https://career-ops.org' },

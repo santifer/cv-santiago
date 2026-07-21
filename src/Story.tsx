@@ -41,7 +41,7 @@ export default function Story({ lang = 'en' }: { lang?: Lang }) {
     altSlug: t.altSlug,
     title: t.seo.title,
     description: t.seo.description,
-    image: 'https://santifer.io/story/og-story.png',
+    image: 'https://santifer.io/story/og-story.webp',
     publishedTime: '2026-07-21',
     modifiedTime: '2026-07-21',
     articleTags: 'career-ops,open source,job search,founder story,building in public',
