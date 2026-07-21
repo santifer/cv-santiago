@@ -36,7 +36,7 @@ export default function AiAgentFleet({ lang = 'en' }: { lang?: Lang }) {
     description: t.seo.description,
     image: 'https://santifer.io/ai-agent-fleet/og-ai-agent-fleet.webp',
     publishedTime: '2026-07-10',
-    modifiedTime: '2026-07-17',
+    modifiedTime: '2026-07-21',
     articleTags: 'ai agents,multi-agent,open source,maintainer,Claude Code,sdlc,context engineering',
     jsonLd: buildJsonLd(lang),
     xDefaultSlug: 'flota-agentes-ia',

@@ -280,7 +280,7 @@ export const articleRegistry: ArticleConfig[] = [
     component: () => import('../BusinessOS.tsx'),
     seoMeta: {
       datePublished: '2026-02-25',
-      dateModified: '2026-07-17',
+      dateModified: '2026-07-21',
       keywords: ['Business OS', 'Airtable ERP', 'Airtable as ERP', 'no-code ERP', 'Airtable automation', 'CRM gamification', 'phone repair', 'inventory management', 'custom ERP case study', 'repair shop management', 'programmatic SEO', 'Airtable CRM', 'single source of truth', 'business operating system', 'multi-base architecture'],
       articleType: 'TechArticle',
       articleTags: 'Business OS,Airtable,n8n,ERP,CRM,automation,phone repair',
@@ -375,7 +375,7 @@ export const articleRegistry: ArticleConfig[] = [
     component: () => import('../ProgrammaticSeo.tsx'),
     seoMeta: {
       datePublished: '2026-02-25',
-      dateModified: '2026-07-17',
+      dateModified: '2026-07-21',
       keywords: ['programmatic SEO', 'Airtable', 'headless CMS', 'Astro', 'DataForSEO', 'crawl budget', 'phone repair', 'static site generation', 'local SEO', 'ERP'],
       articleType: 'TechArticle',
       articleTags: 'programmatic SEO,Airtable,Astro,DataForSEO,crawl budget,phone repair,ERP,local SEO',
@@ -454,7 +454,7 @@ export const articleRegistry: ArticleConfig[] = [
     component: () => import('../SelfHealingChatbot.tsx'),
     seoMeta: {
       datePublished: '2026-03-11',
-      dateModified: '2026-07-17',
+      dateModified: '2026-07-21',
       keywords: ['LLMOps', 'self-healing chatbot', 'agentic RAG', 'jailbreak defense', 'prompt injection', 'LLM evaluation', 'closed loop LLM', 'Langfuse', 'prompt versioning', 'adversarial testing', 'trace-to-eval', 'hybrid search pgvector', 'AI portfolio', 'chatbot evals', 'CI gate LLM', 'voice mode chatbot', 'OpenAI Realtime API', 'speech-to-speech AI', 'agentic observability', 'developer feedback loop', 'AI maintaining AI'],
       articleType: 'TechArticle',
       articleTags: 'LLMOps,self-healing chatbot,agentic RAG,jailbreak defense,Langfuse,evals,closed-loop,prompt injection',
@@ -532,7 +532,7 @@ export const articleRegistry: ArticleConfig[] = [
     component: () => import('../CareerOps.tsx'),
     seoMeta: {
       datePublished: '2026-03-17',
-      dateModified: '2026-07-17',
+      dateModified: '2026-07-21',
       keywords: ['ai job search', 'ai job search tool', 'ai powered job search', 'ai resume builder', 'ai resume', 'multi agent system', 'multi agent orchestration', 'automated job application', 'ATS-optimized resume', 'Claude Code', 'batch processing', 'HITL', 'job search automation', 'career-ops', 'ai auto apply', 'agente ia', 'crear cv con ia', 'automatizacion con ia', 'sistema multiagente', 'busqueda de empleo ia'],
       articleType: 'TechArticle',
       articleTags: 'multi-agent,job search,Claude Code,ATS,batch processing,HITL,automation,Playwright',
@@ -638,7 +638,7 @@ export const articleRegistry: ArticleConfig[] = [
     component: () => import('../AiAgentFleet.tsx'),
     seoMeta: {
       datePublished: '2026-07-10',
-      dateModified: '2026-07-17',
+      dateModified: '2026-07-21',
       keywords: ['agentic maintenance', 'ai agent fleet', 'maintain open source with ai agents', 'multi-agent code review', 'ai-native sdlc', 'context engineering', 'claude code agents', 'open source maintainer', 'ai agents software maintenance', 'multi-agent orchestration', 'orchestrator agent pattern', 'ephemeral verifier', 'flota de agentes ia', 'mantener open source con agentes ia', 'agentes claude code'],
       articleType: 'TechArticle',
       articleTags: 'ai agents,multi-agent,open source,maintainer,Claude Code,sdlc,context engineering',

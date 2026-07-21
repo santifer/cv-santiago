@@ -109,7 +109,7 @@ export default function SelfHealingChatbot({ lang = 'en' }: { lang?: Lang }) {
     description: t.seo.description,
     image: 'https://santifer.io/chatbot/og-self-healing-chatbot.webp',
     publishedTime: '2026-03-11',
-    modifiedTime: '2026-07-17',
+    modifiedTime: '2026-07-21',
     articleTags: 'LLMOps,self-healing chatbot,agentic RAG,jailbreak defense,Langfuse,evals,closed-loop,prompt injection',
     jsonLd: buildJsonLd(lang),
     xDefaultSlug: 'chatbot-que-se-cura-solo',
@@ -127,7 +127,7 @@ export default function SelfHealingChatbot({ lang = 'en' }: { lang?: Lang }) {
         subtitle={t.header.subtitle}
         date={t.header.date}
         dateISO="2026-03-11"
-        dateModifiedISO="2026-07-17"
+        dateModifiedISO="2026-07-21"
         readingTime={t.readingTime}
       />
       <a href="#architecture" className="inline-flex items-center gap-2 -mt-4 mb-6 text-sm font-medium text-primary hover:text-primary/80 transition-colors">
