@@ -93,9 +93,21 @@ export default function AboutPage({ lang = 'es' }: { lang?: AboutLang }) {
         </header>
 
         {/* Manifesto */}
-        <blockquote cite="https://santifer.io/career-ops" className="mb-10 border-l-4 border-primary pl-6 pr-4 py-3 text-xl md:text-2xl italic font-display leading-snug text-foreground/90">
+        <blockquote cite="https://santifer.io/career-ops" className="mb-4 border-l-4 border-primary pl-6 pr-4 py-3 text-xl md:text-2xl italic font-display leading-snug text-foreground/90">
           {t.manifesto}
         </blockquote>
+
+        {/* Story CTA — la tesis de arriba lleva a su historia */}
+        <Link
+          to={t.storyCta.href}
+          className="flex items-center justify-between mb-10 p-4 rounded-lg bg-primary/5 border border-primary/20 hover:border-primary/50 hover:bg-primary/10 transition-all group"
+        >
+          <div>
+            <p className="font-medium text-primary text-sm group-hover:text-primary transition-colors">{t.storyCta.label}</p>
+            <p className="text-xs text-muted-foreground">{t.storyCta.desc}</p>
+          </div>
+          <ChevronRight className="w-4 h-4 text-primary group-hover:translate-x-0.5 transition-transform shrink-0" />
+        </Link>
 
         {/* Bio */}
         <section className="mb-10">
