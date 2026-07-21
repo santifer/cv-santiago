@@ -10,7 +10,7 @@
 
   <!-- Title -->
   <text x="40" y="56" font-size="30" font-weight="bold" fill="#232838">The fleet</text>
-  <text x="40" y="84" font-size="17" fill="#6B7280">How a 59K-star repo runs on ~4 hours a week of human time</text>
+  <text x="40" y="84" font-size="17" fill="#6B7280">How a 60K+ star repo runs on evenings and weekends of human time</text>
 
   <!-- Human maintainer column (accent, key element) -->
   <rect x="40" y="104" width="280" height="426" rx="10" fill="#C9573A" stroke="#C9573A" stroke-width="2"/>

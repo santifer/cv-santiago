@@ -119,8 +119,8 @@ export default function AiAgentFleet({ lang = 'en' }: { lang?: Lang }) {
         <img
           src="/ai-agent-fleet/fig-fleet.svg"
           alt={lang === 'es'
-            ? 'Arquitectura de la flota de agentes IA: un maintainer humano tomando decisiones estratégicas en ~4 horas semanales, un agente maintainer orquestador, agentes de Discord, web y dogfood coordinados por IPC de ficheros, verificadores efímeros de solo lectura en git worktrees aislados, y una memoria compuesta que se carga al arrancar.'
-            : 'Architecture of the AI agent fleet: a human maintainer making strategic decisions in about 4 hours a week, a maintainer orchestrator agent, Discord, web and dogfood agents coordinated over file-based IPC, read-only ephemeral verifiers in isolated git worktrees, and a compound memory loaded at boot.'}
+            ? 'Arquitectura de la flota de agentes IA: un maintainer humano tomando decisiones estratégicas por las tardes y los fines de semana, un agente maintainer orquestador, agentes de Discord, web y dogfood coordinados por IPC de ficheros, verificadores efímeros de solo lectura en git worktrees aislados, y una memoria compuesta que se carga al arrancar.'
+            : 'Architecture of the AI agent fleet: a human maintainer making strategic decisions on evenings and weekends, a maintainer orchestrator agent, Discord, web and dogfood agents coordinated over file-based IPC, read-only ephemeral verifiers in isolated git worktrees, and a compound memory loaded at boot.'}
           width={1200}
           height={675}
           loading="lazy"
