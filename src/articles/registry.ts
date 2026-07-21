@@ -199,7 +199,7 @@ export const articleRegistry: ArticleConfig[] = [
     component: () => import('../JacoboAgent.tsx'),
     seoMeta: {
       datePublished: '2026-02-25',
-      dateModified: '2026-07-17',
+      dateModified: '2026-07-21',
       keywords: ['multi-agent AI', 'multi agent orchestration', 'AI agent', 'sub-agent architecture', 'tool calling production', 'n8n workflows', 'n8n ai agent', 'ai agent case study', 'customer service AI', 'WhatsApp AI agent', 'ElevenLabs voice agent', 'voice AI', 'HITL', 'human in the loop', 'ia para pymes', 'agente ia whatsapp', 'multi-model orchestration', 'OpenRouter', 'FDE portfolio', 'solutions architect AI', 'AI production manager', 'enterprise AI patterns', 'voice AI platform', 'conversational AI case study', 'agentic workflows'],
       articleType: 'TechArticle',
       articleTags: 'AI agent,multi-agent,n8n,ElevenLabs,HITL,tool calling,WhatsApp,voice AI',
@@ -583,11 +583,11 @@ export const articleRegistry: ArticleConfig[] = [
     seo: {
       es: {
         title: 'Agentic maintenance: un repo de 60.000 estrellas con agentes IA',
-        description: 'Una flota de agentes Claude Code mantiene career-ops: triage, tests, review briefs y releases en ~4h/semana. El sistema, un día documentado y cómo replicarlo.',
+        description: 'Una flota de agentes Claude Code mantiene career-ops por las tardes y los fines de semana: triage, tests, review briefs y releases. Un día documentado y cómo replicarlo.',
       },
       en: {
         title: 'Agentic Maintenance: How I Run a 60,000-Star Repo with AI Agents',
-        description: 'A fleet of Claude Code agents maintains career-ops: triage, tests, review briefs and releases in ~4h/week. The system, one documented day, and the playbook.',
+        description: 'A fleet of Claude Code agents maintains career-ops: triage, tests, review briefs and releases on evenings and weekends. The system, one documented day, and the playbook.',
       },
     },
     sectionLabels: {
@@ -664,6 +664,69 @@ export const articleRegistry: ArticleConfig[] = [
         { '@type': 'SoftwareApplication', name: 'GitHub Actions', url: 'https://github.com/features/actions' },
       ],
       discussionUrl: 'https://discord.gg/8pRpHETxa4',
+    },
+  },
+  {
+    id: 'story',
+    slugs: { es: 'historia', en: 'story' },
+    titles: { es: 'Historia', en: 'Story' },
+    seo: {
+      es: {
+        title: 'Llevé mi búsqueda de empleo como un pipeline operado. Luego lo liberé.',
+        description: 'La historia de career-ops: 740 evaluadas, 68 solicitudes, 12 entrevistas, 1 oferta. Open source. Y el CEO me encontró por el sistema, no por un CV.',
+      },
+      en: {
+        title: 'I ran my job search as an operated pipeline. Then I open-sourced it.',
+        description: 'The story of career-ops: 740 evaluated, 68 applications, 12 interviews, 1 offer. Open-sourced. And the CEO found me through the system, not a résumé.',
+      },
+    },
+    sectionLabels: {
+      es: {
+        'sixteen-years': 'Dieciséis Años',
+        'the-pipeline': 'El Pipeline',
+        'open-source': 'Open Source',
+        'the-reversal': 'La Inversión',
+        'today': 'Hoy',
+        'faq': 'FAQ',
+      },
+      en: {
+        'sixteen-years': 'Sixteen Years',
+        'the-pipeline': 'The Pipeline',
+        'open-source': 'Open Source',
+        'the-reversal': 'The Reversal',
+        'today': 'Today',
+        'faq': 'FAQ',
+      },
+    },
+    type: 'case-study',
+    ragReady: true,
+    i18nFile: 'src/story-i18n.ts',
+    ogImage: 'https://santifer.io/story/og-story.png',
+    component: () => import('../Story.tsx'),
+    xDefaultSlug: 'historia',
+    seoMeta: {
+      datePublished: '2026-07-21',
+      dateModified: '2026-07-21',
+      keywords: ['santiago open source job hunt', 'career ops by santiago', 'santiago fernandez career ops', 'career-ops story', 'ai job search story', 'operated pipeline job search', 'building in public', 'open source job search', 'hired without applying', 'the reversal', 'historia career-ops', 'busqueda de empleo como pipeline'],
+      articleType: 'Article',
+      articleTags: 'career-ops,open source,job search,building in public,origin story',
+      images: ['https://santifer.io/story/og-story.png'],
+      about: [
+        { '@type': 'Person', name: 'Santiago Fernández de Valderrama Aparicio', sameAs: 'https://www.wikidata.org/wiki/Q138710224', url: 'https://santifer.io/about' },
+        { '@type': 'SoftwareSourceCode', name: 'career-ops', sameAs: 'https://www.wikidata.org/wiki/Q139007988', url: 'https://career-ops.org' },
+      ],
+      citation: [
+        { '@type': 'NewsArticle', name: 'I built a tool to filter 700 listings for my job search. It got me a position as head of AI. — Business Insider', url: 'https://www.businessinsider.com/how-i-built-tool-filter-job-listings-landed-head-ai-2026-4' },
+        { '@type': 'NewsArticle', name: 'Το AI εργαλείο που φέρνει επανάσταση στον τρόπο που ψάχνουμε δουλειά — WIRED Greece', url: 'https://wired.com.gr/article/to-ai-ergaleio-pou-fernei-epanastasi-ston-tropo-pou-psachnoume-douleia/' },
+        { '@type': 'WebPage', name: 'Building Career-Ops to Automate the Job Hunt — Create OS Lounge with Santifer', url: 'https://www.youtube.com/watch?v=pDkAe5JbREk' },
+        { '@type': 'WebPage', name: 'The CareerOps Manifesto', url: 'https://career-ops.org/manifesto' },
+      ],
+      mentions: [
+        { '@type': 'SoftwareSourceCode', name: 'career-ops', url: 'https://career-ops.org', codeRepository: 'https://github.com/santifer/career-ops', sameAs: ['https://career-ops.org', 'https://github.com/santifer/career-ops', 'https://www.wikidata.org/wiki/Q139007988'] },
+        { '@type': 'DefinedTerm', name: 'CareerOps', '@id': 'https://career-ops.org/manifesto#careerops', url: 'https://career-ops.org/manifesto' },
+        { '@type': 'Organization', name: 'Santifer iRepair', url: 'https://santiferirepair.es' },
+      ],
+      communityUrl: 'https://discord.gg/8pRpHETxa4',
     },
   },
   {

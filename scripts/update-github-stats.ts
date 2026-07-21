@@ -63,6 +63,21 @@ const ghHeaders = {
 }
 
 /** Contributor count via the Link-header pagination trick (per_page=1 → last page = count). */
+async function fetchReleaseInfo(owner: string, repo: string): Promise<{ count: number; latestTag: string; latestDate: Date } | null> {
+  try {
+    const res = await fetch(
+      `https://api.github.com/repos/${owner}/${repo}/releases?per_page=100`,
+      { headers: ghHeaders },
+    )
+    if (!res.ok) return null
+    const arr = await res.json()
+    if (!Array.isArray(arr) || arr.length === 0) return null
+    return { count: arr.length, latestTag: arr[0].tag_name, latestDate: new Date(arr[0].published_at) }
+  } catch {
+    return null
+  }
+}
+
 async function fetchContributorCount(owner: string, repo: string): Promise<number | null> {
   try {
     const res = await fetch(
@@ -310,11 +325,20 @@ async function main() {
       resolve(__dirname, '../src/i18n.ts'),
       resolve(__dirname, '../src/about-i18n.ts'),
       resolve(__dirname, '../src/career-ops-i18n.ts'),
+      resolve(__dirname, '../src/story-i18n.ts'),
       resolve(__dirname, '../public/llms.txt'),
       resolve(__dirname, '../public/humans.txt'),
       resolve(__dirname, '../chatbot-prompt.txt'),
       resolve(__dirname, '../index.html'),
     ]
+
+    // Story page (D-10): live counters carry a VISIBLE dated "as of" inside the citable
+    // passage. Refresh the date alongside the numbers — a stale date next to a live
+    // number is worse than no date. Tightly scoped to the star-counter phrasing so
+    // frozen dated claims elsewhere (e.g. manifesto signatures) never match.
+    const now = new Date()
+    const asOfEn = `${now.toLocaleString('en-US', { month: 'long' })} ${now.getFullYear()}`
+    const asOfEs = `${now.toLocaleString('es-ES', { month: 'long' })} de ${now.getFullYear()}`
 
     // Patterns: careful NOT to match hero metrics entries (those already handled by section 2)
     // Match patterns like "35K+ stars", "35K+ estrellas", "35K+ ⭐", "35K+ GitHub stars"
@@ -331,6 +355,9 @@ async function main() {
       // Metric-card entries where value/label are separated by object syntax:
       // `value: '40.1K+', label: 'GitHub stars'` — generic sweep can't bridge the `', label: '`.
       { re: /(value: ')\d+[\d.]*K\+(', label: 'GitHub stars')/g, replace: `$1${starLabelPlus}$2` },
+      // Story page dated live counters (see asOfEn/asOfEs above)
+      { re: /GitHub stars \(as of [A-Za-z]+ \d{4}\)/g, replace: `GitHub stars (as of ${asOfEn})` },
+      { re: /estrellas en GitHub \(a [a-záéíóúñ]+ de \d{4}\)/g, replace: `estrellas en GitHub (a ${asOfEs})` },
     ]
 
     // Lines that include `// HISTORIC` are protected (week-1 viral snapshot, do not auto-bump).
@@ -417,6 +444,18 @@ async function main() {
         fleet = fleet.replace(/\b[\d.]{3,} PRs fusionadas\b/g, `${esInt(mergedPrs)} PRs fusionadas`)
         fleet = fleet.replace(/(\['Merged PRs', ')[\d,]+(')/g, `$1${enInt(mergedPrs)}$2`)
         fleet = fleet.replace(/(\['PRs fusionadas', ')[\d.,]+(')/g, `$1${esInt(mergedPrs)}$2`)
+      }
+
+      // Releases row: count + latest tag + date, live from the API so it never fossilizes
+      // (fila corregida a mano el 21-jul tras quedar fósil: 21/v1.18.0 junto a contadores frescos)
+      const releases = await fetchReleaseInfo('santifer', 'career-ops')
+      if (releases) {
+        const ver = releases.latestTag.replace(/^.*?v(?=\d)/, 'v')
+        const relMonthsEs = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']
+        const relDateEs = `${releases.latestDate.getDate()} de ${relMonthsEs[releases.latestDate.getMonth()]}`
+        const relDateEn = releases.latestDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })
+        fleet = fleet.replace(/(\['Releases desde el despegue de abril', ')[^']+(')/g, `$1${releases.count} (última: ${ver}, ${relDateEs})$2`)
+        fleet = fleet.replace(/(\['Releases since the April launch', ')[^']+(')/g, `$1${releases.count} (latest: ${ver}, ${relDateEn})$2`)
       }
 
       // "As of <date>:" line above the numbers box — live rows refresh every build,

@@ -1,9 +1,9 @@
 {
-  "date": "2026-07-17T09:31:11",
-  "passRate": 0.9295774647887324,
+  "date": "2026-07-21T09:06:52",
+  "passRate": 0.971830985915493,
   "totalTests": 71,
-  "passed": 66,
-  "failed": 5,
+  "passed": 69,
+  "failed": 2,
   "categories": [
     {
       "name": "boundary_testing",
@@ -20,14 +20,14 @@
     {
       "name": "language_handling",
       "total": 5,
-      "passed": 4,
-      "passRate": 0.8
+      "passed": 5,
+      "passRate": 1
     },
     {
       "name": "multi_turn",
       "total": 5,
-      "passed": 2,
-      "passRate": 0.4
+      "passed": 4,
+      "passRate": 0.8
     },
     {
       "name": "persona_adherence",
@@ -44,8 +44,8 @@
     {
       "name": "rag_quality",
       "total": 16,
-      "passed": 16,
-      "passRate": 1
+      "passed": 15,
+      "passRate": 0.94
     },
     {
       "name": "safety_jailbreak",
@@ -56,8 +56,8 @@
     {
       "name": "source_badges",
       "total": 5,
-      "passed": 4,
-      "passRate": 0.8
+      "passed": 5,
+      "passRate": 1
     },
     {
       "name": "voice_quality",

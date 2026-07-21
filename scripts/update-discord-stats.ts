@@ -34,6 +34,7 @@ interface Target {
 }
 
 const CAREER_OPS_I18N = resolve(__dirname, '../src/career-ops-i18n.ts')
+const STORY_I18N = resolve(__dirname, '../src/story-i18n.ts')
 const FLEET_I18N = resolve(__dirname, '../src/ai-agent-fleet-i18n.ts')
 const I18N = resolve(__dirname, '../src/i18n.ts')
 const LLMS_TXT = resolve(__dirname, '../public/llms.txt')
@@ -82,6 +83,12 @@ const TARGETS: Target[] = [
   // llms.txt — FAQ "What is career-ops?" passage ("members" wording — the sweep patterns are
   // first-match-only, so this passage needs its own target to never go stale again)
   { file: LLMS_TXT, locale: 'en', format: 'full', description: 'llms.txt FAQ what-is',
+    pattern: /Discord community of (\d[\d.,]*)\+\s+members/ },
+
+  // story-i18n.ts — open-source section live counters (D-10)
+  { file: STORY_I18N, locale: 'es', format: 'full', description: 'story ES open-source',
+    pattern: /comunidad en Discord de (\d[\d.,]*)\+\s+miembros/ },
+  { file: STORY_I18N, locale: 'en', format: 'full', description: 'story EN open-source',
     pattern: /Discord community of (\d[\d.,]*)\+\s+members/ },
 
   // chatbot-prompt.txt — career-ops experience block

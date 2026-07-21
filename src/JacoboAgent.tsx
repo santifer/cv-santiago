@@ -117,7 +117,7 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
     description: t.seo.description,
     image: 'https://santifer.io/jacobo/og-jacobo-agent.webp',
     publishedTime: '2026-02-25',
-    modifiedTime: '2026-07-17',
+    modifiedTime: '2026-07-21',
     articleTags: 'AI agent,multi-agent,n8n,ElevenLabs,HITL,tool calling,WhatsApp,voice AI',
     jsonLd: buildJsonLd(lang),
     xDefaultSlug: 'agente-ia-jacobo',
@@ -127,7 +127,7 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
   return (
     <ArticleLayout lang={lang}>
       <FloatingToc />
-      <ArticleHeader editorId="hero-header" lang={lang} kicker={t.header.kicker} h1={t.header.h1} subtitle={t.header.subtitle} date={t.header.date} dateISO="2026-02-25" dateModifiedISO="2026-07-17" readingTime={t.readingTime} />
+      <ArticleHeader editorId="hero-header" lang={lang} kicker={t.header.kicker} h1={t.header.h1} subtitle={t.header.subtitle} date={t.header.date} dateISO="2026-02-25" dateModifiedISO="2026-07-21" readingTime={t.readingTime} />
 
       {'badge' in t.header && (
         <StatusBadge editorId="exit-badge" text={(t.header as any).badge} />

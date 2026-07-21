@@ -34,6 +34,7 @@ import { pseoContent } from '../src/pseo-i18n.ts';
 import { chatbotContent } from '../src/chatbot-i18n.ts';
 import { careerOpsContent } from '../src/career-ops-i18n.ts';
 import { aiAgentFleetContent } from '../src/ai-agent-fleet-i18n.ts';
+import { storyContent } from '../src/story-i18n.ts';
 
 // Map article id → i18n content for JSON-LD generation
 const i18nMap: Record<string, Record<string, { header: { h1: string }; nav: { breadcrumbHome: string; breadcrumbCurrent: string }; faq: { items: readonly { q: string; a: string }[] } }>> = {
@@ -44,6 +45,7 @@ const i18nMap: Record<string, Record<string, { header: { h1: string }; nav: { br
   'self-healing-chatbot': chatbotContent,
   'career-ops': careerOpsContent,
   'ai-agent-fleet': aiAgentFleetContent,
+  'story': storyContent,
 };
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
