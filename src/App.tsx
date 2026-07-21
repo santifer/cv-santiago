@@ -2604,7 +2604,7 @@ function App() {
                           <p className="text-base md:text-lg text-muted-foreground leading-relaxed">"{t.xPost.quoteText}"</p>
                         </div>
                       </div>
-                      {/* Career-Ops demo video — edge to edge, no padding */}
+                      {/* career-ops demo video — edge to edge, no padding */}
                       {hydrated && (
                         <div className="relative w-full" style={{ paddingBottom: '62.5%' }}>
                           <iframe

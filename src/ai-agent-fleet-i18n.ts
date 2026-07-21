@@ -27,7 +27,7 @@ export const aiAgentFleetContent = {
     },
     internalLinks: {
       careerOps: {
-        text: 'Career-Ops | Case Study',
+        text: 'career-ops | Case Study',
         href: '/career-ops',
       },
     },
@@ -231,7 +231,7 @@ export const aiAgentFleetContent = {
         body: 'Diseño y opero sistemas multi-agente en producción: flotas que convierten volumen mecánico en decisiones acotadas, con gates, memoria y evidencia. Despliego este modelo operativo embebido con equipos de ingeniería (forward-deployed). Si tu equipo se está ahogando en volumen, hablemos.',
         ctaLabel: 'Escríbeme',
         ctaHref: 'mailto:hi@santifer.io',
-        secondaryLabel: 'Lee el case study de Career-Ops',
+        secondaryLabel: 'Lee el case study de career-ops',
         secondaryHref: '/career-ops',
       },
       relatedWork: {
@@ -302,7 +302,7 @@ export const aiAgentFleetContent = {
     },
     internalLinks: {
       careerOps: {
-        text: 'Career-Ops | Case Study',
+        text: 'career-ops | Case Study',
         href: '/career-ops-system',
       },
     },
@@ -506,7 +506,7 @@ export const aiAgentFleetContent = {
         body: 'I design and operate multi-agent systems in production: fleets that turn mechanical volume into bounded decisions, with gates, memory and evidence. I deploy this operating model embedded with engineering teams (forward-deployed). If your team is drowning in volume, let\'s talk.',
         ctaLabel: 'Email me',
         ctaHref: 'mailto:hi@santifer.io',
-        secondaryLabel: 'Read the Career-Ops case study',
+        secondaryLabel: 'Read the career-ops case study',
         secondaryHref: '/career-ops-system',
       },
       relatedWork: {

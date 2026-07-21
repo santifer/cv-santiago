@@ -274,7 +274,7 @@ chatbot-prompt.txt           # System prompt (fallback, prod uses Langfuse)
 | Article | Slugs | Type |
 |---------|-------|------|
 | Self-Healing Chatbot | `/chatbot-que-se-cura-solo` `/self-healing-chatbot` | case-study |
-| Career-Ops | `/career-ops` `/career-ops-system` | case-study |
+| career-ops | `/career-ops` `/career-ops-system` | case-study |
 | Jacobo AI Agent | `/agente-ia-jacobo` `/ai-agent-jacobo` | case-study |
 | Business OS | `/business-os-para-airtable` `/business-os-for-airtable` | case-study |
 | Programmatic SEO | `/seo-programatico` `/programmatic-seo` | case-study |
@@ -545,7 +545,7 @@ chatbot-prompt.txt           # System prompt (fallback, producción usa Langfuse
 | Artículo | Slugs | Tipo |
 |----------|-------|------|
 | Chatbot que se cura solo | `/chatbot-que-se-cura-solo` `/self-healing-chatbot` | case-study |
-| Career-Ops | `/career-ops` `/career-ops-system` | case-study |
+| career-ops | `/career-ops` `/career-ops-system` | case-study |
 | Agente IA Jacobo | `/agente-ia-jacobo` `/ai-agent-jacobo` | case-study |
 | Business OS | `/business-os-para-airtable` `/business-os-for-airtable` | case-study |
 | SEO Programático | `/seo-programatico` `/programmatic-seo` | case-study |

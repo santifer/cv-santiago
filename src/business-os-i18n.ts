@@ -34,7 +34,7 @@ export const businessOsContent = {
       jacobo: { text: 'Agente IA Jacobo | Case Study', href: '/agente-ia-jacobo' },
       pseo: { text: 'SEO Programático | Case Study', href: '/seo-programatico' },
       n8n: { text: 'n8n para PMs | Artículo', href: '/n8n-para-pms' },
-      careerOps: { text: 'Career-Ops: Agente IA Multi-Agente | Case Study', href: '/career-ops' },
+      careerOps: { text: 'career-ops: Agente IA Multi-Agente | Case Study', href: '/career-ops' },
     },
     sections: {
       dayInLife: {
@@ -432,7 +432,7 @@ export const businessOsContent = {
       jacobo: { text: 'AI Agent Jacobo — Case Study', href: '/ai-agent-jacobo' },
       pseo: { text: 'Programmatic SEO — Case Study', href: '/programmatic-seo' },
       n8n: { text: 'n8n for PMs — Article', href: '/n8n-for-pms' },
-      careerOps: { text: 'Career-Ops: AI Job Search Multi-Agent | Case Study', href: '/career-ops-system' },
+      careerOps: { text: 'career-ops: AI Job Search Multi-Agent | Case Study', href: '/career-ops-system' },
     },
     sections: {
       dayInLife: {

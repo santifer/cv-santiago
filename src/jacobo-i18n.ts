@@ -55,7 +55,7 @@ export const jacoboContent = {
           href: '/seo-programatico',
         },
         careerOps: {
-          text: 'Career-Ops: Agente IA Multi-Agente | Case Study',
+          text: 'career-ops: Agente IA Multi-Agente | Case Study',
           href: '/career-ops',
         },
       },
@@ -1587,7 +1587,7 @@ Presupuesto reparándolo todo junto: \${totalConDescuento.toFixed(2)} €\`;`,
           href: '/programmatic-seo',
         },
         careerOps: {
-          text: 'Career-Ops: AI Job Search Multi-Agent | Case Study',
+          text: 'career-ops: AI Job Search Multi-Agent | Case Study',
           href: '/career-ops-system',
         },
       },

@@ -6,7 +6,7 @@ import { aboutContent, type AboutLang } from './about-i18n'
 // `rel: 'me'` is the IndieAuth standard for declaring profiles/sites the person controls.
 // Used here for cross-domain entity ownership signals (parsed by Mastodon, Bluesky, KG crawlers).
 const SOCIAL_LINKS: { name: string; url: string; rel?: string }[] = [
-  { name: 'Career-Ops', url: 'https://career-ops.org', rel: 'me noopener noreferrer' },
+  { name: 'career-ops', url: 'https://career-ops.org', rel: 'me noopener noreferrer' },
   { name: 'LinkedIn', url: 'https://www.linkedin.com/in/santifer', rel: 'me noopener noreferrer' },
   { name: 'GitHub', url: 'https://github.com/santifer', rel: 'me noopener noreferrer' },
   { name: 'YouTube', url: 'https://www.youtube.com/@santifer_io', rel: 'me noopener noreferrer' },

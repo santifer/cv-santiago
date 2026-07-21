@@ -22,7 +22,7 @@ export function PressFeatures({ lang }: PressFeaturesProps) {
           href="https://wired.com.gr/article/to-ai-ergaleio-pou-fernei-epanastasi-ston-tropo-pou-psachnoume-douleia/"
           target="_blank"
           rel="noopener noreferrer nofollow"
-          aria-label="WIRED — Featured article on Career-Ops"
+          aria-label="WIRED — Featured article on career-ops"
           className="group inline-flex items-center"
         >
           <img
@@ -37,7 +37,7 @@ export function PressFeatures({ lang }: PressFeaturesProps) {
           href="https://www.businessinsider.com/how-i-built-tool-filter-job-listings-landed-head-ai-2026-4"
           target="_blank"
           rel="noopener noreferrer nofollow"
-          aria-label="Business Insider — Featured article on Career-Ops"
+          aria-label="Business Insider — Featured article on career-ops"
           className="group inline-flex items-center"
         >
           <img

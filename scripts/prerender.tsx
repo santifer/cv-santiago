@@ -272,7 +272,7 @@ const aboutPersonProfile = {
       {
         '@type': 'VideoObject',
         name: 'Building Career-Ops to Automate the Job Hunt — Create OS Lounge with Santifer',
-        description: 'Interview with Santiago Fernández de Valderrama (santifer) on building Career-Ops, the open-source AI job search system that landed him a Head of Applied AI role.',
+        description: 'Interview with Santiago Fernández de Valderrama (santifer) on building career-ops, the open-source AI job search system that landed him a Head of Applied AI role.',
         embedUrl: 'https://www.youtube.com/embed/pDkAe5JbREk',
         url: 'https://www.youtube.com/watch?v=pDkAe5JbREk',
         duration: 'PT24M18S',

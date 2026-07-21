@@ -487,14 +487,14 @@ export const articleRegistry: ArticleConfig[] = [
   {
     id: 'career-ops',
     slugs: { es: 'career-ops', en: 'career-ops-system' },
-    titles: { es: 'Career-Ops', en: 'Career-Ops' },
+    titles: { es: 'career-ops', en: 'career-ops' },
     seo: {
       es: {
-        title: 'Career-Ops: Agente IA que Automatiza Mi Búsqueda de Empleo',
+        title: 'career-ops: Agente IA que Automatiza Mi Búsqueda de Empleo',
         description: 'Case study: agente IA multi-agente que evalúa ofertas con scoring multi-dimensional, crea CV con IA personalizados y automatiza aplicaciones. 631 evaluaciones.',
       },
       en: {
-        title: 'Career-Ops: How I Built My Own AI Job Search Tool',
+        title: 'career-ops: How I Built My Own AI Job Search Tool',
         description: 'Case study: AI job search tool built as a multi-agent system. AI resume builder, multi-dimensional scoring, automated applications with HITL. 631 evaluations.',
       },
     },
@@ -552,11 +552,11 @@ export const articleRegistry: ArticleConfig[] = [
         { '@type': 'WebPage', name: 'Anthropic Claude Code Documentation', url: 'https://docs.anthropic.com/en/docs/claude-code' },
         { '@type': 'WebPage', name: 'Playwright Browser Automation Documentation', url: 'https://playwright.dev/docs/intro' },
         { '@type': 'DiscussionForumPosting', name: 'I built an AI job search system with Claude Code — r/ClaudeAI (2600+ upvotes)', url: 'https://www.reddit.com/r/ClaudeAI/comments/1sd2f37/i_built_an_ai_job_search_system_with_claude_code/' },
-        { '@type': 'BlogPosting', name: 'Career-Ops : emploi automatisé par IA — Claude Code (HDVMA.fr)', url: 'https://hdvma.fr/career-ops-recherche-emploi-automatisee-claude-code-agents-ia-2026-2/' },
+        { '@type': 'BlogPosting', name: 'career-ops : emploi automatisé par IA — Claude Code (HDVMA.fr)', url: 'https://hdvma.fr/career-ops-recherche-emploi-automatisee-claude-code-agents-ia-2026-2/' },
         { '@type': 'BlogPosting', name: 'Comment créer un agent IA ? — Romain Delfosse', url: 'https://www.romaindelfosse.fr/blog/comment-creer-agent-ia/' },
         { '@type': 'BlogPosting', name: 'santifer/career-ops — Claude Code, Playwright, Chromium (CSDN)', url: 'https://blog.csdn.net/Dontla/article/details/159930707' },
         { '@type': 'WebPage', name: 'GitHub Trending Weekly 2026-04-08 — Shareuhack', url: 'https://www.shareuhack.com/en/posts/github-trending-weekly-2026-04-08' },
-        { '@type': 'WebPage', name: 'Career-Ops — AI Job Search CLI Tool (EveryDev.ai)', url: 'https://www.everydev.ai/tools/career-ops' },
+        { '@type': 'WebPage', name: 'career-ops — AI Job Search CLI Tool (EveryDev.ai)', url: 'https://www.everydev.ai/tools/career-ops' },
         { '@type': 'TechArticle', name: 'Agentic maintenance: how I run a 60,000-star open source repo with a fleet of AI agents', url: 'https://santifer.io/ai-agent-fleet' },
         { '@type': 'WebPage', name: 'HN Top Links — Popular Stories from Hacker News', url: 'http://hntoplinks.com/week?page=216&sort=upvotes' },
         { '@type': 'TechArticle', name: 'Anthropic Claude Code — Agentic Coding', url: 'https://www.anthropic.com/claude-code' },

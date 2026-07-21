@@ -46,7 +46,7 @@ const TARGETS: Target[] = [
   { file: CAREER_OPS_I18N, locale: 'es', format: 'full', description: 'body ES',
     pattern: /más de (\d[\d.,]*) personas en Discord/ },
   { file: CAREER_OPS_I18N, locale: 'es', format: 'full', description: 'communityBody ES',
-    pattern: /communityBody:\s*'(\d[\d.,]*)\+\s*builders ya usan Career-Ops/ },
+    pattern: /communityBody:\s*'(\d[\d.,]*)\+\s*builders ya usan career-ops/ },
   { file: CAREER_OPS_I18N, locale: 'es', format: 'full', description: 'FAQ ES (supera)',
     pattern: /comunidad en Discord ya supera las (\d[\d.,]*) personas/ },
 
@@ -56,7 +56,7 @@ const TARGETS: Target[] = [
   { file: CAREER_OPS_I18N, locale: 'en', format: 'full', description: 'body EN',
     pattern: /A community of (\d[\d.,]*)\+\s+people formed on Discord/ },
   { file: CAREER_OPS_I18N, locale: 'en', format: 'full', description: 'communityBody EN',
-    pattern: /communityBody:\s*'(\d[\d.,]*)\+\s*builders already use Career-Ops/ },
+    pattern: /communityBody:\s*'(\d[\d.,]*)\+\s*builders already use career-ops/ },
   { file: CAREER_OPS_I18N, locale: 'en', format: 'full', description: 'FAQ EN (is now)',
     pattern: /Discord community is now (\d[\d.,]*)\+\s+people/ },
 

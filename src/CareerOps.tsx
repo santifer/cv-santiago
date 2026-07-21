@@ -439,8 +439,8 @@ export default function CareerOps({ lang = 'en' }: { lang?: Lang }) {
         {/* ================================================================ */}
         <H2 id="related">{lang === 'es' ? 'Sistemas Relacionados' : 'Related Systems'}</H2>
         <Prose>{lang === 'es'
-          ? 'Career-Ops demuestra las mismas competencias que estos sistemas. Cada uno es un case study completo con arquitectura, métricas y lecciones.'
-          : 'Career-Ops demonstrates the same competencies as these systems. Each one is a full case study with architecture, metrics, and lessons.'
+          ? 'career-ops demuestra las mismas competencias que estos sistemas. Cada uno es un case study completo con arquitectura, métricas y lecciones.'
+          : 'career-ops demonstrates the same competencies as these systems. Each one is a full case study with architecture, metrics, and lessons.'
         }</Prose>
         <div className="grid sm:grid-cols-2 gap-3 mb-8">
           {Object.values(t.internalLinks).map(link => (
