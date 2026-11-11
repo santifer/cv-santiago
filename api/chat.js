@@ -10,6 +10,23 @@ import {
 } from './_shared/rag.js'
 import { getSystemPrompt } from './_shared/prompt.js'
 
+const scrubForLog = (text) =>
+  String(text ?? '')
+    .replace(/[\w.+-]+@[\w-]+\.[\w.-]+/g, '[email]')
+    .replace(/\+?\d[\d\s-]{7,}\d/g, '[phone]')
+    .slice(0, 2000)
+
+const scrubContent = (content) => {
+  if (typeof content === 'string') return scrubForLog(content)
+  if (Array.isArray(content)) {
+    return content.map(b => (b?.type === 'text' ? { ...b, text: scrubForLog(b.text) } : b))
+  }
+  return content
+}
+
+const scrubMessages = (msgs = []) =>
+  msgs.map(m => ({ ...m, content: scrubContent(m.content) }))
+
 const client = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 })
@@ -376,6 +393,8 @@ function streamResponse({
           const pcOut = precomputedResponse.usage?.output_tokens || 0
           generationCost = calcCost('claude-sonnet-4-6', pcIn, pcOut)
           generationSpan?.end({
+            input: scrubMessages(messages),
+            output: scrubForLog(fullOutput),
             metadata: {
               outputTokens: pcOut,
               inputTokens: pcIn,
@@ -433,6 +452,8 @@ function streamResponse({
                 const genOut = finalMessage.usage?.output_tokens || 0
                 generationCost = calcCost('claude-sonnet-4-6', genIn, genOut)
                 generationSpan?.end({
+                  input: scrubMessages(messages),
+                  output: scrubForLog(fullOutput),
                   metadata: {
                     outputTokens: genOut,
                     inputTokens: genIn,
@@ -532,7 +553,11 @@ function streamResponse({
           controller.close()
         }
       } catch (error) {
-        generationSpan?.end({ metadata: { error: error.message } })
+        generationSpan?.end({
+          input: scrubMessages(messages),
+          output: fullOutput ? scrubForLog(fullOutput) : null,
+          metadata: { error: error.message },
+        })
         trace?.update({ tags: [...intentTags, 'rag:fallback'], metadata: { streamingError: error.message } })
 
         // Graceful degradation: retry without RAG context (just system prompt)
