@@ -1556,9 +1556,9 @@ function App() {
                   <Github className="w-3.5 h-3.5" aria-hidden="true" />
                   <span>{t.hero.subLink}</span>
                   <Star className="w-3 h-3 text-yellow-500" aria-hidden="true" />
-                  {/* hero-stats:career-ops:stars */}<span className="font-medium">75.3K</span>
+                  {/* hero-stats:career-ops:stars */}<span className="font-medium">82.2K</span>
                   <GitFork className="w-3 h-3" aria-hidden="true" />
-                  {/* hero-stats:career-ops:forks */}<span>14.0K</span>
+                  {/* hero-stats:career-ops:forks */}<span>15.1K</span>
                 </a>
                 {t.hero.subPost}
               </p>

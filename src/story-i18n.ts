@@ -32,7 +32,7 @@ export const storyContent = {
     // Respuesta directa citable (~60 palabras) — doctrina §2: primeras 60 palabras bajo el H1
     directAnswer:
       // Funnel congelado (inmune al sweep: sin formato K+) + contadores VIVOS en la misma línea — no añadir marcador de protección aquí
-      'A principios de 2026, Santiago Fernández de Valderrama Aparicio llevó su búsqueda de empleo como un pipeline de operaciones: 740 ofertas evaluadas, 68 solicitudes, 12 entrevistas, 1 oferta firmada. Después liberó el sistema como career-ops (MIT, gratis): 75.3K+ estrellas en GitHub (a octubre de 2026). Y el CEO que le contrató le encontró por el sistema. Sin solicitud de por medio.',
+      'A principios de 2026, Santiago Fernández de Valderrama Aparicio llevó su búsqueda de empleo como un pipeline de operaciones: 740 ofertas evaluadas, 68 solicitudes, 12 entrevistas, 1 oferta firmada. Después liberó el sistema como career-ops (MIT, gratis): 82.2K+ estrellas en GitHub (a noviembre de 2026). Y el CEO que le contrató le encontró por el sistema. Sin solicitud de por medio.',
     sections: {
       'sixteen-years': {
         heading: 'Dieciséis años construyendo primero',
@@ -55,7 +55,7 @@ export const storyContent = {
         paras: [
           'Cuando dejé de necesitarlo, lo liberé bajo licencia MIT: sin paywall, sin tier premium, gratis. Lo dije entonces en Business Insider y lo mantengo: no me sentía cómodo cobrando a gente que busca trabajo, porque encontrar trabajo es una necesidad básica.',
           // Hito verificado congelado (fuente: tweet fijado x.com/santifer/status/2041403685696053741, citado en ai-agent-fleet); contadores 60.8K+/12.0K+/4.200+ VIVOS
-          'Se hizo viral: más de 12.000 estrellas en los dos primeros días. Hoy career-ops tiene 75.3K+ estrellas en GitHub (a octubre de 2026), 14.0K+ forks, más de 460 contribuidores y una comunidad en Discord de 4.900+ miembros. Business Insider (abril 2026) y WIRED Grecia (abril 2026) lo cubrieron como caso de cómo la IA está reequilibrando el embudo de contratación desde el lado del candidato.',
+          'Se hizo viral: más de 12.000 estrellas en los dos primeros días. Hoy career-ops tiene 82.2K+ estrellas en GitHub (a noviembre de 2026), 15.1K+ forks, más de 460 contribuidores y una comunidad en Discord de 5.200+ miembros. Business Insider (abril 2026) y WIRED Grecia (abril 2026) lo cubrieron como caso de cómo la IA está reequilibrando el embudo de contratación desde el lado del candidato.',
         ],
       },
       'the-reversal': {
@@ -125,7 +125,7 @@ export const storyContent = {
     // Citable direct answer (~60 words) — doctrine §2: first ~60 words under the H1
     directAnswer:
       // Frozen funnel (sweep-immune: no K+ format) + LIVE counters on the same line — do not add a protection marker here
-      'In early 2026, Santiago Fernández de Valderrama Aparicio ran his job search as an operations pipeline: 740 job listings evaluated, 68 applications, 12 interviews, 1 signed offer. He then open-sourced the system as career-ops (MIT, free): 75.3K+ GitHub stars (as of October 2026). And the CEO who hired him found him through the system. No application involved.',
+      'In early 2026, Santiago Fernández de Valderrama Aparicio ran his job search as an operations pipeline: 740 job listings evaluated, 68 applications, 12 interviews, 1 signed offer. He then open-sourced the system as career-ops (MIT, free): 82.2K+ GitHub stars (as of November 2026). And the CEO who hired him found him through the system. No application involved.',
     sections: {
       'sixteen-years': {
         heading: 'Sixteen years of building first',
@@ -148,7 +148,7 @@ export const storyContent = {
         paras: [
           'When I stopped needing it, I released it under the MIT license: no paywall, no premium tier, free. I said it in Business Insider then and I stand by it: I did not feel comfortable charging people who are looking for work, because finding a job is a basic human need.',
           // Frozen verified milestone (source: pinned tweet x.com/santifer/status/2041403685696053741, cited in ai-agent-fleet); 60.8K+/12.0K+/4,200+ counters LIVE
-          'It went viral: 12,000+ stars in the first two days. Today career-ops has 75.3K+ GitHub stars (as of October 2026), 14.0K+ forks, 460+ contributors and a Discord community of 4,900+ members. Business Insider (April 2026) and WIRED Greece (April 2026) covered it as a case of AI rebalancing the hiring funnel from the candidate side.',
+          'It went viral: 12,000+ stars in the first two days. Today career-ops has 82.2K+ GitHub stars (as of November 2026), 15.1K+ forks, 460+ contributors and a Discord community of 5,200+ members. Business Insider (April 2026) and WIRED Greece (April 2026) covered it as a case of AI rebalancing the hiring funnel from the candidate side.',
         ],
       },
       'the-reversal': {

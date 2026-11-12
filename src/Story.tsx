@@ -43,7 +43,7 @@ export default function Story({ lang = 'en' }: { lang?: Lang }) {
     description: t.seo.description,
     image: 'https://santifer.io/story/og-story.jpg',
     publishedTime: '2026-07-21',
-    modifiedTime: '2026-09-29',
+    modifiedTime: '2026-10-17',
     articleTags: 'career-ops,open source,job search,founder story,building in public',
     jsonLd: buildJsonLd(lang),
     xDefaultSlug: 'historia',

@@ -199,7 +199,7 @@ export const articleRegistry: ArticleConfig[] = [
     component: () => import('../JacoboAgent.tsx'),
     seoMeta: {
       datePublished: '2026-02-25',
-      dateModified: '2026-09-29',
+      dateModified: '2026-10-17',
       keywords: ['multi-agent AI', 'multi agent orchestration', 'AI agent', 'sub-agent architecture', 'tool calling production', 'n8n workflows', 'n8n ai agent', 'ai agent case study', 'customer service AI', 'WhatsApp AI agent', 'ElevenLabs voice agent', 'voice AI', 'HITL', 'human in the loop', 'ia para pymes', 'agente ia whatsapp', 'multi-model orchestration', 'OpenRouter', 'FDE portfolio', 'solutions architect AI', 'AI production manager', 'enterprise AI patterns', 'voice AI platform', 'conversational AI case study', 'agentic workflows'],
       articleType: 'TechArticle',
       articleTags: 'AI agent,multi-agent,n8n,ElevenLabs,HITL,tool calling,WhatsApp,voice AI',
@@ -532,7 +532,7 @@ export const articleRegistry: ArticleConfig[] = [
     component: () => import('../CareerOps.tsx'),
     seoMeta: {
       datePublished: '2026-03-17',
-      dateModified: '2026-10-01',
+      dateModified: '2026-10-17',
       keywords: ['ai job search', 'ai job search tool', 'ai powered job search', 'ai resume builder', 'ai resume', 'multi agent system', 'multi agent orchestration', 'automated job application', 'ATS-optimized resume', 'Claude Code', 'batch processing', 'HITL', 'job search automation', 'career-ops', 'ai auto apply', 'agente ia', 'crear cv con ia', 'automatizacion con ia', 'sistema multiagente', 'busqueda de empleo ia'],
       articleType: 'TechArticle',
       articleTags: 'multi-agent,job search,Claude Code,ATS,batch processing,HITL,automation,Playwright',
@@ -640,7 +640,7 @@ export const articleRegistry: ArticleConfig[] = [
     component: () => import('../AiAgentFleet.tsx'),
     seoMeta: {
       datePublished: '2026-07-10',
-      dateModified: '2026-09-29',
+      dateModified: '2026-10-17',
       keywords: ['agentic maintenance', 'ai agent fleet', 'maintain open source with ai agents', 'multi-agent code review', 'ai-native sdlc', 'context engineering', 'claude code agents', 'open source maintainer', 'ai agents software maintenance', 'multi-agent orchestration', 'orchestrator agent pattern', 'ephemeral verifier', 'flota de agentes ia', 'mantener open source con agentes ia', 'agentes claude code'],
       articleType: 'TechArticle',
       articleTags: 'ai agents,multi-agent,open source,maintainer,Claude Code,sdlc,context engineering',
@@ -708,7 +708,7 @@ export const articleRegistry: ArticleConfig[] = [
     xDefaultSlug: 'historia',
     seoMeta: {
       datePublished: '2026-07-21',
-      dateModified: '2026-09-29',
+      dateModified: '2026-10-17',
       keywords: ['santiago open source job hunt', 'career ops by santiago', 'santiago fernandez career ops', 'career-ops story', 'ai job search story', 'operated pipeline job search', 'building in public', 'open source job search', 'hired without applying', 'the reversal', 'historia career-ops', 'busqueda de empleo como pipeline'],
       articleType: 'Article',
       articleTags: 'career-ops,open source,job search,building in public,origin story',
